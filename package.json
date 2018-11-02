@@ -1,0 +1,23 @@
+{
+  "name": "tickets_system_mvc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelo-docutec/tickets_system_mvc.git"
+  },
+  "author": "Marcelo Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelo-docutec/tickets_system_mvc/issues"
+  },
+  "homepage": "https://github.com/marcelo-docutec/tickets_system_mvc#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  }
+}
