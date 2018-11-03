@@ -24,11 +24,6 @@ class Artist
 
     //setters
 
-    public function setIdArtist($idArtistRecib)
-    {
-    	$this->id_artist = $idArtistRecib;
-    }
-
     public function setNameArtist($nameRecib)
     {
     	$this->name = $nameRecib;

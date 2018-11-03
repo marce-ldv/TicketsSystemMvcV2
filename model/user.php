@@ -2,122 +2,21 @@
 
 namespace model;
 
-class User implements \Serializable{
-
-    // TODO: DEBE QUEDAR IGUAL EL MODELO A LA DE LA BASE DE DATOS, ES DECIR EL NOMBRE DE LOS ATRIBUTOS
-
-    private $id_user;
+class User implements \Serializable
+{
+    private $idUser;
+    private $role;
     private $username;
+    private $pass;
     private $email;
-    private $password;
-    private $id_role;
-    private $id_facebook;
+    private $name;
+    private $surname;
+    private $dni;
+    private $idFacebook;
+    private $idTwitter;
+    private $idGoogle;
 
-    public function __construct($username='', $password='', $email=''){
-        $this->username = $username;
-        $this->password = $password;
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdUser()
-    {
-        return $this->id_user;
-    }
-
-    /**
-     * @param mixed $id_user
-     *
-     * @return self
-     */
-    public function setIdUser($id_user)
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param mixed $username
-     *
-     * @return self
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param mixed $password
-     *
-     * @return self
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdRole()
-    {
-        return $this->id_role;
-    }
-
-    /**
-     * @param mixed $id_role
-     *
-     * @return self
-     */
-    public function setIdRole($id_role)
-    {
-        $this->id_role = $id_role;
-
-        return $this;
-    }
+    //SERIALIZE METHODS
 
     public function serialize(){
         return serialize([
@@ -132,5 +31,90 @@ class User implements \Serializable{
             $this->email
         ) = unserialize($data);
     }
+
+    //GETTERS
+    public function getIdUser()
+    {
+      return $this->idUser;
+    }
+    public function getRole()
+    {
+      return $this->role;
+    }
+    public function getUsername()
+    {
+      return $this->username;
+    }
+    public function getPass()
+    {
+      return $this->pass;
+    }
+    public function getEmail()
+    {
+      return $this->email;
+    }
+    public function getName()
+    {
+      return $this->name;
+    }
+    public function getSurname()
+    {
+      return $this->surname;
+    }
+    public function getDni()
+    {
+      return $this->dni;
+    }
+    public function getIdFacebook()
+    {
+      return $this->idFacebook;
+    }
+    public function getIdTwitter()
+    {
+      return $this->idTwitter;
+    }
+    public function getIdGoogle()
+    {
+      return $this->idGoogle;
+    }
+
+    //SETTERS
+
+    public function setRole($value)
+    {
+      $this->role = $value;
+      return $this;
+    }
+    public function setUsername($value)
+    {
+      $this->username = $value;
+      return $this;
+    }
+    public function setPass($value)
+    {
+      $this->pass = $value;
+      return $this;
+    }
+    public function setEmail($value)
+    {
+      $this->email = $value;
+      return $this;
+    }
+    public function setName($value)
+    {
+      $this->name = $value;
+      return $this;
+    }
+    public function setSurname($value)
+    {
+      $this->surname = $value;
+      return $this;
+    }
+    public function setDni($value)
+    {
+      $this->dni = $value;
+      return $this;
+    }
+
 
 }

@@ -65,7 +65,7 @@ CREATE TABLE calendars(
 	CONSTRAINT fk_id_place_event FOREIGN KEY (id_place_event) REFERENCES place_events(id_place_event) ON DELETE CASCADE
 );
 
-CREATE TABLE area_events(
+CREATE TABLE events_area(
 	id_event_area BIGINT UNSIGNED AUTO_INCREMENT,
 	id_type_area BIGINT UNSIGNED,
 	id_calendar BIGINT UNSIGNED,
@@ -103,7 +103,7 @@ CREATE TABLE lines_purchases(
 	price INT,
 	CONSTRAINT pk_id_line_purchase PRIMARY KEY (id_line_purchase),
 	CONSTRAINT fk_id_purchase FOREIGN KEY (id_purchase) REFERENCES purchases (id_purchase) ON DELETE CASCADE,
-	CONSTRAINT fk_id_area_event FOREIGN KEY (id_event_area) REFERENCES area_events(id_event_area) ON DELETE CASCADE
+	CONSTRAINT fk_id_area_event FOREIGN KEY (id_event_area) REFERENCES events_area(id_event_area) ON DELETE CASCADE
 );
 
 CREATE TABLE tickets(
