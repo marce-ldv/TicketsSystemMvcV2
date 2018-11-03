@@ -8,10 +8,6 @@ class Artist
 	private $surname;
 	private $nickname;
 
-    public function __construct($nameRecib){
-    	$this->name = $nameRecib;
-    }
-
     //GETTERS
 
     public function getIdArtist()
