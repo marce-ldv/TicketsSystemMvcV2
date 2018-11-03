@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="<?= BOOTSTRAPCSS ?>" type="text/css">
     <link rel="stylesheet" href="<?= URL_CSS . 'styles.css'?>" type="text/css">
+    <link rel="stylesheet" href="<?= URL_VENDOR . 'select2/select2.min.css'?>" type="text/css">
+    <link rel="stylesheet" href="<?= URL_CSS . 'util.css'?>" type="text/css">
+	  <link rel="stylesheet" href="<?= URL_CSS . 'main.css'?>" type="text/css">
 
 </head>
 <body>

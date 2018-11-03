@@ -16,7 +16,7 @@ CREATE TABLE users(
 		CONSTRAINT pk_id_user PRIMARY KEY (id_user),
 		CONSTRAINT unq_dni UNIQUE (dni),
     CONSTRAINT uniq_username UNIQUE (username),
-    CONSTRAINT uniq_email UNIQUE (email,username)
+    CONSTRAINT uniq_email UNIQUE (email)
 );
 
 CREATE TABLE categories(
@@ -93,7 +93,7 @@ CREATE TABLE purchases(
 	id_user BIGINT UNSIGNED,
 	date_purchase DATE NOT NULL,
 	CONSTRAINT pk_id_purchase PRIMARY KEY (id_purchase),
-	CONSTRAINT fk_id_customer FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
+	CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
 );
 
 CREATE TABLE lines_purchases(

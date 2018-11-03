@@ -28,15 +28,15 @@ class Event
 
   //setters
 
-  public function setCategoryEvent($categoryReceived)
+  public function setCategoryEvent($value)
   {
-    $this->category = $category;
+    $this->category = $value;
     return $this;
   }
 
-  public function setTitleEvent($titleReceived)
+  public function setTitleEvent($value)
   {
-    $this->title = $title;
+    $this->title = $value;
     return $this;
   }
 
