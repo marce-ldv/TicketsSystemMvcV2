@@ -37,7 +37,7 @@ class ArtistController extends Controller{
 	}
 
 	public function create()
-	{
+		{
 		//if($this->session->__isset('rol')){
 		//	$rol = $this->session->__get('rol');
 		//	if($rol === 'admin'){
@@ -67,17 +67,16 @@ class ArtistController extends Controller{
 
 	}
 
-	    public function delete($id)
+    public function delete($id)
     {
         $searchedArtist = $this->artistDao->delete($id);
         $this->list(); // reutilizo el list()
     }
 
 
-    public function update($nombre,$id_artist)
+    public function update($nombre)
     {    	
     	$artist = new Artist($nombre);
-    	$artist->setIdArtist($id_artist);
     	
     	// se muestra que se modifico correctamente el artista
     		$mensaje['mensaje'] = "EL ARTISTA SE MODIFICO CON EXITO !";
