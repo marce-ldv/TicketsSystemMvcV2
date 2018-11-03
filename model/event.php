@@ -8,7 +8,7 @@ class Event
   private $id_event;
   private $category;
   private $title;
-  
+
   // getters
 
   public function getIdEvent()

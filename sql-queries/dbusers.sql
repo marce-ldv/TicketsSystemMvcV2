@@ -7,7 +7,7 @@ CREATE TABLE users(
     username VARCHAR(50) NOT NULL,
     pass VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
-		name VARCHAR(50) NOT NULL,
+		name VARCHAR(50),
 		surname VARCHAR(50),
 		dni VARCHAR(50),
     id_facebook BIGINT,
@@ -15,24 +15,12 @@ CREATE TABLE users(
 		id_google BIGINT,
 		name VARCHAR(50),
 		surname VARCHAR(50),
-		dni VARCHAR(50) NOT NULL,
-		CONSTRAINT pk_id_customer PRIMARY KEY (id_customer),
+		dni VARCHAR(50),
 		CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
 		CONSTRAINT unq_dni UNIQUE (dni)
     CONSTRAINT pk_id_user PRIMARY KEY (id_user),
     CONSTRAINT uniq_username UNIQUE (username),
-<<<<<<< HEAD
-    CONSTRAINT uniq_email UNIQUE (email,username),
-    CONSTRAINT fk_id_rol FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
-);
-
-CREATE TABLE customers(
-	id_customer BIGINT UNSIGNED AUTO_INCREMENT,
-	id_user BIGINT UNSIGNED,
-
-=======
     CONSTRAINT uniq_email UNIQUE (email,username)
->>>>>>> marcelo
 );
 
 CREATE TABLE categories(
