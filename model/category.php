@@ -15,9 +15,14 @@ class Category
     return $this->idCategory;
   }
 
+  public function getDescription()
+  {
+    return $this->description;
+  }
+
   //SETTERS
 
-  public function setIdUser($value)
+  public function setDescription($value)
   {
     $this->description = $value;
     return $this;

@@ -13,9 +13,6 @@ CREATE TABLE users(
     id_facebook BIGINT,
 		id_twitter BIGINT,
 		id_google BIGINT,
-		name VARCHAR(50),
-		surname VARCHAR(50),
-		dni VARCHAR(50),
 		CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
 		CONSTRAINT unq_dni UNIQUE (dni)
     CONSTRAINT pk_id_user PRIMARY KEY (id_user),
