@@ -22,6 +22,12 @@ CREATE TABLE users(
     id_facebook BIGINT,
 		id_twitter BIGINT,
 		id_google BIGINT,
+		name VARCHAR(50),
+		surname VARCHAR(50),
+		dni VARCHAR(50) NOT NULL,
+		CONSTRAINT pk_id_customer PRIMARY KEY (id_customer),
+		CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
+		CONSTRAINT unq_dni UNIQUE (dni)
     CONSTRAINT pk_id_user PRIMARY KEY (id_user),
     CONSTRAINT uniq_username UNIQUE (username),
     CONSTRAINT uniq_email UNIQUE (email,username),
@@ -31,12 +37,7 @@ CREATE TABLE users(
 CREATE TABLE customers(
 	id_customer BIGINT UNSIGNED AUTO_INCREMENT,
 	id_user BIGINT UNSIGNED,
-	name VARCHAR(50) NOT NULL,
-	surname VARCHAR(50) NOT NULL,
-	dni VARCHAR(50) NOT NULL,
-	CONSTRAINT pk_id_customer PRIMARY KEY (id_customer),
-	CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
-	CONSTRAINT unq_dni UNIQUE (dni)
+
 );
 
 CREATE TABLE categories(

@@ -5,37 +5,53 @@ class Artist
 {
 	private $id_artist;
 	private $name;
+	private $surname;
+	private $nickname;
 
     public function __construct($nameRecib){
     	$this->name = $nameRecib;
     }
 
-    //getters
+    //GETTERS
 
     public function getIdArtist()
     {
     	return $this->id_artist;
     }
 
-    public function getNameArtist()
+    public function getName()
     {
     	return $this->name;
     }
 
-    //setters
+		public function getSurname()
+		{
+			return $this->surname;
+		}
 
-    public function setIdArtist($idArtistRecib)
+		public function getNickname()
+		{
+			return $this->nickname;
+		}
+
+		//SETTERS
+
+		public function setName($value)
     {
-    	$this->id_artist = $idArtistRecib;
+    	$this->name = $value;
+			return $this;
     }
 
-    public function setNameArtist($nameRecib)
-    {
-    	$this->name = $nameRecib;
-    }
+		public function setSurname($value)
+		{
+			$this->surname = $value;
+			return $this;
+		}
+
+		public function setNickname($value)
+		{
+			$this->nickname = $value;
+			return;
+		}
 
 }
-
-
-
- ?>
