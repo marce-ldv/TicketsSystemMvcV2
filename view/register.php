@@ -12,24 +12,25 @@
 				</strong>
 			</p>
 			<div class="regularform">
+				<?php if (isset($alert)) {?>
 				<div class="done">
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						Thank you!
+						<?php echo $alert ?>
 					</div>
 				</div>
+				<?php } ?>
 
-				<?php if (isset($alert)) { ?>
+<!-- Codigo viejo
 				  <div class="container">
 				    <div class="alert alert-success alert-dismissible fade in show" role="alert">
-				      <?php echo $alert; ?>
 				      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				        <span aria-hidden="true">&times;</span>
 				      </button>
 				    </div>
 				  </div>
-				<?php }?>
 
+-->
 				<form id="form_r" method="post" action="<?= VIEW_URL ?>/user/register/" id="contactform" class="text-left "autocomplete="off" enctype= 'multipart/form-data'>
 
 

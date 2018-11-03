@@ -12,12 +12,14 @@
 				</strong>
 			</p>
 			<div class="regularform">
+				<?php if (isset($alert)) {?>
 				<div class="done">
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						Thank you!
 					</div>
 				</div>
+			<?php } ?>
 				<form id="form_r" method="post" action="<?= VIEW_URL ?>/user/login/" id="loginform" class="text-left "autocomplete="off" enctype= 'multipart/form-data'>
 
 					<p style="text-align: center;">
