@@ -1,77 +1,185 @@
 <?php  include(URL_VIEW . 'navbar.php'); ?>
-<div class="container">
 
-    <section id="about">
+  <!-- HOME -->
+  <header id="home-section">
+    <div class="dark-overlay">
+      <div class="home-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 d-none d-sm-block">
+              <h1 class="display-4">Lorem <strong>ipsum dolor</strong> sit amet, consectetur adipisicing.</h1>
+
+              <!-- check -->
+              <div class="d-flex flex-row">
+                <div class="p-4 align-self-start">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="p-4 align-self-end">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+                </div>
+              </div>
+              <!-- check -->
+              <div class="d-flex flex-row">
+                <div class="p-4 align-self-start">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="p-4 align-self-end">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+                </div>
+              </div>
+              <!-- check -->
+              <div class="d-flex flex-row">
+                <div class="p-4 align-self-start">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="p-4 align-self-end">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+                </div>
+              </div>
+
+            </div>
+            <!-- SECOND COLUMN -->
+            <div class="col-lg-4">
+              <div class="card text-center" style="background-color: #c0392b;">
+                <div class="card-body">
+                  <h3>Lorem ipsum.</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                  <form action="<?= VIEW_URL ?>/user/login/" method="post">
+
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-lg" placeholder="Username" name="nickname">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-lg" placeholder="Password" name="pass">
+                    </div>
+
+                    <input type="submit" value="Login" class="btn btn-outline-light btn-block">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INFO HEAD -->
+  <section class="info-head-section">
+    <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Bienvenido</h2>
-          <p class="lead">Este es un sistema de venta de tickets de eventos, como pueden ser recitales, cines y demas</p>
-          <ul>
-            <li>Clickable nav links that smooth scroll to page sections</li>
-            <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-            <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-            <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!--Aqui se mostrara el alert-->
-    <?php if (isset($alert)) { ?>
-      <div class="container">
-        <div class="alert alert-success alert-dismissible fade in show" role="alert">
-          <?php echo $alert; ?>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </div>
-    <?php } ?>
-
-    <!--Carousel -->
-    <div>
-      <div id="carouselZ" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselZ" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselZ" data-slide-to="1"></li>
-          <li data-target="#carouselZ" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="<?= URL_IMG ?>eventos.jpg" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="<?= URL_IMG ?>eventos2.jpg" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="<?= URL_IMG ?>eventos.jpg" alt="Third slide">
+        <div class="col text-center">
+          <div class="p-5">
+            <h1 class="display-4">Info</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus provident expedita optio magnam maiores deleniti perferendis quibusdam veniam. Quas quasi alias rerum, hic et adipisci culpa provident odit fugiat atque!</p>
+            <a href="#" class="btn btn-outline-secondary">Lorem ipsum dolor.</a>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselZ" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselZ" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
-
     </div>
-    
-    
-    <section id="sucursales">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Lorem ipsum <b>Lorem ipsum</b></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <hr class="primary">
+  </section>
+
+  <section class="info-section bg-light text-muted py-5" id="info-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="<?= URL_IMG ?>img1.png" alt="" class="img-fluid mb-3 rouded-circle">
+        </div>
+        <div class="col-md-6">
+          <h3>SERVICES AND PRODUCTS</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste maxime quos obcaecati quod iusto. Debitis, eius, at! Labore totam quaerat nisi commodi ullam nesciunt eligendi, accusamus corporis in optio sapiente.</p>
+          <!-- check -->
+          <div class="d-flex flex-row">
+            <div class="p-4 align-self-start">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="p-4 align-self-end">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+            </div>
+          </div>
+          <!-- check -->
+          <div class="d-flex flex-row">
+            <div class="p-4 align-self-start">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="p-4 align-self-end">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+            </div>
+          </div>
+          <!-- check -->
+          <div class="d-flex flex-row">
+            <div class="p-4 align-self-start">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="p-4 align-self-end">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <div class="clearfix">
     </div>
+  </section>
 
-</div>
+  <!-- HEAD SECTION -->
+  <section class="info-head-section bg-danger">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <div class="p-5">
+            <h1 class="display-4">Info</h1>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus provident expedita optio magnam maiores deleniti perferendis quibusdam veniam. Quas quasi alias rerum, hic et adipisci culpa provident odit fugiat atque!</p>
+            <a href="#" class="btn btn-outline-secondary text-white">Lorem ipsum dolor.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section bg-light text-muted py-5" id="info-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>SERVICES AND PRODUCTS</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste maxime quos obcaecati quod iusto. Debitis, eius, at! Labore totam quaerat nisi commodi ullam nesciunt eligendi, accusamus corporis in optio sapiente.</p>
+          <!-- check -->
+          <div class="d-flex flex-row">
+            <div class="p-4 align-self-start">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="p-4 align-self-end">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+            </div>
+          </div>
+          <!-- check -->
+          <div class="d-flex flex-row">
+            <div class="p-4 align-self-start">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="p-4 align-self-end">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+            </div>
+          </div>
+          <!-- check -->
+          <div class="d-flex flex-row">
+            <div class="p-4 align-self-start">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="p-4 align-self-end">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <img src="<?= URL_IMG ?>img2.png" alt="" class="img-fluid mb-3 rouded-circle">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Map section -->
+
+    <div class="map-google">
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1570.6220260496634!2d-57.54332104207982!3d-38.049094591530654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sar!4v1541287417940" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>

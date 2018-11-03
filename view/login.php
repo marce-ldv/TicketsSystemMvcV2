@@ -27,9 +27,6 @@
 		  </div>
 	</div>
 
-	<div class="bg-contact2">
-		<div class="container-contact2">
-			<div class="wrap-contact2">
 				<form class="contact2-form validate-form" action="<?= VIEW_URL ?>/user/login/" method="post">
 					<span class="contact2-form-title">
 						Login
@@ -77,8 +74,5 @@
 					</div>
 					<!--modal test -->
 
-			</div>
-		</div>
-	</div>
 
 </div>
