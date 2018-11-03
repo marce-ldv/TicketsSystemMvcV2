@@ -13,9 +13,8 @@ CREATE TABLE users(
     id_facebook BIGINT,
 		id_twitter BIGINT,
 		id_google BIGINT,
-		CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
-		CONSTRAINT unq_dni UNIQUE (dni)
-    CONSTRAINT pk_id_user PRIMARY KEY (id_user),
+		CONSTRAINT pk_id_user PRIMARY KEY (id_user),
+		CONSTRAINT unq_dni UNIQUE (dni),
     CONSTRAINT uniq_username UNIQUE (username),
     CONSTRAINT uniq_email UNIQUE (email,username)
 );
