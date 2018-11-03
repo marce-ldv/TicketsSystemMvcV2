@@ -29,6 +29,7 @@ class Artist
 			return $this->surname;
 		}
 
+<<<<<<< HEAD
 		public function getNickname()
 		{
 			return $this->nickname;
@@ -37,6 +38,9 @@ class Artist
 		//SETTERS
 
 		public function setName($value)
+=======
+    public function setNameArtist($nameRecib)
+>>>>>>> marcelo
     {
     	$this->name = $value;
 			return $this;

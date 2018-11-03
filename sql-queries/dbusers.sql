@@ -1,24 +1,15 @@
-/*users (usuarios), customers (clientes), categories (categorias), events(eventos),
-artists, calendars(calendario), place_events (lugar_evento), type_areas(tipo plazas),
-area_events (plaza evento), calendars_x_artists(calendarios por artistas),
-purchases (compras), lines_purchases (lineas compras), tickets,
-accounts (cuenta), rols(roles)  ya esta*/
-
 CREATE DATABASE dbusers;
 USE dbusers;
 
-CREATE TABLE roles(
-	id_rol BIGINT UNSIGNED AUTO_INCREMENT,
-	type_rol VARCHAR(50) NOT NULL,
-	CONSTRAINT pk_id_rol PRIMARY KEY (id_rol)
-);
-
 CREATE TABLE users(
     id_user BIGINT UNSIGNED AUTO_INCREMENT,
-    id_rol BIGINT UNSIGNED,
+    role VARCHAR(30),
     username VARCHAR(50) NOT NULL,
     pass VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
+		name VARCHAR(50) NOT NULL,
+		surname VARCHAR(50),
+		dni VARCHAR(50),
     id_facebook BIGINT,
 		id_twitter BIGINT,
 		id_google BIGINT,
@@ -30,6 +21,7 @@ CREATE TABLE users(
 		CONSTRAINT unq_dni UNIQUE (dni)
     CONSTRAINT pk_id_user PRIMARY KEY (id_user),
     CONSTRAINT uniq_username UNIQUE (username),
+<<<<<<< HEAD
     CONSTRAINT uniq_email UNIQUE (email,username),
     CONSTRAINT fk_id_rol FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
 );
@@ -38,6 +30,9 @@ CREATE TABLE customers(
 	id_customer BIGINT UNSIGNED AUTO_INCREMENT,
 	id_user BIGINT UNSIGNED,
 
+=======
+    CONSTRAINT uniq_email UNIQUE (email,username)
+>>>>>>> marcelo
 );
 
 CREATE TABLE categories(
@@ -56,9 +51,11 @@ CREATE TABLE events(
 
 CREATE TABLE artists(
 	id_artist BIGINT UNSIGNED AUTO_INCREMENT,
-	name VARCHAR(50) NOT NULL,
+	nickname VARCHAR(50),
+	name VARCHAR(50),
+	surname VARCHAR(50),
 	CONSTRAINT id_artist PRIMARY KEY (id_artist),
-	CONSTRAINT name UNIQUE (name)
+	CONSTRAINT nickname UNIQUE (nickname)
 );
 
 CREATE TABLE place_events(
@@ -85,7 +82,7 @@ CREATE TABLE calendars(
 	CONSTRAINT fk_id_place_event FOREIGN KEY (id_place_event) REFERENCES place_events(id_place_event) ON DELETE CASCADE
 );
 
-CREATE TABLE area_events(
+CREATE TABLE events_area(
 	id_event_area BIGINT UNSIGNED AUTO_INCREMENT,
 	id_type_area BIGINT UNSIGNED,
 	id_calendar BIGINT UNSIGNED,
@@ -123,13 +120,12 @@ CREATE TABLE lines_purchases(
 	price INT,
 	CONSTRAINT pk_id_line_purchase PRIMARY KEY (id_line_purchase),
 	CONSTRAINT fk_id_purchase FOREIGN KEY (id_purchase) REFERENCES purchases (id_purchase) ON DELETE CASCADE,
-	CONSTRAINT fk_id_area_event FOREIGN KEY (id_event_area) REFERENCES area_events(id_event_area) ON DELETE CASCADE
+	CONSTRAINT fk_id_area_event FOREIGN KEY (id_event_area) REFERENCES events_area(id_event_area) ON DELETE CASCADE
 );
 
 CREATE TABLE tickets(
-	id_ticket BIGINT UNSIGNED AUTO_INCREMENT,
+	id_ticket_number BIGINT UNSIGNED AUTO_INCREMENT,
 	id_line_purchase BIGINT UNSIGNED,
-	number_n INT,
 	code_qr VARCHAR(50) NOT NULL,
 	CONSTRAINT pk_id_ticket PRIMARY KEY (id_ticket),
 	CONSTRAINT uniq_code_qr UNIQUE (code_qr),
