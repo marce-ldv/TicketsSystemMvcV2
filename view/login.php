@@ -64,7 +64,9 @@
 						</div>
 					</div>
 
-					<!--modal test -->
+				</form>
+
+						<!--modal test -->
 					<div class="container-contact2-form-btn">
 						<div class="wrap-contact2-form-btn">
 							<div class="contact2-form-bgbtn"></div>
@@ -74,7 +76,7 @@
 						</div>
 					</div>
 					<!--modal test -->
-				</form>
+
 			</div>
 		</div>
 	</div>
