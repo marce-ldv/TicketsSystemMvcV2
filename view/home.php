@@ -7,7 +7,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-8 d-none d-sm-block">
-              <h1 class="display-4">Lorem <strong>ipsum dolor</strong> sit amet, consectetur adipisicing.</h1>
+              <h1 class="display-4">Sistema de venta de tickets de eventos, Laboratorio IV.</h1>
 
               <!-- check -->
               <div class="d-flex flex-row">
@@ -15,7 +15,7 @@
                   <i class="fas fa-certificate"></i>
                 </div>
                 <div class="p-4 align-self-end">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+                  Item 1 ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
                 </div>
               </div>
               <!-- check -->
@@ -24,7 +24,7 @@
                   <i class="fas fa-certificate"></i>
                 </div>
                 <div class="p-4 align-self-end">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+                 Item 2 ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
                 </div>
               </div>
               <!-- check -->
@@ -33,17 +33,17 @@
                   <i class="fas fa-certificate"></i>
                 </div>
                 <div class="p-4 align-self-end">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
+                 Item 3 ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi delectus amet, eveniet.
                 </div>
               </div>
 
             </div>
-            <!-- SECOND COLUMN -->
-            <div class="col-lg-4">
-              <div class="card text-center" style="background-color: #c0392b;">
+            <!-- SECOND COLUMN FORMULARIO -->
+            <div class="col-lg-4 ">
+              <div class="card text-center form-login">
                 <div class="card-body">
-                  <h3>Lorem ipsum.</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                  <h3>Iniciar Sesion.</h3>
+                  <p>Ingrese su usuario o email, y la contraseña para ingresar al sistema.</p>
                   <form action="<?= VIEW_URL ?>/user/login/" method="post">
 
                     <div class="form-group">
@@ -55,7 +55,14 @@
                     </div>
 
                     <input type="submit" value="Login" class="btn btn-outline-light btn-block">
+                    
                   </form>
+
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form-register-modal">
+                    Registrate
+                  </button>
+                  
+
                 </div>
               </div>
             </div>
@@ -64,6 +71,9 @@
       </div>
     </div>
   </header>
+
+  
+
 
   <!-- INFO HEAD -->
   <section class="info-head-section">
@@ -183,3 +193,80 @@
     <div class="map-google">
       <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1570.6220260496634!2d-57.54332104207982!3d-38.049094591530654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sar!4v1541287417940" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>
+
+    <!-- Pongo el footer aca por que si no la ventana modal me lo pisa -->
+    <div class="container-fluid bg-dark">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="">Tickets System</h1>
+                <p>
+                    &copy; Copyright 2018 Final
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Register-->
+<div id="form-register-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    <!-- Modal Header-->
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+    <!-- END Modal Header-->
+    
+      <!-- Modal Body -->
+      <div class="card text-center modal-body-register">
+      
+          <div class="modal-body card-body">
+          <h3>Registrate.</h3>
+										<p>Ingrese su usuario o email, y la contrasena para ingresar al sistema.</p>
+										<form action="<?= VIEW_URL ?>/user/register/" method="post">
+
+											<div class="form-group">
+												<input type="text" class="form-control form-control-lg" placeholder="Username" name="nickname">
+											</div>
+
+											<div class="form-group">
+												<input type="password" class="form-control form-control-lg" placeholder="Contrasena" name="pass">
+											</div>
+											
+											<div class="form-group">
+												<input type="password" class="form-control form-control-lg" placeholder="Ingrese su contrasena de nuevo" name="pass">
+											</div>
+											
+											<div class="form-group">
+												<input type="email" class="form-control form-control-lg" placeholder="Correo electronico" name="nickname">
+											</div>
+											
+											<div class="form-group">
+												<input type="text" class="form-control form-control-lg" placeholder="Nombre" name="nickname">
+											</div>
+											
+											<div class="form-group">
+												<input type="text" class="form-control form-control-lg" placeholder="Apellido" name="nickname">
+											</div>
+											
+											<div class="form-group">
+												<input type="text" class="form-control form-control-lg" placeholder="Dni" name="nickname">
+											</div>
+											
+											<div class="form-group">
+												<input type="text" class="form-control form-control-lg" placeholder="Adjuntar imagen" name="nickname">
+											</div>
+
+											<input type="submit" value="Login" class="btn btn-outline-light btn-block">
+										</form>
+          </div>
+        </div>
+      <!-- END Modal Body -->
+
+
+  </div>
+</div>
+<!-- END Modal View -->
+

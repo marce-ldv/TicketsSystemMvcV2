@@ -5,7 +5,7 @@
                 <div class="col-md-12 text-center">
                     <h1 class="">Tickets System</h1>
                     <p>
-                        &copy; 2018 Final
+                        &copy; Copyright 2018 Final
                     </p>
                 </div>
             </div>

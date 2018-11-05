@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <a class="navbar-brand" href=" <?= VIEW_URL ?> ">TICKET SYSTEM</a>
+  <a class="navbar-brand" href=" <?= VIEW_URL ?> "><img src="<?= URL_IMG ?>logo.jpg" style="height: 60px;"> SISTEMA DE TICKETS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,10 +21,16 @@
       </li>
       <?php }else {?>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/default/login/">LOGIN</a>
+        <a class="nav-link" data-target="#form-login-modal">INGRESAR</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/default/register/">REGISTER</a>
+        <a class="nav-link" data-target="#form-register-modal">REGISTRARSE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= VIEW_URL ?>/default/login/">CONTACTANOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= VIEW_URL ?>/default/login/">ACERCA DE</a>
       </li>
       <?php } ?>
 

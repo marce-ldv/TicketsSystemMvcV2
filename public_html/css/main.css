@@ -9,7 +9,7 @@ body {
 }
 
 #home-section {
-  background: url('../img/bg.jpg') no-repeat;
+  background: url('../img/cineretrete.jpg') no-repeat;
   min-height: 100vh;
   background-size: cover;
   background-attachment: fixed;
@@ -35,4 +35,12 @@ body {
 
 .map-google{
   width: 100%;
+}
+
+.form-login{
+  background-color: rgba(223, 55, 43, 0.658);
+}
+
+.modal-body-register{
+  background-color: rgba(238, 32, 17, 0.781);
 }
