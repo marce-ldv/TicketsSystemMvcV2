@@ -43,6 +43,7 @@
 
           </div>
           <!-- SECOND COLUMN FORMULARIO -->
+          <?php if ( ! $this->isLogged()) {?>
           <div class="col-lg-4 ">
             <div class="card text-center form-login">
               <div class="card-body">
@@ -61,7 +62,7 @@
                 <form action="<?= VIEW_URL ?>/user/login/" method="post">
 
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="nickname">
+                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
                   </div>
 
                   <div class="form-group">
@@ -80,6 +81,7 @@
               </div>
             </div>
           </div>
+        <?php }?>
         </div>
       </div>
     </div>

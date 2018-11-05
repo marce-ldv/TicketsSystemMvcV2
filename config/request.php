@@ -93,4 +93,12 @@
           public function getParameters() {
                return $this->parameters;
           }
+
+          /**
+          *  Devuelve un valor del arrat $_POST en esta request
+          * @return mix|bool
+          */
+          public function getParameter ( $name ) {
+            return (array_key_exists($name, $this->parameters) ? $this->parameters[$name] : false);
+          }
      }

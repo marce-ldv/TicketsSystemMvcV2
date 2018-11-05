@@ -4,8 +4,8 @@ namespace model;
 
 class User implements \Serializable
 {
-    private $idUser;
-    private $role;
+    private $idUser = 0;
+    private $role = "user";
     private $username;
     private $pass;
     private $email;
@@ -15,6 +15,16 @@ class User implements \Serializable
     private $idFacebook;
     private $idTwitter;
     private $idGoogle;
+
+
+    public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "") {
+      $this->username = $username;
+      $this->pass = $pass;
+      $this->email = $email;
+      $this->name = $name;
+      $this->surname = $surname;
+      $this->dni = $dni;
+    }
 
     //SERIALIZE METHODS
 

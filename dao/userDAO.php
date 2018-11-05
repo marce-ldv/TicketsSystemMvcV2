@@ -28,19 +28,18 @@
 				try {
 					$sql = ("INSERT INTO $this->table (username, pass, email,name_user,surname,dni)
 					VALUES (:username, :pass, :email, :name_user, :surname, :dni)");
-
 					$connection = $this->pdo->connect();
 					$statement = $connection->prepare($sql);
 
-					$role_user = "user";
 					$username = $user->getUsername();
 					$pass = $user->getPass();
 					$email = $user->getEmail();
 					$name_user = $user->getName();
 					$surname = $user->getSurname();
 					$dni = $user->getDni();
-					
+					//$role = $user->getRole();
 
+					//$statement->bindParam(':role_user', $role);
 					$statement->bindParam(':username', $username);
 					$statement->bindParam(':pass', $pass);
 					$statement->bindParam(':email', $email);
@@ -142,7 +141,9 @@
 					$statement->bindParam(':userParam', $username);
 	        $statement->execute();
 
+
 					$var = $statement->fetch();
+					print_r($var);
 					if(empty($var)){
 						return false;
 					}
@@ -151,7 +152,7 @@
 						$var['username'],
 						$var['pass'],
 						$var['email'],
-						$var['name'],
+						$var['name_user'],
 						$var['surname'],
 						$var['dni']
 					);

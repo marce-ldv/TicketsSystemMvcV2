@@ -26,13 +26,14 @@ class UserController extends Controller{
 
   public function login($username,$pass){
     try{
+
       $user= $this->userDao->readByUser($username);
 
       if( ! $user ){
         $this->redirect('/default/index');
       }
 
-      if(password_verify($pass,$user->getPassword() ) ){
+      if(password_verify($pass,$user->getPass() ) ){
         //una vez que verifico que las password coinciden, antes de autoredireccionar al usuario, trabajamos con session
         $this->session->token = $user->serialize();
 
@@ -46,6 +47,7 @@ class UserController extends Controller{
       $this->viewController->login();
     } catch(\Exception $error) {
       echo $error->getMessage();
+
       die();
     }
   }
@@ -64,10 +66,11 @@ class UserController extends Controller{
           $hash = password_hash($pass,PASSWORD_DEFAULT);
           //creacion de user con pass encriptada
           $user = new User($username,$hash,$email,$name,$surname,$dni);
-          $user_dao->create($user);
-          $regComplete = TRUE;
+          if ($user_dao->create($user)) {
+            $regComplete = TRUE;
+          }
         }
-        
+
       }
       switch ($regComplete) {
 
@@ -79,8 +82,8 @@ class UserController extends Controller{
         break;
 
         case FALSE:
-        $this->render("index", array(
-          "alert" => $this->$messageWrong
+        $this->render("home", array(
+          "alert" => $this->messageWrong
         ));
         break;
       }
