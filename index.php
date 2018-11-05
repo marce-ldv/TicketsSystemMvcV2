@@ -27,8 +27,5 @@ function exceptions_error_handler($severity, $message, $filename, $lineno) {
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-//$session = Session::getInstance();
-//$session->miUser = $userCreadoYContieneDatos
-
 Autoload::start();
 Router::go(new Request());

@@ -3,18 +3,18 @@ USE dbusers;
 
 CREATE TABLE users(
     id_user BIGINT UNSIGNED AUTO_INCREMENT,
-    role VARCHAR(30),
+    role_user VARCHAR(30),
     username VARCHAR(50) NOT NULL,
     pass VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
-		name VARCHAR(50),
-		surname VARCHAR(50),
-		dni VARCHAR(50),
+	name_user VARCHAR(50),
+	surname VARCHAR(50),
+	dni VARCHAR(50),
     id_facebook BIGINT,
-		id_twitter BIGINT,
-		id_google BIGINT,
-		CONSTRAINT pk_id_user PRIMARY KEY (id_user),
-		CONSTRAINT unq_dni UNIQUE (dni),
+	id_twitter BIGINT,
+	id_google BIGINT,
+	CONSTRAINT pk_id_user PRIMARY KEY (id_user),
+	CONSTRAINT unq_dni UNIQUE (dni),
     CONSTRAINT uniq_username UNIQUE (username),
     CONSTRAINT uniq_email UNIQUE (email)
 );
@@ -111,7 +111,7 @@ CREATE TABLE tickets(
 	id_ticket_number BIGINT UNSIGNED AUTO_INCREMENT,
 	id_line_purchase BIGINT UNSIGNED,
 	code_qr VARCHAR(50) NOT NULL,
-	CONSTRAINT pk_id_ticket PRIMARY KEY (id_ticket),
+	CONSTRAINT pk_id_ticket_number PRIMARY KEY (id_ticket_number),
 	CONSTRAINT uniq_code_qr UNIQUE (code_qr),
 	CONSTRAINT fk_id_line_purchase FOREIGN KEY (id_line_purchase) REFERENCES lines_purchases (id_line_purchase) ON DELETE CASCADE
 );

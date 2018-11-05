@@ -8,11 +8,9 @@ use dao\UserDAO as UserDao;
 class Controller{
 
   protected $session;
-  //protected $viewController;
 
   public function __construct(){
     $this->session = Session::getInstance();
-    //$this->viewController = new ViewController();
   }
 
   public function getToken(){
@@ -40,7 +38,6 @@ class Controller{
         }
 
         include URL_VIEW . 'header.php';
-        //print_r(URL_VIEW . "$path" . ".php");
         require(URL_VIEW . "$path" . ".php");
         include URL_VIEW . 'footer.php';
     }

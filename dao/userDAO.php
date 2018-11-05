@@ -26,20 +26,27 @@
 			public function create($user) {
 
 				try {
-					$sql = ("INSERT INTO $this->table (username, pass, email)
-					VALUES (:username, :pass, :email)");
+					$sql = ("INSERT INTO $this->table (username, pass, email,name_user,surname,dni)
+					VALUES (:username, :pass, :email, :name_user, :surname, :dni)");
 
 					$connection = $this->pdo->connect();
 					$statement = $connection->prepare($sql);
 
+					$role_user = "user";
 					$username = $user->getUsername();
-					$pass = $user->getPassword();
+					$pass = $user->getPass();
 					$email = $user->getEmail();
-					$role = "user";
+					$name_user = $user->getName();
+					$surname = $user->getSurname();
+					$dni = $user->getDni();
+					
 
 					$statement->bindParam(':username', $username);
 					$statement->bindParam(':pass', $pass);
 					$statement->bindParam(':email', $email);
+					$statement->bindParam(':name_user', $name_user);
+					$statement->bindParam(':surname', $surname);
+					$statement->bindParam(':dni', $dni);
 
 					$statement->execute();
 
@@ -143,7 +150,10 @@
 					$modelUser = new User(
 						$var['username'],
 						$var['pass'],
-						$var['email']
+						$var['email'],
+						$var['name'],
+						$var['surname'],
+						$var['dni']
 					);
 
 					return $modelUser;

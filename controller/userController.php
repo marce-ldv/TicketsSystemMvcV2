@@ -29,7 +29,7 @@ class UserController extends Controller{
       $user= $this->userDao->readByUser($username);
       //$session->user = $this->user_dao->serialize();
       if( ! $user ){
-        $this->redirect('/default/register');
+        $this->redirect('/default/index');
       }
 
       if(password_verify($pass,$user->getPassword() ) ){
@@ -39,7 +39,7 @@ class UserController extends Controller{
         $this->redirect('/default/dashboard');
 
       }else{
-        $this->redirect('/default/login');
+        $this->redirect('/default/index');
       }
 
     } catch(\PDOException $pdo_error) {
@@ -49,7 +49,8 @@ class UserController extends Controller{
       die();
     }
   }
-  public function register ($username,$pass,$email) {
+
+  public function register ($username,$pass,$passAgain,$email,$name,$surname,$dni) {
 
     try {
       $regComplete = FALSE;
@@ -57,13 +58,16 @@ class UserController extends Controller{
       $user_dao = $this->userDao;
       // TODO: Conviene modularizar y haverificar el usuario en la misma controladora
       if ( ! $user_dao->readByUser($username) && (! $user_dao->readByUser($email))) {
-        //encriptacion de password
-        $hash = password_hash($pass,PASSWORD_DEFAULT);
-        //creacion de user con pass encriptada
-        $user = new User($username,$hash,$email);
-        $id_usuario = $user_dao->create($user);
-        $user->setIdUser($id_usuario);
-        $regComplete = TRUE;
+        //comprobacion que la contraseña ingresada 2 veces sea la misma
+        if($pass == $passAgain){
+          //encriptacion de password
+          $hash = password_hash($pass,PASSWORD_DEFAULT);
+          //creacion de user con pass encriptada
+          $user = new User($username,$hash,$email,$name,$surname,$dni);
+          $user_dao->create($user);
+          $regComplete = TRUE;
+        }
+        
       }
       switch ($regComplete) {
 
@@ -75,14 +79,14 @@ class UserController extends Controller{
         break;
 
         case FALSE:
-        $this->render("register", array(
+        $this->render("index", array(
           "alert" => $this->$messageWrong
         ));
         break;
       }
 
     } catch(\PDOException $pdo_error) {
-      $this->redirect('/default/register');
+      $this->redirect('/default/index');
     } catch(\Exception $error) {
       echo $error->getMessage();
       die();
