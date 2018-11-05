@@ -1,0 +1,49 @@
+<?php
+namespace helpers;
+
+class Collection implements \Iterator, \Countable
+{
+  private $position = 0;
+  private $array = [];
+
+  public function current () {
+    return $this->array[$this->position];
+  }
+
+  public function key () {
+    return $this->position;
+  }
+
+  public function next () {
+    ++$this->position;
+  }
+
+  public function rewind () {
+    $this->position = 0;
+  }
+
+  public function valid () {
+    return isset($this->array[$this->position]);
+  }
+
+  public function contains ($element) {
+    return in_array($element, $this->array, true);
+  }
+
+  public function add ($element) {
+    $this->array[] = $element;
+  }
+
+  public function remove ($key) {
+    if ( ! isset($this->array[$key]) && ! array_key_exists($key, $this->array)) {
+            return null;
+          }
+    $removed = $this->elements[$key];
+    unset($this->array[$key]);
+    return $removed;
+  }
+
+  public function count () {
+    return count($this->array);
+  }
+}

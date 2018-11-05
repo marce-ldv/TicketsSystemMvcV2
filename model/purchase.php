@@ -2,13 +2,13 @@
 namespace model;
 
 use model\User;
+use helpers\Collection;
+use mode\LinesPurchases;
 
-/**
- *
- */
 class Purchase
 {
   $id_purchases;
+  $linesPurchases = new Collection();
   $user;
   $datePurchase;
 
@@ -23,8 +23,12 @@ class Purchase
     return $this->user;
   }
 
-  public function getPurchase() {
+  public function getDatePurchase() {
     return $this->datePurchase;
+  }
+
+  public function getLinesPurchases () {
+    return $this->linesPurchases;
   }
 
   //SETTERS
@@ -35,9 +39,16 @@ class Purchase
     return $this;
   }
 
-  public function setdatePurchase($value)
+  public function setDatePurchase($value)
   {
     $this->datePurchase;
     return $this;
   }
+
+  //Collection
+  public function addLinePurchase (LinesPurchases $value) {
+    $this->linesPurchases->add($value);
+    return $this->linesPurchases;
+  }
+
 }
