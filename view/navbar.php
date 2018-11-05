@@ -21,16 +21,13 @@
       </li>
       <?php }else {?>
       <li class="nav-item">
-        <a class="nav-link" data-target="#form-login-modal">INGRESAR</a>
+        <a class="nav-link js-scroll-trigger" href="#home-section">HOME</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-target="#form-register-modal">REGISTRARSE</a>
+        <a class="nav-link js-scroll-trigger" href="#info">CONTACTANOS</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/default/login/">CONTACTANOS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/default/login/">ACERCA DE</a>
+        <a class="nav-link js-scroll-trigger" href="#info">ACERCA DE</a>
       </li>
       <?php } ?>
 

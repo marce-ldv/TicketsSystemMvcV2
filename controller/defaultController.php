@@ -12,14 +12,6 @@ class DefaultController extends Controller{
     $this->render('home');
   }
 
-  public function register(){
-    $this->render('register');
-  }
-
-  public function login(){
-    $this->render('login');
-  }
-
   public function dashboard(){
     $this->render('dashboard');
   }
