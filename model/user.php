@@ -89,6 +89,10 @@ class User implements \Serializable
     }
 
     //SETTERS
+    public function setIdUser($value) {
+      $this->idUser = $value;
+      return $this;
+    }
 
     public function setRole($value)
     {

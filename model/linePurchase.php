@@ -4,7 +4,7 @@ namespace model;
 use model\Purchases;
 use model\EventAreas;
 
-class LinesPurchases
+class LinePurchase
 {
   $id_line_purchases;
   $purchases;

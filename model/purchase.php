@@ -3,7 +3,7 @@ namespace model;
 
 use model\User;
 use helpers\Collection;
-use mode\LinesPurchases;
+use mode\LinePurchase;
 
 class Purchase
 {

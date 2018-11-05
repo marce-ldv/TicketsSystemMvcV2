@@ -2,11 +2,13 @@
 
 	use dao\Connection as Connection;
 	use dao\SingletonDAO as Singleton;
+  use dao\UserDAO as UserDAO;
 	use model\User as User;
+  use model\Purchase as Purchase;
 	use interfaces\ICrud as ICrud;
 
 	class UserDAO extends Singleton implements ICrud{
-		protected $table = "users"; /* se agregar para el dia de mañana modificar una vez el nombre de la tabla */
+		protected $table = "purchases"; /* se agregar para el dia de mañana modificar una vez el nombre de la tabla */
 		private $objInstances = []; //aca van los objetos instanciados desde la base de datos
 		private static $instance;
 		private $pdo;
@@ -23,33 +25,24 @@
 				return self::$instance;
 	    	}
 */
-			public function create($user) {
+			public function create($entity) {
 
 				try {
-					$sql = ("INSERT INTO $this->table (username, pass, email,name_user,surname,dni)
-					VALUES (:username, :pass, :email, :name_user, :surname, :dni)");
-					$connection = $this->pdo->connect();
-					$statement = $connection->prepare($sql);
 
-					$username = $user->getUsername();
-					$pass = $user->getPass();
-					$email = $user->getEmail();
-					$name_user = $user->getName();
-					$surname = $user->getSurname();
-					$dni = $user->getDni();
-					//$role = $user->getRole();
+          $sql = ("INSERT INTO $this->table (id_user, date_purchases) VALUES (:id_user, :date_purchases)");
+          $connection = $this->pdo->connect();
+          $statement = $connection->prepare($sql);
 
-					//$statement->bindParam(':role_user', $role);
-					$statement->bindParam(':username', $username);
-					$statement->bindParam(':pass', $pass);
-					$statement->bindParam(':email', $email);
-					$statement->bindParam(':name_user', $name_user);
-					$statement->bindParam(':surname', $surname);
-					$statement->bindParam(':dni', $dni);
+          $user = $entity->getUser()->getId();
+          $datePurchase = date('Y-m-d');
 
-					$statement->execute();
+          $statement->bindParam(":id_user", $user);
+          $statement->bindParam(":date_purchases", $datePurchase);
 
-					return $connection->lastInsertId();
+          $statement->execute();
+
+          return $connection->lastInsertId();
+
 				}catch(\PDOException $e){
 					echo $e->getMessage();
 					die();
@@ -59,15 +52,34 @@
 				}
 			}
 			// TODO: Implementar bien este metodo, debe traer un solo usuario
-			public function read($id){
+			public function readById(Purchase &$purchase){
 				try{
-			        $query = "SELECT * FROM $this->table";
+          $query = "SELECT * FROM $this->table WHERE id_purchase = :id_purchase";
 
-							$pdo = new Connection();
-							$connection = $pdo->connect();
-			        $statement = $connection->prepare($query);
+          $pdo = new Connection();
+          $connection = $pdo->connect();
+          $statement = $connection->prepare($query);
 
-			        $statement->execute();
+          $statement->execute(array(
+            ":id_purchase" => $entity->getId()
+          ));
+
+          if ($statement->rowCount() == 0) {
+            return false;
+          }
+
+          $purchaseArray = $statement->fetch(\PDO::FETCH_ASSOC);
+
+          //Buscar user
+          $userDAO = UserDAO::getInstance();
+          $user = new User();
+          $user->setId($purchaseArray["id_user"]);
+          $userDAO->readById($user);
+
+          $pruchase->setId($purchaseArray["id_purchase"]);
+          $purchase->setUser($user);
+
+          return true;
 
 			    }catch(\PDOException $e){
 					echo $e->getMessage();
@@ -114,39 +126,25 @@
 			public function delete($id){
 				// code...
 			}
-
-			public function readById (User &$user) {
+/*
+			public function readByUser($username){
 				try{
-							$query = "SELECT * FROM $this->table WHERE id_user = :id_user";
+	        $sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userParam";
+					$connection = $this->pdo->connect();
+	        $statement = $connection->prepare($sql);
+					$statement->bindParam(':userParam', $username);
+	        $statement->execute();
 
-							$pdo = new Connection();
-							$connection = $pdo->connect();
-							$statement = $connection->prepare($query);
+	        if ($statement->fetch()){
 
-							$statement->execute(array(
-								":id_user" => $user->getIdUser()
-							));
-
-							if ($statement->rowCount() == 0) {
-		            return false;
-		          }
-
-							//TODO: Terminar la implementacion
-							$userArray = $statement->fetch(\PDO::FETCH_ASSOC);
-							$user->setUsername($userArray["username"]);
-							$user->setEmail($userArray["email"]);
-
-							return true;
-
-					}catch(\PDOException $e){
-					echo $e->getMessage();
-					die();
-				}catch(Exception $e){
-					echo $e->getMessage();
-					die();
-				}
+	            return TRUE;
+	        }
+	        return FALSE;
+	      }catch(\PDOException $e){
+	        echo $e->getMessage();
+	      }
 			}
-
+*/
 			public function readByUser($username){
 				try{
 	        $sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userParam";
