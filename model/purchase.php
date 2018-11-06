@@ -7,10 +7,14 @@ use mode\LinePurchase;
 
 class Purchase
 {
-  $id_purchases;
-  $linesPurchases = new Collection();
-  $user;
-  $datePurchase;
+  private $id_purchases;
+  private $linesPurchases;
+  private $user;
+  private $datePurchase;
+
+  public function __construct () {
+    $this->linesPurchases = new Collection();
+  }
 
   //GETTERS
 
@@ -35,13 +39,13 @@ class Purchase
 
   public function setUser(User $user)
   {
-    $this->user;
+    $this->user = $user;
     return $this;
   }
 
   public function setDatePurchase($value)
   {
-    $this->datePurchase;
+    $this->datePurchase = $value;
     return $this;
   }
 

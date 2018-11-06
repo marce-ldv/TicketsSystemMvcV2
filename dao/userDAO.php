@@ -23,7 +23,7 @@
 				return self::$instance;
 	    	}
 */
-			public function create($user) {
+			public function create(&$user) {
 
 				try {
 					$sql = ("INSERT INTO $this->table (username, pass, email,name_user,surname,dni)
@@ -137,6 +137,37 @@
 							$user->setEmail($userArray["email"]);
 
 							return true;
+
+					}catch(\PDOException $e){
+					echo $e->getMessage();
+					die();
+				}catch(Exception $e){
+					echo $e->getMessage();
+					die();
+				}
+			}
+
+			public function readByUsername (User &$user) {
+				try{
+					$sql = "SELECT * FROM $this->table WHERE username = :userParam";
+					$connection = $this->pdo->connect();
+					$statement = $connection->prepare($sql);
+
+					$statement->execute(array(
+						":userParam" => $user->getUsername()
+					));
+
+					if ($statement->rowCount() == 0) {
+						return false;
+					}
+
+					//TODO: Terminar la implementacion
+					$userArray = $statement->fetch(\PDO::FETCH_ASSOC);
+					$user->setIdUser($userArray["id_user"]);
+					$user->setUsername($userArray["username"]);
+					$user->setEmail($userArray["email"]);
+
+					return true;
 
 					}catch(\PDOException $e){
 					echo $e->getMessage();
