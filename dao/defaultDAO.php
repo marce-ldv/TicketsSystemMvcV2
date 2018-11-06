@@ -1,78 +1,66 @@
 <?php
-<<<<<<< HEAD
 namespace dao;
 
-use dao\Connection as Connection;
+use dao\core\ModelMap as ModelMap;
+use dao\core\FieldModel as FieldModel;
+use helpers\ConverterCase as ConverterCase;
+use dao\repositories\DefaultRepository as DefaultRepository;
 
 class DefaultDAO
 {
-  $visibleProperty = [];
 
-  public function __construct(){
-    $this->pdo = new Connection();
-  }
-// TODO: No pasar el nombre de la tabla
-  public function create ($table, $model) {
+  public function getRepository ($model) {
+    $modelMap = $this->getModelMap($model);
 
-    $atributes = $this->getAttrString($model);
+    $repository = new DefaultRepository($model);
+    $repository->setModelMap($modelMap);
 
-    $sql = "INSERT INTO $table $atributes VALUES "
-
+    return $repository;
   }
 
-  private function getAttrString ($model) {
-    $attrArray = $this->getAttrArray($model);
-    $buff = "(";
-    foreach ($attrArray as $value) {
-      $buff .= $value.",";
-    }
-    $buff = substr($buff, 0, -1);
-    $buff .= ")";
-  }
+  private function getModelMap ($model) {
 
-  private function getAttrArray ($model) {
-=======
-class DefaultDAO
-{
-  public $visibleProperty = [];
-
-  public function __construct(){
-  }
-
-  public function create ($model) {
->>>>>>> marcelo
     //get all methods in a array
     $methods = get_class_methods($model);
 
-    //remove the gettters
-    $visibleProperty = array_filter($methods, function ($value){
+    //filter setters
+    $setters = $this->filterSetters($methods);
+
+    //Get fields from setters
+    $fields =$this->getFieldsFromSetter($setters);
+
+    $modelMap = new ModelMap($fields);
+
+    return $modelMap;
+  }
+
+  /**
+  * Filter a array of methods
+  */
+  private function filterSetters ($methods) {
+    return array_filter($methods, function ($value){
       $getPos = strpos($value, "set");
       if ($getPos === false) return false;
       return true;
     });
+  }
 
-    //remove set and convert
-    $db_Attr = array_map(function($value) {
+  private function filterGetters($methods)
+  {
+    return array_filter($methods, function ($value){
+      $getPos = strpos($value, "get");
+      if ($getPos === false) return false;
+      return true;
+    });
+  }
+
+  private function getFieldsFromSetter ($setters) {
+    return array_map(function($value) {
       $prop = substr($value, 3);
       $prop = lcfirst($prop);
-      $prop = $this->toAttr($prop);
+      $prop = ConverterCase::toSnakeCase($prop);
       return $prop;
-    }, $visibleProperty);
-
-    return $db_Attr;
+    }, $setters);
   }
 
-  private function toAttr ($string) {
-    $arrString = str_split($string);
-    $buff = "";
-    foreach ($arrString as $value) {
-      if (preg_match("/[A-Z]/",$value)) {
-        $buff .= "_".lcfirst($value);
-      } else {
-        $buff .=$value;
-      }
-    }
-
-    return $buff;
-  }
 }
