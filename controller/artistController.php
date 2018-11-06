@@ -36,22 +36,36 @@ class ArtistController extends Controller{
 		$this->render("viewArtist/artistCreate");
 	}
 
-	public function create()
+	public function create($artistPost = [])
 	{
-		//if($this->session->__isset('rol')){
-		//	$rol = $this->session->__get('rol');
-		//	if($rol === 'admin'){
-		if( ! $this->isLogged())
-			$this->redirect('/default/login');
-		else
-			$this->render("viewArtist/artistCreate");
-		//	}else {
-		//		echo "NO TENES SUFICIENTES PRIVILEGIOS";
-		//	}
-		//}else {
-		//	echo "SIN PRIVILEGIOS";
-		//}
+		if ( ! $this->isLogged()) {
+			$this->redirect("/");
+		}
 
+		$messageOk = "";
+		$messageWrong = "";
+
+		if ($_SERVER['REQUEST_METHOD'] == "POST") {
+			//
+			$artistDao = ArtistDAO::getInstance();
+
+			$artist = new Artist();
+			$artist->setName($artistPost["name"]);
+			$artist->setSurname($artistPost["surname"]);
+			$artist->setNickname($artistPost["nickname"]);
+
+			if ( ! $artistDao->create($artist) ) {
+				$messageWrong = "nose puedo crear :'v";
+			} else {
+				$messageOk = ":D:D:D:D:D:D:D:";
+			}
+
+		}
+
+		$this->render("viewArtist/artistCreate", array(
+			"messageWrong" => $messageWrong,
+			"messageOk" => $messageOk
+		));
 	}
 
 	public function list() //listar todo
@@ -59,9 +73,9 @@ class ArtistController extends Controller{
 		$listArtists = $this->artistDao->readAll();
 
 		if( ! $this->isLogged())
-			$this->redirect('/default/login');
+		$this->redirect('/default/login');
 		else
-			$this->render("viewArtist/listArtist",array(
+		$this->render("viewArtist/listArtist",array(
 			'listArtists' => $listArtists
 		));
 

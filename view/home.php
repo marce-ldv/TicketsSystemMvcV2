@@ -1,74 +1,425 @@
-<?php  include(URL_VIEW . 'navbar.php'); ?>
-<div class="container">
+<?php include(URL_VIEW . 'navbar.php'); ?>
 
-  <section id="about">
+<!-- HOME -->
+<header id="home-section">
+  <div class="dark-overlay">
+    <div class="home-inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 d-none d-sm-block">
+            <h1 class="display-4">Sistema de venta de tickets de eventos, Laboratorio IV.</h1>
 
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <h2>Bienvenido</h2>
-        <p class="lead">Este es un sistema de venta de tickets de eventos, como pueden ser recitales, cines y demas</p>
-        <ul>
-          <li>Clickable nav links that smooth scroll to page sections</li>
-          <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-          <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-          <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-        </ul>
-      </div>
-    </div>
+            <!-- check -->
+            <div class="d-flex flex-row">
+              <div class="p-4 align-self-start">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="p-4 align-self-end">
+                <h3>CRUDS/CR A CREAR:</h3>
+                <ul>
+                  <li>Terminar el de crear artista (CRUD)</li>
+                  <li>Carrito de comprar (session y no es un crud, solo CR)</li>
+                  <li>CRUD para los tipos de plazas</li>
+                  <li>CRUD para las plazas</li>
+                  <li>CRUD de categorias</li>
+                  <li>CRUD de lugar de evento</li>
+                  <li>CRUD para eventos</li>
+                </ul>
+              </div>
+            </div>
+            <!-- check -->
+            <div class="d-flex flex-row">
+              <div class="p-4 align-self-start">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="p-4 align-self-end">
+                Item 2 ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam
+                modi delectus amet, eveniet.
+              </div>
+            </div>
+            <!-- check -->
+            <div class="d-flex flex-row">
+              <div class="p-4 align-self-start">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="p-4 align-self-end">
+                Item 3 ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam
+                modi delectus amet, eveniet.
+              </div>
+            </div>
 
-  </section>
 
-  <?php if (isset($alert)) { ?>
-    <div class="container">
-      <div class="alert alert-success alert-dismissible fade in show" role="alert">
-        <?php echo $alert; ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
-  <?php } ?>
+          </div>
+          <!-- SECOND COLUMN FORMULARIO -->
+          <?php if ( ! $this->isLogged()) {?>
+          <div class="col-lg-4 ">
+            <div class="card text-center form-login">
+              <div class="card-body">
+
+                <?php if (isset($alert)) {?>
+                <div class="done">
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $alert ?>
+                  </div>
+                </div>
+                <?php } ?>
+
+                <h3>Iniciar Sesion.</h3>
+                <p>Ingrese su usuario o email, y la contraseña para ingresar al sistema.</p>
+                <form action="<?= VIEW_URL ?>/user/login/" method="post">
+
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="pass">
+                  </div>
+
+                  <input type="submit" value="Login" class="btn btn-outline-light btn-block">
+
+                </form>
+
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form-register-modal">
+                  Registrate
+                </button>
 
 
-  <div id="carouselZ" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselZ" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselZ" data-slide-to="1"></li>
-      <li data-target="#carouselZ" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="<?= URL_IMG ?>eventos.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="<?= URL_IMG ?>eventos2.jpg" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="<?= URL_IMG ?>eventos.jpg" alt="Third slide">
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselZ" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselZ" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
-  <section id="sucursales">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading">Lorem ipsum <b>Lorem ipsum</b></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <hr class="primary">
+              </div>
+            </div>
+          </div>
+        <?php }?>
         </div>
       </div>
     </div>
-  </section>
-  <div class="clearfix">
   </div>
+</header>
 
+
+
+
+<!-- INFO HEAD -->
+<section class="info-head-section" id="info">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <div class="p-5">
+          <h1 class="display-4">Info</h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus provident expedita optio
+            magnam maiores deleniti perferendis quibusdam veniam. Quas quasi alias rerum, hic et adipisci culpa
+            provident odit fugiat atque!</p>
+          <a href="#" class="btn btn-outline-secondary">Lorem ipsum dolor.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info-section bg-light text-muted py-5" id="info-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="<?= URL_IMG ?>img1.png" alt="" class="img-fluid mb-3 rouded-circle">
+      </div>
+      <div class="col-md-6">
+        <h3>SERVICES AND PRODUCTS</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste maxime quos obcaecati quod iusto. Debitis,
+          eius, at! Labore totam quaerat nisi commodi ullam nesciunt eligendi, accusamus corporis in optio sapiente.</p>
+        <!-- check -->
+        <div class="d-flex flex-row">
+          <div class="p-4 align-self-start">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="p-4 align-self-end">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi
+            delectus amet, eveniet.
+          </div>
+        </div>
+        <!-- check -->
+        <div class="d-flex flex-row">
+          <div class="p-4 align-self-start">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="p-4 align-self-end">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi
+            delectus amet, eveniet.
+          </div>
+        </div>
+        <!-- check -->
+        <div class="d-flex flex-row">
+          <div class="p-4 align-self-start">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="p-4 align-self-end">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi
+            delectus amet, eveniet.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEAD SECTION -->
+<section class="info-head-section bg-danger">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <div class="p-5">
+          <h1 class="display-4">Info</h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus provident expedita optio
+            magnam maiores deleniti perferendis quibusdam veniam. Quas quasi alias rerum, hic et adipisci culpa
+            provident odit fugiat atque!</p>
+          <a href="#" class="btn btn-outline-secondary text-white">Lorem ipsum dolor.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info-section bg-light text-muted py-5" id="info-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>SERVICES AND PRODUCTS</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste maxime quos obcaecati quod iusto. Debitis,
+          eius, at! Labore totam quaerat nisi commodi ullam nesciunt eligendi, accusamus corporis in optio sapiente.</p>
+        <!-- check -->
+        <div class="d-flex flex-row">
+          <div class="p-4 align-self-start">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="p-4 align-self-end">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi
+            delectus amet, eveniet.
+          </div>
+        </div>
+        <!-- check -->
+        <div class="d-flex flex-row">
+          <div class="p-4 align-self-start">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="p-4 align-self-end">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi
+            delectus amet, eveniet.
+          </div>
+        </div>
+        <!-- check -->
+        <div class="d-flex flex-row">
+          <div class="p-4 align-self-start">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="p-4 align-self-end">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam modi
+            delectus amet, eveniet.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="<?= URL_IMG ?>img2.png" alt="" class="img-fluid mb-3 rouded-circle">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Map section -->
+
+<div class="map-google">
+  <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1570.6220260496634!2d-57.54332104207982!3d-38.049094591530654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sar!4v1541287417940"
+    width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
+
+<!-- Pongo el footer aca por que si no la ventana modal me lo pisa -->
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color lighten-3 pt-4">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Content -->
+        <h5 class="font-weight-bold text-uppercase mb-4">INFO</h5>
+        <p>Siguenos en nuestras redes sociales.</p>
+        <p>Para contactarte con nosostros, puedes hacerlo haciendo click <a href="#">aqui</a>.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mb-4">ACERCA DE</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              <a href="#!">HOME</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">PRODUCTOS</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">CONTACTANOS</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="#!">ACERCA DE</a>
+            </p>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+        <!-- Contact details -->
+        <h5 class="font-weight-bold text-uppercase mb-4">DIRECCION</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              <i class="fa fa-home mr-3"></i> Av. Dorrego ,281, Mar del plata</p>
+          </li>
+          <li>
+            <p>
+              <i class="fa fa-envelope mr-3"></i> info@cosmefulanito.com</p>
+          </li>
+          <li>
+            <p>
+              <i class="fa fa-phone mr-3"></i> + 54 234 567 88</p>
+          </li>
+          <li>
+            <p>
+              <i class="fa fa-print mr-3"></i> + 54 234 567 89</p>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+        <!-- Social buttons -->
+        <h5 class="font-weight-bold text-uppercase mb-4">Redes Sociales</h5>
+
+        <!-- Facebook -->
+        <a type="button" class="btn-floating btn-fb">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <!-- Twitter -->
+        <a type="button" class="btn-floating btn-tw">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <!-- Google +-->
+        <a type="button" class="btn-floating btn-gplus">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <!-- Dribbble -->
+        <a type="button" class="btn-floating btn-dribbble">
+          <i class="fa fa-dribbble"></i>
+        </a>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://google.com/"> Sistema de venta de tickets</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
+<!-- Modal Register-->
+<div id="form-register-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!-- Modal Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- END Modal Header-->
+
+      <!-- Modal Body -->
+      <div class="card text-center modal-body-register">
+
+        <div class="modal-body card-body">
+          <h3>Registrate.</h3>
+          <p>Ingrese su usuario o email, y la contrasena para ingresar al sistema.</p>
+          <form action="<?= VIEW_URL ?>/user/register/" method="post">
+
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control form-control-lg" placeholder="Contrasena" name="pass">
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control form-control-lg" placeholder="Ingrese su contrasena de nuevo"
+                name="passAgain">
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-control form-control-lg" placeholder="Correo electronico" name="email">
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Nombre" name="name_user">
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Apellido" name="surname">
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Dni" name="dni">
+            </div>
+
+            <div class="form-group">
+              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="avatar">
+            </div>
+
+            <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">
+          </form>
+        </div>
+      </div>
+      <!-- END Modal Body -->
+
+
+    </div>
+  </div>
+  <!-- END Modal View -->

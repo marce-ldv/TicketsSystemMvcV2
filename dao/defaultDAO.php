@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 namespace dao;
 
 use dao\Connection as Connection;
@@ -30,6 +31,16 @@ class DefaultDAO
   }
 
   private function getAttrArray ($model) {
+=======
+class DefaultDAO
+{
+  public $visibleProperty = [];
+
+  public function __construct(){
+  }
+
+  public function create ($model) {
+>>>>>>> marcelo
     //get all methods in a array
     $methods = get_class_methods($model);
 
