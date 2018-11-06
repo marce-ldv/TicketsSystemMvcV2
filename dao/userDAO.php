@@ -182,15 +182,17 @@ public function readByUsername (&$user) {
 
 public function readByUser(&$user){
 	try{
-		$sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userParam";
+		$sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userEmail";
 
 		$connection = $this->pdo->connect();
 		$statement = $connection->prepare($sql);
 
-		$usernameOrEmail = $user->getUsername();
+		$username = $user->getUsername();
+		$email = $user->getEmail();
 
 		$statement->execute(array(
-			":userParam" => $usernameOrEmail
+			":userParam" => $username,
+			":userEmail" => $email
 		));
 
 		if ($statement->rowCount() == 0) {
