@@ -5,11 +5,11 @@ namespace model;
 class User implements \Serializable
 {
     private $idUser = 0;
-    private $role;
+    private $roleUser;
     private $username;
     private $pass;
     private $email;
-    private $name;
+    private $nameUser;
     private $surname;
     private $dni;
     private $idFacebook;
@@ -21,7 +21,7 @@ class User implements \Serializable
       $this->username = $username;
       $this->pass = $pass;
       $this->email = $email;
-      $this->name = $name;
+      $this->nameUser = $name;
       $this->surname = $surname;
       $this->dni = $dni;
     }
@@ -32,7 +32,7 @@ class User implements \Serializable
         return serialize([
             $this->username,
             $this->email,
-            $this->role
+            $this->roleUser
         ]);
     }
 
@@ -40,7 +40,7 @@ class User implements \Serializable
         list(
             $this->username,
             $this->email,
-            $this->role
+            $this->roleUser
         ) = unserialize($data);
     }
 
@@ -49,9 +49,9 @@ class User implements \Serializable
     {
       return $this->idUser;
     }
-    public function getRole()
+    public function getRoleUser()
     {
-      return $this->role;
+      return $this->roleUser;
     }
     public function getUsername()
     {
@@ -65,9 +65,9 @@ class User implements \Serializable
     {
       return $this->email;
     }
-    public function getName()
+    public function getNameUser()
     {
-      return $this->name;
+      return $this->nameUser;
     }
     public function getSurname()
     {
@@ -96,9 +96,9 @@ class User implements \Serializable
       return $this;
     }
 
-    public function setRole($value)
+    public function setRoleUser($value)
     {
-      $this->role = $value;
+      $this->roleUser = $value;
       return $this;
     }
     public function setUsername($value)
@@ -116,9 +116,9 @@ class User implements \Serializable
       $this->email = $value;
       return $this;
     }
-    public function setName($value)
+    public function setNameUser($value)
     {
-      $this->name = $value;
+      $this->nameUser = $value;
       return $this;
     }
     public function setSurname($value)

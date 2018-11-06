@@ -4,6 +4,7 @@ namespace controller;
 use controller\Controller as Controller;
 use dao\DefaultDAO as DefaultDAO;
 use model\User as User;
+use model\Category as Category;
 use helpers\ConverterCase as ConverterCase;
 
 class TestController extends Controller{
@@ -12,10 +13,12 @@ class TestController extends Controller{
 
     $defaultDAO = new DefaultDAO();
 
-    $repository = $defaultDAO->getRepository(User::class);
-    $data = $repository->findOneBy("id_user", 12);
+    $repository = $defaultDAO->getRepository(Category::class);
+    //$userCollection = $repository->findOneBy("name_user", "sergio");
 
-    print_r($data);
+    //var_dump($userCollection[0]->getUsername());
+
+    //echo ConverterCase::toPlural("");
 
     $this->render('home');
   }
