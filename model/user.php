@@ -4,7 +4,7 @@ namespace model;
 
 class User implements \Serializable
 {
-    private $idUser;
+    private $idUser = 0;
     private $role;
     private $username;
     private $pass;
@@ -16,19 +16,31 @@ class User implements \Serializable
     private $idTwitter;
     private $idGoogle;
 
+
+    public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "") {
+      $this->username = $username;
+      $this->pass = $pass;
+      $this->email = $email;
+      $this->name = $name;
+      $this->surname = $surname;
+      $this->dni = $dni;
+    }
+
     //SERIALIZE METHODS
 
     public function serialize(){
         return serialize([
             $this->username,
-            $this->email
+            $this->email,
+            $this->role
         ]);
     }
 
     public function unserialize($data){
         list(
             $this->username,
-            $this->email
+            $this->email,
+            $this->role
         ) = unserialize($data);
     }
 
@@ -79,6 +91,10 @@ class User implements \Serializable
     }
 
     //SETTERS
+    public function setIdUser($value) {
+      $this->idUser = $value;
+      return $this;
+    }
 
     public function setRole($value)
     {

@@ -32,6 +32,11 @@ class Artist
 
 		//SETTERS
 
+		public function setIdArtist ($value) {
+			$this->idArtist = $value;
+			return $this;
+		}
+
 		public function setName($value){
 			$this->name = $value;
 			return $this;

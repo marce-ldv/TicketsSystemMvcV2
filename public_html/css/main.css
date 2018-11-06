@@ -1,0 +1,47 @@
+body {
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar {
+  border-bottom: #c0392b 3px solid;
+  opacity: .7;
+  z-index: 22;
+}
+
+#home-section {
+  background: url('../img/cineretrete.jpg') no-repeat;
+  min-height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, .7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+.home-inner {
+  padding-top: 200px;
+}
+@media (max-width: 992px) {
+  .home-inner {
+    padding-top: 150px;
+  }
+}
+
+.map-google{
+  width: 100%;
+}
+
+.form-login{
+  background-color: rgba(223, 55, 43, 0.658);
+}
+
+.modal-body-register{
+  background-color: rgba(238, 32, 17, 0.781);
+}

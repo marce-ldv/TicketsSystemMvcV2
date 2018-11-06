@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href=" <?= VIEW_URL ?> ">TICKET SYSTEM</a>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href=" <?= VIEW_URL ?> "><img src="<?= URL_IMG ?>logo.jpg" style="height: 60px;"> SISTEMA DE TICKETS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
       <?php if ( $this->isLogged()) {?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -12,8 +12,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">TICKETS</a>
-          <a class="dropdown-item" href="#">ARTISTAS</a>
-          <a class="dropdown-item" href="#">CREAR ARTISTA</a>
+          <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/list">ARTISTAS</a>
+          <?php if ($this->getToken()->getRole() == "admin") { ?>
+          <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/create">CREAR ARTISTA</a>
+        <?php  }?>
         </div>
       </li>
       <li class="nav-item">
@@ -21,10 +23,13 @@
       </li>
       <?php }else {?>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/default/login/">LOGIN</a>
+        <a class="nav-link js-scroll-trigger" href="#home-section">HOME</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/default/register/">REGISTER</a>
+        <a class="nav-link js-scroll-trigger" href="#info">CONTACTANOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="#info">ACERCA DE</a>
       </li>
       <?php } ?>
 
