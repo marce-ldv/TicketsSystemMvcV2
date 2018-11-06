@@ -15,8 +15,16 @@
                 <i class="fas fa-certificate"></i>
               </div>
               <div class="p-4 align-self-end">
-                Item 1 ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque nam eos soluta, est velit magnam
-                modi delectus amet, eveniet.
+                <h3>CRUDS/CR A CREAR:</h3>
+                <ul>
+                  <li>Terminar el de crear artista (CRUD)</li>
+                  <li>Carrito de comprar (session y no es un crud, solo CR)</li>
+                  <li>CRUD para los tipos de plazas</li>
+                  <li>CRUD para las plazas</li>
+                  <li>CRUD de categorias</li>
+                  <li>CRUD de lugar de evento</li>
+                  <li>CRUD para eventos</li>
+                </ul>
               </div>
             </div>
             <!-- check -->

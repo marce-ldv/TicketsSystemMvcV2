@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <a class="navbar-brand" href=" <?= VIEW_URL ?> "><img src="<?= URL_IMG ?>logo.jpg" style="height: 60px;"> SISTEMA DE TICKETS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
