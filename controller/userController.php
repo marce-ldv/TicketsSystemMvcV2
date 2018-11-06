@@ -27,7 +27,7 @@ class UserController extends Controller{
   public function login($username,$pass){
     try{
       $user= $this->userDao->readByUser($username);
-      //$session->user = $this->user_dao->serialize();
+
       if( ! $user ){
         $this->redirect('/default/index');
       }

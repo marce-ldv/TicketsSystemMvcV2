@@ -46,16 +46,16 @@
           <div class="col-lg-4 ">
             <div class="card text-center form-login">
               <div class="card-body">
-                <?php if (isset($alert)) { ?>
-                <div class="container">
-                  <div class="alert alert-success alert-dismissible fade in show" role="alert">
-                    <?php echo $alert; ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+
+                <?php if (isset($alert)) {?>
+                <div class="done">
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <?php echo $alert ?>
                   </div>
                 </div>
                 <?php } ?>
+
                 <h3>Iniciar Sesion.</h3>
                 <p>Ingrese su usuario o email, y la contraseña para ingresar al sistema.</p>
                 <form action="<?= VIEW_URL ?>/user/login/" method="post">
