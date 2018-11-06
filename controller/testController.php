@@ -13,12 +13,16 @@ class TestController extends Controller{
 
     $defaultDAO = new DefaultDAO();
 
+    $category = new Category();
+
+    $category->setDescription("Segio es groso :D:D:D:D:D:D");
+    $category->setIdCategory(null);
+
     $repository = $defaultDAO->getRepository(Category::class);
-    //$userCollection = $repository->findOneBy("name_user", "sergio");
 
-    //var_dump($userCollection[0]->getUsername());
+    $repository->create($category);
 
-    //echo ConverterCase::toPlural("");
+
 
     $this->render('home');
   }

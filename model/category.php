@@ -22,6 +22,11 @@ class Category
 
   //SETTERS
 
+  public function setIdCategory($value) {
+    $this->idCategory = $value;
+    return $this;
+  }
+
   public function setDescription($value)
   {
     $this->description = $value;
