@@ -8,9 +8,9 @@ define("DB_USER", "root");
 define("DB_PASS", "");
 define("DB_HOST", "localhost");
 
-// Constantes front
+//Constantes front
 define('ROOT',  dirname(__DIR__) . "/");
-define('VIEW_URL', '/TicketsSystemMvcV2'); // raiz del proyecto
+define('VIEW_URL', '/TicketsSystemMvcV2'); //raiz del proyecto
 define("URL_VIEW",  ROOT . '/View/');
 define("URL_CSS", VIEW_URL . '/public_html/css/');
 define("URL_JS", VIEW_URL . '/public_html/js/');
