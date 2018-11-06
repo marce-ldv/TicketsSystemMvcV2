@@ -26,20 +26,23 @@ class UserController extends Controller{
 
   public function login($username,$pass){
     try{
+      $user = new User();
+      $user->setUsername($username);
 
-      $user= $this->userDao->readByUser($username);
-
-      if( ! $user ){
+      if( ! $this->userDao->readByUser($user) ){
         $this->redirect('/default/index');
+
       }
 
       if(password_verify($pass,$user->getPass() ) ){
         //una vez que verifico que las password coinciden, antes de autoredireccionar al usuario, trabajamos con session
+
         $this->session->token = $user->serialize();
 
         $this->redirect('/default/dashboard');
 
       }else{
+
         $this->redirect('/default/index');
       }
 

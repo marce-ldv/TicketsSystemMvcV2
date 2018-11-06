@@ -1,7 +1,7 @@
 <?php
 namespace helpers;
 
-class Collection implements \Iterator, \Countable
+class Collection implements \Iterator, \Countable, \ArrayAccess
 {
   private $position = 0;
   private $array = [];
@@ -45,5 +45,25 @@ class Collection implements \Iterator, \Countable
 
   public function count () {
     return count($this->array);
+  }
+
+  public function offsetSet($offset, $valor) {
+      if (is_null($offset)) {
+          $this->array[] = $valor;
+      } else {
+          $this->array[$offset] = $valor;
+      }
+  }
+
+  public function offsetExists($offset) {
+      return isset($this->array[$offset]);
+  }
+
+  public function offsetUnset($offset) {
+      unset($this->array[$offset]);
+  }
+
+  public function offsetGet($offset) {
+      return isset($this->array[$offset]) ? $this->array[$offset] : null;
   }
 }

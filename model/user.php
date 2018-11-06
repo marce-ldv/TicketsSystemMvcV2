@@ -5,7 +5,7 @@ namespace model;
 class User implements \Serializable
 {
     private $idUser = 0;
-    private $role = "user";
+    private $role;
     private $username;
     private $pass;
     private $email;
@@ -31,14 +31,16 @@ class User implements \Serializable
     public function serialize(){
         return serialize([
             $this->username,
-            $this->email
+            $this->email,
+            $this->role
         ]);
     }
 
     public function unserialize($data){
         list(
             $this->username,
-            $this->email
+            $this->email,
+            $this->role
         ) = unserialize($data);
     }
 

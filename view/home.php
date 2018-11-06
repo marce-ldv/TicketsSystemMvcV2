@@ -1,4 +1,4 @@
-<?php  include(URL_VIEW . 'navbar.php'); ?>
+<?php include(URL_VIEW . 'navbar.php'); ?>
 
 <!-- HOME -->
 <header id="home-section">

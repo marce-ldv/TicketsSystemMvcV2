@@ -12,8 +12,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">TICKETS</a>
-          <a class="dropdown-item" href="#">ARTISTAS</a>
-          <a class="dropdown-item" href="#">CREAR ARTISTA</a>
+          <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/list">ARTISTAS</a>
+          <?php if ($this->getToken()->getRole() == "admin") { ?>
+          <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/create">CREAR ARTISTA</a>
+        <?php  }?>
         </div>
       </li>
       <li class="nav-item">
