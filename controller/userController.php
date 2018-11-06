@@ -60,9 +60,14 @@ class UserController extends Controller{
     try {
       $regComplete = FALSE;
 
+      $user = new User();
+      $user->setUsername($username);
+      $user->setEmail($email);
+
       $user_dao = $this->userDao;
+
       // TODO: Conviene modularizar y haverificar el usuario en la misma controladora
-      if ( ! $user_dao->readByUser($username) && (! $user_dao->readByUser($email))) {
+      if ( ! $user_dao->readByUser($user) ) {
         //comprobacion que la contraseña ingresada 2 veces sea la misma
         if($pass == $passAgain){
           //encriptacion de password

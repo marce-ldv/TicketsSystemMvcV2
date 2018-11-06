@@ -16,15 +16,7 @@ class PurchaseDAO extends Singleton implements ICrud{
   public function __construct(){
     $this->pdo = new Connection();
   }
-  /*
-  public static function getInstance()
-  {
-  if (!self::$instance instanceof self) {
-  self::$instance = new self();
-}
-return self::$instance;
-}
-*/
+
 public function create(&$purchase) {
 
   try {

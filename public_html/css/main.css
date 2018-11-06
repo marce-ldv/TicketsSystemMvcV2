@@ -6,6 +6,7 @@ body {
 .navbar {
   border-bottom: #c0392b 3px solid;
   opacity: .7;
+  z-index: 22;
 }
 
 #home-section {
