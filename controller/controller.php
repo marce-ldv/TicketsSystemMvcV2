@@ -4,13 +4,16 @@ namespace controller;
 use model\User as User;
 use helpers\Session as Session;
 use dao\UserDAO as UserDao;
+use dao\DefaultDAO as DefaultDAO;
 
 class Controller{
 
   protected $session;
+  protected $defaultDAO;
 
   public function __construct(){
     $this->session = Session::getInstance();
+    $this->defaultDAO = new DefaultDAO();
   }
 
   public function getToken(){
