@@ -1,8 +1,7 @@
 /*users (usuarios), categories (categorias), events(eventos),
 artists, calendars(calendario), place_events (lugar_evento), type_areas(tipo plazas),
 area_events (plaza evento), calendars_x_artists(calendarios por artistas),
-purchases (compras), lines_purchases (lineas compras), tickets,
-accounts (cuenta)  ya esta*/
+purchases (compras), lines_purchases (lineas compras), tickets ya esta*/
 
 CREATE DATABASE dbusers;
 USE dbusers;

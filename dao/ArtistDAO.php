@@ -137,7 +137,7 @@ public function update($value)
 {
 	try
 	{
-		$sql = "UPDATE this->table SET name = :name WHERE id_artist = :id ";
+		$sql = "UPDATE $this->table SET name = :name WHERE id_artist = :id "; // le agregue el $ a this->table
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
@@ -196,18 +196,7 @@ public function delete($id)
 			}
 
 			$this->list = $collection;
-			/*
-			$this->list = array_map(function ($p)
-			{
-			$u = new Artist();
-			$u->setName($p[name])
-			->setNickname($p["nickname"])
-			->setSurname($p["surname"])
-			->setIdArtist($p['id_artist']);
-
-			return $u;
-
-		}, $dataSet); // cierre del array_map*/
+			
 	}
 }
 
