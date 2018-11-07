@@ -18,7 +18,7 @@ class TestController extends Controller{
 
     //var_dump($userCollection[0]->getUsername());
 
-    //echo ConverterCase::toPlural("");
+    //echo ConverterCase::toPlural("Category_x_Product");
 
     $this->render('home');
   }
