@@ -185,9 +185,9 @@ public function delete($id)
 		{
 			$collection = new Collection();
 
-			foreach ($variable as $p) {
+			foreach ($dataSet as $p) {
 				$u = new Artist();
-				$u->setName($p[name])
+				$u->setName($p["name"])
 				->setNickname($p["nickname"])
 				->setSurname($p["surname"])
 				->setIdArtist($p['id_artist']);
