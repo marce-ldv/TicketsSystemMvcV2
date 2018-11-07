@@ -2,6 +2,7 @@
 namespace dao\repositories;
 
 use dao\Connection as Connection;
+use helpers\Collection as Collection;
 use helpers\ConverterCase as ConverterCase;
 
 /**
@@ -38,21 +39,57 @@ class DefaultRepository
   }
 
   public function findOneBy ($column, $value) {
-
     if ( ! $this->modelMap->hasField($column)) return -1;
 
     //query
-    $sql = "SELECT * FROM $this->tableName WHERE $column = $value";
+    $sql = "SELECT * FROM $this->tableName WHERE $column = '$value'";
+
     $connection = $this->pdo->connect();
     $statement = $connection->prepare($sql);
 
     $statement->execute();
 
-    $result[] = $statement->fetch(\PDO::FETCH_ASSOC);
+    $result = $statement->fetch(\PDO::FETCH_ASSOC);
 
-    print_r($statement->errorInfo());
+    $entity = new $this->className();
+    foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      $setter = $fieldModel->setter;
+      $field = $fieldModel->field;
+      $entity->$setter($result[$field]);
+    }
 
-    return $result[0];
+    return $entity;
+  }
+
+  public function findBy ($column, $value) {
+    if ( ! $this->modelMap->hasField($column)) return -1;
+
+    //query
+    $sql = "SELECT * FROM $this->tableName WHERE $column = '$value'";
+    $connection = $this->pdo->connect();
+    $statement = $connection->prepare($sql);
+
+    $statement->execute();
+
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    $entityCollection = new Collection();
+
+    foreach ($result as $row) {
+
+      $entity = new $this->className;
+
+      foreach ($this->modelMap->fieldsModel as $fieldModel) {
+        $setter = $fieldModel->setter;
+        $field = $fieldModel->field;
+        $entity->$setter($row[$field]);
+      }
+
+      $entityCollection[] = $entity;
+    }
+
+    return $entityCollection;
+
   }
 
   public function __call ($name, $argument) {
