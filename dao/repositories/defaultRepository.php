@@ -8,6 +8,8 @@ use helpers\ConverterCase as ConverterCase;
 /**
  *
  */
+
+ // TODO: Hacer inster para Many to Many :'v
 class DefaultRepository
 {
 
@@ -52,6 +54,7 @@ class DefaultRepository
     $result = $statement->fetch(\PDO::FETCH_ASSOC);
 
     $entity = new $this->className();
+    
     foreach ($this->modelMap->fieldsModel as $fieldModel) {
       $setter = $fieldModel->setter;
       $field = $fieldModel->field;

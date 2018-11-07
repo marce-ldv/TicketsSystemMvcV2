@@ -19,8 +19,6 @@ class TestController extends Controller{
 
     $repository->create($category);
 
-
-
     $this->render('home');
   }
 }
