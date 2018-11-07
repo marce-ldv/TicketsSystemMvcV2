@@ -19,12 +19,6 @@ class TestController extends Controller{
 
     $repository->create($category);
 
-
-<<<<<<< HEAD
-    //echo ConverterCase::toPlural("Category_x_Product");
-=======
->>>>>>> de2e847d4007c7ede05fb6fe2a49a281d40a13a5
-
     $this->render('home');
   }
 }

@@ -71,10 +71,6 @@ class ConverterCase
     foreach ($charsString as $key => $char) {
 
       if (preg_match("/[A-Z]|_/", $char) && $key > 0) {
-<<<<<<< HEAD
-
-=======
->>>>>>> de2e847d4007c7ede05fb6fe2a49a281d40a13a5
         $lastChar = substr($buffer, -1);
 
         switch ($lastChar) {
@@ -91,11 +87,7 @@ class ConverterCase
             break;
           case "_":
             $buffer .= $char;
-<<<<<<< HEAD
-          break;
-=======
             break;
->>>>>>> de2e847d4007c7ede05fb6fe2a49a281d40a13a5
           default:
             $buffer .= "s".$char;
             break;

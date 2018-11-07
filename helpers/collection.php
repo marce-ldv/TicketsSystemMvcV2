@@ -15,7 +15,7 @@ class Collection implements \Iterator, \Countable, \ArrayAccess
   }
 
   public function next () {
-    ++$this->position;
+    ++$this->position;s
   }
 
   public function rewind () {
