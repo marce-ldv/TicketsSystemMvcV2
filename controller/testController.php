@@ -2,7 +2,6 @@
 namespace controller;
 
 use controller\Controller as Controller;
-use dao\DefaultDAO as DefaultDAO;
 use model\User as User;
 use model\Category as Category;
 use helpers\ConverterCase as ConverterCase;
@@ -11,14 +10,20 @@ class TestController extends Controller{
 
   public function index(){
 
-    $defaultDAO = new DefaultDAO();
+    $category = new Category();
 
-    $repository = $defaultDAO->getRepository(Category::class);
-    //$userCollection = $repository->findOneBy("name_user", "sergio");
+    $category->setDescription("Segio es groso :D:D:D:D:D:D");
+    $category->setIdCategory(null);
 
-    //var_dump($userCollection[0]->getUsername());
+    $repository = $this->defaultDAO->getRepository(Category::class);
 
+    $repository->create($category);
+
+
+<<<<<<< HEAD
     //echo ConverterCase::toPlural("Category_x_Product");
+=======
+>>>>>>> de2e847d4007c7ede05fb6fe2a49a281d40a13a5
 
     $this->render('home');
   }

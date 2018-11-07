@@ -92,8 +92,40 @@ class DefaultRepository
 
   }
 
-  public function __call ($name, $argument) {
+  //Create
+  public function create ($entity) {
 
+    $fields = $this->getOrderFields();
+    $values = $this->getValuesFields($entity);
+
+    $sql = "INSERT INTO $this->tableName $fields VALUES $values";
+    $connection = $this->pdo->connect();
+    $statement = $connection->prepare($sql);
+
+    $statement->execute();
+
+    return $connection->lastInsertId();
+  }
+
+  private function getOrderFields () {
+    $str = "(";
+    foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      $str .= $fieldModel->field.",";
+    }
+    $str = substr($str,0, -1).")";
+
+    return $str;
+  }
+
+  private function getValuesFields ($entity) {
+    $str = "(";
+    foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      $getter = $fieldModel->getter;
+      $str .= "'".$entity->$getter()."',";
+    }
+    $str = substr($str,0, -1).")";
+
+    return $str;
   }
 
 }
