@@ -28,6 +28,12 @@ class Event
 
   //setters
 
+  public function setIdEvent($value)
+  {
+    $this->id_event = $value;
+    return $this;
+  }
+
   public function setCategoryEvent($value)
   {
     $this->category = $value;

@@ -21,9 +21,10 @@
                   <li>Carrito de comprar (session y no es un crud, solo CR)</li>
                   <li>CRUD para los tipos de plazas</li>
                   <li>CRUD para las plazas</li>
-                  <li>CRUD de categorias</li>
+                  <li>CRUD de categorias (hecho by Nacho)</li>
                   <li>CRUD de lugar de evento</li>
-                  <li>CRUD para eventos</li>
+                  <li>CRUD para events (en proceso by Nacho)</li>
+                  <li>Ver si esta bien la controladora evento</li>
                 </ul>
               </div>
             </div>

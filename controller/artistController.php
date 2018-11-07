@@ -50,7 +50,7 @@ class ArtistController extends Controller{
 			$artistDao = ArtistDAO::getInstance();
 
 			$artist = new Artist();
-			$artist->setName($artistPost["name"]);
+			$artist->setName($artistPost["name_user"]); // esto no deberia ser name ?
 			$artist->setSurname($artistPost["surname"]);
 			$artist->setNickname($artistPost["nickname"]);
 

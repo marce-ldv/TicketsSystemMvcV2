@@ -8,12 +8,12 @@ use controller\Controller as Controller;
 
 class EventController extends Controller
 {
-	private $eventDao;
+		private $eventDao;
 
     public function __construct()
     {
-        parent::__construct();
-    	$this->eventDAO = EventDAO::getInstance();        
+      parent::__construct();
+    	$this->eventDAO = EventDAO::getInstance();
     }
 
     public function save($category, $title)
@@ -32,7 +32,7 @@ class EventController extends Controller
 	    	$message['type'] = "danger";
 
 
-	    }catch(\Exception $e){    	
+	    }catch(\Exception $e){
             $message['message'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
 	    	$message['type'] = "danger";
 	    }
@@ -78,17 +78,17 @@ class EventController extends Controller
 
 
     public function update($category,$title)
-    {       
+    {
         $event = new Event($category, $title);
-        
-        
+
+
         // se muestra que se modifico correctamente el evento
             $mensaje['mensaje'] = "EL ARTISTA SE MODIFICO CON EXITO !";
             $mensaje['tipo'] = "success";
 
         try
         {
-            $this->eventDao->update($event);          
+            $this->eventDao->update($event);
         }
         catch(\PDOException $e)
         {
@@ -99,20 +99,20 @@ class EventController extends Controller
             $mensaje['mensaje'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
             $mensaje['tipo'] = "danger";
         }
-        
 
-        
+
+
 
         $searchedEvent = $this->eventDao->read($id_event); // evento buscado
 
 
         include URL_VIEW . 'header.php';
         require(URL_VIEW . "viewEvent/updateEvent.php");
-        include URL_VIEW . 'footer.php';        
+        include URL_VIEW . 'footer.php';
 
     }
 
-    public function updateView($id) 
+    public function updateView($id)
     {
         $searchedEvent = $this->eventDao->read($id); // evento buscado
 
