@@ -12,7 +12,7 @@ class TestController extends Controller{
 
     $category = new Category();
 
-    $category->setDescription("Segio es groso :D:D:D:D:D:D");
+    $category->setDescription("My mother is Yolanda");
     $category->setIdCategory(null);
 
     $repository = $this->defaultDAO->getRepository(Category::class);
