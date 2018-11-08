@@ -14,8 +14,8 @@ class TestController extends Controller{
   }
 
   public function register ($registerData = []) {
-
-    if ($this->isMethod("POST")) $this->redirect("/test/");
+    // TODO: siempre esta redirigiendo a la controladora test???, debe redirigir a home
+    if ( ! $this->isMethod("POST")) $this->redirect("/test/");
     if (empty($registerData)) $this->redirect("/test/");
 
     $user = new User();
