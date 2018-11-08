@@ -21,4 +21,9 @@ class TestController extends Controller{
 
     $this->render('home');
   }
+
+  public function viewEvento(){
+    $this->render('dashboard');
+  }
+
 }

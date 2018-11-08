@@ -204,7 +204,7 @@ public function readByUser(&$user){
 		$user->setIdUser($userArray["id_user"]);
 		$user->setUsername($userArray["username"]);
 		$user->setEmail($userArray["email"]);
-		$user->setRole($userArray["role_user"]);
+		//$user->setRole($userArray["role_user"]);
 		$user->setPass($userArray["pass"]);
 
 		return true;
