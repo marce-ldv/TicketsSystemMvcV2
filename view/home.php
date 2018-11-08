@@ -17,13 +17,13 @@
               <div class="p-4 align-self-end">
                 <h3>CRUDS/CR A CREAR:</h3>
                 <ul>
-                  <li>Terminar el de crear artista (CRUD)</li>
+                  <li>Terminar el de crear artista (CRUD) artistController</li>
                   <li>Carrito de comprar (session y no es un crud, solo CR)</li>
-                  <li>CRUD para los tipos de plazas</li>
-                  <li>CRUD para las plazas</li>
-                  <li>CRUD de categorias</li>
-                  <li>CRUD de lugar de evento</li>
-                  <li>CRUD para eventos</li>
+                  <li>CRUD para los tipos de plazas typeareaController || usar helpers (typeAreaController) convertCase</li>
+                  <li>CRUD para las plazas areaController (tipo)</li>
+                  <li>CRUD de categorias categoryController ()</li>
+                  <li>CRUD de lugar de evento eventareaController() || usar helpers (eventAreaController) convertCase</li>
+                  <li>CRUD para eventos  eventController</li>
                 </ul>
               </div>
             </div>
