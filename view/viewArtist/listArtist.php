@@ -1,7 +1,7 @@
 <?php include URL_VIEW . "navbar.php" ?>
 
 <!-- vista de listar artistas -->
-<div class="container">	
+<div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 			<table class="table">
@@ -17,7 +17,7 @@
 				<?php foreach ($listArtists as $key => $value) { ?>
 			    <tr>
 			      <th scope="row"> <?= $value->getIdArtist() ?> </th>
-			      <td> <?= $value->getNameArtist() ?> </td>
+			      <td> <?= $value->getName() ?> </td>
 			      <td><button class="btn btn-primary"> Editar </button></td>
 			      <td><button class="btn btn-danger">Eliminar</button></td>
 			    </tr>

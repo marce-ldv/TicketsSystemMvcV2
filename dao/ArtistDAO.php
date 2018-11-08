@@ -185,9 +185,13 @@ public function delete($id)
 		{
 			$collection = new Collection();
 
-			foreach ($variable as $p) {
+			foreach ($dataSet as $p) {
 				$u = new Artist();
+<<<<<<< HEAD
 				$u->setName($p[name]) //// TODO: Comprobar si es name, y agregarle comillas simples
+=======
+				$u->setName($p["name"])
+>>>>>>> b150d9e70ccf3b5bd57cd0d30bb05fc855bd3bec
 				->setNickname($p["nickname"])
 				->setSurname($p["surname"])
 				->setIdArtist($p['id_artist']);

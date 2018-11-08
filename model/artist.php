@@ -51,7 +51,7 @@ class Artist
 		public function setNickname($value)
 		{
 			$this->nickname = $value;
-			return;
+			return $this;
 		}
 
 }

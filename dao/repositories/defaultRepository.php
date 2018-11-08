@@ -8,6 +8,8 @@ use helpers\ConverterCase as ConverterCase;
 /**
  *
  */
+
+ // TODO: Hacer inster para Many to Many :'v
 class DefaultRepository
 {
 
@@ -38,20 +40,41 @@ class DefaultRepository
     return $this->modelMap;
   }
 
-  public function findOneBy ($column, $value) {
-    if ( ! $this->modelMap->hasField($column)) return -1;
+  public function findOneBy ($columns, $option = "AND") {
+    foreach ($columns as $column => $value) {
+      if ( ! $this->modelMap->hasField($column)) return false;
+    }
+
 
     //query
-    $sql = "SELECT * FROM $this->tableName WHERE $column = '$value'";
+    $sql = "SELECT * FROM $this->tableName WHERE ";
+    $where = "";
+    end($columns);
+    $lastIndex = key($columns);
+
+    foreach ($columns as $column => $value) {
+      if ( $lastIndex == $column ) {
+        $where .= " $column = '$value' ";
+      } else {
+        $where .= "$column = '$value' $option";
+      }
+    }
+
+    $sql .= $where;
 
     $connection = $this->pdo->connect();
     $statement = $connection->prepare($sql);
 
     $statement->execute();
+    //print_r($sql);
+    //print_r($statement->errorInfo());
 
     $result = $statement->fetch(\PDO::FETCH_ASSOC);
 
+    if ( ! $result) return false;
+
     $entity = new $this->className();
+
     foreach ($this->modelMap->fieldsModel as $fieldModel) {
       $setter = $fieldModel->setter;
       $field = $fieldModel->field;
@@ -61,17 +84,36 @@ class DefaultRepository
     return $entity;
   }
 
-  public function findBy ($column, $value) {
-    if ( ! $this->modelMap->hasField($column)) return -1;
+  public function findBy ($columns, $option = "AND") {
+    foreach ($columns as $column => $value) {
+      if ( ! $this->modelMap->hasField($column)) return false;
+    }
 
     //query
-    $sql = "SELECT * FROM $this->tableName WHERE $column = '$value'";
+    //query
+    $sql = "SELECT * FROM $this->tableName WHERE ";
+    $where = "";
+    end($columns);
+    $lastIndex = key($columns);
+
+    foreach ($columns as $column => $value) {
+      if ( $lastIndex == $column ) {
+        $where .= " $column = '$value' ";
+      } else {
+        $where .= "$column = '$value' $option";
+      }
+    }
+
+    $sql .= $where;
+
     $connection = $this->pdo->connect();
     $statement = $connection->prepare($sql);
 
     $statement->execute();
 
     $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    if ( ! $result) return false;
 
     $entityCollection = new Collection();
 
@@ -103,6 +145,7 @@ class DefaultRepository
     $statement = $connection->prepare($sql);
 
     $statement->execute();
+    print_r($statement->errorInfo());
 
     return $connection->lastInsertId();
   }

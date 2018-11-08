@@ -46,7 +46,7 @@ class ArtistController extends Controller{
 		$messageWrong = "";
 
 		if ($_SERVER['REQUEST_METHOD'] == "POST") {
-			//
+
 			$artistDao = ArtistDAO::getInstance();
 
 			$artist = new Artist();

@@ -9,6 +9,8 @@ use dao\repositories\DefaultRepository as DefaultRepository;
 class DefaultDAO
 {
 
+
+
   public function getRepository ($model) {
     $modelMap = $this->getModelMap($model);
 
