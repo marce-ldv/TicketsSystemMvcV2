@@ -2,15 +2,14 @@
 /*typeAreas(tipo plazas)*/
 namespace model;
 
-class ClassName extends AnotherClass
+class TypeArea
 {
     private $idTypeArea;
     private $descriptionTypeArea;
 
-    function __construct($idTypeArea, $descriptionTypeArea)
+    function __construct($descriptionTypeArea)
     {
-      $this->$idTypeArea = $idTypeArea;
-      $this->$descriptionTypeArea = $descriptionTypeArea;
+        $this->$descriptionTypeArea = $descriptionTypeArea;
     }
 
 // getters

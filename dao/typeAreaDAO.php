@@ -1,7 +1,6 @@
 <?php
 namespace dao;
-/*private $idTypeArea;
-private $descriptionTypeArea;*/
+/* type_areas(tipo plazas)  */
 
 use model\TypeArea as TypeArea;
 use interfaces\ICrud as Icrud;
