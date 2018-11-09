@@ -2,6 +2,7 @@
 
 namespace controller;
 use model\User as User;
+use controller\FileCcontroller as FileController;
 use controller\Controller as Controller;
 
 class UserController extends Controller{
@@ -14,7 +15,16 @@ class UserController extends Controller{
 
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
+    
+    //Chquear imagen valida
+    $fileController = new FileController();
 
+    if ( ! $fileController->isValid($registerData["profilePicture"]) ) $this->redirect('/default/', [
+      "alert" => $fileController->errors();
+    ]);
+    
+    
+      
     $user = new User();
     $repository = $this->defaultDAO->getRepository(User::class);
     $criteria = [
