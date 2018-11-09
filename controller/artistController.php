@@ -13,7 +13,7 @@ class ArtistController extends Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->artistDao = ArtistDAO::getInstance(); // te devuelve la instancia de la bbdd de artista
+		$this->artistDao = ArtistDAO::getInstance(); // te devuelve la instancia de la bbdd
 	}
 
 	public function save($name)

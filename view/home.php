@@ -410,7 +410,7 @@
             </div>
 
             <div class="form-group">
-              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[avatar]">
+              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[profilePicture]">
             </div>
 
             <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">
