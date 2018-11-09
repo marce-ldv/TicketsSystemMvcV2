@@ -20,7 +20,6 @@
                   <li>Terminar el de crear artista (CRUD)</li>
                   <li>Carrito de comprar (session y no es un crud, solo CR)</li>
                   <li>CRUD para los tipos de plazas (hecho by Nacho)</li>
-                  <li>CRUD para las place_events (lugar_evento)</li>
                   <li>CRUD de categorias (hecho by Nacho)</li>
                   <li>CRUD de place_events (en proceso lugar_eventos) </li>
                   <li>CRUD para events (hecho by Nacho)</li>
