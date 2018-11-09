@@ -9,6 +9,8 @@ class UserController extends Controller{
 
   public function index(){
     $this->indexView();
+    
+    
   }
 
   public function register ($registerData = []) {
