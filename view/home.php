@@ -70,11 +70,11 @@
                 <form action="<?= VIEW_URL ?>/user/login/" method="post">
 
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
+                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
                   </div>
 
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="pass">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="registerData[pass]">
                   </div>
 
                   <input type="submit" value="Login" class="btn btn-outline-light btn-block">
@@ -381,36 +381,36 @@
           <form action="<?= VIEW_URL ?>/user/register/" method="post">
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
+              <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
             </div>
 
             <div class="form-group">
-              <input type="password" class="form-control form-control-lg" placeholder="Contrasena" name="pass">
+              <input type="password" class="form-control form-control-lg" placeholder="Contrasena" name="registerData[pass]">
             </div>
 
             <div class="form-group">
               <input type="password" class="form-control form-control-lg" placeholder="Ingrese su contrasena de nuevo"
-                name="passAgain">
+                name="registerData[passAgain]">
             </div>
 
             <div class="form-group">
-              <input type="email" class="form-control form-control-lg" placeholder="Correo electronico" name="email">
+              <input type="email" class="form-control form-control-lg" placeholder="Correo electronico" name="registerData[email]">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Nombre" name="name_user">
+              <input type="text" class="form-control form-control-lg" placeholder="Nombre" name="registerData[name_user]">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Apellido" name="surname">
+              <input type="text" class="form-control form-control-lg" placeholder="Apellido" name="registerData[surname]">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Dni" name="dni">
+              <input type="text" class="form-control form-control-lg" placeholder="Dni" name="registerData[dni]">
             </div>
 
             <div class="form-group">
-              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="avatar">
+              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[avatar]">
             </div>
 
             <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">
