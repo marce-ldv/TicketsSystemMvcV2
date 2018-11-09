@@ -133,7 +133,7 @@ public function update($value)
 {
 	try
 	{
-		$sql = "UPDATE $this->table SET description = :description WHERE idCategory = :id ";
+		$sql = "UPDATE this->table SET description = :description WHERE idCategory = :id ";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
@@ -183,7 +183,7 @@ public function delete($id)
 
 			foreach ($variable as $p) {
 				$u = new Category();
-				$u->getDescriptionCategory($p['description']) 
+				$u->getDescriptionCategory($p['description']) // esto no iria con comillas ?
 				->setIdCategory($p['idCategory']);
 
 				$collection->add($u);

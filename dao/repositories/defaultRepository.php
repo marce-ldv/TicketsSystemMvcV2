@@ -2,11 +2,14 @@
 namespace dao\repositories;
 
 use dao\Connection as Connection;
+use helpers\Collection as Collection;
 use helpers\ConverterCase as ConverterCase;
 
 /**
  *
  */
+
+ // TODO: Hacer inster para Many to Many :'v
 class DefaultRepository
 {
 
@@ -37,26 +40,135 @@ class DefaultRepository
     return $this->modelMap;
   }
 
-  public function findOneBy ($column, $value) {
+  public function findOneBy ($columns, $option = "AND") {
+    foreach ($columns as $column => $value) {
+      if ( ! $this->modelMap->hasField($column)) return false;
+    }
 
-    if ( ! $this->modelMap->hasField($column)) return -1;
 
     //query
-    $sql = "SELECT * FROM $this->tableName WHERE $column = $value";
+    $sql = "SELECT * FROM $this->tableName WHERE ";
+    $where = "";
+    end($columns);
+    $lastIndex = key($columns);
+
+    foreach ($columns as $column => $value) {
+      if ( $lastIndex == $column ) {
+        $where .= " $column = '$value' ";
+      } else {
+        $where .= "$column = '$value' $option";
+      }
+    }
+
+    $sql .= $where;
+
+    $connection = $this->pdo->connect();
+    $statement = $connection->prepare($sql);
+
+    $statement->execute();
+    //print_r($sql);
+    //print_r($statement->errorInfo());
+
+    $result = $statement->fetch(\PDO::FETCH_ASSOC);
+
+    if ( ! $result) return false;
+
+    $entity = new $this->className();
+
+    foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      $setter = $fieldModel->setter;
+      $field = $fieldModel->field;
+      $entity->$setter($result[$field]);
+    }
+
+    return $entity;
+  }
+
+  public function findBy ($columns, $option = "AND") {
+    foreach ($columns as $column => $value) {
+      if ( ! $this->modelMap->hasField($column)) return false;
+    }
+
+    //query
+    //query
+    $sql = "SELECT * FROM $this->tableName WHERE ";
+    $where = "";
+    end($columns);
+    $lastIndex = key($columns);
+
+    foreach ($columns as $column => $value) {
+      if ( $lastIndex == $column ) {
+        $where .= " $column = '$value' ";
+      } else {
+        $where .= "$column = '$value' $option";
+      }
+    }
+
+    $sql .= $where;
+
     $connection = $this->pdo->connect();
     $statement = $connection->prepare($sql);
 
     $statement->execute();
 
-    $result[] = $statement->fetch(\PDO::FETCH_ASSOC);
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-    print_r($statement->errorInfo());
+    if ( ! $result) return false;
 
-    return $result[0];
+    $entityCollection = new Collection();
+
+    foreach ($result as $row) {
+
+      $entity = new $this->className;
+
+      foreach ($this->modelMap->fieldsModel as $fieldModel) {
+        $setter = $fieldModel->setter;
+        $field = $fieldModel->field;
+        $entity->$setter($row[$field]);
+      }
+
+      $entityCollection[] = $entity;
+    }
+
+    return $entityCollection;
+
   }
 
-  public function __call ($name, $argument) {
+  //Create
+  public function create ($entity) {
 
+    $fields = $this->getOrderFields();
+    $values = $this->getValuesFields($entity);
+
+    $sql = "INSERT INTO $this->tableName $fields VALUES $values";
+    $connection = $this->pdo->connect();
+    $statement = $connection->prepare($sql);
+
+    $statement->execute();
+    print_r($statement->errorInfo());
+
+    return $connection->lastInsertId();
+  }
+
+  private function getOrderFields () {
+    $str = "(";
+    foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      $str .= $fieldModel->field.",";
+    }
+    $str = substr($str,0, -1).")";
+
+    return $str;
+  }
+
+  private function getValuesFields ($entity) {
+    $str = "(";
+    foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      $getter = $fieldModel->getter;
+      $str .= "'".$entity->$getter()."',";
+    }
+    $str = substr($str,0, -1).")";
+
+    return $str;
   }
 
 }

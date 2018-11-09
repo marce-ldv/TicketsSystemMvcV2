@@ -8,12 +8,12 @@
       <?php if ( $this->isLogged()) {?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?php echo $this->getToken()->getUsername(); ?>
+          <?= $this->getToken()->getUsername(); ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">TICKETS</a>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/list">ARTISTAS</a>
-          <?php if ($this->getToken()->getRole() == "admin") { ?>
+          <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/create">CREAR ARTISTA</a>
         <?php  }?>
         </div>

@@ -34,7 +34,7 @@ public function create(&$user) {
 		$username = $user->getUsername();
 		$pass = $user->getPass();
 		$email = $user->getEmail();
-		$name_user = $user->getName();
+		$name_user = $user->getNameUser();
 		$surname = $user->getSurname();
 		$dni = $user->getDni();
 		//$role = $user->getRole();
@@ -204,7 +204,7 @@ public function readByUser(&$user){
 		$user->setIdUser($userArray["id_user"]);
 		$user->setUsername($userArray["username"]);
 		$user->setEmail($userArray["email"]);
-		$user->setRole($userArray["role_user"]);
+		$user->setRoleUser($userArray["role_user"]);
 		$user->setPass($userArray["pass"]);
 
 		return true;

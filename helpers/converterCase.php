@@ -2,8 +2,8 @@
 namespace helpers;
 
 /**
- *
- */
+*
+*/
 class ConverterCase
 {
 
@@ -65,18 +65,56 @@ class ConverterCase
   //To plural
   public static function toPlural ($string) {
     $charsString = str_split($string);
-    $charsString[0] = strtolower($charsString[0]);
 
     $buffer = "";
 
     foreach ($charsString as $key => $char) {
-      if (preg_match("/[A-Z]|_/", $char)) {
-        $buffer .= "s".$char;
+
+      if (preg_match("/[A-Z]|_/", $char) && $key > 0) {
+        $lastChar = substr($buffer, -1);
+
+        switch ($lastChar) {
+          case "y":
+            if ( $key > 0)
+              $buffer = substr($buffer, 0, -1)."ies".$char;
+            break;
+          case "s":
+            if ( $key > 0)
+              $buffer = substr($buffer, 0, -1)."es".$char;
+            break;
+          case "x":
+            $buffer .= $char;
+            break;
+          case "_":
+            $buffer .= $char;
+            break;
+          default:
+            $buffer .= "s".$char;
+            break;
+        }
       } else {
-        $buffer .=$char;
+        $buffer .= $char;
       }
     }
 
-    return $buffer."s";
+    $lastChar = substr($buffer, -1);
+
+    switch ($lastChar) {
+      case "y":
+        $buffer = substr($buffer, 0, -1)."ies";
+        break;
+      case "s":
+        $buffer = substr($buffer, 0, -1)."es";
+        break;
+      case "x":
+        $buffer .= $char;
+        break;
+      default:
+        $buffer .= "s";
+        break;
+    }
+
+    return $buffer;
   }
+
 }
