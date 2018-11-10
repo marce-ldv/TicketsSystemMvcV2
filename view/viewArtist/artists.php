@@ -12,9 +12,9 @@
 						<!-- este es el form donde se ingresa el nombre del artista -->
 						<div class="form-group">
 							<label>Nombre Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Ingrese el nombre del artista" name="nombre">
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="name">
 						</div>
-						<button type="submit" class="btn btn-primary">Agregar</button>
+						<button type="submit" class="btn btn-success">Agregar</button>
 					</form>
 				</div>
 			</div>

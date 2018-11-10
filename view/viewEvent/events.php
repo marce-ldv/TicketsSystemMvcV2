@@ -11,10 +11,24 @@
 					<form action = "<?= VIEW_URL ?>/artist/create" method="post">
 						<!-- este es el form donde se ingresa el nombre del artista -->
 						<div class="form-group">
-							<label>Nombre Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Ingrese el nombre del artista" name="nombre">
+							<label>Nombre Evento</label>
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del evento" name="name">
 						</div>
-						<button type="submit" class="btn btn-primary">Agregar</button>
+
+            <label>Fecha</label>
+            <div class="form-group row">
+
+            <div class="col-2">
+              <input class="form-control" type="number" value="" name="day">
+            </div>
+            <div class="col-2">
+              <input class="form-control" type="number" value="" name="month">
+            </div>
+            <div class="col-2">
+              <input class="form-control" type="number" value="" name="year">
+            </div>
+
+						<button type="submit" class="btn btn-success">Agregar</button>
 					</form>
 				</div>
 			</div>
@@ -31,15 +45,13 @@
 			<table class="table">
 			  <thead>
 			    <tr>
-			      <th scope="col">Nickname</th>
-			      <th scope="col">Name</th>
-			      <th scope="col">Surname</th>
+			      <th scope="col">Titulo</th>
+			      <th scope="col">Categoria</th>
 						<th scope="col">Accion</th>
 			    </tr>
 			  </thead>
 			    <tr>
 			      <td>asds</td>
-			      <td>asd</td>
 						<td>asdsa</td>
 			      <td>
 							<button class="btn btn-primary"> Editar </button>
