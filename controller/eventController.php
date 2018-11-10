@@ -80,21 +80,19 @@ class EventController extends Controller
     }
     catch(\PDOException $e)
     {
-      $e->getMessage();
+      $mensaje['mensaje'] = "UPS! ERROR PDO: " . $e->getMessage() . "| CODE: " . $e->getCode();
+      $mensaje['tipo'] = "danger";
     }
     catch(\Exception $e){
-      $e->getMessage();
+      $mensaje['mensaje'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
+      $mensaje['tipo'] = "danger";
     }
 
     $searchedEvent = $this->eventDao->read($id_event); // evento buscado
 
-<<<<<<< HEAD
     $this->render("viewEvent/updateEvent")
 
     require(URL_VIEW . "viewEvent/updateEvent.php");
-=======
-    $this->render('viewEvent/updateEvent');
->>>>>>> 15e3e84dd6e02d48a1294e7df8842b2219e32173
   }
 
 }
