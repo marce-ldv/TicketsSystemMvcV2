@@ -16,7 +16,7 @@ class Event
     return $this->id_event;
   }
 
-  public function getCategoryEvent()
+  public function getCategory()
   {
     return $this->category;
   }
@@ -34,7 +34,7 @@ class Event
     return $this;
   }
 
-  public function setCategoryEvent($value)
+  public function setCategory($value)
   {
     $this->category = $value;
     return $this;

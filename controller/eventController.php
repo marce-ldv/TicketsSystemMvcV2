@@ -16,6 +16,14 @@ class EventController extends Controller
     $this->eventDAO = EventDAO::getInstance();
   }
 
+  public function index () {
+    $events = $this->eventDAO->readAll();
+
+    $this->render("home",[
+      "events" => $events
+    ]);
+  }
+
   public function save($category, $title)
   {
 

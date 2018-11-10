@@ -1,5 +1,11 @@
 <?php include(URL_VIEW . 'navbar.php'); ?>
 
+
+<ul>
+<?php foreach ($events as $event) {?>
+  <li>$event->getCategory()->getDescription();</li>
+<?php } ?>
+</ul>
 <!-- HOME -->
 <header id="home-section">
   <div class="dark-overlay">
