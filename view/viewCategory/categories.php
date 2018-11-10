@@ -9,7 +9,7 @@
         <!-- limita la cantidad de columnas de boostrap -->
         <div class="col-md-6 col-12">
 
-          <form action = "<?= VIEW_URL ?>/artist/create" method="post">
+          <form action = "<?= VIEW_URL ?>/category/save" method="post">
             <!-- este es el form donde se ingresa el nombre del artista -->
             <div class="form-group">
               <label>Descripcion de la categoria</label>
