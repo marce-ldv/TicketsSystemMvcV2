@@ -9,4 +9,6 @@ class FieldModel
   public $field;
   public $getter;
   public $setter;
+  public $hasRelation;
+  public 
 }

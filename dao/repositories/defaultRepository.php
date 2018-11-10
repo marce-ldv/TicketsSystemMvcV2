@@ -78,17 +78,39 @@ class DefaultRepository
     $entity = new $this->className();
 
     foreach ($this->modelMap->fieldsModel as $fieldModel) {
-      //clave foranea
-      $getter = $fieldModel->getter;
-      if ( $entity->$getter() instanceof Model::class) {
+
+      if ( $fieldModel->isRelationOne() ) {
+        //clave foranea relacion one to one
         $defaultDAO = new DefaultDAO();
-        $repository
+        $repository = $defaultDAO->getRepository($fieldModel->getRelationModel());
+
+        $field = $fieldModel->field;
+        $fkId = $result[$field];
+
+        $relationEntity = $repository->findOneBy([$field => $fkId]);
+
+        $setter = $fieldModel->setter;
+        $entity->$setter($relationEntity);
+
+      } elseif ( $fieldModel->isRelationMany() ) {
+        //clave foranea relacion one to many
+        $defaultDAO = new DefaultDAO();
+        $repository = $defaultDAO->getRepository($fieldModel->getRelationModel());
+
+        $field = $fieldModel->field;
+        $fkId = $result[$field];
+
+        $relationEntity = $repository->findBy([$fieldModel->fkField => $fkId]);
+
+        $setter = $fieldModel->setter;
+        $entity->$setter($result[$field]);
+      } else {
+        $setter = $fieldModel->setter;
+        $field = $fieldModel->field;
+
+        $entity->$setter($result[$field]);
       }
 
-      $setter = $fieldModel->setter;
-      $field = $fieldModel->field;
-
-      $entity->$setter($result[$field]);
     }
 
     return $entity;
