@@ -14,9 +14,9 @@ class TestController extends Controller{
   }
 
   public function register ($registerData = []) {
-
-    if ($this->isMethod("POST")) $this->redirect("/test/");
-    if (empty($registerData)) $this->redirect("/test/"); 
+    // TODO: siempre esta redirigiendo a la controladora test???, debe redirigir a home
+    if ( ! $this->isMethod("POST")) $this->redirect("/test/");
+    if (empty($registerData)) $this->redirect("/test/");
 
     $user = new User();
     $repository = $this->defaultDAO->getRepository(User::class);
@@ -47,4 +47,9 @@ class TestController extends Controller{
 
     $this->redirect ('/test/', ["alert" => "Usuario creado con exito"]);
   }
+
+  public function viewEvento(){
+    $this->render('dashboard');
+  }
+
 }

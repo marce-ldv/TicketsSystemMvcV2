@@ -17,13 +17,13 @@
               <div class="p-4 align-self-end">
                 <h3>CRUDS/CR A CREAR:</h3>
                 <ul>
-                  <li>Terminar el de crear artista (CRUD)</li>
+                  <li>Terminar el de crear artista (CRUD) artistController</li>
                   <li>Carrito de comprar (session y no es un crud, solo CR)</li>
-                  <li>CRUD para los tipos de plazas</li>
-                  <li>CRUD para las plazas</li>
-                  <li>CRUD de categorias</li>
-                  <li>CRUD de lugar de evento</li>
-                  <li>CRUD para eventos</li>
+                  <li>CRUD para los tipos de plazas typeareaController || usar helpers (typeAreaController) convertCase</li>
+                  <li>CRUD para las plazas areaController (tipo)</li>
+                  <li>CRUD de categorias categoryController ()</li>
+                  <li>CRUD de lugar de evento eventareaController() || usar helpers (eventAreaController) convertCase</li>
+                  <li>CRUD para eventos  eventController</li>
                 </ul>
               </div>
             </div>
@@ -70,11 +70,11 @@
                 <form action="<?= VIEW_URL ?>/user/login/" method="post">
 
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
+                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
                   </div>
 
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="pass">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="registerData[pass]">
                   </div>
 
                   <input type="submit" value="Login" class="btn btn-outline-light btn-block">
@@ -381,36 +381,36 @@
           <form action="<?= VIEW_URL ?>/user/register/" method="post">
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
+              <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
             </div>
 
             <div class="form-group">
-              <input type="password" class="form-control form-control-lg" placeholder="Contrasena" name="pass">
+              <input type="password" class="form-control form-control-lg" placeholder="Contrasena" name="registerData[pass]">
             </div>
 
             <div class="form-group">
               <input type="password" class="form-control form-control-lg" placeholder="Ingrese su contrasena de nuevo"
-                name="passAgain">
+                name="registerData[passAgain]">
             </div>
 
             <div class="form-group">
-              <input type="email" class="form-control form-control-lg" placeholder="Correo electronico" name="email">
+              <input type="email" class="form-control form-control-lg" placeholder="Correo electronico" name="registerData[email]">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Nombre" name="name_user">
+              <input type="text" class="form-control form-control-lg" placeholder="Nombre" name="registerData[name_user]">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Apellido" name="surname">
+              <input type="text" class="form-control form-control-lg" placeholder="Apellido" name="registerData[surname]">
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Dni" name="dni">
+              <input type="text" class="form-control form-control-lg" placeholder="Dni" name="registerData[dni]">
             </div>
 
             <div class="form-group">
-              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="avatar">
+              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[avatar]">
             </div>
 
             <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">

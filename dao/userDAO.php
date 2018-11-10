@@ -34,7 +34,7 @@ public function create(&$user) {
 		$username = $user->getUsername();
 		$pass = $user->getPass();
 		$email = $user->getEmail();
-		$name_user = $user->getName();
+		$name_user = $user->getNameUser();
 		$surname = $user->getSurname();
 		$dni = $user->getDni();
 		//$role = $user->getRole();

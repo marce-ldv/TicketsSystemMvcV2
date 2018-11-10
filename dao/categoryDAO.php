@@ -2,13 +2,13 @@
 
 namespace dao;
 
-use model\Artist as Artist;
+use model\category as Category;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
 
-class ArtistDAO extends SingletonDAO implements ICrud
+class CategoryDAO extends SingletonDAO implements ICrud
 {
-	private $table = "artists";
+	private $table = "categories";
 	private $list = array();
 	private static $instance;
 	private $pdo;
@@ -29,23 +29,19 @@ return self::$instance;
 }*/
 
 
-public function create(&$artist)
+public function create(&$category)
 {
 	try
 	{
-		$sql = "INSERT INTO $this->table (nickname, name, surname) VALUES (:nickname, :name, :surname)"; //le agregue la S a VALUE
+		$sql = "INSERT INTO $this->table (description) VALUE (:description)"; //le agregue la S a VALUE
 
 		$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$name = $artist->getNameArtist();
-		$nickname = $artist->getNickname();
-		$surname = $artist->getSurname();
+		$description = $category->getDescriptionCategory();
 
 		$statement->execute(array(
-			":nickname" => $nickname,
-			":name" => $name,
-			":surname" => $surname
+			":$description" => $description,
 		));
 
 		return $connection->lastInsertId();
@@ -66,7 +62,7 @@ public function read($id)
 {
 	try {
 
-		$sql = "SELECT * FROM $this->table WHERE artists_id = $id";
+		$sql = "SELECT * FROM $this->table WHERE $idCategory = $id";
 
 		$pdo = new Connection(); // <- en vez de esta y
 		$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
@@ -137,15 +133,15 @@ public function update($value)
 {
 	try
 	{
-		$sql = "UPDATE $this->table SET name = :name WHERE id_artist = :id "; // le agregue el $ a this->table
+		$sql = "UPDATE this->table SET description = :description WHERE idCategory = :id ";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$name = $value->getNameArtist();
-		$id = $value->getIdArtist();
+		$description = $value->getDescriptionCategory();
+		$id = $value->getIdCategory();
 
-		$statement->bindParam(":name",$name);
+		$statement->bindParam(":description",$description);
 		$statement->binParam(":id",$id);
 
 		$statement->execute();
@@ -166,24 +162,25 @@ public function delete($id)
 {
 	try
 	{
-		$sql = "DELETE FROM $this->table WHERE id_artist = $id "; // si es un string poner \" $id \";
+		$sql = "DELETE FROM $this->table WHERE idCategory = $id "; // si es un string poner \" $id \";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
 		$statement->execute(array(
 			":id" => $id,
-	));
+		));
 
-	}catch(\PDOException $e)
-	{
-	  echo $e->getMessage();
-	  die();
-	}
-	catch(Exception $e)
-	{
-	  echo $e->getMessage();
-	  die();
+		}catch(\PDOException $e)
+		{
+		echo $e->getMessage();
+		die();
+		}
+		catch(Exception $e)
+		{
+		echo $e->getMessage();
+		die();
+		}
 	}
 
 	public function mapMethod($dataSet)
@@ -194,12 +191,10 @@ public function delete($id)
 		{
 			$collection = new Collection();
 
-			foreach ($dataSet as $p) {
-				$u = new Artist();
-				$u->setName($p["name"])
-				->setNickname($p["nickname"])
-				->setSurname($p["surname"])
-				->setIdArtist($p['id_artist']);
+			foreach ($variable as $p) {
+				$u = new Category();
+				$u->getDescriptionCategory($p['description']) // esto no iria con comillas ?
+				->setIdCategory($p['idCategory']);
 
 				$collection->add($u);
 			}

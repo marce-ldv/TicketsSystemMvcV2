@@ -15,7 +15,7 @@ class Category
     return $this->idCategory;
   }
 
-  public function getDescription()
+  public function getDescriptionCategory()
   {
     return $this->description;
   }

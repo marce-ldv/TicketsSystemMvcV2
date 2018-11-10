@@ -31,7 +31,6 @@ class UserController extends Controller{
 
       if( ! $this->userDao->readByUser($user) ){
         $this->redirect('/default/index');
-
       }
 
       if(password_verify($pass,$user->getPass() ) ){

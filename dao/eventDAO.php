@@ -1,13 +1,16 @@
 <?php
 
+namespace dao;
+
 use model\Event as Event;
 use interfaces\ICrud as ICrud;
+use helpers\Collection as Collection;
 
-class EventDAO extends SingletonDAO implements ICrud
+class EventDAO extends Singleton implements ICrud
 {
 	private $table = "events";
 	private $list = array();
-	private static $instance();
+	private static $instance;
 	private $pdo;
 
 	public function __construct()
@@ -16,7 +19,7 @@ class EventDAO extends SingletonDAO implements ICrud
 	}
 
 
-	public function create($value)
+	public function create(&$value)
 	{
 		try
 		{
@@ -28,10 +31,13 @@ class EventDAO extends SingletonDAO implements ICrud
 			$category = $value->getCategoryEvent();
 			$title = $value->getTitleEvent();
 
-			$statement->bindParam(":category" , $category);
-			$statement->bindParam(":title" , $title);
+/*			$statement->bindParam(":category" , $category);
+			$statement->bindParam(":title" , $title);*/
 
-			$statement->execute();
+			$statement->execute(array(
+				":category" => $category,
+				":title" => $title,
+			));
 
 			return $connection->lastInsertId();
 		}
@@ -161,9 +167,9 @@ class EventDAO extends SingletonDAO implements ICrud
 			$connection = Connection::connect();
 			$statement = $connection->prepare($sql);
 
-			$statement->bindParam(":id", $id);
-
-			$statement->execute();
+			$statement->execute(array(
+  			":id" => $id,
+    ));
 
 		}catch(\PDOException $e)
 		{
@@ -185,7 +191,21 @@ class EventDAO extends SingletonDAO implements ICrud
 
 		if($dataSet)
 		{
-			$this->list = array_map(function ($p)
+			$collection = new Collection();
+
+			foreach ($variable as $p) {
+				$u = new Event();
+				$u->setCategoryEvent($p["category"])
+				->setTitleEvent($p["title"])
+				->setIdArtist($p['id_artist']);
+
+				$collection->add($u);
+			}
+
+			$this->list = $collection;
+
+			//////////////////////////////////////////////////
+			/*$this->list = array_map(function ($p)
 			{
 				$u = new Event(
 					$p['category'],
@@ -195,7 +215,7 @@ class EventDAO extends SingletonDAO implements ICrud
 					return $u;
 
 				}, $dataSet); // end of array_map
-			}
+			}*/
 		}
 
 
