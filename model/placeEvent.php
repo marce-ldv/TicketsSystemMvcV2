@@ -5,7 +5,7 @@ description VARCHAR(50),*/
 
 class PlaceEvent
 {
-  private $id_place;
+  private $id_place_event;
   private $capacity;
   private $description;
 
@@ -18,9 +18,9 @@ class PlaceEvent
   /**
      * @return mixed
      */
-    public function getIdPlace()
+    public function getIdPlaceEvent()
     {
-        return $this->id_place;
+        return $this->$id_place_event;
     }
 
     /**
@@ -28,9 +28,9 @@ class PlaceEvent
      *
      * @return self
      */
-    public function setIdPlace($id_place)
+    public function setIdPlaceEvent($id_place_event)
     {
-        $this->id_place = $id_place;
+        $this->id_place_event = $id_place_event;
 
         return $this;
     }

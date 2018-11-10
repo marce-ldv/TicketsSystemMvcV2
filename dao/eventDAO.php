@@ -167,9 +167,9 @@ class EventDAO extends Singleton implements ICrud
 			$connection = Connection::connect();
 			$statement = $connection->prepare($sql);
 
-			$statement->bindParam(":id", $id);
-
-			$statement->execute();
+			$statement->execute(array(
+  			":id" => $id,
+    ));
 
 		}catch(\PDOException $e)
 		{

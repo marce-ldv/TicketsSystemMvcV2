@@ -157,11 +157,21 @@ class TypeAreaDAO extends SingletonDAO implements ICrud
   		$connection = Connection::connect();
   		$statement = $connection->prepare($sql);
 
+      $statement->execute(array(
+  			":id" => $id,
+    ));
 
-
-  		$statement->execute;
-  	}catch(\PDOException $e){}
+  	}catch(\PDOException $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
+    catch(Exception $e)
+    {
+      echo $e->getMessage();
+      die();
   	}
+  }
 
   	public function mapMethod($dataSet)
   	{
