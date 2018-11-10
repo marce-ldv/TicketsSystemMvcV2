@@ -4,6 +4,8 @@ namespace dao\repositories;
 use dao\Connection as Connection;
 use helpers\Collection as Collection;
 use helpers\ConverterCase as ConverterCase;
+use model\test\Model as Model;
+use dao\DefaultDAO as DefaultDAO;
 
 /**
  *
@@ -76,8 +78,16 @@ class DefaultRepository
     $entity = new $this->className();
 
     foreach ($this->modelMap->fieldsModel as $fieldModel) {
+      //clave foranea
+      $getter = $fieldModel->getter;
+      if ( $entity->$getter() instanceof Model::class) {
+        $defaultDAO = new DefaultDAO();
+        $repository
+      }
+
       $setter = $fieldModel->setter;
       $field = $fieldModel->field;
+
       $entity->$setter($result[$field]);
     }
 
