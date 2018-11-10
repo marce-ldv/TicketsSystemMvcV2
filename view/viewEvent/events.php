@@ -15,25 +15,17 @@
               <input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del evento" name="name">
             </div>
 
+            <label>Fecha</label>
+            <div class="form-group row">
 
-            <div class="form-group">
-
-
-                <label>Fecha</label>
+              <div class="form-group row">
+                <label for="example-date-input" class="col-2 col-form-label">Date</label>
                   <input class="form-control" type="date" value="2011-08-19" id="">
-
-
               </div>
-              <div class="form-group">
-                <label for="">Artistas</label>
-                <select class="form-control" name="" data-list="">
-                  <option value="">Sergio</option>
-                </select>
-                <button type="button" name="button" class="btn btn-primary">Agregar mas artistas</button>
-              </div>
+
               <button type="submit" class="btn btn-success">Agregar</button>
             </form>
-
+          </div>
         </div>
 
       </div>
