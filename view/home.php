@@ -1,11 +1,5 @@
 <?php include(URL_VIEW . 'navbar.php'); ?>
 
-
-<ul>
-<?php foreach ($events as $event) {?>
-  <li>$event->getCategory()->getDescription();</li>
-<?php } ?>
-</ul>
 <!-- HOME -->
 <header id="home-section">
   <div class="dark-overlay">
@@ -416,7 +410,7 @@
             </div>
 
             <div class="form-group">
-              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[profilePicture]">
+              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[avatar]">
             </div>
 
             <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">

@@ -167,7 +167,7 @@ public function readByUsername (&$user) {
 		$user->setIdUser($userArray["id_user"]);
 		$user->setUsername($userArray["username"]);
 		$user->setEmail($userArray["email"]);
-		$user->setRole($userArray["role_user"]);
+		$user->setRoleUser($userArray["role_user"]);
 
 		return true;
 

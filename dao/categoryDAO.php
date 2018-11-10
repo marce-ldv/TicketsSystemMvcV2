@@ -38,10 +38,10 @@ public function create(&$category)
 		$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$description = $category->getDescriptionCategory();
+		$description = $category->getDescription();
 
 		$statement->execute(array(
-			":$description" => $description,
+			":description" => $description,
 		));
 
 		return $connection->lastInsertId();
@@ -138,7 +138,7 @@ public function update($value)
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$description = $value->getDescriptionCategory();
+		$description = $value->getDescription();
 		$id = $value->getIdCategory();
 
 		$statement->bindParam(":description",$description);
@@ -187,20 +187,24 @@ public function delete($id)
 	{
 		$dataSet = is_array($dataSet) ? $dataSet : false;
 
-		if($dataSet)
+		if( is_array($dataSet) )
 		{
 			$collection = new Collection();
 
-			foreach ($variable as $p) {
+			foreach ($dataSet as $p) {
 				$u = new Category();
-				$u->getDescriptionCategory($p['description']) // esto no iria con comillas ?
-				->setIdCategory($p['idCategory']);
+				$u->setDescription($p['description']) // esto no iria con comillas ?
+				->setIdCategory($p['id_category']);
 
 				$collection->add($u);
 			}
 
 			$this->list = $collection;
 
+	} else {
+		$u = new Category();
+		$u->setDescription($dataSet['description']) // esto no iria con comillas ?
+		->setIdCategory($dataSet['id_category']);
 	}
 }
 
