@@ -4,18 +4,21 @@ namespace dao;
 
 use model\Event as Event;
 use interfaces\ICrud as ICrud;
+use dao\SingletonDAO as SingletonDAO;
 use helpers\Collection as Collection;
+use dao\CategoryDAO as CategoryDAO;
 
-class EventDAO extends Singleton implements ICrud
+class EventDAO extends SingletonDAO implements ICrud
 {
 	private $table = "events";
-	private $list = array();
+	private $list;
 	private static $instance;
 	private $pdo;
 
 	public function __construct()
 	{
 		$this->pdo = new Connection();
+		$this->list = new Collection();
 	}
 
 
@@ -92,7 +95,7 @@ class EventDAO extends Singleton implements ICrud
 
 	}
 
-
+	//TODO: Hacer que devuelva un collection vacio
 	public function readAll()
 	{
 		try
@@ -108,12 +111,7 @@ class EventDAO extends Singleton implements ICrud
 
 			$this->mapMethod($dataSet);
 
-			if(!empty($this->list))
-			{
-				return $this->list;
-			}
-
-			return null;
+			return $this->list;
 		}
 		catch(\PDOException $e)
 		{
@@ -195,7 +193,11 @@ class EventDAO extends Singleton implements ICrud
 
 			foreach ($variable as $p) {
 				$u = new Event();
-				$u->setCategoryEvent($p["category"])
+
+				$categoryDAO = new CategoryDAO();
+				$category = $categoryDAO->read($p["id_category"]);
+				
+				$u->setCategory($category)
 				->setTitleEvent($p["title"])
 				->setIdArtist($p['id_artist']);
 
@@ -203,20 +205,7 @@ class EventDAO extends Singleton implements ICrud
 			}
 
 			$this->list = $collection;
-
-			//////////////////////////////////////////////////
-			/*$this->list = array_map(function ($p)
-			{
-				$u = new Event(
-					$p['category'],
-					$p['title']);
-					$u->setIdEvent($p['id_event']);
-
-					return $u;
-
-				}, $dataSet); // end of array_map
-			}*/
 		}
 
-
 	}
+}
