@@ -24,6 +24,8 @@
                   <li>CRUD de categorias categoryController ()</li>
                   <li>CRUD de lugar de evento eventareaController() || usar helpers (eventAreaController) convertCase</li>
                   <li>CRUD para eventos  eventController</li>
+                  <li>CRUD PLACE EVENT para saber cuantos tickets se tienen que vender</li>
+                  <li>CRUD type Area, o sea tipo de asiento</li>
                 </ul>
               </div>
             </div>

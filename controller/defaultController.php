@@ -36,6 +36,22 @@ class DefaultController extends Controller{
     $this->render('viewPurchase/purchases');
   }
 
+  public function viewTypeArea(){
+    $this->render('viewTypeArea/typesAreas');
+  }
+
+  public function viewTypeArea(){
+    $this->render('viewTypeArea/typesAreas');
+  }
+
+  public function viewPlaceEvent(){
+    $this->render('viewPlaceEvent/placeEvent');
+  }
+
+  public function viewEventArea(){
+    $this->render('viewEventArea/eventArea');
+  }
+
 
 
 

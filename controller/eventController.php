@@ -30,20 +30,13 @@ class EventController extends Controller
 
     $newEvent = new Event($category, $title);
 
-    $message['message'] = "EL EVENTO SE AGREGO CON EXITO !!";
-    $message['type'] = "success";
     try{
       $this->eventDao->create($newEvent);
 
-
     }catch(\PDOException $e){
-      $message['message'] = "UPS! ERROR PDO: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $message['type'] = "danger";
-
-
+      echo $e->getMessage();
     }catch(\Exception $e){
-      $message['message'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $message['type'] = "danger";
+      echo $e->getMessage();
     }
 
     $this->render("viewEvent/createEvent");
