@@ -11,9 +11,23 @@
 					<form action = "<?= VIEW_URL ?>/artist/create" method="post">
 						<!-- este es el form donde se ingresa el nombre del artista -->
 						<div class="form-group">
+							<label>Alias Artista</label>
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el alias del artista" name="registerData['nickname']">
+						</div>
+
+						<div class="form-group">
 							<label>Nombre Artista</label>
 							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="registerData['name']">
 						</div>
+
+						<div class="form-group">
+							<label>Apellido Artista</label>
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el apellido del artista" name="registerData['surname']">
+						</div>
+
+
+
+
 						<button type="submit" class="btn btn-success">Agregar</button>
 					</form>
 				</div>
