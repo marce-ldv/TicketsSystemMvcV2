@@ -40,10 +40,6 @@ class DefaultController extends Controller{
     $this->render('viewTypeArea/typesAreas');
   }
 
-  public function viewTypeArea(){
-    $this->render('viewTypeArea/typesAreas');
-  }
-
   public function viewPlaceEvent(){
     $this->render('viewPlaceEvent/placeEvent');
   }
