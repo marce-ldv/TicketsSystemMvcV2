@@ -19,7 +19,6 @@ class EventController extends Controller
   public function index () {
     $events = $this->eventDAO->readAll();
 
-
     $this->render("viewEvent/events",[
       "events" => $events
     ]);
@@ -73,7 +72,6 @@ class EventController extends Controller
   public function update($category,$title)
   {
     $event = new Event($category, $title);
-
     try
     {
       $this->eventDao->update($event);
