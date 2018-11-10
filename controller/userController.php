@@ -96,4 +96,8 @@ class UserController extends Controller{
     $this->redirect('/');
   }
 
+  public function sendMessage($formData){
+
+  }
+
 }
