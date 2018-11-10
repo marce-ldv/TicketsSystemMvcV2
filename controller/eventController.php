@@ -74,44 +74,21 @@ class EventController extends Controller
   {
     $event = new Event($category, $title);
 
-
-    // se muestra que se modifico correctamente el evento
-    $mensaje['mensaje'] = "EL ARTISTA SE MODIFICO CON EXITO !";
-    $mensaje['tipo'] = "success";
-
     try
     {
       $this->eventDao->update($event);
     }
     catch(\PDOException $e)
     {
-      $mensaje['mensaje'] = "UPS! ERROR PDO: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $mensaje['tipo'] = "danger";
+      $e->getMessage();
     }
     catch(\Exception $e){
-      $mensaje['mensaje'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $mensaje['tipo'] = "danger";
+      $e->getMessage();
     }
-
-
-
 
     $searchedEvent = $this->eventDao->read($id_event); // evento buscado
 
-    // TODO: Esto es al pedo por que esta el metodo render, modificar
-    include URL_VIEW . 'header.php';
-    require(URL_VIEW . "viewEvent/updateEvent.php");
-    include URL_VIEW . 'footer.php';
-
+    $this->render('viewEvent/updateEvent');
   }
 
-  public function updateView($id)
-  {
-    $searchedEvent = $this->eventDao->read($id); // evento buscado
-
-
-    include URL_VIEW . 'header.php';
-    require(URL_VIEW . "viewEvent/updateEvent.php");
-    include URL_VIEW . 'footer.php';
-  }
 }
