@@ -91,10 +91,10 @@ class User implements \Serializable
     {
       return $this->idGoogle;
     }
-    public function getProfilePicture()
+    /*public function getProfilePicture()
     {
       return $this->profilePicture;
-    }
+    }*/
 
     //SETTERS
     public function setIdUser($value) {
@@ -137,11 +137,11 @@ class User implements \Serializable
       $this->dni = $value;
       return $this;
     }
-    public function setProfilePicture($value)
+  /*  public function setProfilePicture($value)
     {
       $this->profilePicture = $value;
       return $this;
-    }
+    }*/
 
 
 }
