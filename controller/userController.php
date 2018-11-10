@@ -9,24 +9,22 @@ class UserController extends Controller{
 
   public function index(){
     $this->indexView();
-    
-    
   }
 
   public function register ($registerData = []) {
 
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
-    
+
     //Chquear imagen valida
-    $fileController = new FileController();
+    /*$fileController = new FileController();
 
     if ( ! $fileController->isValid($registerData["profilePicture"]) ) $this->redirect('/default/', [
       "alert" => $fileController->errors();
     ]);
-    
-    
-      
+
+    */
+
     $user = new User();
     $repository = $this->defaultDAO->getRepository(User::class);
     $criteria = [
@@ -47,10 +45,10 @@ class UserController extends Controller{
     $user->setUsername($registerData["username"])
       ->setPass($hash)
       ->setEmail($registerData["email"])
-      ->setName($registerData["name"])
+      ->setNameUser($registerData["name_user"])
       ->setSurname($registerData["surname"])
       ->setDni($registerData["dni"])
-      ->setAvatar($registerData["avatar"]);
+      ->setProfilePicture($registerData["profilePicture"]);
 
     $repository->create($user);
 
