@@ -1,106 +1,92 @@
 <?php
 
 namespace controller;
-use dao\UserDAO as UserDao;
 use model\User as User;
+use controller\FileCcontroller as FileController;
 use controller\Controller as Controller;
 
-// TODO: HAY QUE MODIFICAR LA LLAMADA A LAS VISTAS, DEBE LLAMAR AL METODO DE LA CONTROLADORA Y NO USAR REQUIRED NI INCLUDE
 class UserController extends Controller{
-
-  public $messageSuccess = "Registro Exitoso";
-  public $messageWrong = "Hubo un problema y no se pudo completar el registro";
-
-  protected $userDao;
-
-  // TODO: IMPLEMENTAR CLASE CONCRETA PARA NO REPETIR CODIGOO
-
-  function __construct() {
-    parent::__construct();
-    $this->userDao = UserDao::getInstance();
-  }
 
   public function index(){
     $this->indexView();
   }
 
-  public function login($username,$pass){
-    try{
-      $user = new User();
-      $user->setUsername($username);
+  public function register ($registerData = []) {
 
+    if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+    if (empty($registerData)) $this->redirect("/default/");
+
+<<<<<<< HEAD
       if( ! $this->userDao->readByUser($user) ){
         $this->redirect('/default/index');
       }
+=======
+    //Chquear imagen valida
+    /*$fileController = new FileController();
 
-      if(password_verify($pass,$user->getPass() ) ){
-        //una vez que verifico que las password coinciden, antes de autoredireccionar al usuario, trabajamos con session
+    if ( ! $fileController->isValid($registerData["profilePicture"]) ) $this->redirect('/default/', [
+      "alert" => $fileController->errors();
+    ]);
+>>>>>>> marcelo
 
-        $this->session->token = $user->serialize();
+    */
 
-        $this->redirect('/default/dashboard');
+    $user = new User();
+    $repository = $this->defaultDAO->getRepository(User::class);
+    $criteria = [
+      "username" => $registerData["username"],
+      "email" => $registerData["email"]
+    ];
 
-      }else{
+    if ($repository->findOneBy($criteria, "OR")) {
+       $this->redirect("/default/", ["alert" => "El usuario o email ya estan registrados"]);
+     }
 
-        $this->redirect('/default/index');
-      }
+    if ($registerData["pass"] != $registerData["passAgain"]) {
+      $this->redirect("/default/", ["alert" => "Las contraseñas no coinciden"]);
+     }
 
-    } catch(\PDOException $pdo_error) {
-      $this->viewController->login();
-    } catch(\Exception $error) {
-      echo $error->getMessage();
+    $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
 
-      die();
-    }
+    $user->setUsername($registerData["username"])
+      ->setPass($hash)
+      ->setEmail($registerData["email"])
+      ->setNameUser($registerData["name_user"])
+      ->setSurname($registerData["surname"])
+      ->setDni($registerData["dni"])
+      ->setProfilePicture($registerData["profilePicture"]);
+
+    $repository->create($user);
+
+    $this->redirect ('/default/', ["alert" => "Usuario creado con exito"]);
   }
 
-  public function register ($username,$pass,$passAgain,$email,$name,$surname,$dni) {
+  //login
 
-    try {
-      $regComplete = FALSE;
+  public function login($registerData = []){
+    if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+    if (empty($registerData)) $this->redirect("/default/");
 
-      $user = new User();
-      $user->setUsername($username);
-      $user->setEmail($email);
+    $repository = $this->defaultDAO->getRepository(User::class);
 
-      $user_dao = $this->userDao;
+    $user = $repository->findOneBy([
+      'username' => $registerData['username'],
+      'email' => $registerData['username'],
+    ],"OR");
 
-      // TODO: Conviene modularizar y haverificar el usuario en la misma controladora
-      if ( ! $user_dao->readByUser($user) ) {
-        //comprobacion que la contraseña ingresada 2 veces sea la misma
-        if($pass == $passAgain){
-          //encriptacion de password
-          $hash = password_hash($pass,PASSWORD_DEFAULT);
-          //creacion de user con pass encriptada
-          $user = new User($username,$hash,$email,$name,$surname,$dni);
-          if ($user_dao->create($user)) {
-            $regComplete = TRUE;
-          }
-        }
+    if( ! $user) $this->redirect('/default/',[
+      'alert' => "Usuario no encontrado"
+    ]);
 
-      }
-      switch ($regComplete) {
+    $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
 
-        case TRUE:
-        //$alert = $this->messageSucess;
-        $this->render("home", array(
-          "alert" => $this->messageSuccess
-        ));
-        break;
+    if( ! password_verify($hash,$user->getPass()) )  $this->redirect('/home/',[
+      'alert' => "Password no coincide"
+    ]);
 
-        case FALSE:
-        $this->render("home", array(
-          "alert" => $this->messageWrong
-        ));
-        break;
-      }
+    $this->session->token = $user->serialize();
 
-    } catch(\PDOException $pdo_error) {
-      $this->redirect('/default/index');
-    } catch(\Exception $error) {
-      echo $error->getMessage();
-      die();
-    }
+    $this->redirect('/default/dashboard/');
 
   }
 

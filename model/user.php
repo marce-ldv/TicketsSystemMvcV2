@@ -12,18 +12,20 @@ class User implements \Serializable
     private $nameUser;
     private $surname;
     private $dni;
+    private $profilePicture;
     private $idFacebook;
     private $idTwitter;
     private $idGoogle;
 
 
-    public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "") {
+    public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
       $this->username = $username;
       $this->pass = $pass;
       $this->email = $email;
       $this->nameUser = $name;
       $this->surname = $surname;
       $this->dni = $dni;
+      $this->profilePicture = $profilePicture;
     }
 
     //SERIALIZE METHODS
@@ -89,6 +91,10 @@ class User implements \Serializable
     {
       return $this->idGoogle;
     }
+    /*public function getProfilePicture()
+    {
+      return $this->profilePicture;
+    }*/
 
     //SETTERS
     public function setIdUser($value) {
@@ -131,6 +137,11 @@ class User implements \Serializable
       $this->dni = $value;
       return $this;
     }
+  /*  public function setProfilePicture($value)
+    {
+      $this->profilePicture = $value;
+      return $this;
+    }*/
 
 
 }

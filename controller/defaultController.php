@@ -16,9 +16,27 @@ class DefaultController extends Controller{
     $this->render('dashboard');
   }
 
-  public function viewArtist(){
-    $this->render('viewArtist/artistCreate');
+  public function viewAdmin(){
+    $this->render('viewAdmin/home');
   }
+
+  public function viewArtist(){
+    $this->render('viewArtist/artists');
+  }
+
+  public function viewCategory(){
+    $this->render('viewCategory/categories');
+  }
+
+  public function viewEvent(){
+    $this->render('viewEvent/events');
+  }
+
+  public function viewPurchase(){
+    $this->render('viewPurchase/purchases');
+  }
+
+
 
 
 }
