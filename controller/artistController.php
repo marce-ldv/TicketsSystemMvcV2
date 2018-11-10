@@ -16,24 +16,25 @@ class ArtistController extends Controller{
 		$this->artistDao = ArtistDAO::getInstance(); // te devuelve la instancia de la bbdd
 	}
 
-	public function save($name)
+	public function index () {
+		$artists = $this->artistDao->readAll();
+
+		$this->render("viewArtist/artists",[
+			"artists" => $artists
+		]);
+	}
+
+	public function save($artistData)
 	{
+		$nuevoArtist = new Artist();
 
-		$nuevoArtist = new Artist($name);
-		$mensaje[0] = "El artista se ha agregado exitosamente :D ";
-		$mensaje[1] = "success";
-		try{
-			$this->artistDao->create($nuevoArtist);
-		}catch(\PDOException $e){
-			$mensaje[0] = "UPS! ERROR PDO: " . $e->getMessage() . "| CODE: " . $e->getCode();
-			$mensaje[1] = "danger";
+		$nuevoArtist->setNickname($artistData["nickname"])
+		->setName($artistData["name"])
+		->setSurname($artistData["surname"]);
 
-		}catch(\Exception $e){
-			$mensaje[0] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
-			$mensaje[1] = "danger";
-		}
+		$this->artistDao->create($nuevoArtist);
 
-		$this->render("viewArtist/artistCreate");
+		$this->redirect("/artist/");
 	}
 
 	public function create($artistPost = [])

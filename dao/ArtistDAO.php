@@ -38,7 +38,7 @@ public function create(&$artist)
 		$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$name = $artist->getNameArtist();
+		$name = $artist->getName();
 		$nickname = $artist->getNickname();
 		$surname = $artist->getSurname();
 
@@ -185,6 +185,7 @@ public function delete($id)
 	  echo $e->getMessage();
 	  die();
 	}
+}
 
 	public function mapMethod($dataSet)
 	{

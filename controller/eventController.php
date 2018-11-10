@@ -19,7 +19,8 @@ class EventController extends Controller
   public function index () {
     $events = $this->eventDAO->readAll();
 
-    $this->render("home",[
+
+    $this->render("viewEvent/events",[
       "events" => $events
     ]);
   }

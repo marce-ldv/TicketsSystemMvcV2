@@ -16,18 +16,9 @@ class UserController extends Controller{
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
-<<<<<<< HEAD
       if( ! $this->userDao->readByUser($user) ){
         $this->redirect('/default/index');
       }
-=======
-    //Chquear imagen valida
-    /*$fileController = new FileController();
-
-    if ( ! $fileController->isValid($registerData["profilePicture"]) ) $this->redirect('/default/', [
-      "alert" => $fileController->errors();
-    ]);
->>>>>>> marcelo
 
     */
 
