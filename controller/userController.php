@@ -4,8 +4,14 @@ namespace controller;
 use model\User as User;
 use controller\FileCcontroller as FileController;
 use controller\Controller as Controller;
+use dao\UserDAO as UserDAO;
 
 class UserController extends Controller{
+  private $userDAO;
+
+  public function __construct () {
+    $this->userDAO = new UserDAO();
+  }
 
   public function index(){
     $this->indexView();
@@ -20,7 +26,7 @@ class UserController extends Controller{
         $this->redirect('/default/index');
       }
 
-    */
+
 
     $user = new User();
     $repository = $this->defaultDAO->getRepository(User::class);
@@ -58,19 +64,21 @@ class UserController extends Controller{
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
-    $repository = $this->defaultDAO->getRepository(User::class);
+    /*$repository = $this->defaultDAO->getRepository(User::class);
 
     $user = $repository->findOneBy([
       'username' => $registerData['username'],
       'email' => $registerData['username'],
-    ],"OR");
+    ],"OR");*/
+    $user = new User();
+    $user->setUsername($registerData["username"]);
 
-    if( ! $user) $this->redirect('/default/',[
+    if( ! $this->userDAO->readByUsername($user) ) $this->redirect('/default/',[
       'alert' => "Usuario no encontrado"
     ]);
 
     $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
-
+    print_r($_SESSION);
     if( ! password_verify($hash,$user->getPass()) )  $this->redirect('/home/',[
       'alert' => "Password no coincide"
     ]);

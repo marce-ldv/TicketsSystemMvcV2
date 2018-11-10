@@ -27,7 +27,7 @@ class ArtistController extends Controller{
 	public function save($artistData)
 	{
 		$nuevoArtist = new Artist();
-
+		
 		$nuevoArtist->setNickname($artistData["nickname"])
 		->setName($artistData["name"])
 		->setSurname($artistData["surname"]);

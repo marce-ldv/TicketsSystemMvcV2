@@ -10,7 +10,7 @@
       <h1 style="text-align:center;">Dashboard</h1>
 
       <br>
-      
+
       <div id="carouselZ" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselZ" data-slide-to="0" class="active"></li>
@@ -60,7 +60,7 @@
       <h2><a href="#">Categorias</a></h2>
       <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
       <ul>
-        <li> <a href="<?= VIEW_URL ?>/default/viewCategory/">Categorias</a> </li>
+        <li> <a href="<?= VIEW_URL ?>/category/">Categorias</a> </li>
       </ul>
     </div>
 
