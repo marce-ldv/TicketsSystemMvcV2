@@ -244,7 +244,7 @@
     <div class="row">
 
       <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+      <div class="col-md-3">
 
         <!-- Content -->
         <h5 class="font-weight-bold text-uppercase mb-4">INFO</h5>
@@ -252,46 +252,10 @@
         <p>Para contactarte con nosostros, puedes hacerlo haciendo click <a href="#">aqui</a>.</p>
 
       </div>
-      <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none">
 
       <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mb-4">ACERCA DE</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <p>
-              <a href="#!">HOME</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">PRODUCTOS</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">CONTACTANOS</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">ACERCA DE</a>
-            </p>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+      <div class="col-md-3">
 
         <!-- Contact details -->
         <h5 class="font-weight-bold text-uppercase mb-4">DIRECCION</h5>
@@ -321,29 +285,23 @@
       <hr class="clearfix w-100 d-md-none">
 
       <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
 
-        <!-- Social buttons -->
-        <h5 class="font-weight-bold text-uppercase mb-4">Redes Sociales</h5>
+        <div class="col-md-6">
 
-        <!-- Facebook -->
-        <a type="button" class="btn-floating btn-fb">
-          <i class="fa fa-facebook"></i>
-        </a>
-        <!-- Twitter -->
-        <a type="button" class="btn-floating btn-tw">
-          <i class="fa fa-twitter"></i>
-        </a>
-        <!-- Google +-->
-        <a type="button" class="btn-floating btn-gplus">
-          <i class="fa fa-google-plus"></i>
-        </a>
-        <!-- Dribbble -->
-        <a type="button" class="btn-floating btn-dribbble">
-          <i class="fa fa-dribbble"></i>
-        </a>
+               <form action="<?= VIEW_URL ?>/user/sendMessage/" method="post">
 
-      </div>
+                   <fieldset class="form-group">
+                       <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
+                   </fieldset>
+                   <fieldset class="form-group">
+                       <textarea class="form-control" name="formData[msgContact]" placeholder="Escriba aqui su mensaje.." required></textarea>
+                   </fieldset>
+                   <fieldset class="form-group text-right">
+                       <input type="submit" class="btn btn-primary btn-lg" value="Enviar"></input>
+                   </fieldset>
+               </form>
+           </div>
+
       <!-- Grid column -->
 
     </div>
@@ -360,6 +318,7 @@
 
 </footer>
 <!-- Footer -->
+
 
 
 <!-- Modal Register-->
