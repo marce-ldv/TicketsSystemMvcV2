@@ -3,7 +3,7 @@
 namespace controller;
 
 use model\Category as Category;
-use dao\categoryDAO as categoryDAO;
+use dao\CategoryDAO as CategoryDAO;
 use controller\Controller as Controller;
 
 class CategoryController extends Controller
@@ -13,14 +13,14 @@ class CategoryController extends Controller
   function __construct()
   {
     parent::__construct();
-    $this->categoryDAO = CategoryDAO::getInstance();
+    $this->categoryDao = CategoryDAO::getInstance();
   }
 
   public function index()
   {
-      $category = $this->categoryDao->readAll();
+      $categories = $this->categoryDao->readAll();
 
-      $this->render("viewArtist/artists",[
+      $this->render("viewCategory/categories",[
         "categories" => $categories
       ]);
   }

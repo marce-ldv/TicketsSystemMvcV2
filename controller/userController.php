@@ -10,6 +10,7 @@ class UserController extends Controller{
   private $userDAO;
 
   public function __construct () {
+    parent::__construct();
     $this->userDAO = new UserDAO();
   }
 
