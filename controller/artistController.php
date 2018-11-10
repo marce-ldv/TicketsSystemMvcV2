@@ -27,7 +27,7 @@ class ArtistController extends Controller{
 	public function save($artistData)
 	{
 		$nuevoArtist = new Artist();
-		
+
 		$nuevoArtist->setNickname($artistData["nickname"])
 		->setName($artistData["name"])
 		->setSurname($artistData["surname"]);
@@ -51,7 +51,7 @@ class ArtistController extends Controller{
 			$artistDao = ArtistDAO::getInstance();
 
 			$artist = new Artist();
-			$artist->setName($artistPost["name_user"]); // esto no deberia ser name ?
+			$artist->setName($artistPost["name"]); // esto no deberia ser name ?
 			$artist->setSurname($artistPost["surname"]);
 			$artist->setNickname($artistPost["nickname"]);
 

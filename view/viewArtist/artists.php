@@ -12,7 +12,7 @@
 						<!-- este es el form donde se ingresa el nombre del artista -->
 						<div class="form-group">
 							<label>Nombre Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="name">
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="registerData['name']">
 						</div>
 						<button type="submit" class="btn btn-success">Agregar</button>
 					</form>
