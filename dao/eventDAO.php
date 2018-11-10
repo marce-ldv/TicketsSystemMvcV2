@@ -196,8 +196,9 @@ class EventDAO extends SingletonDAO implements ICrud
 
 				$categoryDAO = new CategoryDAO();
 				$category = $categoryDAO->read($p["id_category"]);
-				
-				$u->setCategory($category)
+
+				$u->setIdEvent($p["id_event"])
+				->setCategory($category)
 				->setTitleEvent($p["title"])
 				->setIdArtist($p['id_artist']);
 
