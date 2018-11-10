@@ -49,35 +49,38 @@
   <div class="row">
 
     <div class="col-md-6">
-      <h2><a href="#">Artistas</a></h2>
+      <h2><a href="<?= VIEW_URL ?>/default/viewArtist/">Artistas</a></h2>
       <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-      <ul>
-        <li> <a href="<?= VIEW_URL ?>/default/viewArtist/">Artistas</a> </li>
-      </ul>
     </div>
 
     <div class="col-md-6">
-      <h2><a href="#">Categorias</a></h2>
+      <h2><a href="<?= VIEW_URL ?>/default/viewCategory/">Categorias</a></h2>
       <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-      <ul>
-        <li> <a href="<?= VIEW_URL ?>/category/">Categorias</a> </li>
-      </ul>
     </div>
 
     <div class="col-md-6">
-      <h2><a href="#">Eventos</a></h2>
+      <h2><a href="<?= VIEW_URL ?>/default/viewEvent/">Eventos</a></h2>
       <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-      <ul>
-        <li> <a href="<?= VIEW_URL ?>/default/viewEvent/">Eventos</a> </li>
-      </ul>
     </div>
 
     <div class="col-md-6">
-      <h2><a href="#">Compras</a></h2>
+      <h2><a href="<?= VIEW_URL ?>/default/viewPurchase/">Compras</a></h2>
       <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-      <ul>
-        <li> <a href="<?= VIEW_URL ?>/default/viewEvent/">Compras</a> </li>
-      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewTypeArea/">Tipo de area</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewPlaceEvent/">Tipo de place event</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewEventArea/">Tipo de event area</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
     </div>
 
   </div>
