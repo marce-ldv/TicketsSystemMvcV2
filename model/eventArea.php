@@ -4,7 +4,7 @@ namespace model;
 //USES
 
 
-class EventAreas
+class EventArea
 {
   $id_event_area;
   $typeArea;

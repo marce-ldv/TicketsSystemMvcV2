@@ -2,7 +2,7 @@
 
 namespace dao;
 
-use model\category as Category;
+use model\Category as Category;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
 
