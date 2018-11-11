@@ -3,6 +3,7 @@
 require "config/autoload.php";
 require "config/config.php";
 require "helpers/session.php";
+require 'vendor/autoload.php';
 
 use config\Autoload as Autoload;
 use config\Request as Request;

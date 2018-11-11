@@ -265,61 +265,60 @@
           <li>
             <p>
               <i class="fa fa-home mr-3"></i> Av. Dorrego ,281, Mar del plata</p>
-          </li>
-          <li>
-            <p>
-              <i class="fa fa-envelope mr-3"></i> info@cosmefulanito.com</p>
-          </li>
-          <li>
-            <p>
-              <i class="fa fa-phone mr-3"></i> + 54 234 567 88</p>
-          </li>
-          <li>
-            <p>
-              <i class="fa fa-print mr-3"></i> + 54 234 567 89</p>
-          </li>
-        </ul>
+            </li>
+            <li>
+              <p>
+                <i class="fa fa-envelope mr-3"></i> info@cosmefulanito.com</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-phone mr-3"></i> + 54 234 567 88</p>
+                </li>
+                <li>
+                  <p>
+                    <i class="fa fa-print mr-3"></i> + 54 234 567 89</p>
+                  </li>
+                </ul>
 
-      </div>
-      <!-- Grid column -->
+              </div>
+              <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none">
+              <hr class="clearfix w-100 d-md-none">
 
-      <!-- Grid column -->
+              <!-- Grid column -->
 
-        <div class="col-md-6">
+              <div class="col-md-6">
 
-               <form action="<?= VIEW_URL ?>/user/sendMessage/" method="post">
+                <form action="<?= VIEW_URL ?>/phpmailer/send/" method="post">
 
-                   <fieldset class="form-group">
-                       <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
-                   </fieldset>
-                   <fieldset class="form-group">
-                       <textarea class="form-control" name="formData[msgContact]" placeholder="Escriba aqui su mensaje.." required></textarea>
-                   </fieldset>
-                   <fieldset class="form-group text-right">
-                       <input type="submit" class="btn btn-primary btn-lg" value="Enviar"></input>
-                   </fieldset>
-               </form>
-           </div>
+                  <fieldset class="form-group">
+                    <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <textarea class="form-control" name="formData[msgContact]" placeholder="Escriba aqui su mensaje.." required></textarea>
+                  </fieldset>
+                  <fieldset class="form-group text-right">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Enviar"></input>
+                  </fieldset>
+                </form>
+              </div>
 
-      <!-- Grid column -->
+              <!-- Grid column -->
 
-    </div>
-    <!-- Grid row -->
+            </div>
+            <!-- Grid row -->
 
-  </div>
-  <!-- Footer Links -->
+          </div>
+          <!-- Footer Links -->
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://google.com/"> Sistema de venta de tickets</a>
-  </div>
-  <!-- Copyright -->
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://google.com/"> Sistema de venta de tickets</a>
+          </div>
+          <!-- Copyright -->
 
-</footer>
-<!-- Footer -->
-
+        </footer>
+        <!-- Footer -->
 
 
 <!-- Modal Register-->

@@ -1,47 +1,4 @@
 
-<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-
-<script>
-// Initialize Firebase
-// TODO: Replace with your project's customized code snippet
-var config = {
-  apiKey: "<API_KEY>",
-  authDomain: "<PROJECT_ID>.firebaseapp.com",
-  databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-  projectId: "<PROJECT_ID>",
-  storageBucket: "<BUCKET>.appspot.com",
-  messagingSenderId: "<SENDER_ID>",
-};
-firebase.initializeApp(config);
-</script>
-
-<script>
-function login(){
-  var provider = new firebase.auth.FacebookAuthProvider();
-
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // ...
-  }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
-}
-</script>
-
-<!-- JS -->
-<script language="javascript" src="<?= JQUERYJS ?>"></script>
-<script language="javascript" src="<?= BOOTSTRAPJS ?>"></script>
-
 <!-- Footer -->
 <footer class="page-footer font-small mdb-color lighten-3 pt-4">
 
@@ -96,7 +53,7 @@ function login(){
 
               <div class="col-md-6">
 
-                <form action="<?= VIEW_URL ?>/user/sendMessage/" method="post">
+                <form action="<?= VIEW_URL ?>/phpmailer/send/" method="post">
 
                   <fieldset class="form-group">
                     <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
@@ -127,5 +84,51 @@ function login(){
         </footer>
         <!-- Footer -->
 
+
+        <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
+        <script>
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+          apiKey: "<API_KEY>",
+          authDomain: "<PROJECT_ID>.firebaseapp.com",
+          databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+          projectId: "<PROJECT_ID>",
+          storageBucket: "<BUCKET>.appspot.com",
+          messagingSenderId: "<SENDER_ID>",
+        };
+        firebase.initializeApp(config);
+        </script>
+
+        <script>
+        function login(){
+          var provider = new firebase.auth.FacebookAuthProvider();
+
+          firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+          }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+          });
+        }
+        </script>
+
+        <!-- JS -->
+        <script language="javascript" src="<?= JQUERYJS ?>"></script>
+        <script language="javascript" src="<?= BOOTSTRAPJS ?>"></script>
+
+
       </body>
+
       </html>
