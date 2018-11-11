@@ -10,7 +10,7 @@ class phpmailerController extends Controller{
   }
 
   public function send($data = []){
-
+    
     if (empty($data)) $this->redirect("/default/");
 
     $emailContact = $data['emailContact'];
@@ -79,9 +79,6 @@ class phpmailerController extends Controller{
     } else {
       echo "Ocurrió un error inesperado.";
     }
-
-
-
 
     /*
     $mail = new PHPMailer(true);

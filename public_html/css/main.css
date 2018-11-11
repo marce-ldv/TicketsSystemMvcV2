@@ -10,14 +10,14 @@ body {
 }
 
 #home-section {
-  background: url('../img/cineretrete.jpg') no-repeat;
+  background: url('../img/concert.jpg') no-repeat;
   min-height: 100vh;
   background-size: cover;
   background-attachment: fixed;
 }
 
 .dark-overlay {
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, .1);
   position: absolute;
   top: 0;
   left: 0;
