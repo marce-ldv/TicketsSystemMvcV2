@@ -79,13 +79,14 @@
                     <input type="password" class="form-control form-control-lg" placeholder="Password" name="registerData[pass]">
                   </div>
 
-                  <input type="submit" value="Login" class="btn btn-outline-light btn-block">
-
+                  <input type="submit" value="Login" class="btn btn-primary btn-block">
                 </form>
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form-register-modal">
+                <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#form-register-modal">
                   Registrate
                 </button>
+
+                <button type="button" class="fb-login-button btn btn-primary" onclick="login()" name="button">Login con Facebook</button>
 
 
               </div>
