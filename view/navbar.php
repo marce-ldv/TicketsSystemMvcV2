@@ -13,13 +13,14 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= VIEW_URL ?>/default/dashboard">Dashboard</a>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/default/dashboard">asd</a>
+          <a class="dropdown-item" href="<?= VIEW_URL ?>/user/logout/">Salir</a>
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/create">create</a>
         <?php  }?>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/user/logout/">Salir</a>
+        <a class="nav-link" href="<?= VIEW_URL ?>/user/logout/"> <span class="cart-icon icon-shopping-cart">Carrito</span> </a>
       </li>
       <?php }else {?>
       <li class="nav-item">
