@@ -79,13 +79,14 @@
                     <input type="password" class="form-control form-control-lg" placeholder="Password" name="registerData[pass]">
                   </div>
 
-                  <input type="submit" value="Login" class="btn btn-outline-light btn-block">
-
+                  <input type="submit" value="Login" class="btn btn-primary btn-block">
                 </form>
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form-register-modal">
+                <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#form-register-modal">
                   Registrate
                 </button>
+
+                <button type="button" class="fb-login-button btn btn-primary" onclick="login()" name="button">Login con Facebook</button>
 
 
               </div>
@@ -244,7 +245,7 @@
     <div class="row">
 
       <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+      <div class="col-md-3">
 
         <!-- Content -->
         <h5 class="font-weight-bold text-uppercase mb-4">INFO</h5>
@@ -252,46 +253,10 @@
         <p>Para contactarte con nosostros, puedes hacerlo haciendo click <a href="#">aqui</a>.</p>
 
       </div>
-      <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none">
 
       <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mb-4">ACERCA DE</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <p>
-              <a href="#!">HOME</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">PRODUCTOS</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">CONTACTANOS</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href="#!">ACERCA DE</a>
-            </p>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+      <div class="col-md-3">
 
         <!-- Contact details -->
         <h5 class="font-weight-bold text-uppercase mb-4">DIRECCION</h5>
@@ -300,66 +265,60 @@
           <li>
             <p>
               <i class="fa fa-home mr-3"></i> Av. Dorrego ,281, Mar del plata</p>
-          </li>
-          <li>
-            <p>
-              <i class="fa fa-envelope mr-3"></i> info@cosmefulanito.com</p>
-          </li>
-          <li>
-            <p>
-              <i class="fa fa-phone mr-3"></i> + 54 234 567 88</p>
-          </li>
-          <li>
-            <p>
-              <i class="fa fa-print mr-3"></i> + 54 234 567 89</p>
-          </li>
-        </ul>
+            </li>
+            <li>
+              <p>
+                <i class="fa fa-envelope mr-3"></i> info@cosmefulanito.com</p>
+              </li>
+              <li>
+                <p>
+                  <i class="fa fa-phone mr-3"></i> + 54 234 567 88</p>
+                </li>
+                <li>
+                  <p>
+                    <i class="fa fa-print mr-3"></i> + 54 234 567 89</p>
+                  </li>
+                </ul>
 
-      </div>
-      <!-- Grid column -->
+              </div>
+              <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none">
+              <hr class="clearfix w-100 d-md-none">
 
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+              <!-- Grid column -->
 
-        <!-- Social buttons -->
-        <h5 class="font-weight-bold text-uppercase mb-4">Redes Sociales</h5>
+              <div class="col-md-6">
 
-        <!-- Facebook -->
-        <a type="button" class="btn-floating btn-fb">
-          <i class="fa fa-facebook"></i>
-        </a>
-        <!-- Twitter -->
-        <a type="button" class="btn-floating btn-tw">
-          <i class="fa fa-twitter"></i>
-        </a>
-        <!-- Google +-->
-        <a type="button" class="btn-floating btn-gplus">
-          <i class="fa fa-google-plus"></i>
-        </a>
-        <!-- Dribbble -->
-        <a type="button" class="btn-floating btn-dribbble">
-          <i class="fa fa-dribbble"></i>
-        </a>
+                <form action="<?= VIEW_URL ?>/phpmailer/send/" method="post">
 
-      </div>
-      <!-- Grid column -->
+                  <fieldset class="form-group">
+                    <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <textarea class="form-control" name="formData[msgContact]" placeholder="Escriba aqui su mensaje.." required></textarea>
+                  </fieldset>
+                  <fieldset class="form-group text-right">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Enviar"></input>
+                  </fieldset>
+                </form>
+              </div>
 
-    </div>
-    <!-- Grid row -->
+              <!-- Grid column -->
 
-  </div>
-  <!-- Footer Links -->
+            </div>
+            <!-- Grid row -->
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://google.com/"> Sistema de venta de tickets</a>
-  </div>
-  <!-- Copyright -->
+          </div>
+          <!-- Footer Links -->
 
-</footer>
-<!-- Footer -->
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://google.com/"> Sistema de venta de tickets</a>
+          </div>
+          <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
 
 
 <!-- Modal Register-->
