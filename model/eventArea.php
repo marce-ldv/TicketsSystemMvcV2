@@ -14,7 +14,7 @@ class EventArea
   $remainder;
 
   //GETTER
-  public function getId()
+  public function getIdEventArea()
   {
     return $this->id_event_area;
   }
@@ -23,14 +23,17 @@ class EventArea
   {
     return $this->typeArea;
   }
+
   public function getCalendar()
   {
     return $this->calendar;
   }
+
   public function getQuantityAvaliable()
   {
     return $this->quantityAvaliable;
   }
+
   public function getPrice()
   {
     return $this->price;
@@ -42,14 +45,25 @@ class EventArea
   }
 
   //SETTERS
-  //TODO: implementar
+
+  public function setIdEventArea($value)
+  {
+    $this->id_event_area = $value;
+    return $this;
+  }
+
+  //modificas el id
   public function setTypeArea($value)
   {
-
+    $this->typeArea = $value;
+    return $this;
   }
-  //TODO: implementar
+
+  //modificas el id
   public function setCalendar($value)
   {
+    $this->calendar = $value;
+    return $this;
 
   }
 
@@ -58,7 +72,8 @@ class EventArea
     $this->quantityAvaliable = $value;
     return $this;
   }
-  public function setPrice$value()
+
+  public function setPrice($value)
   {
     $this->price = $value;
     return $this;

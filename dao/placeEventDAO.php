@@ -183,7 +183,8 @@ use helpers\Collection as Collection;
       foreach ($dataSet as $p) {
         $u = new PlaceEvent();
         $u->setCapacity($p["$capacity"])
-        ->setDescription($p["$description"]);
+        ->setDescription($p["$description"])
+        ->setIdPlaceEvent($p["$id_place_event"]);
 
         $collection->add($u);
       }

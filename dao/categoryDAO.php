@@ -33,9 +33,9 @@ public function create(&$category)
 {
 	try
 	{
-		$sql = "INSERT INTO $this->table (description) VALUE (:description)"; //le agregue la S a VALUE
+		$sql = "INSERT INTO $this->table (description) VALUE (:description)";
 
-		$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
+		$connection = Connection::connect(); 
 		$statement = $connection->prepare($sql);
 
 		$description = $category->getDescription();

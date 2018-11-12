@@ -14,14 +14,10 @@ class CalendarDAO extends SingletonDAO implements ICrud
 	private $list = array();
 	private static $instance;
 	private $pdo;
-  private $e;
-  private $pe;
 
 	public function __construct()
 	{
 		$this->pdo = new Connection();
-    $this->e = new Event();
-    $this->pe = new PlaceEvent();
 	}
 
   public function create(&$calendar)
@@ -33,14 +29,18 @@ class CalendarDAO extends SingletonDAO implements ICrud
       $connection = Connection::connect();
       $statement = $connection->prepare($sql);
 
-      $event = $this->e->getIdEvent();
-      $placeEvent = $this->pe->getIdPlaceEvent();
+      $event = $calendar->getEvent();
+      $idEvent = $event->getIdEvent();
+
+      $placeEvent = $calendar->getPlaceEvent();
+      $idPlaceEvent = $placeEvent->getIdPlaceEvent();
+
       $dateStart = $calendar->getDateStart();
       $dateEnd = $calendar->getDateEnd();
 
       $statement->execute(array(
-        ":event" => $event,
-        ":placeEvent" => $placeEvent,
+        ":event" => $idEvent,
+        ":placeEvent" => $idPlaceEvent,
         ":dateStart" => $dateStart,
         ":dateEnd" => $dataEnd,
       ));
@@ -134,14 +134,18 @@ class CalendarDAO extends SingletonDAO implements ICrud
       $connection = Connection::connect();
   		$statement = $connection->prepare($sql);
 
-      $event = $this->e->getIdEvent();
-      $placeEvent = $this->pe->getIdPlaceEvent();
-      $dateStart = $calendar->getDateStart();
-      $dateEnd = $calendar->getDateEnd();
+      $event = $value->getEvent();
+      $idEvent = $event->getIdEvent();
+
+      $placeEvent = $value->getPlaceEvent();
+      $idPlaceEvent = $placeEvent->getIdPlaceEvent();
+
+      $dateStart = $value->getDateStart();
+      $dateEnd = $value->getDateEnd();
 
       $statement->execute(array(
-        ":event" => $event,
-        ":placeEvent" => $placeEvent,
+        ":event" => $idEvent,
+        ":placeEvent" => $idPlaceEvent,
         ":dateStart" => $dateStart,
         ":dateEnd" => $dataEnd,
       ));
@@ -195,11 +199,14 @@ class CalendarDAO extends SingletonDAO implements ICrud
 			foreach ($dataSet as $p) {
 				$u = new Calendar();
 
-        $event = $this->e->getIdEvent();
-        $placeEvent = $this->pe->getIdPlaceEvent();
+        $event = $u->getEvent();
+        $idEvent = $event->getIdEvent();
 
-				$u->setEvent($event)
-				->setPlaceEvent($placeEvent)
+        $placeEvent = $u->getPlaceEvent();
+        $idPlaceEvent = $placeEvent->getIdPlaceEvent();
+
+				$u->setEvent($idEvent)
+				->setPlaceEvent($idPlaceEvent)
 				->setDateStart($p["date_start"])
         ->setDateEnd($p["date_end"])
 				->setIdCalendar($p['id_calendar']);

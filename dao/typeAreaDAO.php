@@ -22,7 +22,7 @@ class TypeAreaDAO extends SingletonDAO implements ICrud
   {
   	try
   	{
-  		$sql = "INSERT INTO $this->table descriptionTypeArea VALUE :descriptionTypeArea";
+  		$sql = "INSERT INTO $this->table description VALUE :descriptionTypeArea";
 
   		$connection = Connection::connect();
   		$statement = $connection->prepare($sql);
