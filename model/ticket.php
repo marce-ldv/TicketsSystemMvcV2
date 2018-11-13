@@ -8,7 +8,7 @@ class Ticket
   private $linePurchase;
   private $qr;
 
-  function __construct($id_ticket_number, $linePurchase, $qr)
+  public function __construct($id_ticket_number, $linePurchase, $qr)
   {
     $this->id_ticket_number = $id_ticket_number;
     $this->linePurchase = $linePurchase;
