@@ -3,8 +3,6 @@
 namespace dao;
 
 use model\Calendar as Calendar;
-use model\Event as Event;
-use model\PlaceEvent as PlaceEvent;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
 
