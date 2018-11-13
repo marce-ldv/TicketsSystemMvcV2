@@ -23,12 +23,6 @@ class UserController extends Controller{
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
-      if( ! $this->userDao->readByUser($user) ){
-        $this->redirect('/default/index');
-      }
-
-
-
     $user = new User();
     $repository = $this->defaultDAO->getRepository(User::class);
     $criteria = [
@@ -51,8 +45,8 @@ class UserController extends Controller{
       ->setEmail($registerData["email"])
       ->setNameUser($registerData["name_user"])
       ->setSurname($registerData["surname"])
-      ->setDni($registerData["dni"])
-      ->setProfilePicture($registerData["profilePicture"]);
+      ->setDni($registerData["dni"]);
+      //->setProfilePicture($registerData["profilePicture"]);
 
     $repository->create($user);
 
