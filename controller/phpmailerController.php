@@ -13,10 +13,12 @@ class phpmailerController extends Controller{
     
     if (empty($data)) $this->redirect("/default/");
 
+    // TODO https://www.lifewire.com/what-are-the-gmail-smtp-settings-1170854
+
     $emailContact = $data['emailContact'];
     $msgContact = $data['msgContact'];
 
-    $destinatario = "marcelo.docutec@hotmail.com";
+    $destinatario = "marcelo.docutec@hotmail.com"; //a quien se lo voy a mandar
 
     // Datos de la cuenta de correo utilizada para enviar vía SMTP
     $smtpHost = "mail.tudominio.com";  // Dominio alternativo brindado en el email de alta
