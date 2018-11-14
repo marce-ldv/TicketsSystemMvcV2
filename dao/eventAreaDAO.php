@@ -2,8 +2,6 @@
 namespace dao;
 
 use model\EventArea as EventArea;
-use model\TypeArea as TypeArea;
-use model\Calendar as Calendar;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
 

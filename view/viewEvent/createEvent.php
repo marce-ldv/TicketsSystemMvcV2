@@ -7,7 +7,7 @@
         <!-- limita la cantidad de columnas de boostrap -->
         <div class="col-md-6 col-12">
           <form action = "<?= VIEW_URL ?>/artist/create" method="post">
-            <!-- este es el form donde se ingresa el nombre del artista -->
+            <!-- este es el form donde se ingresa el nombre del evento -->
             <div class="form-group">
               <label>Nombre Evento</label>
               <input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del evento" name="name">

@@ -9,6 +9,12 @@ class Event
   private $category;
   private $title;
 
+  public function __construct($category, $title)
+  {
+    $this->category = $category;
+    $this->title = $title;
+  }
+
   // getters
 
   public function getIdEvent()

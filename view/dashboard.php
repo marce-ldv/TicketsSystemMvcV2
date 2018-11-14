@@ -7,7 +7,7 @@
   <div class="row">
 
     <div class="col-md-12">
-      <h1 style="text-align:center;">Dashboard</h1>
+      <h1 style="text-align:center;">Menu principal</h1>
 
       <br>
 

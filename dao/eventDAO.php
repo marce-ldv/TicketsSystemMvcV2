@@ -31,14 +31,16 @@ class EventDAO extends SingletonDAO implements ICrud
 			$connection = Connection::connect(); // crea la coneccion a la bbdd
 			$statement = $connection->prepare($sql);
 
-			$category = $value->getCategoryEvent();
+			$category = $value->getCategory();
+			$idCategory = $category->getIdCategory();
+
 			$title = $value->getTitleEvent();
 
 /*			$statement->bindParam(":category" , $category);
 			$statement->bindParam(":title" , $title);*/
 
 			$statement->execute(array(
-				":category" => $category,
+				":category" => $idCategory,
 				":title" => $title,
 			));
 
@@ -134,11 +136,12 @@ class EventDAO extends SingletonDAO implements ICrud
 			$connection = Connection::connect();
 			$statement = $connection->prepare($sql);
 
-			$category = $value->getCategoryEvent();
+			$category = $value->getCategory();
+			$idCategory = $category->getIdCategory();
 			$title = $value->getTitleEvent();
 			$id = $value->getIdEvent();
 
-			$statement->bindParam(":category",$category);
+			$statement->bindParam(":category",$idCategory);
 			$statement->bindParam(":title",$title);
 			$statement->bindParam(":id",$id);
 
@@ -191,16 +194,27 @@ class EventDAO extends SingletonDAO implements ICrud
 		{
 			$collection = new Collection();
 
-			foreach ($variable as $p) {
+			foreach ($dataSet as $p) {
+
+				/*$categoryDAO = new CategoryDAO();
+				$category = $categoryDAO->read($p['id_categoria']);
+				$event = new Event($category, $p['titulo']);
+
+				$event->setIdEvent($p['id_event']);
+
+				return $event;*/
+
 				$u = new Event();
 
-				$categoryDAO = new CategoryDAO();
-				$category = $categoryDAO->read($p["id_category"]);
+				//$eventDAO = new EventDAO();
+				//$event = $eventDAO->read($p["id_event"]);
+
+				$category = $u->getCategory();
+				$idCategory = $category->getIdCategory();
 
 				$u->setIdEvent($p["id_event"])
-				->setCategory($category)
-				->setTitleEvent($p["title"])
-				->setIdArtist($p['id_artist']);
+				->setCategory($idCategory)
+				->setTitleEvent($p["title"]);
 
 				$collection->add($u);
 			}
