@@ -12,7 +12,7 @@
 						<!-- este es el form donde se ingresa el nombre del artista -->
 						<div class="form-group">
 							<label>Alias Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="registerData[nickname]">
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el alias del artista" name="registerData[nickname]">
 						</div>
 						<div class="form-group">
 							<label>Nombre Artista</label>
@@ -20,7 +20,7 @@
 						</div>
 						<div class="form-group">
 							<label>Apellido Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="registerData[surname]">
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el apellido del artista" name="registerData[surname]">
 						</div>
 						<button type="submit" class="btn btn-success">Agregar</button>
 					</form>
@@ -40,13 +40,15 @@
 			  <thead>
 			    <tr>
 			      <th scope="col">Nickname</th>
-			      <th scope="col">Name</th>
-			      <th scope="col">Surname</th>
+			      <th scope="col">Nombre</th>
+			      <th scope="col">Apellido</th>
 						<th scope="col">Accion</th>
 			    </tr>
 			  </thead>
 				<tbody>
-				<?php foreach ($artists as $artist) {?>
+				<?php
+				if(isset($artists)){
+				 foreach ($artists as $artist) {?>
 					<tr>
 			      <td><?= $artist->getNickname() ?></td>
 			      <td><?= $artist->getName() ?></td>
@@ -56,7 +58,8 @@
 							<button class="btn btn-danger">Eliminar</button>
 						</td>
 			    </tr>
-				<?php } ?>
+				<?php }
+						} ?>
 			  </tbody>
 			</table>
 		</div>
