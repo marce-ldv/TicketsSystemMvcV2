@@ -26,27 +26,31 @@
   </div>
 
   <br>
-<!--  -->
+
     <div class="container">
     	<div class="row justify-content-center">
     		<div class="col-md-12">
     			<table class="table">
     			  <thead>
     			    <tr>
-    			      <th scope="col">Nombre</th>
-    						<th scope="col">Acción</th>
+    			      <th scope="col">Descripcion</th>
+    						<th scope="col">Accion</th>
     			    </tr>
     			  </thead>
     				<tbody>
-              <?php foreach ($categories as $category) {?>
+              <?php
+              if(isset($categories)){
+              foreach ($categories as $category) {?>
     					<tr>
-    			      <td><?= $artist->getNickname() ?></td>
+                <th scope="row"> <?= $value->getIdCategory() ?> </th>
+    			      <td><?= $category->getDescription() ?></td>
     			      <td>
     							<button class="btn btn-primary"> Editar </button>
     							<button class="btn btn-danger">Eliminar</button>
     						</td>
     			    </tr>
-    				<?php } ?>
+    				<?php }
+                }?>
     			  </tbody>
     			</table>
     		</div>
