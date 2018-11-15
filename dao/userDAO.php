@@ -201,11 +201,11 @@ public function readByUser(&$user){
 
 		//TODO: Terminar la implementacion
 		$userArray = $statement->fetch(\PDO::FETCH_ASSOC);
-		$user->setIdUser($userArray["id_user"]);
-		$user->setUsername($userArray["username"]);
-		$user->setEmail($userArray["email"]);
-		$user->setRoleUser($userArray["role_user"]);
-		$user->setPass($userArray["pass"]);
+		$user->setIdUser($userArray["id_user"])
+		->setUsername($userArray["username"])
+		->setEmail($userArray["email"])
+		->setRoleUser($userArray["role_user"])
+		->setPass($userArray["pass"]);
 
 		return true;
 	}catch(\PDOException $e){

@@ -1,5 +1,4 @@
 <?php include(URL_VIEW . 'navbar.php'); ?>
-
 <!-- HOME -->
 <header id="home-section">
   <div class="dark-overlay">

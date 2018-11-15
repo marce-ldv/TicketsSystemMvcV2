@@ -13,10 +13,6 @@ class User implements \Serializable
     private $surname;
     private $dni;
     private $profilePicture;
-    private $idFacebook;
-    private $idTwitter;
-    private $idGoogle;
-
 /*
     public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
       $this->username = $username;
@@ -79,18 +75,7 @@ class User implements \Serializable
     {
       return $this->dni;
     }
-    public function getIdFacebook()
-    {
-      return $this->idFacebook;
-    }
-    public function getIdTwitter()
-    {
-      return $this->idTwitter;
-    }
-    public function getIdGoogle()
-    {
-      return $this->idGoogle;
-    }
+
     /*public function getProfilePicture()
     {
       return $this->profilePicture;

@@ -54,35 +54,36 @@ class UserController extends Controller{
   }
 
   //login
-
+  
   public function login($registerData = []){
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
-
-    $repository = $this->defaultDAO->getRepository(User::class);
-
-    $user = $repository->findOneBy([
-      'username' => $registerData['username'],
-      'email' => $registerData['username'],
-    ],"OR");
+    
     $user = new User();
     $user->setUsername($registerData["username"]);
+    $user->setEmail($registerData["username"]);    
 
-    if( ! $this->userDAO->readByUsername($user) ) $this->redirect('/default/',[
-      'alert' => "Usuario no encontrado"
-    ]);
+    if( ! $this->userDAO->readByUser($user) ) {
+        $this->redirect('/default/',[
+        'queMierdaPasa' => "PAsa algo en readByUser"
+      ]);
+      return;
+      }
 
-    $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
-    //print_r($_SESSION);
-    if( ! password_verify($hash,$user->getPass()) )  $this->redirect('/home/',[
-      'alert' => "Password no coincide"
-    ]);
+    if( ! password_verify($registerData["pass"],$user->getPass()) ){
+      $this->redirect('/default/',[
+        'alert' => "Password incorrecta"
+      ]);
+      return ;  
+    }  
 
     $this->session->token = $user->serialize();
 
     $this->redirect('/default/dashboard/');
-
+    return ;
   }
+
+//funca asi?
 
   public function logout()
   {
