@@ -88,7 +88,7 @@ class EventController extends Controller
 
     $searchedEvent = $this->eventDao->read($id_event); // evento buscado
 
-    $this->render("viewEvent/updateEvent")
+    $this->render("viewEvent/updateEvent");
 
     require(URL_VIEW . "viewEvent/updateEvent.php");
   }

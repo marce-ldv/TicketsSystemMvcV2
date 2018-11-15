@@ -29,11 +29,20 @@ class CategoryController extends Controller
   {
     $newCategory = new Category();
 
-    $newCategory->setDescription($categoryData["description"]);
+    $newCategory->setNameCategory($categoryData["name_category"])
+    ->setDescription($categoryData["description"]);
 
     $this->categoryDao->create($newCategory);
 
     $this->redirect("/category/");
+  }
+
+  public function create()
+  {
+    if( ! $this->isLogged())
+    $this->redirect('/default/login');
+    else
+    $this->render("viewCategory/categories");
   }
 
   public function list()
@@ -43,8 +52,40 @@ class CategoryController extends Controller
     if(! $this->isLogged())
     $this->redirect('/default/login');
     else
-    $this->render("viewCategory/listCategory",array(
+    $this->render("viewCategory/categories",array(
       'listCategories' => $listCategories
     ));
   }
+
+  public function delete($id)
+	{
+		$searchedCategory = $this->categoryDao->delete($id);
+		$this->redirect("/category/");
+	}
+
+
+  public function update($nameCategory, $description)
+  {
+    $category = new Category($nameCategory, $description);
+
+    try
+    {
+      $this->categoryDao->update($category);
+    }
+    catch(\PDOException $e)
+    {
+      echo $e->getMessage();
+    }
+    catch(\Exception $e){
+      echo $e->getMessage();
+    }
+
+    $searchedArtist = $this->categoryDao->read($id_category); // categoria buscada
+
+    $this->render("viewCategory/updateCategory");
+
+    $this->redirect('/category/');
+
+  }
+
 }

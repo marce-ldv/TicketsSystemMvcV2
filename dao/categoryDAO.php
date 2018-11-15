@@ -33,14 +33,16 @@ public function create(&$category)
 {
 	try
 	{
-		$sql = "INSERT INTO $this->table (description) VALUE (:description)";
+		$sql = "INSERT INTO $this->table (name_category, description) VALUES (:nameCategory, :description)";
 
-		$connection = Connection::connect(); 
+		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
+		$nameCategory = $category->getNameCategory();
 		$description = $category->getDescription();
 
 		$statement->execute(array(
+			":nameCategory" => $nameCategory,
 			":description" => $description,
 		));
 
@@ -133,16 +135,20 @@ public function update($value)
 {
 	try
 	{
-		$sql = "UPDATE this->table SET description = :description WHERE idCategory = :id ";
+		$sql = "UPDATE this->table SET name_category = :nameCategory AND description = :description WHERE idCategory = :id ";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
+		$nameCategory = $value->getNameCategory();
 		$description = $value->getDescription();
 		$id = $value->getIdCategory();
 
-		$statement->bindParam(":description",$description);
-		$statement->binParam(":id",$id);
+		$statement->execute(array(
+			":nameCategory" => $nameCategory,
+			":description" => $description,
+			":id" => $id,
+		));
 
 		$statement->execute();
 	}
@@ -193,7 +199,8 @@ public function delete($id)
 
 			foreach ($dataSet as $p) {
 				$u = new Category();
-				$u->setDescription($p['description']) // esto no iria con comillas ?
+				$u->setNameCategory($p['name_category'])
+				->setDescription($p['description'])
 				->setIdCategory($p['id_category']);
 
 				$collection->add($u);
@@ -203,7 +210,8 @@ public function delete($id)
 
 	} else {
 		$u = new Category();
-		$u->setDescription($dataSet['description']) // esto no iria con comillas ?
+		$u->setNameCategory($dataSet['name_category'])
+		->setDescription($dataSet['description'])
 		->setIdCategory($dataSet['id_category']);
 	}
 }
