@@ -33,7 +33,7 @@ public function create(&$artist)
 {
 	try
 	{
-		$sql = "INSERT INTO $this->table (nickname, name, surname) VALUES (:nickname, :name, :surname)"; //le agregue la S a VALUE
+		$sql = "INSERT INTO $this->table (nickname, name_artist, surname) VALUES (:nickname, :name, :surname)"; //le agregue la S a VALUE
 
 		$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 		$statement = $connection->prepare($sql);
@@ -44,7 +44,7 @@ public function create(&$artist)
 
 		$statement->execute(array(
 			":nickname" => $nickname,
-			":name" => $name,
+			":name_artist" => $name,
 			":surname" => $surname
 		));
 
