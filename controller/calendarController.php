@@ -38,7 +38,7 @@ class CalendarController extends Controller
     $newCalendar->setEventCalendar($idEvent)
     ->setPlaceEvent($idPlaceEvent)
     ->setDateStart($calendarData["date_start"])
-    ->setDateEnd($calendarData["date_start"]);
+    ->setDateEnd($calendarData["date_end"]);
 
     $this->calendarDao->create($newCalendar);
 
@@ -84,7 +84,7 @@ class CalendarController extends Controller
     $newCalendar->setEventCalendar($idEvent)
     ->setPlaceEvent($idPlaceEvent)
     ->setDateStart($calendarData["date_start"])
-    ->setDateEnd($calendarData["date_start"]);
+    ->setDateEnd($calendarData["date_end"]);
 
 		try
 		{
