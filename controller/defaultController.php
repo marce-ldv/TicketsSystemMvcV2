@@ -29,6 +29,10 @@ class DefaultController extends Controller{
     $this->render('viewEvent/events');
   }
 
+  public function viewCreateEvent(){
+    $this->render('viewEvent/createEvent');
+  }
+
   public function viewPurchase(){
     $this->render('viewPurchase/purchases');
   }
@@ -43,6 +47,10 @@ class DefaultController extends Controller{
 
   public function viewEventArea(){
     $this->render('viewEventArea/eventArea');
+  }
+
+  public function viewCreateCalendar(){
+    $this->render('viewCalendar/createCalendar');
   }
 
 

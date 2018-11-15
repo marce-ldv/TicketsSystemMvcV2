@@ -371,7 +371,10 @@
             </div>
 
             <div class="form-group">
-              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[avatar]">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="registerData[avatar]">
+                <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+              </div>
             </div>
 
             <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">

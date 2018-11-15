@@ -128,7 +128,6 @@
         <script language="javascript" src="<?= JQUERYJS ?>"></script>
         <script language="javascript" src="<?= BOOTSTRAPJS ?>"></script>
 
-
       </body>
 
       </html>
