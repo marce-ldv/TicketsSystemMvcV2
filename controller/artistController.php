@@ -37,16 +37,36 @@ class ArtistController extends Controller{
 		$this->redirect("/artist/");
 	}
 
+	public function create()
+	{
+		if( ! $this->isLogged())
+		$this->redirect('/default/login');
+		else
+		$this->render("viewArtist/artists");
+	}
+
+	public function list() //listar todo
+  {
+    $listEvents = $this->artistDao->readAll();
+
+    if( ! $this->isLogged())
+    $this->redirect('/default/login');
+    else
+    $this->render("viewArtist/artists",array(
+      'listArtist' => $listArtist
+    ));
+
 	public function delete($id)
 	{
 		$searchedArtist = $this->artistDao->delete($id);
 		$this->redirect("/artist/");
 	}
 
-	//// TODO: Terminar el update
-	public function update($name)
+
+
+	public function update($name, $surname, $nickName)
 	{
-		$artist = new Artist($name);
+		$artist = new Artist($name, $surname, $nickName);
 
 		try
 		{
@@ -60,10 +80,9 @@ class ArtistController extends Controller{
 			echo $e->getMessage();
 		}
 
-
-
 		$searchedArtist = $this->artistDao->read($id_artist); // artista buscado
 
+		$this->render("viewArtist/updateArtist");
 
 		$this->redirect('/artist/');
 

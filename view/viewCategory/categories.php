@@ -42,11 +42,11 @@
               if(isset($categories)){
               foreach ($categories as $category) {?>
     					<tr>
-                <th scope="row"> <?= $value->getIdCategory() ?> </th>
+                <th scope="row"> <?= $category->getIdCategory() ?> </th>
     			      <td><?= $category->getDescription() ?></td>
     			      <td>
     							<button class="btn btn-primary"> Editar </button>
-    							<button class="btn btn-danger">Eliminar</button>
+    							<td><a href="<?= VIEW_URL ?>/artist/delete/<?= $value->getIdArtist() ?>" class="btn btn-primary"> Eliminar </a></td>
     						</td>
     			    </tr>
     				<?php }

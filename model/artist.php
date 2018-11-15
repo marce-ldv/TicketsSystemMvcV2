@@ -8,6 +8,13 @@ class Artist
 	private $surname;
 	private $nickname;
 
+	public function __construct($name, $surname, $nickName)
+	{
+		$this->name = $name;
+		$this->surname = $surname;
+		$this->nickName = $nickName;
+	}
+
     //GETTERS
 
     public function getIdArtist()
