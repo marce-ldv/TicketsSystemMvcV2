@@ -58,9 +58,9 @@ class ArtistController extends Controller{
 	}
 
 
-	public function delete($id)
+	public function delete($data = [])
 	{
-		$searchedArtist = $this->artistDao->delete($id);
+		$searchedArtist = $this->artistDao->delete($data['id']);
 		$this->redirect("/artist/");
 	}
 

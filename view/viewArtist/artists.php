@@ -55,7 +55,13 @@
 						<td><?= $artist->getSurname() ?></td>
 			      <td>
 							<button class="btn btn-primary"> Editar </button>
-							<button class="btn btn-danger">Eliminar</button>
+
+							<form action="<?= VIEW_URL ?>/artist/delete" method="delete">
+								<div class="form-group">
+									<input type="hidden" value="<?= $artist->getIdArtist() ?>" name="data[id]">
+									<input type="submit" class="btn btn-danger" value="Eliminar"></input>
+								</div>	
+						</form>
 						</td>
 			    </tr>
 				<?php }

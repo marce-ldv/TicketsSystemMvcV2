@@ -173,7 +173,7 @@ public function delete($id)
 
 		$statement->execute(array(
 			":id" => $id,
-	));
+		));
 
 	}catch(\PDOException $e)
 	{
