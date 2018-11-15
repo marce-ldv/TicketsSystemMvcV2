@@ -11,11 +11,21 @@
                     <form action="<?= VIEW_URL ?>/artist/save" method="post">
 
                         <div class="form-group">
-                            <div class="col-md-12">
-                                <label for="inlineFormCustomSelect">Elegir evento</label>
-                                
-                            </div>  
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
+
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker2').datetimepicker({
+                                    locale: 'ru'
+                                });
+                            });
+                        </script>
 
                         <div class="form-group">
                             <div class="col-md-12">
@@ -42,12 +52,12 @@
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-success">Agregar</button>
                         </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 </div>
 
 

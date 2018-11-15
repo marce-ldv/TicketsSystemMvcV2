@@ -10,10 +10,10 @@
         <div class="col-md-6 col-12">
 
           <form action = "<?= VIEW_URL ?>/category/save" method="post">
-            <!-- este es el form donde se ingresa el nombre de la categoria -->
+            
             <div class="form-group">
               <label>Descripcion de la categoria</label>
-              <input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre de la categoria" name="registerData[description]">
+              <input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese la descripcion de la categoria" name="registerData[description]">
             </div>
 
               <button type="submit" class="btn btn-success">Agregar</button>
