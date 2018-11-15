@@ -33,17 +33,15 @@ public function create(&$category)
 {
 	try
 	{
-		$sql = "INSERT INTO $this->table (name_category, description) VALUES (:nameCategory, :description)";
+		$sql = "INSERT INTO $this->table (name_category) VALUE (:nameCategory)";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
 		$nameCategory = $category->getNameCategory();
-		$description = $category->getDescription();
 
 		$statement->execute(array(
 			":nameCategory" => $nameCategory,
-			":description" => $description,
 		));
 
 		return $connection->lastInsertId();
@@ -135,18 +133,16 @@ public function update($value)
 {
 	try
 	{
-		$sql = "UPDATE this->table SET name_category = :nameCategory AND description = :description WHERE idCategory = :id ";
+		$sql = "UPDATE this->table SET name_category = :nameCategory WHERE idCategory = :id ";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
 		$nameCategory = $value->getNameCategory();
-		$description = $value->getDescription();
 		$id = $value->getIdCategory();
 
 		$statement->execute(array(
 			":nameCategory" => $nameCategory,
-			":description" => $description,
 			":id" => $id,
 		));
 
@@ -200,7 +196,6 @@ public function delete($id)
 			foreach ($dataSet as $p) {
 				$u = new Category();
 				$u->setNameCategory($p['name_category'])
-				->setDescription($p['description'])
 				->setIdCategory($p['id_category']);
 
 				$collection->add($u);
@@ -211,7 +206,6 @@ public function delete($id)
 	} else {
 		$u = new Category();
 		$u->setNameCategory($dataSet['name_category'])
-		->setDescription($dataSet['description'])
 		->setIdCategory($dataSet['id_category']);
 	}
 }

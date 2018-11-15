@@ -7,13 +7,11 @@ class Category
 
   private $idCategory;
   private $nameCategory;
-  private $description;
 
-  public function __construct($nameCategory, $description)
+/*  public function __construct($nameCategory)
   {
     $this->nameCategory = $nameCategory;
-    $this->description = $description;
-  }
+  }*/
 
   //GETTERS
 
@@ -27,10 +25,6 @@ class Category
     return $this->nameCategory;
   }
 
-  public function getDescription()
-  {
-    return $this->description;
-  }
 
   //SETTERS
 
@@ -41,13 +35,6 @@ class Category
 
   public function setNameCategory($value) {
     $this->nameCategory = $value;
-    return $this;
-  }
-
-
-  public function setDescription($value)
-  {
-    $this->description = $value;
     return $this;
   }
 

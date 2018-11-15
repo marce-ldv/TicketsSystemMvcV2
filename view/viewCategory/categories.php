@@ -10,10 +10,10 @@
         <div class="col-md-6 col-12">
 
           <form action = "<?= VIEW_URL ?>/category/save" method="post">
-            
+
             <div class="form-group">
-              <label>Descripcion de la categoria</label>
-              <input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese la descripcion de la categoria" name="registerData[description]">
+              <label>Nombre de la categoria</label>
+              <input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre de la categoria" name="registerData[name_category]">
             </div>
 
               <button type="submit" class="btn btn-success">Agregar</button>
@@ -33,8 +33,9 @@
     			<table class="table">
     			  <thead>
     			    <tr>
-    			      <th scope="col">Descripcion</th>
-    						<th scope="col">Accion</th>
+    			      <th scope="col"># ID</th>
+    						<th scope="col">Nombre</th>
+                <th scope="col">Accion</th>
     			    </tr>
     			  </thead>
     				<tbody>
@@ -43,10 +44,12 @@
               foreach ($categories as $category) {?>
     					<tr>
                 <th scope="row"> <?= $category->getIdCategory() ?> </th>
-    			      <td><?= $category->getDescription() ?></td>
+    			      <td><?= $category->getNameCategory() ?></td>
     			      <td>
-    							<button class="btn btn-primary"> Editar </button>
-    							<td><a href="<?= VIEW_URL ?>/artist/delete/<?= $value->getIdArtist() ?>" class="btn btn-primary"> Eliminar </a></td>
+    							<!--<button class="btn btn-primary"> Editar </button>-->
+                  <!--<button class="btn btn-primary"> Eliminar </button>-->
+                  <td><a href="<?= VIEW_URL ?>/artist/updateC/<?= $value->getIdArtist() ?>" class="btn btn-primary"> Editar </a></td>
+                  <td><a href="<?= VIEW_URL ?>/artist/delete/<?= $value->getIdArtist() ?>" class="btn btn-primary"> Eliminar </a></td>
     						</td>
     			    </tr>
     				<?php }

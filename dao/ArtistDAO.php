@@ -38,8 +38,8 @@ public function create(&$artist)
 		$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$name = $artist->getName();
 		$nickname = $artist->getNickname();
+		$name = $artist->getName();
 		$surname = $artist->getSurname();
 
 		$statement->execute(array(

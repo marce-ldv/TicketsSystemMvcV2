@@ -25,12 +25,12 @@ class CategoryController extends Controller
       ]);
   }
 
-  public function save($categoryData)
+  public function save($categoryData = [])
   {
+
     $newCategory = new Category();
 
-    $newCategory->setNameCategory($categoryData["name_category"])
-    ->setDescription($categoryData["description"]);
+    $newCategory->setNameCategory($categoryData["name_category"]);
 
     $this->categoryDao->create($newCategory);
 
@@ -64,9 +64,11 @@ class CategoryController extends Controller
 	}
 
 
-  public function update($nameCategory, $description)
+  public function updateC($categoryData = [])
   {
-    $category = new Category($nameCategory, $description);
+    $newCategory = new Category();
+
+    $newCategory->setNameCategory($categoryData["name_category"]);
 
     try
     {

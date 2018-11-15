@@ -24,7 +24,6 @@ CREATE TABLE users(
 CREATE TABLE categories(
   id_category BIGINT UNSIGNED AUTO_INCREMENT,
   name_category VARCHAR(50), 
-  description VARCHAR(50),
   CONSTRAINT pk_id_category PRIMARY KEY (id_category)
 );
 

@@ -24,15 +24,15 @@ class ArtistController extends Controller{
 		]);
 	}
 
-	public function save($artistData)
+	public function save($artistData = [])
 	{
-		$nuevoArtist = new Artist();
+		$newArtist = new Artist();
 
-		$nuevoArtist->setNickname($artistData["nickname"])
+		$newArtist->setNickname($artistData["nickname"])
 		->setName($artistData["name"])
 		->setSurname($artistData["surname"]);
 
-		$this->artistDao->create($nuevoArtist);
+		$this->artistDao->create($newArtist);
 
 		$this->redirect("/artist/");
 	}
@@ -47,7 +47,7 @@ class ArtistController extends Controller{
 
 	public function list() //listar todo
   {
-    $listEvents = $this->artistDao->readAll();
+    $listArtists = $this->artistDao->readAll();
 
     if( ! $this->isLogged())
     $this->redirect('/default/login');
@@ -55,6 +55,8 @@ class ArtistController extends Controller{
     $this->render("viewArtist/artists",array(
       'listArtist' => $listArtist
     ));
+	}
+
 
 	public function delete($id)
 	{
@@ -64,9 +66,13 @@ class ArtistController extends Controller{
 
 
 
-	public function update($name, $surname, $nickName)
+	public function updateC($artistData = [])
 	{
-		$artist = new Artist($name, $surname, $nickName);
+		$newArtist = new Artist();
+
+		$newArtist->setName($artistData["name"])
+		->setNickname($artistData["nickname"])
+		->setSurname($artistData["surname"]);
 
 		try
 		{
@@ -87,6 +93,5 @@ class ArtistController extends Controller{
 		$this->redirect('/artist/');
 
 	}
-
 
 }
