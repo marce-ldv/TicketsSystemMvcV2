@@ -41,11 +41,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="inlineFormCustomSelect">Remanente</label>
-                            <textarea class="form-control" name="" id="" cols="1" rows="1"></textarea>
-                        </div>
-
-                        <div class="form-group">
                             <label for="inlineFormCustomSelect">Precio</label>
                             <textarea class="form-control" name="" id="" cols="1" rows="1"></textarea>
                         </div>
