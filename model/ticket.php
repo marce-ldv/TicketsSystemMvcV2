@@ -4,16 +4,16 @@ namespace model;
 
 class Ticket
 {
-  private $id_ticket_number;
+  private $idTicketNumber;
   private $linePurchase;
   private $qr;
-
+/*
   public function __construct($id_ticket_number, $linePurchase, $qr)
   {
-    $this->id_ticket_number = $id_ticket_number;
+    $this->idTicketNumber = $idTicketNumber;
     $this->linePurchase = $linePurchase;
     $this->qr = $qr;
-  }
+  }*/
 
   /**
    * @return mixed

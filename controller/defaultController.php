@@ -53,6 +53,10 @@ class DefaultController extends Controller{
     $this->render('viewCalendar/createCalendar');
   }
 
+  public function viewTicket(){
+    $this->render('viewTicket/ticket');
+  }
+
 
 
 }
