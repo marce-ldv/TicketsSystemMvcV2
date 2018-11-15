@@ -59,12 +59,12 @@ class UserController extends Controller{
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
-    /*$repository = $this->defaultDAO->getRepository(User::class);
+    $repository = $this->defaultDAO->getRepository(User::class);
 
     $user = $repository->findOneBy([
       'username' => $registerData['username'],
       'email' => $registerData['username'],
-    ],"OR");*/
+    ],"OR");
     $user = new User();
     $user->setUsername($registerData["username"]);
 
@@ -73,7 +73,7 @@ class UserController extends Controller{
     ]);
 
     $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
-    print_r($_SESSION);
+    //print_r($_SESSION);
     if( ! password_verify($hash,$user->getPass()) )  $this->redirect('/home/',[
       'alert' => "Password no coincide"
     ]);

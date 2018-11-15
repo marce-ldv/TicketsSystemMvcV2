@@ -17,7 +17,7 @@ class User implements \Serializable
     private $idTwitter;
     private $idGoogle;
 
-
+/*
     public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
       $this->username = $username;
       $this->pass = $pass;
@@ -27,7 +27,7 @@ class User implements \Serializable
       $this->dni = $dni;
       $this->profilePicture = $profilePicture;
     }
-
+*/
     //SERIALIZE METHODS
 
     public function serialize(){
