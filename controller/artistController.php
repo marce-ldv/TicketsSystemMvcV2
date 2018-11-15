@@ -64,13 +64,14 @@ class ArtistController extends Controller{
 		$this->redirect("/artist/");
 	}
 
-
-
 	public function updateC($artistData = [])
 	{
-		$newArtist = new Artist();
-
-		$newArtist->setName($artistData["name"])
+		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+    	if (empty($artistData)) $this->redirect("/default/");
+		$artist = new Artist();
+	
+		$artist->setIdArtist($artistData["id"])
+		->setName($artistData["name"])
 		->setNickname($artistData["nickname"])
 		->setSurname($artistData["surname"]);
 
@@ -86,12 +87,15 @@ class ArtistController extends Controller{
 			echo $e->getMessage();
 		}
 
-		$searchedArtist = $this->artistDao->read($id_artist); // artista buscado
-
-		$this->render("viewArtist/updateArtist");
-
 		$this->redirect('/artist/');
 
+	}
+
+	public function viewEditArtist($id){
+		$searchedArtist = $this->artistDao->read($id);
+		$this->render('viewArtist/updateArtist',[
+			'searchedArtist' => $searchedArtist
+		]);
 	}
 
 }

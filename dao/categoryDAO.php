@@ -203,11 +203,11 @@ public function delete($id)
 
 			$this->list = $collection;
 
-	} else {
-		$u = new Category();
-		$u->setNameCategory($dataSet['name_category'])
-		->setIdCategory($dataSet['id_category']);
+		} else {
+			$u = new Category();
+			$u->setNameCategory($dataSet['name_category'])
+			->setIdCategory($dataSet['id_category']);
+		}
 	}
-}
 
 }

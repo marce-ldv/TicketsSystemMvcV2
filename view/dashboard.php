@@ -75,7 +75,7 @@
   </div>
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><h2><a href="<?= VIEW_URL ?>/default/viewArtist/">Artistas</a></h2></div>
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><h2><a href="<?= VIEW_URL ?>/artist/">Artistas</a></h2></div>
       <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><h2><a href="<?= VIEW_URL ?>/default/viewCategory/">Categorias</a></h2></div>
       <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><h2><a href="<?= VIEW_URL ?>/default/viewEvent/">Eventos</a></h2></div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= VIEW_URL ?>/default/viewPurchase/">Compras</a></h2></div>

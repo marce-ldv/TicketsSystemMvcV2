@@ -3,7 +3,7 @@ namespace model;
 
 class Artist
 {
-	private $id_artist;
+	private $idArtist;
 	private $name;
 	private $surname;
 	private $nickname;
@@ -19,7 +19,7 @@ class Artist
 
     public function getIdArtist()
     {
-    	return $this->id_artist;
+    	return $this->idArtist;
     }
 
     public function getName()

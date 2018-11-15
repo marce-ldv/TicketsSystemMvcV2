@@ -35,7 +35,7 @@ CREATE TABLE events(
 CREATE TABLE artists(
   id_artist BIGINT UNSIGNED AUTO_INCREMENT,
   nickname VARCHAR(50),
-  name VARCHAR(50),
+  name_artist VARCHAR(50),
   surname VARCHAR(50),
   CONSTRAINT id_artist PRIMARY KEY (id_artist),
   CONSTRAINT nickname UNIQUE (nickname)

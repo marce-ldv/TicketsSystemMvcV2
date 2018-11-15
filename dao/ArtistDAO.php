@@ -66,7 +66,7 @@ public function read($id)
 {
 	try {
 
-		$sql = "SELECT * FROM $this->table WHERE artists_id = $id";
+		$sql = "SELECT * FROM $this->table WHERE id_artist = $id";
 
 		$pdo = new Connection(); // <- en vez de esta y
 		$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
@@ -135,18 +135,23 @@ public function readAll()
 
 public function update($value)
 {
+	//print_r($value);
 	try
 	{
-		$sql = "UPDATE $this->table SET name = :name WHERE id_artist = :id "; // le agregue el $ a this->table
+		$sql = "UPDATE $this->table SET nickname = :nickname,name_artist = :name_artist,surname = :surname WHERE id_artist = :id "; // le agregue el $ a this->table
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$name = $value->getNameArtist();
+		$nickname = $value->getNickname();
+		$name = $value->getName();
+		$surname = $value->getSurname();
 		$id = $value->getIdArtist();
 
-		$statement->bindParam(":name",$name);
-		$statement->binParam(":id",$id);
+		$statement->bindParam(":nickname",$nickname);
+		$statement->bindParam(":name_artist",$name);
+		$statement->bindParam(":surname",$surname);
+		$statement->bindParam(":id",$id);
 
 		$statement->execute();
 	}
@@ -171,9 +176,7 @@ public function delete($id)
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
 
-		$statement->execute(array(
-			":id" => $id,
-		));
+		$statement->execute();
 
 	}catch(\PDOException $e)
 	{
@@ -189,25 +192,25 @@ public function delete($id)
 
 	public function mapMethod($dataSet)
 	{
-		$dataSet = is_array($dataSet) ? $dataSet : false;
-
-		if($dataSet)
-		{
+		if (is_array($dataSet)) {
 			$collection = new Collection();
-
 			foreach ($dataSet as $p) {
 				$u = new Artist();
-				$u->setName($p["name"])
+				$u->setName($p["name_artist"])
 				->setNickname($p["nickname"])
 				->setSurname($p["surname"])
 				->setIdArtist($p['id_artist']);
-
 				$collection->add($u);
 			}
-
-			$this->list = $collection;
-
+				$this->list = $collection;
+		} elseif ($dataSet) {
+			$u = new Artist();
+				$u->setName($dataSet["name_artist"])
+				->setNickname($dataSet["nickname"])
+				->setSurname($dataSet["surname"])
+				->setIdArtist($dataSet['id_artist']);
+			$this->list = [$u];
+		}
 	}
-}
 
 }

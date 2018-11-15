@@ -54,11 +54,12 @@
 			      <td><?= $artist->getName() ?></td>
 						<td><?= $artist->getSurname() ?></td>
 			      <td>
-							<button class="btn btn-primary"> Editar </button>
 
-							<form action="<?= VIEW_URL ?>/artist/delete" method="delete">
+							<a class="btn btn-primary" href="<?= VIEW_URL ?>/artist/viewEditArtist/<?= $artist->getIdArtist() ?>">Editar</a>
+
+							<form action="<?= VIEW_URL ?>/artist/delete" method="post">
 								<div class="form-group">
-									<input type="hidden" value="<?= $artist->getIdArtist() ?>" name="data[id]">
+									<input type="hidden" value="<?= $artist->getIdArtist() ?>" name="artistData[id]">
 									<input type="submit" class="btn btn-danger" value="Eliminar"></input>
 								</div>	
 						</form>
@@ -73,3 +74,4 @@
 </div>
 
 <br><br><br><br>
+

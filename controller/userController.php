@@ -83,8 +83,6 @@ class UserController extends Controller{
     return ;
   }
 
-//funca asi?
-
   public function logout()
   {
     $this->session->destroy();

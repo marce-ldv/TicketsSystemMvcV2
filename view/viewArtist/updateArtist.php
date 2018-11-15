@@ -15,19 +15,29 @@
 	<div class="row jusify-content-center">
 		<!-- limita la cantidad de columnas de boostrap -->
 			<div class="col-md-12 col-12">
-				<form action = "<?= VIEW_URL ?>/artist/update" method="post">
-				<!-- este es el form donde se ingresa el nombre del artista -->				
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Modifique el nombre del artista seleccionado</label>
+				<form action = "<?= VIEW_URL ?>/artist/updateC" method="post">
 
-				    <input value="<?= $searchedArtist->getNameArtist() ?>"
-				    type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el nombre del artista" name="nombre">
-				  
+					<div class="form-group">
+				    <input value="<?= $searchedArtist->getNickname() ?>"
+				    type="text" class="form-control" placeholder="Ingrese el nickname del artista" name="artistData[nickname]">
 				  </div>
-				  <input type="hidden" name="id_artist" value="<?= $searchedArtist->getIdArtist() ?>">
-			  <button type="submit" class="btn btn-primary col-md-6 ">Modificar</button>
+
+				  <div class="form-group">
+				    <input value="<?= $searchedArtist->getName() ?>"
+				    type="text" class="form-control" placeholder="Ingrese el nombre del artista" name="artistData[name]">
+				  </div>
+
+					<div class="form-group">
+				    <input value="<?= $searchedArtist->getSurname() ?>"
+				    type="text" class="form-control" placeholder="Ingrese el apellido del artista" name="artistData[surname]">
+				  </div>
+
+				  <input type="hidden" name="artistData[id]" value="<?= $searchedArtist->getIdArtist() ?>">
+			  <button type="submit" class="btn btn-primary col-md-4 ml-auto ">Modificar</button>
 			</form>
-			<a href="<?= VIEW_URL ?>/artist/list/ " type="submit" class="btn btn-primary col-md-6 pull-right">Volver al listado</a>
+			<a href="<?= VIEW_URL ?>/artist/list/ " type="submit" class="btn btn-primary col-md-4 ml-auto">Volver al listado</a>
 
 		</div>
 </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
