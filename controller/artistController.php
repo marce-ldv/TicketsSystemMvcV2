@@ -53,7 +53,7 @@ class ArtistController extends Controller{
     $this->redirect('/default/login');
     else
     $this->render("viewArtist/artists",array(
-      'listArtist' => $listArtist
+      'listArtists' => $listArtists
     ));
 	}
 

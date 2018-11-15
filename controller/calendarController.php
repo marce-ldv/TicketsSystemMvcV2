@@ -61,7 +61,7 @@ class CalendarController extends Controller
     $this->redirect('/default/login');
     else
     $this->render("viewCalendar/createCalendar",array(
-      'listCalendar' => $listCalendar
+      'listCalendars' => $listCalendars
     ));
 	}
 
