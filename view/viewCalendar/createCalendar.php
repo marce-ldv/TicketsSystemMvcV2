@@ -11,21 +11,37 @@
                     <form action="<?= VIEW_URL ?>/artist/save" method="post">
 
                         <div class="form-group">
-                            <div class='input-group date' id='datetimepicker2'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
+                            <div class="col-md-6">
+                                <label for="inlineFormCustomSelect">Fecha Inicio</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="number" value="" name="day">
+                                    </div>
+                                    <div class="form-group">
+                                    <input class="form-control" type="number" value="" name="month">
+                                    </div>
+                                    <div class="form-group">
+                                    <input class="form-control" type="number" value="" name="year">
+                                    </div>
+                                
+                            </div>  
                         </div>
 
-                        <script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker2').datetimepicker({
-                                    locale: 'ru'
-                                });
-                            });
-                        </script>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label for="inlineFormCustomSelect">Fecha Fin</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="number" value="" name="day">
+                                    </div>
+                                    <div class="form-group">
+                                    <input class="form-control" type="number" value="" name="month">
+                                    </div>
+                                    <div class="form-group">
+                                    <input class="form-control" type="number" value="" name="year">
+                                    </div>
+                                
+                            </div>  
+                        </div>
+
 
                         <div class="form-group">
                             <div class="col-md-12">
@@ -52,13 +68,14 @@
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-success">Agregar</button>
                         </div>
-                    </form>
-                </div>
+                </form>
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 
 
 <br><br><br><br>
+
