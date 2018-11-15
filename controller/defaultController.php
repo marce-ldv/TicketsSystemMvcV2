@@ -46,13 +46,12 @@ class DefaultController extends Controller{
   }
 
   public function viewEventArea(){
-    $this->render('viewEventArea/eventArea');
+    $this->render('viewEventArea/createEventArea');
   }
 
   public function viewCreateCalendar(){
     $this->render('viewCalendar/createCalendar');
   }
-
 
 
 
