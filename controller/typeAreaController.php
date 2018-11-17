@@ -36,7 +36,11 @@ class TypeAreaController extends Controller implements IAlmr
 			$this->redirect('/default/login');
 		}
 		else {
+
 			$items = $this->controllerDao->readAll();
+
+      $items = $this->controllerDao->mapMethodCollection($items);
+
 			$this->render("viewTypeArea/typesAreas",[
 				'items' => $items
 			]);
@@ -44,12 +48,22 @@ class TypeAreaController extends Controller implements IAlmr
     }
 
     public function remove($data = []) {
-		$searchedItem = $this->controllerDao->delete($data['id']);
+
+		$this->controllerDao->delete([
+      "id_type_area" => $data['id']
+    ]);
+
 		$this->redirect("/typeArea/");
 	}
 
 	public function viewEdit ($id) {
-		$searchedItem = $this->controllerDao->read($id);
+
+		$searchedItem = $this->controllerDao->read([
+      "id_type_area" => $id
+    ]);
+
+    $searchedItem = $this->controllerDao->mapMethod($searchedItem);
+
 		$this->render('viewTypeArea/updateTypeArea',[
 			'searchedItem' => $searchedItem
 		]);
@@ -59,13 +73,14 @@ class TypeAreaController extends Controller implements IAlmr
 	{
 		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
 		if (empty($data)) $this->redirect("/default/");
-		$item = new TypeArea(
-			$data["id"],
-			$data["description"]
-		);
+
 		try
 		{
-			$this->controllerDao->update($item);
+			$this->controllerDao->update([
+        "_description" => $data["description"]
+      ],[
+        "id_type_area" => $data["id"]
+      ]);
 		}
 		catch(\PDOException $e)
 		{
