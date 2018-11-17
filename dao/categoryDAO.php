@@ -57,12 +57,11 @@ public function create(&$category)
 }
 
 /*TODO: PROBAR READ Y READALL EN LA CONTROLADORA*/
-
 public function read($id)
 {
 	try {
 
-		$sql = "SELECT * FROM $this->table WHERE $idCategory = $id";
+		$sql = "SELECT * FROM $this->table WHERE id_category = $id";
 
 		$pdo = new Connection(); // <- en vez de esta y
 		$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
@@ -133,7 +132,7 @@ public function update($value)
 {
 	try
 	{
-		$sql = "UPDATE this->table SET name_category = :nameCategory WHERE idCategory = :id ";
+		$sql = "UPDATE $this->table SET name_category = :nameCategory WHERE id_category = :id ";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
@@ -164,7 +163,7 @@ public function delete($id)
 {
 	try
 	{
-		$sql = "DELETE FROM $this->table WHERE idCategory = $id "; // si es un string poner \" $id \";
+		$sql = "DELETE FROM $this->table WHERE id_category = $id "; // si es un string poner \" $id \";
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
@@ -194,9 +193,10 @@ public function delete($id)
 			$collection = new Collection();
 
 			foreach ($dataSet as $p) {
-				$u = new Category();
-				$u->setNameCategory($p['name_category'])
-				->setIdCategory($p['id_category']);
+				$u = new Category(
+					$p['id_category'],
+					$p['name_category'] //
+				);
 
 				$collection->add($u);
 			}
@@ -204,9 +204,12 @@ public function delete($id)
 			$this->list = $collection;
 
 		} else {
-			$u = new Category();
-			$u->setNameCategory($dataSet['name_category'])
-			->setIdCategory($dataSet['id_category']);
+			$u = new Category(
+				$p['id_category'],
+				$p['name_category']
+			);
+
+			$this->list = [$u];
 		}
 	}
 

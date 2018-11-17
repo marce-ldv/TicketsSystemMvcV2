@@ -18,17 +18,16 @@ class ArtistDAO extends SingletonDAO implements ICrud
 		$this->pdo = new Connection();
 	}
 
-	// no lo necesito porque esta el singletonDAO
-	/*public function getInstance()
+	public function create(&$artist)
 	{
-	if(!self::$instance instanceof self)
-	{
-	self::$instance = new self();
-}
-return self::$instance;
-}*/
+		try
+		{
+			$sql = "INSERT INTO $this->table (nickname, name_artist, surname) VALUES (:nickname, :name_artist, :surname)"; //le agregue la S a VALUE
 
+			$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
+			$statement = $connection->prepare($sql);
 
+<<<<<<< HEAD
 public function create(&$artist)
 {
 	try
@@ -37,182 +36,204 @@ public function create(&$artist)
 
 		$connection = Connection::connect();
 		$statement = $connection->prepare($sql);
+=======
+			$nickname = $artist->getNickname();
+			$name = $artist->getNameArtist();
+			$surname = $artist->getSurname();
 
-		$nickname = $artist->getNickname();
-		$name = $artist->getName();
-		$surname = $artist->getSurname();
+			$statement->execute(array(
+				":nickname" => $nickname,
+				":name_artist" => $name,
+				":surname" => $surname
+			));
+>>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
+			return $connection->lastInsertId();
+		}
+		catch(\PDOException $e)
+		{
+			throw $e;
+		}
+		catch(Exception $e)
+		{
+			throw $e;
+		}
+	}
+
+<<<<<<< HEAD
 		$statement->execute(array(
 			":nickname" => $nickname,
 			":name" => $name,  
 			":surname" => $surname
 		));
+=======
+	/*TODO: PROBAR READ Y READALL EN LA CONTROLADORA*/
+>>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
-		return $connection->lastInsertId();
-	}
-	catch(\PDOException $e)
+	public function read($id)
 	{
-		throw $e;
-	}
-	catch(Exception $e)
-	{
-		throw $e;
-	}
-}
+		try {
 
+<<<<<<< HEAD
 
+=======
+			$sql = "SELECT * FROM $this->table WHERE id_artist = $id";
+>>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
-public function read($id)
-{
-	try {
+			$pdo = new Connection(); // <- en vez de esta y
+			$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
+			$statement = $connection->prepare($sql);
 
-		$sql = "SELECT * FROM $this->table WHERE id_artist = $id";
+			$statement->execute();
 
-		$pdo = new Connection(); // <- en vez de esta y
-		$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
-		$statement = $connection->prepare($sql);
+			$dataSet[] = $statement->fetch(\PDO::FETCH_ASSOC);
 
-		$statement->execute();
+			// como siempre va a traer un solo objeto pongo dataSet[0] ya que estoy parado en el primer lugar
+			if($dataSet[0])
+			{
+				$this->mapMethod($dataSet);
+			}
 
-		$dataSet[] = $statement->fetch(\PDO::FETCH_ASSOC);
+			if(!empty($this->list[0]))
+			{
+				return $this->list[0];
+			}
 
-		// como siempre va a traer un solo objeto pongo dataSet[0] ya que estoy parado en el primer lugar
-		if($dataSet[0])
+			return false;
+
+		}
+		catch (\PDOException $e)
 		{
+			echo $e->getMessage();
+			die();
+		}
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+			die();
+		}
+
+	}
+
+
+	public function readAll()
+	{
+		try
+		{
+			$sql = "SELECT * FROM $this->table";
+
+			$connection = Connection::connect();
+			$statement = $connection->prepare($sql);
+
+			$statement->execute();
+
+			$dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
 			$this->mapMethod($dataSet);
-		}
 
-		if(!empty($this->list[0]))
+			return $this->list;
+		}
+		catch(\PDOException $e)
 		{
-			return $this->list[0];
+			echo $e->getMessage();
+			die();
 		}
-
-		return false;
-
-	}
-	catch (\PDOException $e)
-	{
-		echo $e->getMessage();
-		die();
-	}
-	catch (Exception $e)
-	{
-		echo $e->getMessage();
-		die();
+		catch(Exception $e)
+		{
+			echo $e->getMessage();
+			die();
+		}
 	}
 
-}
-
-
-public function readAll()
-{
-	try
-	{
-		$sql = "SELECT * FROM $this->table";
-
-		$connection = Connection::connect();
-		$statement = $connection->prepare($sql);
-
-		$statement->execute();
-
-		$dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-		$this->mapMethod($dataSet);
-
-		return $this->list;
-	}
-	catch(\PDOException $e)
-	{
-		echo $e->getMessage();
-		die();
-	}
-	catch(Exception $e)
-	{
-		echo $e->getMessage();
-		die();
-	}
-}
-
+<<<<<<< HEAD
 public function update($value)
 {
 
 	try
 	{
 		$sql = "UPDATE $this->table SET nickname = :nickname,name_artist = :name_artist,surname = :surname WHERE id_artist = :id ";
-
-		$connection = Connection::connect();
-		$statement = $connection->prepare($sql);
-
-		$nickname = $value->getNickname();
-		$name = $value->getName();
-		$surname = $value->getSurname();
-		$id = $value->getIdArtist();
-
-		$statement->bindParam(":nickname",$nickname);
-		$statement->bindParam(":name_artist",$name);
-		$statement->bindParam(":surname",$surname);
-		$statement->bindParam(":id",$id);
-
-		$statement->execute();
-	}
-	catch(\PDOException $e)
+=======
+	public function update($value)
 	{
-		echo $e->getMessage();
-		die();
-	}
-	catch(Exception $e)
-	{
-		echo $e->getMessage();
-		die();
-	}
-}
+		//print_r($value);
+		try
+		{
+			$sql = "UPDATE $this->table SET nickname = :nickname,name_artist = :name_artist,surname = :surname WHERE id_artist = :id "; // le agregue el $ a this->table
+>>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
-public function delete($id)
-{
-	try
-	{
-		$sql = "DELETE FROM $this->table WHERE id_artist = $id "; // si es un string poner \" $id \";
+			$connection = Connection::connect();
+			$statement = $connection->prepare($sql);
 
-		$connection = Connection::connect();
-		$statement = $connection->prepare($sql);
+			$nickname = $value->getNickname();
+			$name = $value->getNameArtist();
+			$surname = $value->getSurname();
+			$id = $value->getIdArtist();
 
-		$statement->execute();
+			$statement->bindParam(":nickname",$nickname);
+			$statement->bindParam(":name_artist",$name);
+			$statement->bindParam(":surname",$surname);
+			$statement->bindParam(":id",$id);
 
-	}catch(\PDOException $e)
-	{
-	  echo $e->getMessage();
-	  die();
-	}
-	catch(Exception $e)
-	{
-	  echo $e->getMessage();
-	  die();
-	}
-}
-
-	public function mapMethod($dataSet)
-	{
-		if (is_array($dataSet)) {
-			$collection = new Collection();
-			foreach ($dataSet as $p) {
-				$u = new Artist(
-					$p['id_artist'],
-					$p["name_artist"],
-					$p["nickname"],
-					$p["surname"]
-				);
-				$collection->add($u);
-			}
-				$this->list = $collection;
-		} elseif ($dataSet) {
-			$u = new Artist(
-				$dataSet['id_artist'],
-				$dataSet["name_artist"],
-				$dataSet["nickname"],
-				$dataSet["surname"]
-			);
-			$this->list = [$u];
+			$statement->execute();
+		}
+		catch(\PDOException $e)
+		{
+			echo $e->getMessage();
+			die();
+		}
+		catch(Exception $e)
+		{
+			echo $e->getMessage();
+			die();
 		}
 	}
+
+	public function delete($id)
+	{
+		try
+		{
+			$sql = "DELETE FROM $this->table WHERE id_artist = $id "; // si es un string poner \" $id \";
+
+			$connection = Connection::connect();
+			$statement = $connection->prepare($sql);
+
+			$statement->execute();
+
+		}catch(\PDOException $e)
+		{
+		echo $e->getMessage();
+		die();
+		}
+		catch(Exception $e)
+		{
+		echo $e->getMessage();
+		die();
+		}
+	}
+
+		public function mapMethod($dataSet)
+		{
+			if (is_array($dataSet)) {
+				$collection = new Collection();
+				foreach ($dataSet as $p) {
+					$u = new Artist(
+						$p['id_artist'],
+						$p["nickname"],
+						$p["name_artist"],
+						$p["surname"]
+					);
+					$collection->add($u);
+				}
+					$this->list = $collection;
+			} elseif ($dataSet) {
+				$u = new Artist(
+					$dataSet['id_artist'],
+					$dataSet["nickname"],
+					$dataSet["name_artist"],
+					$dataSet["surname"]
+				);
+				$this->list = [$u];
+			}
+		}
 
 }

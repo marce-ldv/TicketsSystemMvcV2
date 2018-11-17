@@ -15,6 +15,7 @@ class User implements \Serializable
     private $profilePicture;
 
     public function __construct ($idUser = "", $username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
+      $this->idUser = $idUser;
       $this->username = $username;
       $this->pass = $pass;
       $this->email = $email;
@@ -22,7 +23,6 @@ class User implements \Serializable
       $this->surname = $surname;
       $this->dni = $dni;
       $this->profilePicture = $profilePicture;
-      $this->idUser = $idUser;
     }
 
     //SERIALIZE METHODS

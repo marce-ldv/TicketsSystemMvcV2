@@ -20,7 +20,7 @@ CREATE TABLE users(
 
 CREATE TABLE categories(
   id_category BIGINT UNSIGNED AUTO_INCREMENT,
-  name_category VARCHAR(50), 
+  name_category VARCHAR(50),
   CONSTRAINT pk_id_category PRIMARY KEY (id_category)
 );
 
@@ -44,13 +44,13 @@ CREATE TABLE artists(
 CREATE TABLE place_events(
   id_place_event BIGINT UNSIGNED AUTO_INCREMENT,
   capacity BIGINT NOT NULL,
-  description VARCHAR(50),
+  _description VARCHAR(50),
   CONSTRAINT pk_id_place_event PRIMARY KEY (id_place_event)
 );
 
 CREATE TABLE type_areas(
   id_type_area BIGINT UNSIGNED AUTO_INCREMENT,
-  description VARCHAR(50),
+  _description VARCHAR(50),
   CONSTRAINT pk_id_type_areas PRIMARY KEY (id_type_area)
 );
 

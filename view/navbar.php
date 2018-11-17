@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href=" <?= VIEW_URL ?> "><img src="<?= URL_IMG ?>logo.jpg" style="height: 60px;"> Sistema de Tickets</a>
+  <a class="navbar-brand" href=" <?= FRONT_VIEW ?> "><img src="<?= URL_IMG ?>logo.jpg" style="height: 60px;"> Sistema de Tickets</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,16 +11,22 @@
           <?= $this->getToken()->getUsername(); ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<<<<<<< HEAD
           <a class="dropdown-item" href="<?= VIEW_URL ?>/default/dashboard">Menu principal</a>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/default/dashboard">ejemplo</a>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/user/logout/">Salir</a>
+=======
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard">Dashboard</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard">asd</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/">Salir</a>
+>>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
-          <a class="dropdown-item" href="<?= VIEW_URL ?>/artist/create">create</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/artist/create">create</a>
         <?php  }?>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= VIEW_URL ?>/user/logout/"> <span class="cart-icon icon-shopping-cart">Carrito</span> </a>
+        <a class="nav-link" href="<?= FRONT_VIEW ?>/user/logout/"> <span class="cart-icon icon-shopping-cart">Carrito</span> </a>
       </li>
       <?php }else {?>
       <li class="nav-item">

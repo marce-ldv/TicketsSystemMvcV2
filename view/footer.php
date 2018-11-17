@@ -53,7 +53,7 @@
 
               <div class="col-md-6">
 
-                <form action="<?= VIEW_URL ?>/phpmailer/send/" method="post">
+                <form action="<?= FRONT_VIEW ?>/phpmailer/send/" method="post">
 
                   <fieldset class="form-group">
                     <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>

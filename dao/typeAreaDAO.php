@@ -20,148 +20,94 @@ class TypeAreaDAO extends SingletonDAO implements ICrud
 
   public function create(&$typeArea)
   {
-  	try
-  	{
-  		$sql = "INSERT INTO $this->table description VALUE :descriptionTypeArea";
+    try
+    {
+      $sql = "INSERT INTO $this->table (_description) VALUES (:descriptionTypeArea)";
 
-  		$connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
+      $connection = Connection::connect();
+      $statement = $connection->prepare($sql);
 
-  		$descriptionTypeArea = $typeArea->getDescriptionTypeArea();
+      $descriptionTypeArea = $typeArea->getDescriptionTypeArea();
+      print_r($sql);
+      $statement->execute(array(
+        "descriptionTypeArea" => $descriptionTypeArea
+      ));
 
-  		$statement->execute(array(
-  			":descriptionTypeArea" => $descriptionTypeArea
-  		));
-
-  		return $connection->lastInsertId();
-  	}
-  	catch(\PDOException $e)
-  	{
-  		throw $e;
-  	}
-  	catch(Exception $e)
-  	{
-  		throw $e;
-  	}
+      return $connection->lastInsertId();
+    }
+    catch(\PDOException $e)
+    {
+      throw $e;
+    }
+    catch(Exception $e)
+    {
+      throw $e;
+    }
   }
 
   /*TODO: PROBAR READ Y READALL EN LA CONTROLADORA*/
 
   public function read($id)
   {
-  	try {
+    try {
 
-  		$sql = "SELECT * FROM $this->table WHERE typeArea_id = $id";
+      $sql = "SELECT * FROM $this->table WHERE id_type_area = $id";
 
-  		//$pdo = new Connection(); // <- en vez de esta y
-  		//$connection = $pdo->connect(); // esta linea se puede poner
+      //$pdo = new Connection(); // <- en vez de esta y
+      //$connection = $pdo->connect(); // esta linea se puede poner
       $connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
+      $statement = $connection->prepare($sql);
 
-  		$statement->execute();
+      $statement->execute();
 
-  		$dataSet[] = $statement->fetch(\PDO::FETCH_ASSOC);
+      $dataSet[] = $statement->fetch(\PDO::FETCH_ASSOC);
 
-  		// como siempre va a traer un solo objeto pongo dataSet[0] ya que estoy parado en el primer lugar
-  		if($dataSet[0])
-  		{
-  			$this->mapMethod($dataSet);
-  		}
+      // como siempre va a traer un solo objeto pongo dataSet[0] ya que estoy parado en el primer lugar
+      if($dataSet[0])
+      {
+        $this->mapMethod($dataSet);
+      }
 
-  		if(!empty($this->list[0]))
-  		{
-  			return $this->list[0];
-  		}
+      if(!empty($this->list[0]))
+      {
+        return $this->list[0];
+      }
 
-  		return false;
+      return false;
 
-  	}
-  	catch (\PDOException $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  	catch (Exception $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
+    }
+    catch (\PDOException $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
+    catch (Exception $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
 
   }
 
 
   public function readAll()
   {
-  	try
-  	{
-  		$sql = "SELECT * FROM $this->table";
+    try
+    {
+      $sql = "SELECT * FROM $this->table";
 
-  		$connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
+      $connection = Connection::connect();
+      $statement = $connection->prepare($sql);
 
-  		$statement->execute();
+      $statement->execute();
 
-  		$dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
+      $dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-  		$this->mapMethod($dataSet);
+      $this->mapMethod($dataSet);
 
-  		return $this->list;
-  	}
-  	catch(\PDOException $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  	catch(Exception $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  }
-
-  public function update($value)
-  {
-  	try
-  	{
-  		$sql = "UPDATE $this->table SET description = :descriptionTypeArea WHERE id_type_area = :id ";
-
-  		$connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
-
-  		$descriptionTypeArea = $value->getdescriptionTypeArea();
-  		$id = $value->getIdTypeArea();
-
-  		$statement->bindParam(":descriptionTypeArea",$descriptionTypeArea);
-  		$statement->binParam(":id",$id);
-
-  		$statement->execute();
-  	}
-  	catch(\PDOException $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  	catch(Exception $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  }
-
-  public function delete($id)
-  {
-  	try
-  	{
-  		$sql = "DELETE FROM $this->table WHERE id_type_area = $id "; // si es un string poner \" $id \";
-
-  		$connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
-
-      $statement->execute(array(
-  			":id" => $id,
-    ));
-
-  	}catch(\PDOException $e)
+      return $this->list;
+    }
+    catch(\PDOException $e)
     {
       echo $e->getMessage();
       die();
@@ -170,27 +116,81 @@ class TypeAreaDAO extends SingletonDAO implements ICrud
     {
       echo $e->getMessage();
       die();
-  	}
+    }
   }
 
-  	public function mapMethod($dataSet)
-  	{
-  		$dataSet = is_array($dataSet) ? $dataSet : false;
+  public function update($value)
+  {
+    try
+    {
+      $sql = "UPDATE $this->table SET _description = :descriptionTypeArea WHERE id_type_area = :id ";
 
-  		if($dataSet)
-  		{
-  			$collection = new Collection();
+      $connection = Connection::connect();
+      $statement = $connection->prepare($sql);
 
-  			foreach ($variable as $p) {
-  				$u = new TypeArea();
-  				$u->setDescriptionTypeArea($p['description'])
-  				->setIdTypeArea($p['id_type_area']);
+      $descriptionTypeArea = $value->getdescriptionTypeArea();
+      $id = $value->getIdTypeArea();
 
-  				$collection->add($u);
-  			}
+      $statement->bindParam(":descriptionTypeArea",$descriptionTypeArea);
+      $statement->bindParam(":id",$id);
 
-  			$this->list = $collection;
-  	}
+      $statement->execute();
+    }
+    catch(\PDOException $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
+    catch(Exception $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
   }
 
+  public function delete($id)
+  {
+    try
+    {
+      $sql = "DELETE FROM $this->table WHERE id_type_area = $id "; // si es un string poner \" $id \";
+
+      $connection = Connection::connect();
+      $statement = $connection->prepare($sql);
+
+      $statement->execute(array(
+        ":id" => $id,
+      ));
+
+    }catch(\PDOException $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
+    catch(Exception $e)
+    {
+      echo $e->getMessage();
+      die();
+    }
+  }
+
+  public function mapMethod($dataSet)
+  {
+    if (is_array($dataSet)) {
+      $collection = new Collection();
+      foreach ($dataSet as $p) {
+        $u = new TypeArea(
+          $p['id_type_area'],
+          $p["_description"]
+        );
+        $collection->add($u);
+      }
+      $this->list = $collection;
+    } elseif ($dataSet) {
+      $u = new TypeArea(
+        $dataSet['id_type_area'],
+        $dataSet["_description"]
+      );
+      $this->list = [$u];
+    }
+  }
 }
