@@ -69,22 +69,13 @@ class ArtistController extends Controller{
 	{
 		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     	if (empty($artistData)) $this->redirect("/default/");
-<<<<<<< HEAD
-		$artist = new Artist();
 
-		$artist->setIdArtist($artistData["id"])
-		->setName($artistData["name"])
-		->setNickname($artistData["nickname"])
-		->setSurname($artistData["surname"]);
-
-=======
 		$artist = new Artist(
 			$artistData["id"],
 			$artistData["name"],
 			$artistData["nickname"],
 			$artistData["surname"]
 		);
->>>>>>> c3f8aebc8e826a3e6d23a6970c605c687a666585
 		try
 		{
 			$this->artistDao->update($artist);
