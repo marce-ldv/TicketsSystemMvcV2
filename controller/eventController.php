@@ -5,8 +5,9 @@ namespace controller;
 use model\Event as Event;
 use dao\EventDAO as EventDAO;
 use controller\Controller as Controller;
+use interfaces\IAlmr as IAlmr;
 
-class EventController extends Controller
+class EventController extends Controller implements IAlmr
 {
   private $eventDao;
 
@@ -24,7 +25,7 @@ class EventController extends Controller
     ]);
   }
 
-  public function save($category, $title)
+  public function add($category, $title)
   {
 
     $newEvent = new Event($category, $title);
@@ -38,14 +39,6 @@ class EventController extends Controller
       echo $e->getMessage();
     }
 
-    $this->render("viewEvent/createEvent");
-  }
-
-  public function create()
-  {
-    if( ! $this->isLogged())
-    $this->redirect('/default/login');
-    else
     $this->render("viewEvent/createEvent");
   }
 
@@ -69,7 +62,7 @@ class EventController extends Controller
   }
 
 
-  public function update($category,$title)
+  public function modify($category,$title)
   {
     $event = new Event($category, $title);
     try
@@ -92,5 +85,12 @@ class EventController extends Controller
 
     require(URL_VIEW . "viewEvent/updateEvent.php");
   }
+
+  public function viewEdit ($id) {
+		$searchedItem = $this->controllerDao->read($id);
+		$this->render('viewTypeArea/updateTypeArea',[
+			'searchedItem' => $searchedItem
+		]);
+	}
 
 }

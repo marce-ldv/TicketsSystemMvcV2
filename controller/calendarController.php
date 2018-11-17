@@ -5,8 +5,9 @@ namespace controller;
 use model\Calendar as Calendar;
 use dao\CalendarDAO as CalendarDAO;
 use controller\Controller as Controller;
+use interfaces\IAlmr as IAlmr;
 
-class CalendarController extends Controller
+class CalendarController extends Controller implements IAlmr
 {
   private $calendarDao;
 
@@ -25,7 +26,7 @@ class CalendarController extends Controller
       ]);
   }
 
-  public function save($calendarData = [])
+  public function add($calendarData = [])
   {
     $newCalendar = new Calendar();
 
@@ -45,14 +46,6 @@ class CalendarController extends Controller
     $this->redirect("/calendar/");
   }
 
-  public function create()
-	{
-		if( ! $this->isLogged())
-		$this->redirect('/default/login');
-		else
-		$this->render("viewCalendar/createCalendar");
-	}
-
 	public function list() //listar todo
   {
     $listCalendars = $this->calendarDao->readAll();
@@ -71,7 +64,14 @@ class CalendarController extends Controller
 		$this->redirect("/calendar/");
 	}
 
-  public function updateC($calendarData = [])
+  public function viewEdit ($id) {
+		$searchedItem = $this->controllerDao->read($id);
+		$this->render('viewTypeArea/updateTypeArea',[
+			'searchedItem' => $searchedItem
+		]);
+	}
+
+  public function modify($calendarData = [])
 	{
 		$newCalendar = new Calendar();
 
@@ -107,6 +107,7 @@ class CalendarController extends Controller
 	}
 
 
+}
 
 
 

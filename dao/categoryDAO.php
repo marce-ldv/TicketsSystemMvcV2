@@ -5,8 +5,9 @@ namespace dao;
 use model\Category as Category;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-class CategoryDAO extends SingletonDAO implements ICrud
+class CategoryDAO extends Singleton implements ICrud
 {
 	private $table = "categories";
 	private $list = array();
@@ -17,16 +18,6 @@ class CategoryDAO extends SingletonDAO implements ICrud
 	{
 		$this->pdo = new Connection();
 	}
-
-	// no lo necesito porque esta el singletonDAO
-	/*public function getInstance()
-	{
-	if(!self::$instance instanceof self)
-	{
-	self::$instance = new self();
-}
-return self::$instance;
-}*/
 
 
 public function create(&$category)

@@ -5,8 +5,9 @@ namespace controller;
 use model\Category as Category;
 use dao\CategoryDAO as CategoryDAO;
 use controller\Controller as Controller;
+use interfaces\IAlmr as IAlmr;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements IAlmr
 {
   private $categoryDao;
 
@@ -44,7 +45,7 @@ class CategoryController extends Controller
         'categories' => $categories
       ]);
     }
-    
+
   }
 
   public function remove($data)	{

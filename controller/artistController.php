@@ -5,8 +5,9 @@ namespace controller;
 use model\Artist as Artist;
 use dao\ArtistDAO as ArtistDAO;
 use controller\Controller as Controller;
+use interfaces\IAlmr as IAlmr;
 
-class ArtistController extends Controller{
+class ArtistController extends Controller implements IAlmr{
 
 	private $artistDao;
 

@@ -5,8 +5,9 @@ namespace controller;
 use model\TypeArea as TypeArea;
 use dao\TypeAreaDAO as TypeAreaDAO;
 use controller\Controller as Controller;
+use interfaces\IAlmr as IAlmr;
 
-class TypeAreaController extends Controller
+class TypeAreaController extends Controller implements IAlmr
 {
     private $controllerDao;
 
@@ -20,16 +21,14 @@ class TypeAreaController extends Controller
     }
 
     public function add ($data = []) {
-        $newTypeArea = new TypeArea(
-            '',
-            $data["description"]
-        );
-
-        $this->controllerDao->create($newTypeArea);
+        //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
+        $this->controllerDao->create([
+          "_description" => $data["description"]
+        ]);
 
         $this->redirect("/typeArea/");
+
         return;
-        //return $this->index();
     }
 
     public function list () {
