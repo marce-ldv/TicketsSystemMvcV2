@@ -8,5 +8,8 @@ use model\Purchase;
 
 class PurchaseController extends Controller{
 
+    public function index(){
+        $this->render('viewPurchase/purchases');
+    }
   
 }

@@ -195,20 +195,22 @@ public function delete($id)
 		if (is_array($dataSet)) {
 			$collection = new Collection();
 			foreach ($dataSet as $p) {
-				$u = new Artist();
-				$u->setName($p["name_artist"])
-				->setNickname($p["nickname"])
-				->setSurname($p["surname"])
-				->setIdArtist($p['id_artist']);
+				$u = new Artist(
+					$p['id_artist'],
+					$p["name_artist"],
+					$p["nickname"],
+					$p["surname"],
+				);
 				$collection->add($u);
 			}
 				$this->list = $collection;
 		} elseif ($dataSet) {
-			$u = new Artist();
-				$u->setName($dataSet["name_artist"])
-				->setNickname($dataSet["nickname"])
-				->setSurname($dataSet["surname"])
-				->setIdArtist($dataSet['id_artist']);
+			$u = new Artist(
+				$dataSet['id_artist'],
+				$dataSet["name_artist"],
+				$dataSet["nickname"],
+				$dataSet["surname"]
+			);
 			$this->list = [$u];
 		}
 	}

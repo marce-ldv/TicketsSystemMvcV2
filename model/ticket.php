@@ -5,31 +5,22 @@ namespace model;
 class Ticket
 {
   private $idTicketNumber;
-  private $linePurchase;
   private $qr;
-/*
-  public function __construct($id_ticket_number, $linePurchase, $qr)
+
+  public function __construct($idTicketNumber="", $qr="")
   {
     $this->idTicketNumber = $idTicketNumber;
-    $this->linePurchase = $linePurchase;
     $this->qr = $qr;
-  }*/
+  }
 
   /**
    * @return mixed
    */
   public function getIdTicketNumber()
   {
-      return $this->id_ticket_number;
+      return $this->idTicketNumber;
   }
 
-  /**
-   * @return mixed
-   */
-  public function getLinePurchase()
-  {
-      return $this->linePurchase;
-  }
 
 
   /**
@@ -42,41 +33,26 @@ class Ticket
 
 
   /**
-   * @param mixed $id_ticket_number
+   * @param mixed $idTicketNumber
    *
    * @return self
    */
-  public function setIdTicketNumber($id_ticket_number)
+  public function setIdTicketNumber($idTicketNumber):void
   {
-      $this->id_ticket_number = $id_ticket_number;
-
-      return $this;
+      $this->idTicketNumber = $idTicketNumber;
   }
 
 //SETTERS
 
-  /**
-   * @param mixed $linePurchase
-   *
-   * @return self
-   */
-  public function setLinePurchase($linePurchase)
-  {
-      $this->linePurchase = $linePurchase;
-
-      return $this;
-  }
 
   /**
    * @param mixed $qr
    *
    * @return self
    */
-  public function setQr($qr)
+  public function setQr($qr):void
   {
       $this->qr = $qr;
-
-      return $this;
   }
 
 }

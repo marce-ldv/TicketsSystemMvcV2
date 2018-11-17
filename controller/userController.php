@@ -13,17 +13,27 @@ class UserController extends Controller{
     parent::__construct();
     $this->userDAO = new UserDAO();
   }
-
+  
+/*
   public function index(){
     $this->indexView();
   }
+*/
 
   public function register ($registerData = []) {
 
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
-    $user = new User();
+    $user = new User(
+      $registerData["username"],
+      $registerData["pass"],
+      $registerData["email"],
+      $registerData["name_user"],
+      $registerData["surname"],
+      $registerData["dni"],
+      $registerData["profilePicture"]
+    );
     $repository = $this->defaultDAO->getRepository(User::class);
     $criteria = [
       "username" => $registerData["username"],
@@ -39,14 +49,7 @@ class UserController extends Controller{
      }
 
     $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
-
-    $user->setUsername($registerData["username"])
-      ->setPass($hash)
-      ->setEmail($registerData["email"])
-      ->setNameUser($registerData["name_user"])
-      ->setSurname($registerData["surname"])
-      ->setDni($registerData["dni"]);
-      //->setProfilePicture($registerData["profilePicture"]);
+    $user->setPass($hash);
 
     $repository->create($user);
 
@@ -59,9 +62,12 @@ class UserController extends Controller{
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
     
-    $user = new User();
-    $user->setUsername($registerData["username"]);
-    $user->setEmail($registerData["username"]);    
+    $user = new User(
+      '', //Id vacio
+      $registerData["username"],
+      '', //Contraseña vacia
+      $registerData["username"]      
+    ); 
 
     if( ! $this->userDAO->readByUser($user) ) {
         $this->redirect('/default/',[
@@ -79,14 +85,15 @@ class UserController extends Controller{
 
     $this->session->token = $user->serialize();
 
-    $this->redirect('/default/dashboard/');
-    return ;
+    //$this->redirect('/default/dashboard/');
+
   }
 
   public function logout()
   {
     $this->session->destroy();
-    $this->redirect('/');
+    //$this->redirect('/');
+    $this->index();
   }
 
 

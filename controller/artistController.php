@@ -26,15 +26,16 @@ class ArtistController extends Controller{
 
 	public function save($artistData = [])
 	{
-		$newArtist = new Artist();
-
-		$newArtist->setNickname($artistData["nickname"])
-		->setName($artistData["name"])
-		->setSurname($artistData["surname"]);
+		$newArtist = new Artist(
+			'',
+			$artistData["nickname"],
+			$artistData["surname"]
+		);
 
 		$this->artistDao->create($newArtist);
 
-		$this->redirect("/artist/");
+		//$this->redirect("/artist/");
+		return $this->index();
 	}
 
 	public function create()

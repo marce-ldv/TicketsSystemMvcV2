@@ -5,12 +5,13 @@ description VARCHAR(50),*/
 
 class PlaceEvent
 {
-  private $id_place_event;
+  private $idPlaceEvent;
   private $capacity;
   private $description;
 
-  function __construct($capacity, $description)
+  function __construct($idPlaceEvent="",$capacity="", $description="")
   {
+      $this->idPlaceEvent=$idPlaceEvent;
       $this->capacity = $capacity;
       $this->description = $description;
   }
@@ -20,7 +21,7 @@ class PlaceEvent
      */
     public function getIdPlaceEvent()
     {
-        return $this->$id_place_event;
+        return $this->idPlaceEvent;
     }
 
     /**
@@ -28,11 +29,9 @@ class PlaceEvent
      *
      * @return self
      */
-    public function setIdPlaceEvent($id_place_event)
+    public function setIdPlaceEvent($idPlaceEvent):void
     {
-        $this->id_place_event = $id_place_event;
-
-        return $this;
+        $this->idPlaceEvent = $idPlaceEvent;
     }
 
     /**
@@ -48,11 +47,9 @@ class PlaceEvent
      *
      * @return self
      */
-    public function setCapacity($capacity)
+    public function setCapacity($capacity):void
     {
         $this->capacity = $capacity;
-
-        return $this;
     }
 
     /**
@@ -68,13 +65,10 @@ class PlaceEvent
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setDescription($description):void
     {
         $this->description = $description;
-
-        return $this;
     }
-
 
 
 
