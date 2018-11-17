@@ -22,18 +22,18 @@ class ArtistDAO extends SingletonDAO implements ICrud
 	{
 		try
 		{
-			$sql = "INSERT INTO $this->table (nickname, name, surname) VALUES (:nickname, :name, :surname)"; //le agregue la S a VALUE
+			$sql = "INSERT INTO $this->table (nickname, name_artist, surname) VALUES (:nickname, :name_artist, :surname)"; //le agregue la S a VALUE
 
 			$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 			$statement = $connection->prepare($sql);
 
 			$nickname = $artist->getNickname();
-			$name = $artist->getName();
+			$name = $artist->getNameArtist();
 			$surname = $artist->getSurname();
 
 			$statement->execute(array(
 				":nickname" => $nickname,
-				":name" => $name,
+				":name_artist" => $name,
 				":surname" => $surname
 			));
 
@@ -133,7 +133,7 @@ class ArtistDAO extends SingletonDAO implements ICrud
 			$statement = $connection->prepare($sql);
 
 			$nickname = $value->getNickname();
-			$name = $value->getName();
+			$name = $value->getNameArtist();
 			$surname = $value->getSurname();
 			$id = $value->getIdArtist();
 
@@ -186,8 +186,8 @@ class ArtistDAO extends SingletonDAO implements ICrud
 				foreach ($dataSet as $p) {
 					$u = new Artist(
 						$p['id_artist'],
-						$p["name_artist"],
 						$p["nickname"],
+						$p["name_artist"],
 						$p["surname"]
 					);
 					$collection->add($u);
@@ -196,8 +196,8 @@ class ArtistDAO extends SingletonDAO implements ICrud
 			} elseif ($dataSet) {
 				$u = new Artist(
 					$dataSet['id_artist'],
-					$dataSet["name_artist"],
 					$dataSet["nickname"],
+					$dataSet["name_artist"],
 					$dataSet["surname"]
 				);
 				$this->list = [$u];

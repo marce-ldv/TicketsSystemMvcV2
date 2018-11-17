@@ -24,6 +24,7 @@ class ArtistController extends Controller{
 		$newArtist = new Artist(
 			'',
 			$artistData["nickname"],
+			$artistData["name"],
 			$artistData["surname"]
 		);
 
@@ -33,14 +34,6 @@ class ArtistController extends Controller{
 		return;
 		//return $this->index();
 	}
-
-/*	public function create()
-	{
-		if( ! $this->isLogged())
-		$this->redirect('/default/login');
-		else
-		$this->render("viewArtist/artists");
-	}*/
 
 	public function list()  {
 		if ( ! $this->isLogged()) {
@@ -53,7 +46,6 @@ class ArtistController extends Controller{
 			]);
 		}
 	}
-
 
 	public function remove($data = [])
 	{
@@ -74,8 +66,8 @@ class ArtistController extends Controller{
     	if (empty($artistData)) $this->redirect("/default/");
 		$artist = new Artist(
 			$artistData["id"],
-			$artistData["name"],
 			$artistData["nickname"],
+			$artistData["name"],
 			$artistData["surname"]
 		);
 		try

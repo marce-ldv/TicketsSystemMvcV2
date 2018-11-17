@@ -4,16 +4,16 @@ namespace model;
 class Artist
 {
 	private $idArtist;
-	private $name;
+	private $nameArtist;
 	private $surname;
 	private $nickname;
 
-	public function __construct($idArtist = "",$name = "", $surname = "", $nickName = "")
+	public function __construct($idArtist = "",$nickname = "",$nameArtist = "", $surname = "")
 	{
 		$this->idArtist = $idArtist;
-		$this->name = $name;
+		$this->nickname = $nickname;
+		$this->nameArtist = $nameArtist;
 		$this->surname = $surname;
-		$this->nickName = $nickName;
 	}
 
     //GETTERS
@@ -23,9 +23,9 @@ class Artist
     	return $this->idArtist;
     }
 
-    public function getName()
+    public function getNameArtist()
     {
-    	return $this->name;
+    	return $this->nameArtist;
     }
 
 	public function getSurname()
@@ -45,9 +45,9 @@ class Artist
 		$this->idArtist = $value;
 	}
 
-	public function setName($value) :void
+	public function setNameArtist($value) :void
 	{
-		$this->name = $value;
+		$this->nameArtist = $value;
 	}
 
 	public function setSurname($value) :void

@@ -15,7 +15,7 @@
 	<div class="row jusify-content-center">
 		<!-- limita la cantidad de columnas de boostrap -->
 			<div class="col-md-12 col-12">
-				<form action = "<?= FRONT_VIEW ?>/artist/update" method="post">
+				<form action = "<?= FRONT_VIEW ?>/artist/modify" method="post">
 
 					<div class="form-group">
 				    <input value="<?= $searchedItem->getNickname() ?>"
@@ -23,7 +23,7 @@
 				  </div>
 
 				  <div class="form-group">
-				    <input value="<?= $searchedItem->getName() ?>"
+				    <input value="<?= $searchedItem->getNameArtist() ?>"
 				    type="text" class="form-control" placeholder="Ingrese el nombre del artista" name="artistData[name]">
 				  </div>
 

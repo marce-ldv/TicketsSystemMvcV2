@@ -51,7 +51,7 @@
 				 foreach ($artists as $artist) {?>
 					<tr>
 			      <td><?= $artist->getNickname() ?></td>
-			      <td><?= $artist->getName() ?></td>
+			      <td><?= $artist->getNameArtist() ?></td>
 						<td><?= $artist->getSurname() ?></td>
 			      <td>
 
