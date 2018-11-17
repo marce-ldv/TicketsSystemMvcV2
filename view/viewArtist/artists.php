@@ -1,7 +1,7 @@
 <?php include URL_VIEW . "navbar.php" ?>
 
 <br>
-
+//asd
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-12 col-12">

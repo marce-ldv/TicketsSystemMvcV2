@@ -27,6 +27,6 @@
 				<a href="<?= FRONT_VIEW ?>/category/list/ " type="submit" class="btn btn-primary col-md-4 ml-auto">Volver al listado</a>
 
 			</div>
-</div>
+		</div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
