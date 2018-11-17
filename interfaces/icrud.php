@@ -1,11 +1,11 @@
 <?php
 
 namespace interfaces;
-
+//Interface: Create/ Read / Update / Delete
 interface ICrud {
-    function create(&$value);
-    function read($id);
+    function create(&$data);
+    function read($data);
     function readAll();
-    function update($value);
-    function delete($id);
+    function update($data);
+    function delete($data);
 }

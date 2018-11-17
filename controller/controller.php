@@ -38,7 +38,7 @@ class Controller{
     }
     //redirect
 
-    header("location: ". VIEW_URL . $url);
+    header("location: ". FRONT_VIEW . $url);
   }
 
   public function render($path, $options = []) {

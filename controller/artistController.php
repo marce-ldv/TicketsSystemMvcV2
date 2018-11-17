@@ -17,15 +17,10 @@ class ArtistController extends Controller{
 	}
 
 	public function index () {
-		$artists = $this->artistDao->readAll();
-
-		$this->render("viewArtist/artists",[
-			"artists" => $artists
-		]);
+		$this->list();
 	}
 
-	public function save($artistData = [])
-	{
+	public function add ($artistData = []) {
 		$newArtist = new Artist(
 			'',
 			$artistData["nickname"],
@@ -34,38 +29,46 @@ class ArtistController extends Controller{
 
 		$this->artistDao->create($newArtist);
 
-		//$this->redirect("/artist/");
-		return $this->index();
+		$this->redirect("/artist/");
+		return;
+		//return $this->index();
 	}
 
-	public function create()
+/*	public function create()
 	{
 		if( ! $this->isLogged())
 		$this->redirect('/default/login');
 		else
 		$this->render("viewArtist/artists");
+	}*/
+
+	public function list()  {
+		if ( ! $this->isLogged()) {
+			$this->redirect('/default/login');
+		}
+		else {
+			$artists = $this->artistDao->readAll();
+			$this->render("viewArtist/artists",[
+				'artists' => $artists
+			]);
+		}
 	}
 
-	public function list() //listar todo
-  {
-    $listArtists = $this->artistDao->readAll();
 
-    if( ! $this->isLogged())
-    $this->redirect('/default/login');
-    else
-    $this->render("viewArtist/artists",array(
-      'listArtists' => $listArtists
-    ));
-	}
-
-
-	public function delete($data = [])
+	public function remove($data = [])
 	{
 		$searchedArtist = $this->artistDao->delete($data['id']);
 		$this->redirect("/artist/");
 	}
 
-	public function updateC($artistData = [])
+	public function viewEdit ($id) {
+		$searchedItem = $this->artistDao->read($id);
+		$this->render('viewArtist/updateArtist',[
+			'searchedItem' => $searchedItem
+		]);
+	}
+
+	public function modify($artistData = [])
 	{
 		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     	if (empty($artistData)) $this->redirect("/default/");
@@ -89,13 +92,6 @@ class ArtistController extends Controller{
 
 		$this->redirect('/artist/');
 
-	}
-
-	public function viewEditArtist($id){
-		$searchedArtist = $this->artistDao->read($id);
-		$this->render('viewArtist/updateArtist',[
-			'searchedArtist' => $searchedArtist
-		]);
 	}
 
 }

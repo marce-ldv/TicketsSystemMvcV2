@@ -9,7 +9,7 @@
         <!-- limita la cantidad de columnas de boostrap -->
         <div class="col-md-6 col-12">
 
-          <form action = "<?= VIEW_URL ?>/category/save" method="post">
+          <form action = "<?= FRONT_VIEW ?>/category/add" method="post">
 
             <div class="form-group">
               <label>Nombre de la categoria</label>
@@ -46,10 +46,15 @@
                 <th scope="row"> <?= $category->getIdCategory() ?> </th>
     			      <td><?= $category->getNameCategory() ?></td>
     			      <td>
-    							<!--<button class="btn btn-primary"> Editar </button>-->
-                  <!--<button class="btn btn-primary"> Eliminar </button>-->
-                  <td><a href="<?= VIEW_URL ?>/artist/updateC/<?= $value->getIdArtist() ?>" class="btn btn-primary"> Editar </a></td>
-                  <td><a href="<?= VIEW_URL ?>/artist/delete/<?= $value->getIdArtist() ?>" class="btn btn-primary"> Eliminar </a></td>
+
+                <a class="btn btn-primary" href="<?= FRONT_VIEW ?>/category/viewEdit/<?= $category->getIdCategory() ?>">Editar</a>
+
+                <form action="<?= FRONT_VIEW ?>/category/remove" method="post">
+                  <div class="form-group">
+                    <input type="hidden" value="<?= $category->getIdCategory() ?>" name="artistData[id]">
+                    <input type="submit" class="btn btn-danger" value="Eliminar"></input>
+                  </div>	
+                </form>
     						</td>
     			    </tr>
     				<?php }

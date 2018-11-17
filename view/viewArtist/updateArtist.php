@@ -15,27 +15,27 @@
 	<div class="row jusify-content-center">
 		<!-- limita la cantidad de columnas de boostrap -->
 			<div class="col-md-12 col-12">
-				<form action = "<?= VIEW_URL ?>/artist/updateC" method="post">
+				<form action = "<?= FRONT_VIEW ?>/artist/update" method="post">
 
 					<div class="form-group">
-				    <input value="<?= $searchedArtist->getNickname() ?>"
+				    <input value="<?= $searchedItem->getNickname() ?>"
 				    type="text" class="form-control" placeholder="Ingrese el nickname del artista" name="artistData[nickname]">
 				  </div>
 
 				  <div class="form-group">
-				    <input value="<?= $searchedArtist->getName() ?>"
+				    <input value="<?= $searchedItem->getName() ?>"
 				    type="text" class="form-control" placeholder="Ingrese el nombre del artista" name="artistData[name]">
 				  </div>
 
 					<div class="form-group">
-				    <input value="<?= $searchedArtist->getSurname() ?>"
+				    <input value="<?= $searchedItem->getSurname() ?>"
 				    type="text" class="form-control" placeholder="Ingrese el apellido del artista" name="artistData[surname]">
 				  </div>
 
-				  <input type="hidden" name="artistData[id]" value="<?= $searchedArtist->getIdArtist() ?>">
+				  <input type="hidden" name="artistData[id]" value="<?= $searchedItem->getIdArtist() ?>">
 			  <button type="submit" class="btn btn-primary col-md-4 ml-auto ">Modificar</button>
 			</form>
-			<a href="<?= VIEW_URL ?>/artist/list/ " type="submit" class="btn btn-primary col-md-4 ml-auto">Volver al listado</a>
+			<a href="<?= FRONT_VIEW ?>/artist/list/ " type="submit" class="btn btn-primary col-md-4 ml-auto">Volver al listado</a>
 
 		</div>
 </div>

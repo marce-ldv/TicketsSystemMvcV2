@@ -8,7 +8,7 @@
 			<div class="row jusify-content-center">
 				
 				<div class="col-md-6 col-12">
-					<form action = "<?= VIEW_URL ?>/artist/save" method="post">
+					<form action = "<?= FRONT_VIEW ?>/artist/add" method="post">
 						
 						<div class="form-group">
 							<label>Alias Artista</label>
@@ -55,9 +55,9 @@
 						<td><?= $artist->getSurname() ?></td>
 			      <td>
 
-							<a class="btn btn-primary" href="<?= VIEW_URL ?>/artist/viewEditArtist/<?= $artist->getIdArtist() ?>">Editar</a>
+							<a class="btn btn-primary" href="<?= FRONT_VIEW ?>/artist/viewEdit/<?= $artist->getIdArtist() ?>">Editar</a>
 
-							<form action="<?= VIEW_URL ?>/artist/delete" method="post">
+							<form action="<?= FRONT_VIEW ?>/artist/remove" method="post">
 								<div class="form-group">
 									<input type="hidden" value="<?= $artist->getIdArtist() ?>" name="artistData[id]">
 									<input type="submit" class="btn btn-danger" value="Eliminar"></input>

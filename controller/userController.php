@@ -15,7 +15,7 @@ class UserController extends Controller{
   }
 
   public function index(){
-    
+    return;
   }
 
 
@@ -25,13 +25,14 @@ class UserController extends Controller{
     if (empty($registerData)) $this->redirect("/default/");
 
     $user = new User(
+      '',
       $registerData["username"],
       $registerData["pass"],
       $registerData["email"],
       $registerData["name_user"],
       $registerData["surname"],
-      $registerData["dni"],
-      $registerData["profilePicture"]
+      $registerData["dni"]
+      //$registerData["profilePicture"]
     );
     $repository = $this->defaultDAO->getRepository(User::class);
     $criteria = [

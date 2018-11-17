@@ -18,57 +18,47 @@ class CategoryController extends Controller
 
   public function index()
   {
-      $categories = $this->categoryDao->readAll();
-
-      $this->render("viewCategory/categories",[
-        "categories" => $categories
-      ]);
+      $this->list();
   }
 
-  public function save($categoryData = [])
+  public function add($categoryData = [])
   {
 
-    $newCategory = new Category();
+    $category = new Category(
+      '',
+      $categoryData["name_category"]
+    );
 
-    $newCategory->setNameCategory($categoryData["name_category"]);
-
-    $this->categoryDao->create($newCategory);
+    $this->categoryDao->create($category);
 
     $this->redirect("/category/");
   }
 
-  public function create()
-  {
-    if( ! $this->isLogged())
-    $this->redirect('/default/login');
-    else
-    $this->render("viewCategory/categories");
-  }
-
-  public function list()
-  {
-    $listCategories = $this->categoryDao->readAll();
+  public function list() {
 
     if(! $this->isLogged())
-    $this->redirect('/default/login');
-    else
-    $this->render("viewCategory/categories",array(
-      'listCategories' => $listCategories
-    ));
+      $this->redirect('/default/login');
+    else {
+      $categories = $this->categoryDao->readAll();
+      $this->render("viewCategory/categories",[
+        'categories' => $categories
+      ]);
+    }
+    
   }
 
-  public function delete($id)
-	{
-		$searchedCategory = $this->categoryDao->delete($id);
+  public function remove($data)	{
+		$searchedItem = $this->categoryDao->delete($data['id']);
 		$this->redirect("/category/");
 	}
 
 
-  public function updateC($categoryData = [])
+  public function modify($categoryData = [])
   {
-    $newCategory = new Category();
-
-    $newCategory->setNameCategory($categoryData["name_category"]);
+    $category = new Category(
+      $categoryData['id'],
+      $categoryData["name_category"]
+    );
 
     try
     {
@@ -82,12 +72,17 @@ class CategoryController extends Controller
       echo $e->getMessage();
     }
 
-    $searchedArtist = $this->categoryDao->read($id_category); // categoria buscada
-
-    $this->render("viewCategory/updateCategory");
+    //$this->render("viewCategory/updateCategory");
 
     $this->redirect('/category/');
 
   }
+
+  public function viewEdit ($id) {
+    $searchedItem = $this->categoryDao->read($id);
+		$this->render('viewCategory/updateCategory',[
+			'searchedItem' => $searchedItem
+		]);
+	}
 
 }
