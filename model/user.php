@@ -117,7 +117,6 @@ class User implements \Serializable
     public function setProfilePicture($value):void
     {
       $this->profilePicture = $value;
-      return $this;
     }
 
 

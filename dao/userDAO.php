@@ -207,22 +207,6 @@ public function readByUser(&$user){
 	}
 }
 
-public function mapMethod($dataSet){
-
-	$dataSet = is_array($dataSet) ? $dataSet : false;
-
-	if($dataSet){
-		$this->listado = array_map(function ($p) {
-			$u = new Usuario(
-				$p['username'],
-				$p['pass'],
-				$p['email']);
-				$u->setId($p['id_usuario']);
-				return $u;
-			}, $dataSet);
-		}
-	}//mapMethod end
-
 public function mapMethod($dataSet)
 {
 	if (is_array($dataSet)) {

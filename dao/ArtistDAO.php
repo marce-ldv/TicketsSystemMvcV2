@@ -199,7 +199,7 @@ public function delete($id)
 					$p['id_artist'],
 					$p["name_artist"],
 					$p["nickname"],
-					$p["surname"],
+					$p["surname"]
 				);
 				$collection->add($u);
 			}

@@ -13,12 +13,11 @@ class UserController extends Controller{
     parent::__construct();
     $this->userDAO = new UserDAO();
   }
-  
-/*
+
   public function index(){
-    $this->indexView();
+    
   }
-*/
+
 
   public function register ($registerData = []) {
 
@@ -85,15 +84,14 @@ class UserController extends Controller{
 
     $this->session->token = $user->serialize();
 
-    //$this->redirect('/default/dashboard/');
+    $this->redirect('/default/dashboard/');
 
   }
 
   public function logout()
   {
     $this->session->destroy();
-    //$this->redirect('/');
-    $this->index();
+    $this->redirect('/');
   }
 
 
