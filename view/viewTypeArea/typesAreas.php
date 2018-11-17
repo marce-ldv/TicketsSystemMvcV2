@@ -9,7 +9,7 @@
         <!-- limita la cantidad de columnas de boostrap -->
         <div class="col-md-6 col-12">
 
-          <form action = "<?= FRONT_VIEW ?>/category/add" method="post">
+          <form action = "<?= FRONT_VIEW ?>/typeArea/add" method="post">
 
             <div class="form-group">
               <label>Nombre del tipo de plaza</label>
@@ -53,7 +53,7 @@
                   <div class="form-group">
                     <input type="hidden" value="<?= $item->getIdTypeArea() ?>" name="data[id]">
                     <input type="submit" class="btn btn-danger" value="Eliminar"></input>
-                  </div>	
+                  </div>
                 </form>
     						</td>
     			    </tr>

@@ -86,11 +86,11 @@
           <h2><a href="<?= FRONT_VIEW ?>/category/">Categorias</a></h2>
         </div>
         <div class="tab-pane fade" id="list-type-area" role="tabpanel" aria-labelledby="list-settings-list">
-          <h2><a href="<?= FRONT_VIEW ?>/default/">Tipo de area(tipo plaza) palco,platea</a></h2>
+          <h2><a href="<?= FRONT_VIEW ?>/typeArea/">Tipo de area(tipo plaza) palco,platea</a></h2>
         </div>
         <!-- <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><h2><a href="<?= FRONT_VIEW ?>/event/">Eventos</a></h2></div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/purchase/">Compras</a></h2></div>
-      
+
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/default/">Tipo de place event(Lugar de evento) capacidad 95000 personas, Estadio libertadores de america por ejemplo</a></h2></div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/eventArea/">Tipo de event area(asientos)</a></h2></div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/calendar/">Calendario</a></h2></div>

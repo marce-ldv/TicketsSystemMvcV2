@@ -2,13 +2,14 @@
 
 namespace controller;
 
+use model\TypeArea as TypeArea;
 use dao\TypeAreaDAO as TypeAreaDAO;
 use controller\Controller as Controller;
 
 class TypeAreaController extends Controller
 {
     private $controllerDao;
-    
+
     public function __construct () {
         parent::__construct();
         $this->controllerDao = TypeAreaDAO::getInstance();
@@ -18,10 +19,10 @@ class TypeAreaController extends Controller
         $this->list();
     }
 
-    public function add ($typeAreaData = []) {
+    public function add ($data = []) {
         $newTypeArea = new TypeArea(
             '',
-            $controllerDao["description"],
+            $data["description"]
         );
 
         $this->controllerDao->create($newTypeArea);
@@ -42,17 +43,41 @@ class TypeAreaController extends Controller
 			]);
 		}
     }
-    
+
     public function remove($data = []) {
 		$searchedItem = $this->controllerDao->delete($data['id']);
-		$this->redirect("/");
+		$this->redirect("/typeArea/");
 	}
 
 	public function viewEdit ($id) {
 		$searchedItem = $this->controllerDao->read($id);
-		$this->render('viewTypeAreas/updateTypearea',[
+		$this->render('viewTypeArea/updateTypeArea',[
 			'searchedItem' => $searchedItem
 		]);
+	}
+
+  public function modify($data = [])
+	{
+		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+		if (empty($data)) $this->redirect("/default/");
+		$item = new TypeArea(
+			$data["id"],
+			$data["description"]
+		);
+		try
+		{
+			$this->controllerDao->update($item);
+		}
+		catch(\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		catch(\Exception $e){
+			echo $e->getMessage();
+		}
+
+		$this->redirect('/typeArea/');
+
 	}
 
 } // <----- end CLASS
