@@ -8,10 +8,11 @@ class Category
   private $idCategory;
   private $nameCategory;
 
-/*  public function __construct($nameCategory)
+  public function __construct($idCategory="",$nameCategory="")
   {
+    $this->idCategory = $idCategory;
     $this->nameCategory = $nameCategory;
-  }*/
+  }
 
   //GETTERS
 
@@ -28,14 +29,12 @@ class Category
 
   //SETTERS
 
-  public function setIdCategory($value) {
+  public function setIdCategory($value) :void {
     $this->idCategory = $value;
-    return $this;
   }
 
-  public function setNameCategory($value) {
+  public function setNameCategory($value) :void {
     $this->nameCategory = $value;
-    return $this;
   }
 
 }

@@ -1,58 +1,40 @@
 <?php
 namespace model;
 
-use model\User;
 use helpers\Collection;
 use mode\LinePurchase;
 
 class Purchase
 {
-  private $id_purchases;
-  private $linesPurchases;
-  private $user;
+  private $idPurchase;
   private $datePurchase;
 
-  public function __construct () {
-    $this->linesPurchases = new Collection();
+  public function __construct ($idPurchase = "", $user = "", $datePurchase = "") {
+    $this->idPurchase = $idPurchase;
+    $this->datePurchase = $datePurchase;
   }
 
   //GETTERS
 
-  public function getId() {
-    return $this->id_purchase;
-  }
-
-  public function getUser()
-  {
-    return $this->user;
+  public function getIdPurchase() {
+    return $this->$idPurchase;
   }
 
   public function getDatePurchase() {
     return $this->datePurchase;
   }
 
-  public function getLinesPurchases () {
-    return $this->linesPurchases;
-  }
 
   //SETTERS
 
-  public function setUser(User $user)
+  public function setIdPurchase($idPurchase):void
   {
-    $this->user = $user;
-    return $this;
+    $this->idPurchase = $idPurchase;
   }
 
-  public function setDatePurchase($value)
+  public function setDatePurchase($value):void
   {
     $this->datePurchase = $value;
-    return $this;
-  }
-
-  //Collection
-  public function addLinePurchase (LinesPurchases $value) {
-    $this->linesPurchases->add($value);
-    return $this->linesPurchases;
   }
 
 }

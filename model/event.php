@@ -5,12 +5,13 @@ namespace model;
 
 class Event
 {
-  private $id_event;
+  private $idEvent;
   private $category;
   private $title;
 
   public function __construct($category, $title)
   {
+    $this->idEvent = $idEvent;
     $this->category = $category;
     $this->title = $title;
   }
@@ -19,7 +20,7 @@ class Event
 
   public function getIdEvent()
   {
-    return $this->id_event;
+    return $this->idEvent;
   }
 
   public function getCategory()
@@ -34,22 +35,19 @@ class Event
 
   //setters
 
-  public function setIdEvent($value)
+  public function setIdEvent($value):void
   {
-    $this->id_event = $value;
-    return $this;
+    $this->idEvent = $value;
   }
 
-  public function setCategory($value)
+  public function setCategory($value):void
   {
     $this->category = $value;
-    return $this;
   }
 
-  public function setTitleEvent($value)
+  public function setTitleEvent($value):void
   {
     $this->title = $value;
-    return $this;
   }
 
 }

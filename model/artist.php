@@ -8,12 +8,13 @@ class Artist
 	private $surname;
 	private $nickname;
 
-/*	public function __construct($name, $surname, $nickName)
+	public function __construct($idArtist = "",$name = "", $surname = "", $nickName = "")
 	{
+		$this->idArtist = $idArtist;
 		$this->name = $name;
 		$this->surname = $surname;
 		$this->nickName = $nickName;
-	}*/
+	}
 
     //GETTERS
 
@@ -27,38 +28,36 @@ class Artist
     	return $this->name;
     }
 
-		public function getSurname()
-		{
-			return $this->surname;
-		}
+	public function getSurname()
+	{
+		return $this->surname;
+	}
 
-		public function getNickname()
-		{
-			return $this->nickname;
-		}
+	public function getNickname()
+	{
+		return $this->nickname;
+	}
 
-		//SETTERS
+	//SETTERS
 
-		public function setIdArtist ($value) {
-			$this->idArtist = $value;
-			return $this;
-		}
+	public function setIdArtist ($value) : void
+	{
+		$this->idArtist = $value;
+	}
 
-		public function setName($value){
-			$this->name = $value;
-			return $this;
-		}
+	public function setName($value) :void
+	{
+		$this->name = $value;
+	}
 
-		public function setSurname($value)
-		{
-			$this->surname = $value;
-			return $this;
-		}
+	public function setSurname($value) :void
+	{
+		$this->surname = $value;
+	}
 
-		public function setNickname($value)
-		{
-			$this->nickname = $value;
-			return $this;
-		}
+	public function setNickname($value) :void
+	{
+		$this->nickname = $value;
+	}
 
 }
