@@ -3,21 +3,22 @@ namespace dao;
 /* type_areas(tipo plazas)  */
 
 use model\TypeArea as TypeArea;
-use interfaces\ICrud as Icrud;
+use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-class TypeAreaDAO extends SingletonDAO implements ICrud
+class TypeAreaDAO extends Singleton implements ICrud
 {
-  private $table = "type_areas";
   private $list = array();
   private static $instance;
   private $pdo;
 
   public function __construct()
   {
+    $this->table = "type_areas";
     $this->pdo = new Connection();
   }
-
+/*
   public function create(&$typeArea)
   {
     try
@@ -44,7 +45,7 @@ class TypeAreaDAO extends SingletonDAO implements ICrud
       throw $e;
     }
   }
-
+*/
   /*TODO: PROBAR READ Y READALL EN LA CONTROLADORA*/
 
   public function read($id)

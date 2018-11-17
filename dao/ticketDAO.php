@@ -5,8 +5,9 @@ namespace dao;
 use model\Ticket as Ticket;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-class TicketDAO extends SingletonDAO implements ICrud
+class TicketDAO extends Singleton implements ICrud
 {
 	private $table = "tickets";
 	private $list = array();

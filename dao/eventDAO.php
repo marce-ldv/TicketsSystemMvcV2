@@ -4,11 +4,11 @@ namespace dao;
 
 use model\Event as Event;
 use interfaces\ICrud as ICrud;
-use dao\SingletonDAO as SingletonDAO;
+use dao\Singleton as Singleton;
 use helpers\Collection as Collection;
 use dao\CategoryDAO as CategoryDAO;
 
-class EventDAO extends SingletonDAO implements ICrud
+class EventDAO extends Singleton implements ICrud
 {
 	private $table = "events";
 	private $list;

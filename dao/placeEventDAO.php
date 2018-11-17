@@ -5,8 +5,9 @@ namespace dao;
 use model\PlaceEvent as PlaceEvent;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-  class PlaceEventDAO implements ICrud
+  class PlaceEventDAO extends Singleton implements ICrud
   {
     private $table = "place_events";
   	private $list = array();

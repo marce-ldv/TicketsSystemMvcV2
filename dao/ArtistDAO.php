@@ -5,8 +5,9 @@ namespace dao;
 use model\Artist as Artist;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-class ArtistDAO extends SingletonDAO implements ICrud
+class ArtistDAO extends Singleton implements ICrud
 {
 	private $table = "artists";
 	private $list = array();

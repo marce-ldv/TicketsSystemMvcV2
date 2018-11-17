@@ -4,8 +4,9 @@ namespace dao;
 use model\EventArea as EventArea;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-class EventAreaDAO extends SingletonDAO implements ICrud
+class EventAreaDAO extends Singleton implements ICrud
 {
   private $table = "events_area";
 	private $list = array();

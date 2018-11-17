@@ -1,7 +1,7 @@
 <?php namespace dao;
 
 use dao\Connection as Connection;
-use dao\SingletonDAO as Singleton;
+use dao\Singleton as Singleton;
 use model\User as User;
 use interfaces\ICrud as ICrud;
 
