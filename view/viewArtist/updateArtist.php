@@ -35,11 +35,7 @@
 				  <input type="hidden" name="artistData[id]" value="<?= $searchedItem->getIdArtist() ?>">
 			  <button type="submit" class="btn btn-primary col-md-4 ml-auto ">Modificar</button>
 			</form>
-<<<<<<< HEAD
-			<a href="<?= VIEW_URL ?>/artist/list/ " type="submit" class="btn btn-danger col-md-4 ml-auto">Volver al listado</a>
-=======
 			<a href="<?= FRONT_VIEW ?>/artist/list/ " type="submit" class="btn btn-primary col-md-4 ml-auto">Volver al listado</a>
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
 		</div>
 </div>

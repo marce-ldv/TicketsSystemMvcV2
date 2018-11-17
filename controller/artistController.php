@@ -63,12 +63,7 @@ class ArtistController extends Controller{
 	public function modify($artistData = [])
 	{
 		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-<<<<<<< HEAD
-    	if (empty($artistData)) $this->redirect("/default/");
-
-=======
 		if (empty($artistData)) $this->redirect("/default/");
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 		$artist = new Artist(
 			$artistData["id"],
 			$artistData["nickname"],

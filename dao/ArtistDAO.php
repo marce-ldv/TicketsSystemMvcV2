@@ -27,16 +27,6 @@ class ArtistDAO extends SingletonDAO implements ICrud
 			$connection = Connection::connect(); // probar si funciona $connection = Connection::connect();
 			$statement = $connection->prepare($sql);
 
-<<<<<<< HEAD
-public function create(&$artist)
-{
-	try
-	{
-		$sql = "INSERT INTO $this->table (nickname, name_artist, surname) VALUES (:nickname, :name, :surname)";
-
-		$connection = Connection::connect();
-		$statement = $connection->prepare($sql);
-=======
 			$nickname = $artist->getNickname();
 			$name = $artist->getNameArtist();
 			$surname = $artist->getSurname();
@@ -46,7 +36,6 @@ public function create(&$artist)
 				":name_artist" => $name,
 				":surname" => $surname
 			));
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
 			return $connection->lastInsertId();
 		}
@@ -60,25 +49,13 @@ public function create(&$artist)
 		}
 	}
 
-<<<<<<< HEAD
-		$statement->execute(array(
-			":nickname" => $nickname,
-			":name" => $name,  
-			":surname" => $surname
-		));
-=======
 	/*TODO: PROBAR READ Y READALL EN LA CONTROLADORA*/
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
 	public function read($id)
 	{
 		try {
 
-<<<<<<< HEAD
-
-=======
 			$sql = "SELECT * FROM $this->table WHERE id_artist = $id";
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
 			$pdo = new Connection(); // <- en vez de esta y
 			$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
@@ -145,21 +122,12 @@ public function create(&$artist)
 		}
 	}
 
-<<<<<<< HEAD
-public function update($value)
-{
-
-	try
-	{
-		$sql = "UPDATE $this->table SET nickname = :nickname,name_artist = :name_artist,surname = :surname WHERE id_artist = :id ";
-=======
 	public function update($value)
 	{
 		//print_r($value);
 		try
 		{
 			$sql = "UPDATE $this->table SET nickname = :nickname,name_artist = :name_artist,surname = :surname WHERE id_artist = :id "; // le agregue el $ a this->table
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
 
 			$connection = Connection::connect();
 			$statement = $connection->prepare($sql);

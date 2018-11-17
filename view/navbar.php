@@ -11,15 +11,9 @@
           <?= $this->getToken()->getUsername(); ?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-<<<<<<< HEAD
           <a class="dropdown-item" href="<?= VIEW_URL ?>/default/dashboard">Menu principal</a>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/default/dashboard">ejemplo</a>
           <a class="dropdown-item" href="<?= VIEW_URL ?>/user/logout/">Salir</a>
-=======
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard">Dashboard</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard">asd</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/">Salir</a>
->>>>>>> 4b2ea1dd6a7b4a3191cea6faff4f87696823395b
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/artist/create">create</a>
         <?php  }?>
