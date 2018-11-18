@@ -14,7 +14,7 @@
                 <i class="fas fa-certificate"></i>
               </div>
               <div class="p-4 align-self-end">
-                <h3>CRUDS/CR A CREAR:</h3>
+                <h3>BIENVENIDOS:</h3>
                 <ul>
                   <label for="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio consectetur debitis odit!</label>
                 </ul>

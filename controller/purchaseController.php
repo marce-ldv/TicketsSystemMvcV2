@@ -14,12 +14,11 @@ class EventController extends Controller implements IAlmr{
 
 	private $controllerDao;
 
-	public function __construct()
-	{
-    parent::__construct();
-    $this->controllerDao = PurchaseDAO::getInstance();
-    $this->controllerDao = EventDAO::getInstance();
-    $this->controllerDao = CategoryDAO::getInstance();
+	public function __construct(){
+		parent::__construct();
+		$this->controllerDao = PurchaseDAO::getInstance();
+		$this->controllerDao = EventDAO::getInstance();
+		$this->controllerDao = CategoryDAO::getInstance();
 	}
 
 	public function index () {
@@ -31,8 +30,8 @@ class EventController extends Controller implements IAlmr{
 			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
 			$this->controllerDao->create([
 				"id_purchase" => $data["idPurchase"],
-        "user" => $data["user"],
-        "date_purchase" => $data["datePurchase"]
+				"user" => $data["user"],
+				"date_purchase" => $data["datePurchase"]
 			]);
 
 			$this->redirect("/purchase/");

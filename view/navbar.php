@@ -12,7 +12,7 @@
           <i class="fas fa-user-tie"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-eye"></i> Dashboard</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-compass fa-spin""></i> Dashboard</a>
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-circle"></i> Asdadsdsas</a>
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/"><i class="fas fa-sign-out-alt"></i> Salir</a>
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
