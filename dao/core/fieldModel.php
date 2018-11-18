@@ -10,4 +10,5 @@ class FieldModel
   public $getter;
   public $setter;
   public $hasRelation;
+  public 
 }

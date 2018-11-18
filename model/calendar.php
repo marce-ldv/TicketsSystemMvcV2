@@ -4,14 +4,14 @@ namespace model;
 
 class Calendar
 {
-  private $idCalendar;
+  private $id_calendar;
   private $event;
   private $placeEvent;
   private $dateStart;
   private $dateEnd;
 
-  public function __construct($idCalendar="", $event="", $placeEvent="", $dateEnd="", $dateStart=""){
-    $this->idCalendar = $idCalendar;
+  function __construct($event, $placeEvent, $dateEnd, $dateStart)
+  {
     $this->event = $event;
     $this->placeEvent = $placeEvent;
     $this->dateEnd = $dateEnd;
@@ -23,17 +23,19 @@ class Calendar
    */
   public function getIdCalendar()
   {
-      return $this->idCalendar;
+      return $this->id_calendar;
   }
 
   /**
-   * @param mixed $idCalendar
+   * @param mixed $id_calendar
    *
    * @return self
    */
-  public function setIdCalendar($idCalendar) :void
+  public function setIdCalendar($id_calendar)
   {
-      $this->idCalendar = $idCalendar;
+      $this->id_calendar = $id_calendar;
+
+      return $this;
   }
 
   /**
@@ -49,9 +51,11 @@ class Calendar
    *
    * @return self
    */
-  public function setEvent($event) :void
+  public function setEvent($event)
   {
       $this->event = $event;
+
+      return $this;
   }
 
   /**
@@ -67,9 +71,11 @@ class Calendar
    *
    * @return self
    */
-  public function setPlaceEvent($placeEvent) :void
+  public function setPlaceEvent($placeEvent)
   {
       $this->placeEvent = $placeEvent;
+
+      return $this;
   }
 
   /**
@@ -85,9 +91,11 @@ class Calendar
    *
    * @return self
    */
-  public function setDateStart($dateStart) :void
+  public function setDateStart($dateStart)
   {
       $this->dateStart = $dateStart;
+
+      return $this;
   }
 
   /**
@@ -106,6 +114,8 @@ class Calendar
   public function setDateEnd($dateEnd)
   {
       $this->dateEnd = $dateEnd;
+
+      return $this;
   }
 
 }

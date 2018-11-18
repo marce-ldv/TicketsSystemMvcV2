@@ -7,7 +7,7 @@
   <div class="row">
 
     <div class="col-md-12">
-      <h1 style="text-align:center;">Menu principal</h1>
+      <h1 style="text-align:center;">Dashboard</h1>
 
       <br>
 
@@ -36,8 +36,7 @@
             <img class="d-block w-100" src="<?= URL_IMG ?>evento4.jpg" alt="Third slide">
             <div class="carousel-caption d-none d-md-block">
               <h2>Recital</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
             </div>
           </div>
         </div>
@@ -56,50 +55,53 @@
   </div>
 </div> <!-- end container -->
 
-<br><br>
+<br>
 
 <div class="container">
   <div class="row">
-    <div class="col-4">
-      <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-artist" role="tab"
-          aria-controls="home">Artistas</a>
-        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-category"
-          role="tab" aria-controls="profile">Categorias</a>
-        <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-type-area"
-         role="tab" aria-controls="home">Tipo de area</a>
-         <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-event" role="tab" aria-controls="messages">Eventos</a>
-      <!-- <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Compras</a>
-      <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Tipo de area</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Lugar de evento</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Asientos</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="asd">Calendario</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="asd">...</a> -->
-      </div>
-    </div>
-    <div class="col-8">
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-artist" role="tabpanel" aria-labelledby="list-home-list">
-          <h2><a href="<?= FRONT_VIEW ?>/artist/">Artistas</a></h2>
-        </div>
-        <div class="tab-pane fade" id="list-category" role="tabpanel" aria-labelledby="list-profile-list">
-          <h2><a href="<?= FRONT_VIEW ?>/category/">Categorias</a></h2>
-        </div>
-        <div class="tab-pane fade" id="list-type-area" role="tabpanel" aria-labelledby="list-settings-list">
-          <h2><a href="<?= FRONT_VIEW ?>/typeArea/">Tipo de area(tipo plaza) palco,platea</a></h2>
-        </div>
-         <div class="tab-pane fade" id="list-event" role="tabpanel" aria-labelledby="list-messages-list"><h2><a href="<?= FRONT_VIEW ?>/event/">Eventos</a></h2></div>
-      <!-- <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/purchase/">Compras</a></h2></div>
 
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/default/">Tipo de place event(Lugar de evento) capacidad 95000 personas, Estadio libertadores de america por ejemplo</a></h2></div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/eventArea/">Tipo de event area(asientos)</a></h2></div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/calendar/">Calendario</a></h2></div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>-->
-
-      </div>
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewArtist/">Artistas</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
     </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewCategory/">Categorias</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewEvent/">Eventos</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewPurchase/">Compras</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewTypeArea/">Tipo de area(tipo plaza) palco,platea</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewPlaceEvent/">Tipo de place event(Lugar de evento) capacidad 95000 personas, Estadio libertadores de america por ejemplo</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2><a href="<?= VIEW_URL ?>/default/viewEventArea/">Tipo de event area(asientos)</a></h2>
+      <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+    </div>
+
+    <div class="col-md-6">
+      <h2>asd</h2>
+      <p>users (usuarios), categories (categorias), events(eventos),
+      artists, calendars(calendario), place_events (lugar_evento), type_areas(tipo plazas),
+      area_events (plaza evento), calendars_x_artists(calendarios por artistas),
+      purchases (compras), lines_purchases (lineas compras), tickets ya esta</p>
+    </div>
+
   </div>
-
 </div> <!-- end container -->
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

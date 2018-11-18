@@ -6,28 +6,25 @@ use model\EventAreas;
 
 class LinePurchase
 {
-  private $idLinePurchases;
-  private $purchases;
-  private $quantity;
-  private $price;
-
-  public __construct($idLinePurchases="",$purchases="",$quantity="",$price=""){
-    $this->idLinePurchases = $idLinePurchases;
-    $this->purchases = $purchases;
-    $this->quantity = $quantity;
-    $this->price = $price;
-  }
+  $id_line_purchases;
+  $purchases;
+  $event_areas;
+  $quantity;
+  $price;
 
   //GETTERS
-  public function getIdLinePurchases()
+  public function getId()
   {
-    return $this->idLinePurchases;
+    return $this->id_line_purchase;
   }
   public function getPurchases()
   {
     return $this->purchases;
   }
-
+  public function getEventAreas()
+  {
+    return $this->event_areas;
+  }
   public function getQuantity()
   {
     return $this->quantity;
@@ -38,22 +35,26 @@ class LinePurchase
   }
 
   //SETTERS
-
-  public setIdLinePurchases ($value) {
-    $this->idLinePurchases = $value;
-  }
-
-  public function setPurchases(Purchases $value):void
+  public function setPurchases(Purchases $value)
   {
     $this->purchases = $value;
+    return $this;
   }
 
-  public function setQuantity($value):void
+  // TODO: Implementar
+  public function setEventArea(EventAreas $eventAreas)
+  {
+    $this->eventAreas = $eventAreas;
+    return $this;
+  }
+  public function setQuantity($value)
   {
     $this->quantity = $value;
+    return $this;
   }
-  public function setPrice($value):void
+  public function setPrice($value)
   {
     $this->price = $value;
+    return $this;
   }
 }

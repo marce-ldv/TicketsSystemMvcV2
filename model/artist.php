@@ -3,61 +3,55 @@ namespace model;
 
 class Artist
 {
-	private $idArtist;
-	private $nameArtist;
+	private $id_artist;
+	private $name;
 	private $surname;
 	private $nickname;
-
-	public function __construct($idArtist = "",$nickname = "",$nameArtist = "", $surname = "")
-	{
-		$this->idArtist = $idArtist;
-		$this->nickname = $nickname;
-		$this->nameArtist = $nameArtist;
-		$this->surname = $surname;
-	}
 
     //GETTERS
 
     public function getIdArtist()
     {
-    	return $this->idArtist;
+    	return $this->id_artist;
     }
 
-    public function getNameArtist()
+    public function getName()
     {
-    	return $this->nameArtist;
+    	return $this->name;
     }
 
-	public function getSurname()
-	{
-		return $this->surname;
-	}
+		public function getSurname()
+		{
+			return $this->surname;
+		}
 
-	public function getNickname()
-	{
-		return $this->nickname;
-	}
+		public function getNickname()
+		{
+			return $this->nickname;
+		}
 
-	//SETTERS
+		//SETTERS
 
-	public function setIdArtist ($value) : void
-	{
-		$this->idArtist = $value;
-	}
+		public function setIdArtist ($value) {
+			$this->idArtist = $value;
+			return $this;
+		}
 
-	public function setNameArtist($value) :void
-	{
-		$this->nameArtist = $value;
-	}
+		public function setName($value){
+			$this->name = $value;
+			return $this;
+		}
 
-	public function setSurname($value) :void
-	{
-		$this->surname = $value;
-	}
+		public function setSurname($value)
+		{
+			$this->surname = $value;
+			return $this;
+		}
 
-	public function setNickname($value) :void
-	{
-		$this->nickname = $value;
-	}
+		public function setNickname($value)
+		{
+			$this->nickname = $value;
+			return $this;
+		}
 
 }

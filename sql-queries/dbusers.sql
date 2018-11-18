@@ -1,3 +1,7 @@
+/*users (usuarios), categories (categorias), events(eventos),
+artists, calendars(calendario), place_events (lugar_evento), type_areas(tipo plazas),
+area_events (plaza evento), calendars_x_artists(calendarios por artistas),
+purchases (compras), lines_purchases (lineas compras), tickets ya esta*/
 
 CREATE DATABASE dbusers;
 USE dbusers;
@@ -12,6 +16,9 @@ CREATE TABLE users(
   surname VARCHAR(50),
   dni VARCHAR(50),
   profile_picture VARCHAR(50),
+  id_facebook BIGINT,
+  id_twitter BIGINT,
+  id_google BIGINT,
   CONSTRAINT pk_id_user PRIMARY KEY (id_user),
   CONSTRAINT unq_dni UNIQUE (dni),
   CONSTRAINT uniq_username UNIQUE (username),
@@ -20,7 +27,7 @@ CREATE TABLE users(
 
 CREATE TABLE categories(
   id_category BIGINT UNSIGNED AUTO_INCREMENT,
-  name_category VARCHAR(50),
+  description VARCHAR(50),
   CONSTRAINT pk_id_category PRIMARY KEY (id_category)
 );
 
@@ -35,7 +42,7 @@ CREATE TABLE events(
 CREATE TABLE artists(
   id_artist BIGINT UNSIGNED AUTO_INCREMENT,
   nickname VARCHAR(50),
-  name_artist VARCHAR(50),
+  name VARCHAR(50),
   surname VARCHAR(50),
   CONSTRAINT id_artist PRIMARY KEY (id_artist),
   CONSTRAINT nickname UNIQUE (nickname)
@@ -44,13 +51,13 @@ CREATE TABLE artists(
 CREATE TABLE place_events(
   id_place_event BIGINT UNSIGNED AUTO_INCREMENT,
   capacity BIGINT NOT NULL,
-  _description VARCHAR(50),
+  description VARCHAR(50),
   CONSTRAINT pk_id_place_event PRIMARY KEY (id_place_event)
 );
 
 CREATE TABLE type_areas(
   id_type_area BIGINT UNSIGNED AUTO_INCREMENT,
-  _description VARCHAR(50),
+  description VARCHAR(50),
   CONSTRAINT pk_id_type_areas PRIMARY KEY (id_type_area)
 );
 

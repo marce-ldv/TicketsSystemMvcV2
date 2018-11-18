@@ -15,25 +15,21 @@ class UserController extends Controller{
   }
 
   public function index(){
-    return;
+    $this->indexView();
   }
-
 
   public function register ($registerData = []) {
 
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
-    $user = new User(
-      '',
-      $registerData["username"],
-      $registerData["pass"],
-      $registerData["email"],
-      $registerData["name_user"],
-      $registerData["surname"],
-      $registerData["dni"]
-      //$registerData["profilePicture"]
-    );
+      if( ! $this->userDao->readByUser($user) ){
+        $this->redirect('/default/index');
+      }
+
+
+
+    $user = new User();
     $repository = $this->defaultDAO->getRepository(User::class);
     $criteria = [
       "username" => $registerData["username"],
@@ -49,7 +45,14 @@ class UserController extends Controller{
      }
 
     $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
-    $user->setPass($hash);
+
+    $user->setUsername($registerData["username"])
+      ->setPass($hash)
+      ->setEmail($registerData["email"])
+      ->setNameUser($registerData["name_user"])
+      ->setSurname($registerData["surname"])
+      ->setDni($registerData["dni"])
+      ->setProfilePicture($registerData["profilePicture"]);
 
     $repository->create($user);
 
@@ -57,31 +60,29 @@ class UserController extends Controller{
   }
 
   //login
-  
+
   public function login($registerData = []){
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
-    
-    $user = new User(
-      '', //Id vacio
-      $registerData["username"],
-      '', //Contraseña vacia
-      $registerData["username"]      
-    ); 
 
-    if( ! $this->userDAO->readByUser($user) ) {
-        $this->redirect('/default/',[
-        'queMierdaPasa' => "PAsa algo en readByUser"
-      ]);
-      return;
-      }
+    /*$repository = $this->defaultDAO->getRepository(User::class);
 
-    if( ! password_verify($registerData["pass"],$user->getPass()) ){
-      $this->redirect('/default/',[
-        'alert' => "Password incorrecta"
-      ]);
-      return ;  
-    }  
+    $user = $repository->findOneBy([
+      'username' => $registerData['username'],
+      'email' => $registerData['username'],
+    ],"OR");*/
+    $user = new User();
+    $user->setUsername($registerData["username"]);
+
+    if( ! $this->userDAO->readByUsername($user) ) $this->redirect('/default/',[
+      'alert' => "Usuario no encontrado"
+    ]);
+
+    $hash = password_hash($registerData["pass"],PASSWORD_DEFAULT);
+    print_r($_SESSION);
+    if( ! password_verify($hash,$user->getPass()) )  $this->redirect('/home/',[
+      'alert' => "Password no coincide"
+    ]);
 
     $this->session->token = $user->serialize();
 

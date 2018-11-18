@@ -7,10 +7,9 @@ class TypeArea
     private $idTypeArea;
     private $descriptionTypeArea;
 
-    function __construct($idTypeArea = "", $descriptionTypeArea = "")
+    function __construct($descriptionTypeArea)
     {
-        $this->idTypeArea = $idTypeArea;
-        $this->descriptionTypeArea = $descriptionTypeArea;
+        $this->$descriptionTypeArea = $descriptionTypeArea;
     }
 
 // getters
@@ -27,13 +26,17 @@ class TypeArea
 
 //setters
 
-    public function setIdTypeArea($idTypeArea):void
+    public function setIdTypeArea($idTypeArea)
     {
         $this->idTypeArea = $idTypeArea;
+
+        return $this;
     }
 
-    public function setDescriptionTypeArea($descriptionTypeArea):void
+    public function setDescriptionTypeArea($descriptionTypeArea)
     {
         $this->descriptionTypeArea = $descriptionTypeArea;
+
+        return $this;
     }
 }

@@ -13,9 +13,12 @@ class User implements \Serializable
     private $surname;
     private $dni;
     private $profilePicture;
+    private $idFacebook;
+    private $idTwitter;
+    private $idGoogle;
 
-    public function __construct ($idUser = "", $username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
-      $this->idUser = $idUser;
+
+    public function __construct ($username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
       $this->username = $username;
       $this->pass = $pass;
       $this->email = $email;
@@ -26,6 +29,7 @@ class User implements \Serializable
     }
 
     //SERIALIZE METHODS
+
     public function serialize(){
         return serialize([
             $this->username,
@@ -75,49 +79,69 @@ class User implements \Serializable
     {
       return $this->dni;
     }
-
-    public function getProfilePicture()
+    public function getIdFacebook()
+    {
+      return $this->idFacebook;
+    }
+    public function getIdTwitter()
+    {
+      return $this->idTwitter;
+    }
+    public function getIdGoogle()
+    {
+      return $this->idGoogle;
+    }
+    /*public function getProfilePicture()
     {
       return $this->profilePicture;
-    }
+    }*/
 
     //SETTERS
-    public function setIdUser($value):void {
+    public function setIdUser($value) {
       $this->idUser = $value;
+      return $this;
     }
 
-    public function setRoleUser($value):void
+    public function setRoleUser($value)
     {
       $this->roleUser = $value;
+      return $this;
     }
-    public function setUsername($value):void
+    public function setUsername($value)
     {
       $this->username = $value;
+      return $this;
     }
-    public function setPass($value):void
+    public function setPass($value)
     {
       $this->pass = $value;
+      return $this;
     }
-    public function setEmail($value):void
+    public function setEmail($value)
     {
       $this->email = $value;
+      return $this;
     }
-    public function setNameUser($value):void
+    public function setNameUser($value)
     {
       $this->nameUser = $value;
+      return $this;
     }
-    public function setSurname($value):void
+    public function setSurname($value)
     {
       $this->surname = $value;
+      return $this;
     }
-    public function setDni($value):void
+    public function setDni($value)
     {
       $this->dni = $value;
+      return $this;
     }
-    public function setProfilePicture($value):void
+  /*  public function setProfilePicture($value)
     {
       $this->profilePicture = $value;
-    }
+      return $this;
+    }*/
 
 
 }

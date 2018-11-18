@@ -1,4 +1,5 @@
 <?php include(URL_VIEW . 'navbar.php'); ?>
+
 <!-- HOME -->
 <header id="home-section">
   <div class="dark-overlay">
@@ -68,7 +69,7 @@
 
                 <h3>Iniciar Sesion.</h3>
                 <p>Ingrese su usuario o email, y la contraseña para ingresar al sistema.</p>
-                <form action="<?= FRONT_VIEW ?>/user/login/" method="post">
+                <form action="<?= VIEW_URL ?>/user/login/" method="post">
 
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
@@ -288,7 +289,7 @@
 
               <div class="col-md-6">
 
-                <form action="<?= FRONT_VIEW ?>/phpmailer/send/" method="post">
+                <form action="<?= VIEW_URL ?>/phpmailer/send/" method="post">
 
                   <fieldset class="form-group">
                     <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
@@ -338,7 +339,7 @@
         <div class="modal-body card-body">
           <h3>Registrate.</h3>
           <p>Ingrese su usuario o email, y la contrasena para ingresar al sistema.</p>
-          <form action="<?= FRONT_VIEW ?>/user/register/" method="post">
+          <form action="<?= VIEW_URL ?>/user/register/" method="post">
 
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
@@ -370,10 +371,7 @@
             </div>
 
             <div class="form-group">
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="registerData[avatar]">
-                <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-              </div>
+              <input type="file" class="form-control form-control-lg" value="Subir imagen" name="registerData[avatar]">
             </div>
 
             <input type="submit" value="Registrarse" class="btn btn-outline-light btn-block">

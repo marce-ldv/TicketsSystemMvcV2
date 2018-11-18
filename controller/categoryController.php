@@ -5,94 +5,46 @@ namespace controller;
 use model\Category as Category;
 use dao\CategoryDAO as CategoryDAO;
 use controller\Controller as Controller;
-use interfaces\IAlmr as IAlmr;
 
-class CategoryController extends Controller implements IAlmr
+class CategoryController extends Controller
 {
-  private $controllerDao;
+  private $categoryDao;
 
   function __construct()
   {
     parent::__construct();
-    $this->controllerDao = CategoryDAO::getInstance();
+    $this->categoryDao = CategoryDAO::getInstance();
   }
 
   public function index()
   {
-    $this->list();
-  }
-
-  public function add ($data = []) {
-    //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-    $this->controllerDao->create([
-      "name_category" => $data["name_category"]
-    ]);
-
-    $this->redirect("/category/");
-
-    return;
-  }
-
-  public function list () {
-    if ( ! $this->isLogged()) {
-      $this->redirect('/default/login');
-    }
-    else {
-
-      $items = $this->controllerDao->readAll();
-
-      $items = $this->controllerDao->mapMethodCollection($items);
+      $categories = $this->categoryDao->readAll();
 
       $this->render("viewCategory/categories",[
-        'items' => $items
+        "categories" => $categories
       ]);
-    }
   }
 
-  public function remove($data = []) {
+  public function save($categoryData)
+  {
+    $newCategory = new Category();
 
-    $this->controllerDao->delete([
-      "id_category" => $data['id']
-    ]);
+    $newCategory->setDescription($categoryData["description"]);
+
+    $this->categoryDao->create($newCategory);
 
     $this->redirect("/category/");
   }
 
-  public function viewEdit ($id) {
-
-    $searchedItem = $this->controllerDao->read([
-      "id_category" => $id
-    ]);
-
-    $searchedItem = $this->controllerDao->mapMethod($searchedItem);
-
-    $this->render('viewCategory/updateCategory',[
-      'searchedItem' => $searchedItem
-    ]);
-  }
-
-  public function modify($data = [])
+  public function list()
   {
-    if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-    if (empty($data)) $this->redirect("/default/");
+    $listCategories = $this->categoryDao->readAll();
 
-    try
-    {
-      $this->controllerDao->update([
-        "name_category" => $data["name_category"]
-      ],[
-        "id_category" => $data["id"]
-      ]);
-    }
-    catch(\PDOException $e)
-    {
-      echo $e->getMessage();
-    }
-    catch(\Exception $e){
-      echo $e->getMessage();
-    }
-
-    $this->redirect('/category/');
-
+    if(! $this->isLogged())
+    $this->redirect('/default/login');
+    else
+    $this->render("viewCategory/listCategory",array(
+      'listCategories' => $listCategories
+    ));
   }
 }

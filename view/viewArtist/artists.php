@@ -6,13 +6,13 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12 col-12">
 			<div class="row jusify-content-center">
-
+				<!-- limita la cantidad de columnas de boostrap -->
 				<div class="col-md-6 col-12">
-					<form action = "<?= FRONT_VIEW ?>/artist/add" method="post">
-
+					<form action = "<?= VIEW_URL ?>/artist/save" method="post">
+						<!-- este es el form donde se ingresa el nombre del artista -->
 						<div class="form-group">
 							<label>Alias Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el alias del artista" name="registerData[nickname]">
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="registerData[nickname]">
 						</div>
 						<div class="form-group">
 							<label>Nombre Artista</label>
@@ -20,7 +20,7 @@
 						</div>
 						<div class="form-group">
 							<label>Apellido Artista</label>
-							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el apellido del artista" name="registerData[surname]">
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del artista" name="registerData[surname]">
 						</div>
 						<button type="submit" class="btn btn-success">Agregar</button>
 					</form>
@@ -40,33 +40,23 @@
 			  <thead>
 			    <tr>
 			      <th scope="col">Nickname</th>
-			      <th scope="col">Nombre</th>
-			      <th scope="col">Apellido</th>
+			      <th scope="col">Name</th>
+			      <th scope="col">Surname</th>
 						<th scope="col">Accion</th>
 			    </tr>
 			  </thead>
 				<tbody>
-				<?php
-				if(isset($items)){
-				 foreach ($items as $item) {?>
+				<?php foreach ($artists as $artist) {?>
 					<tr>
-			      <td><?= $item->getNickname() ?></td>
-			      <td><?= $item->getNameArtist() ?></td>
-						<td><?= $item->getSurname() ?></td>
+			      <td><?= $artist->getNickname() ?></td>
+			      <td><?= $artist->getName() ?></td>
+						<td><?= $artist->getSurname() ?></td>
 			      <td>
-
-							<a class="btn btn-primary" href="<?= FRONT_VIEW ?>/artist/viewEdit/<?= $item->getIdArtist() ?>">Editar</a>
-
-							<form action="<?= FRONT_VIEW ?>/artist/remove" method="post">
-								<div class="form-group">
-									<input type="hidden" value="<?= $item->getIdArtist() ?>" name="artistData[id]">
-									<input type="submit" class="btn btn-danger" value="Eliminar"></input>
-								</div>
-						</form>
+							<button class="btn btn-primary"> Editar </button>
+							<button class="btn btn-danger">Eliminar</button>
 						</td>
 			    </tr>
-				<?php }
-						} ?>
+				<?php } ?>
 			  </tbody>
 			</table>
 		</div>

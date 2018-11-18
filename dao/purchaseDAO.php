@@ -1,7 +1,7 @@
 <?php namespace dao;
 
 use dao\Connection as Connection;
-use dao\Singleton as Singleton;
+use dao\SingletonDAO as Singleton;
 use dao\UserDAO as UserDAO;
 use model\User as User;
 use model\Purchase as Purchase;

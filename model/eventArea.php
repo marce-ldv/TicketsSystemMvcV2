@@ -6,16 +6,12 @@ namespace model;
 
 class EventArea
 {
-  private $idEventArea;
-  private $typeArea;
-  private $calendar;
-  private $quantityAvaliable;
-  private $price;
-  private $remainder;
-
-  public __construct($idEventArea="",$typeArea="",$calendar="",$quantityAvaliabl="",$price="",$remainder=""){
-
-  }
+  $id_event_area;
+  $typeArea;
+  $calendar;
+  $quantityAvaliable;
+  $price;
+  $remainder;
 
   //GETTER
   public function getIdEventArea()
@@ -50,35 +46,42 @@ class EventArea
 
   //SETTERS
 
-  public function setIdEventArea($value) : void
+  public function setIdEventArea($value)
   {
     $this->id_event_area = $value;
+    return $this;
   }
 
   //modificas el id
-  public function setTypeArea($value) : void
+  public function setTypeArea($value)
   {
     $this->typeArea = $value;
+    return $this;
   }
 
   //modificas el id
-  public function setCalendar($value) : void
+  public function setCalendar($value)
   {
     $this->calendar = $value;
+    return $this;
+
   }
 
-  public function setQuantityAvaliable($value) : void
+  public function setQuantityAvaliable($value)
   {
     $this->quantityAvaliable = $value;
+    return $this;
   }
 
-  public function setPrice($value) : void
+  public function setPrice($value)
   {
     $this->price = $value;
+    return $this;
   }
 
-  public function setRemainder($value) : void
+  public function setRemainder($value)
   {
     $this->remainder = $value;
+    return $this;
   }
 }

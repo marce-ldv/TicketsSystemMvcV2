@@ -10,27 +10,6 @@ use config\Request as Request;
 use config\Router as Router;
 use helpers\Session as Session;
 
-
-//##################################################
-if ( ! function_exists('array_key_first')) {
-    /**
-     * Gets the first key of an array
-     *
-     * @param array $array
-     * @return mixed
-     */
-    function array_key_first(array $array)
-    {
-        if (count($array)) {
-            reset($array);
-            return key($array);
-        }
-
-        return null;
-    }
-}
-////
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
