@@ -9,22 +9,23 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?= $this->getToken()->getUsername(); ?>
+          <i class="fas fa-user-tie"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard">Dashboard</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard">asd</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/">Salir</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-eye"></i> Dashboard</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-circle"></i> Asdadsdsas</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/"><i class="fas fa-sign-out-alt"></i> Salir</a>
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/artist/create">create</a>
         <?php  }?>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_VIEW ?>/user/logout/"> <span class="cart-icon icon-shopping-cart">Carrito</span> </a>
+        <a class="nav-link" href="<?= FRONT_VIEW ?>/purchase/"> <span class="cart-icon icon-shopping-cart">Carrito <i class="fas fa-cart-plus"></i></span> </a>
       </li>
       <?php }else {?>
       <li class="nav-item">
-        <a class="nav-link js-scroll-trigger" href="#home-section">Inicio</a>
+        <a class="nav-link js-scroll-trigger" href="#home-section">Inicio </a>
       </li>
       <li class="nav-item">
         <a class="nav-link js-scroll-trigger" href="#info">Contacto</a>

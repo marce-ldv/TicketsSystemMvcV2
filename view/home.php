@@ -16,15 +16,7 @@
               <div class="p-4 align-self-end">
                 <h3>CRUDS/CR A CREAR:</h3>
                 <ul>
-                  <li>Terminar el de crear artista (CRUD) artistController</li>
-                  <li>Carrito de comprar (session y no es un crud, solo CR)</li>
-                  <li>CRUD para los tipos de plazas typeareaController || usar helpers (typeAreaController) convertCase</li>
-                  <li>CRUD para las plazas areaController (tipo)</li>
-                  <li>CRUD de categorias categoryController ()</li>
-                  <li>CRUD de lugar de evento eventareaController() || usar helpers (eventAreaController) convertCase</li>
-                  <li>CRUD para eventos  eventController</li>
-                  <li>CRUD PLACE EVENT para saber cuantos tickets se tienen que vender</li>
-                  <li>CRUD type Area, o sea tipo de asiento</li>
+                  <label for="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio consectetur debitis odit!</label>
                 </ul>
               </div>
             </div>
@@ -71,7 +63,9 @@
                 <form action="<?= FRONT_VIEW ?>/user/login/" method="post">
 
                   <div class="form-group">
+                  
                     <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
+                    
                   </div>
 
                   <div class="form-group">
@@ -85,7 +79,7 @@
                   Registrate
                 </button>
 
-                <button type="button" class="fb-login-button btn btn-primary" onclick="login()" name="button">Login con Facebook</button>
+                <button type="button" class="fb-login-button btn btn-primary" onclick="login()" name="button"><i class="fab fa-facebook-f"></i> Entra con facebook</button>
 
 
               </div>
