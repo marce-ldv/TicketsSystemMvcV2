@@ -8,8 +8,8 @@
 			<div class="row jusify-content-center">
 				<!-- limita la cantidad de columnas de boostrap -->
 				<div class="col-md-6 col-12">
-					<form action = "<?= VIEW_URL ?>/artist/save" method="post">
-						
+					<form action = "<?= FRONT_VIEW ?>/artist/save" method="post">
+
             <div class="form-group">
 							<label>Nombre del evento</label>
 							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del evento" name="data[name]">

@@ -8,7 +8,7 @@
             <div class="row jusify-content-center">
 
                 <div class="col-md-6">
-                    <form action="<?= VIEW_URL ?>calendar/method/" method="post">
+                    <form action="<?= FRONT_VIEW ?>calendar/method/" method="post">
 
                         <div class="form-group">
                             <label for="inlineFormCustomSelect">Elegir evento</label>
