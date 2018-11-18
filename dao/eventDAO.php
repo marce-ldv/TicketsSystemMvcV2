@@ -13,214 +13,50 @@ class EventDAO extends Singleton implements ICrud
 	private $table = "events";
 	private $list;
 	private static $instance;
+	private $categoryDao;
 	private $pdo;
 
 	public function __construct()
 	{
 		$this->pdo = new Connection();
 		$this->list = new Collection();
+		$this->categoryDao = CategoryDAO::getInstance();
 	}
 
-
-	public function create(&$value)
+	public function mapMethodCollection($dataSet)
 	{
-		try
-		{
-			$sql = "INSERT INTO $this->table (category, title)  VALUES (:category, :title)";
-
-			$connection = Connection::connect(); // crea la coneccion a la bbdd
-			$statement = $connection->prepare($sql);
-
-			$category = $value->getCategory();
-			$idCategory = $category->getIdCategory();
-
-			$title = $value->getTitleEvent();
-
-/*			$statement->bindParam(":category" , $category);
-			$statement->bindParam(":title" , $title);*/
-
-			$statement->execute(array(
-				":category" => $idCategory,
-				":title" => $title,
-			));
-
-			return $connection->lastInsertId();
+		$collection = new Collection();
+		foreach ($dataSet as $p) {
+			$category = $this->categoryDao->read($p['id_category']);
+			$category = $this->mapMethod($category);
+			$u = new Event(
+				$p['id_event'],
+				//$p["id_category"],
+				$category,
+				$p["title"]
+			);
+			$collection->add($u);
 		}
-		catch(\PDOException $e)
-		{
-			throw $e;
-		}
-		catch(Exception $e)
-		{
-			throw $e;
-		}
+
+		return $collection;
 	}
+	/*id_event BIGINT UNSIGNED AUTO_INCREMENT,
+	id_category BIGINT UNSIGNED,
+	title VARCHAR(50) NOT NULL,*/
 
-	public function read($id)
-	{
-		try {
+	public function mapMethod ($dataSet) {
 
-			$sql = "SELECT * FROM $this->table WHERE id_event = $id";
+		$p = $dataSet;
 
-			$pdo = new Connection(); // <- en vez de esta y
-			$connection = $pdo->connect(); // esta linea se puede poner $connection = Connection::connect();
-			$statement = $connection->prepare($sql);
+		$category = $this->categoryDao->read($p['id_category']);
+		$category = $this->mapMethod($category);
 
-			$statement->execute();
-
-			$dataSet[] = $statement->fetch(\PDO::FETCH_ASSOC);
-
-			// como siempre va a traer un solo objeto pongo dataSet[0] ya que estoy parado en el primer lugar
-			if($dataSet[0])
-			{
-				$this->mapMethod($dataSet);
-			}
-
-			if(!empty($this->list[0]))
-			{
-				return $this->list[0];
-			}
-
-			return false;
-
-		}
-		catch (\PDOException $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-		catch (Exception $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-
-	}
-
-	//TODO: Hacer que devuelva un collection vacio
-	public function readAll()
-	{
-		try
-		{
-			$sql = "SELECT * FROM $this->table";
-
-			$connection = Connection::connect();
-			$statement = $connection->prepare($sql);
-
-			$statement->execute();
-
-			$dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-			$this->mapMethod($dataSet);
-
-			return $this->list;
-		}
-		catch(\PDOException $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-		catch(Exception $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-	}
-
-	public function update($value)
-	{
-		try
-		{
-			$sql = "UPDATE $this->table SET category = :category AND title = :title WHERE id_artist = :id ";
-
-			$connection = Connection::connect();
-			$statement = $connection->prepare($sql);
-
-			$category = $value->getCategory();
-			$idCategory = $category->getIdCategory();
-			$title = $value->getTitleEvent();
-			$id = $value->getIdEvent();
-
-			$statement->bindParam(":category",$idCategory);
-			$statement->bindParam(":title",$title);
-			$statement->bindParam(":id",$id);
-
-			$statement->execute();
-		}
-		catch(\PDOException $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-		catch(Exception $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-	}
-
-	public function delete($id)
-	{
-		try
-		{
-			$sql = "DELETE FROM $this->table WHERE id_event = :id "; // si es un string poner \" $id \";
-
-			$connection = Connection::connect();
-			$statement = $connection->prepare($sql);
-
-			$statement->execute(array(
-  			":id" => $id,
-    ));
-
-		}catch(\PDOException $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-		catch(Exception $e)
-		{
-			echo $e->getMessage();
-			die();
-		}
-	}
-
-
-	// dataSet: conjunto de datos
-	public function mapMethod($dataSet)
-	{
-		$dataSet = is_array($dataSet) ? $dataSet : false;
-
-		if($dataSet)
-		{
-			$collection = new Collection();
-
-			foreach ($dataSet as $p) {
-
-				/*$categoryDAO = new CategoryDAO();
-				$category = $categoryDAO->read($p['id_categoria']);
-				$event = new Event($category, $p['titulo']);
-
-				$event->setIdEvent($p['id_event']);
-
-				return $event;*/
-
-				$u = new Event();
-
-				//$eventDAO = new EventDAO();
-				//$event = $eventDAO->read($p["id_event"]);
-
-				$category = $u->getCategory();
-				$idCategory = $category->getIdCategory();
-
-				$u->setIdEvent($p["id_event"])
-				->setCategory($idCategory)
-				->setTitleEvent($p["title"]);
-
-				$collection->add($u);
-			}
-
-			$this->list = $collection;
-		}
-
+		$u = new Event(
+			$p['id_event'],
+			//$p["id_category"],
+			$category,
+			$p["title"]
+		);
+		return $u;
 	}
 }

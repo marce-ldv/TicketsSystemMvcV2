@@ -7,90 +7,95 @@ use dao\EventDAO as EventDAO;
 use controller\Controller as Controller;
 use interfaces\IAlmr as IAlmr;
 
-class EventController extends Controller implements IAlmr
-{
-  private $eventDao;
+class EventController extends Controller implements IAlmr{
 
-  public function __construct()
-  {
-    parent::__construct();
-    $this->eventDAO = EventDAO::getInstance();
-  }
+	private $controllerDao;
 
-  public function index () {
-    $events = $this->eventDAO->readAll();
+	public function __construct()
+	{
+		parent::__construct();
+		$this->controllerDao = EventDAO::getInstance();
+	}
 
-    $this->render("viewEvent/events",[
-      "events" => $events
-    ]);
-  }
-
-  public function add($category, $title)
-  {
-
-    $newEvent = new Event($category, $title);
-
-    try{
-      $this->eventDao->create($newEvent);
-
-    }catch(\PDOException $e){
-      echo $e->getMessage();
-    }catch(\Exception $e){
-      echo $e->getMessage();
-    }
-
-    $this->render("viewEvent/createEvent");
-  }
-
-  public function list() //listar todo
-  {
-    $listEvents = $this->eventDao->readAll();
-
-    if( ! $this->isLogged())
-    $this->redirect('/default/login');
-    else
-    $this->render("viewEvent/listEvent",array(
-      'listEvent' => $listEvent
-    ));
-
-  }
-
-  public function delete($id)
-  {
-    $searchedEvent = $this->eventDao->delete($id);
-    $this->list(); // reutilizo el list()
-  }
+	public function index () {
+		$this->list();
+	}
 
 
-  public function modify($category,$title)
-  {
-    $event = new Event($category, $title);
-    try
-    {
-      $this->eventDao->update($event);
-    }
-    catch(\PDOException $e)
-    {
-      $mensaje['mensaje'] = "UPS! ERROR PDO: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $mensaje['tipo'] = "danger";
-    }
-    catch(\Exception $e){
-      $mensaje['mensaje'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $mensaje['tipo'] = "danger";
-    }
+	public function add ($data = []) {
+			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
+			$this->controllerDao->create([
+				"id_category" => $data["idCategory"],
+				"title" => $data["title"]
+			]);
 
-    $searchedEvent = $this->eventDao->read($id_event); // evento buscado
+			$this->redirect("/event/");
 
-    $this->render("viewEvent/updateEvent");
+			return;
+	}
 
-    require(URL_VIEW . "viewEvent/updateEvent.php");
-  }
+	public function list () {
+	if ( ! $this->isLogged()) {
+		$this->redirect('/default/login');
+	}
+	else {
 
-  public function viewEdit ($id) {
-		$searchedItem = $this->controllerDao->read($id);
-		$this->render('viewTypeArea/updateTypeArea',[
-			'searchedItem' => $searchedItem
+		$items = $this->controllerDao->readAll();
+
+		$items = $this->controllerDao->mapMethodCollection($items);
+
+		$this->render("viewEvent/events",[
+			'items' => $items
 		]);
 	}
+	}
+
+	public function remove($data = []) {
+
+	$this->controllerDao->delete([
+		"id_event" => $data['idEvent']
+	]);
+
+	$this->redirect("/event/");
+}
+
+public function viewEdit ($id) {
+
+	$searchedItem = $this->controllerDao->read([
+		"id_event" => $id
+	]);
+
+	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+
+	$this->render('viewEvent/updateEvent',[
+		'searchedItem' => $searchedItem
+	]);
+}
+
+public function modify($data = [])
+{
+	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+	if (empty($data)) $this->redirect("/default/");
+
+  try
+	{
+		$this->controllerDao->update([
+			"id_category" => $data["idCategory"],
+			"title" => $data["title"]
+		],[
+			"id_event" => $data["idEvent"]
+		]);
+	}
+	catch(\PDOException $e)
+	{
+		echo $e->getMessage();
+	}
+	catch(\Exception $e){
+		echo $e->getMessage();
+	}
+
+	$this->redirect('/event/');
+
+}
 
 }

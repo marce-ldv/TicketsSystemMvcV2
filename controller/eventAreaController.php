@@ -2,18 +2,18 @@
 
 namespace controller;
 
-use model\TypeArea as TypeArea;
-use dao\TypeAreaDAO as TypeAreaDAO;
+use model\EventArea as EventArea;
+use dao\EventAreaDAO as EventAreaDAO;
 use controller\Controller as Controller;
 use interfaces\IAlmr as IAlmr;
 
-class TypeAreaController extends Controller implements IAlmr
+class EventAreaController extends Controller implements IAlmr
 {
     private $controllerDao;
 
     public function __construct () {
         parent::__construct();
-        $this->controllerDao = TypeAreaDAO::getInstance();
+        $this->controllerDao = EventAreaDAO::getInstance();
     }
 
     public function index () {
@@ -23,10 +23,14 @@ class TypeAreaController extends Controller implements IAlmr
     public function add ($data = []) {
         //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
         $this->controllerDao->create([
-          "_description" => $data["description"]
+          "id_type_area" => $data["idTypeArea"],
+          "id_calendar" => $data["idCalendar"],
+          "quantity_avaliable" => $data["quantityAvaliable"],
+          "price" => $data["price"],
+          "remainder" => $data["remainder"]
         ]);
 
-        $this->redirect("/typeArea/");
+        $this->redirect("/eventArea/");
 
         return;
     }
@@ -41,7 +45,7 @@ class TypeAreaController extends Controller implements IAlmr
 
       $items = $this->controllerDao->mapMethodCollection($items);
 
-			$this->render("viewTypeArea/typesAreas",[
+			$this->render("viewEventArea/EventsAreas",[
 				'items' => $items
 			]);
 		}
@@ -50,21 +54,21 @@ class TypeAreaController extends Controller implements IAlmr
     public function remove($data = []) {
 
 		$this->controllerDao->delete([
-      "id_type_area" => $data['id']
+      "id_event_area" => $data['idEventArea']
     ]);
 
-		$this->redirect("/typeArea/");
+		$this->redirect("/eventArea/");
 	}
 
 	public function viewEdit ($id) {
 
 		$searchedItem = $this->controllerDao->read([
-      "id_type_area" => $id
+      "id_event_area" => $id
     ]);
 
     $searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
-		$this->render('viewTypeArea/updateTypeArea',[
+		$this->render('viewEventArea/updateEventArea',[
 			'searchedItem' => $searchedItem
 		]);
 	}
@@ -77,9 +81,13 @@ class TypeAreaController extends Controller implements IAlmr
 		try
 		{
 			$this->controllerDao->update([
-        "_description" => $data["description"]
+        "id_type_area" => $data["idTypeArea"],
+        "id_calendar" => $data["idCalendar"],
+        "quantity_avaliable" => $data["quantityAvaliable"],
+        "price" => $data["price"],
+        "remainder" => $data["remainder"]
       ],[
-        "id_type_area" => $data["id"]
+        "id_event_area" => $data["idEventArea"]
       ]);
 		}
 		catch(\PDOException $e)
@@ -90,7 +98,7 @@ class TypeAreaController extends Controller implements IAlmr
 			echo $e->getMessage();
 		}
 
-		$this->redirect('/typeArea/');
+		$this->redirect('/eventArea/');
 
 	}
 

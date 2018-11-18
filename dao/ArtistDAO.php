@@ -9,16 +9,16 @@ use dao\Singleton as Singleton;
 
 class ArtistDAO extends Singleton implements ICrud
 {
-	private $table = "artists";
 	private $list = array();
 	private static $instance;
 	private $pdo;
 
 	public function __construct()
 	{
+		$this->table = "artists";
 		$this->pdo = new Connection();
 	}
-
+/*
 	public function create(&$artist)
 	{
 		try
@@ -50,7 +50,7 @@ class ArtistDAO extends Singleton implements ICrud
 		}
 	}
 
-	/*TODO: PROBAR READ Y READALL EN LA CONTROLADORA*/
+
 
 	public function read($id)
 	{
@@ -179,30 +179,31 @@ class ArtistDAO extends Singleton implements ICrud
 		die();
 		}
 	}
+*/
+public function mapMethodCollection($dataSet)
+{
+	$collection = new Collection();
+	foreach ($dataSet as $p) {
+		$u = new Artist(
+			$p['id_artist'],
+			$p["nickname"],
+			$p["name_artist"],
+			$p["surname"]
+		);
+		$collection->add($u);
+	}
 
-		public function mapMethod($dataSet)
-		{
-			if (is_array($dataSet)) {
-				$collection = new Collection();
-				foreach ($dataSet as $p) {
-					$u = new Artist(
-						$p['id_artist'],
-						$p["nickname"],
-						$p["name_artist"],
-						$p["surname"]
-					);
-					$collection->add($u);
-				}
-					$this->list = $collection;
-			} elseif ($dataSet) {
-				$u = new Artist(
-					$dataSet['id_artist'],
-					$dataSet["nickname"],
-					$dataSet["name_artist"],
-					$dataSet["surname"]
-				);
-				$this->list = [$u];
-			}
-		}
+	return $collection;
+}
+
+public function mapMethod ($dataSet) {
+	$u = new Artist(
+		$dataSet['id_artist'],
+		$dataSet["nickname"],
+		$dataSet["name_artist"],
+		$dataSet["surname"]
+	);
+	return $u;
+}
 
 }

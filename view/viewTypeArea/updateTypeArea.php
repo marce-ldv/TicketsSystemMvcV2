@@ -18,7 +18,7 @@
 				<form action = "<?= FRONT_VIEW ?>/typeArea/modify" method="post">
 
 					<div class="form-group">
-				    <input value="<?= $searchedItem->getDescriptiontypeArea() ?>"
+				    <input value="<?= $searchedItem->getDescriptionTypeArea() ?>"
 				    type="text" class="form-control" placeholder="Ingrese la descripcion del type area" name="data[description]">
 				  </div>
 
