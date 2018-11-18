@@ -3,12 +3,11 @@
 namespace dao;
 
 use model\Calendar as Calendar;
-use model\Event as Event;
-use model\PlaceEvent as PlaceEvent;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
-class CalendarDAO extends SingletonDAO implements ICrud
+class CalendarDAO extends Singleton implements ICrud
 {
   private $table = "calendars";
 	private $list = array();

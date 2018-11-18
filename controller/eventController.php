@@ -4,93 +4,108 @@ namespace controller;
 
 use model\Event as Event;
 use dao\EventDAO as EventDAO;
+use dao\CategoryDAO as CategoryDAO;
 use controller\Controller as Controller;
+use interfaces\IAlmr as IAlmr;
 
-class EventController extends Controller
+class EventController extends Controller implements IAlmr{
+
+	private $controllerDao;
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->controllerDao = EventDAO::getInstance();
+	}
+
+	public function index () {
+		$this->list();
+	}
+
+
+	public function add ($data = []) {
+			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
+			$this->controllerDao->create([
+				"id_category" => $data["idCategory"],
+				"title" => $data["title"]
+			]);
+
+			$this->redirect("/event/");
+
+			return;
+	}
+
+	public function list () {
+	if ( ! $this->isLogged()) {
+		$this->redirect('/default/login');
+	}
+	else {
+
+		$items = $this->controllerDao->readAll();
+		$items = $this->controllerDao->mapMethodCollection($items);
+
+    $categoryDao = CategoryDAO::getInstance();
+    $categories = $categoryDao->readAll();
+    $categories = $categoryDao->mapMethodCollection($categories);
+
+		$this->render("viewEvent/events",[
+			'items' => $items,
+      'categories' => $categories
+		]);
+	}
+	}
+
+	public function remove($data = []) {
+
+	$this->controllerDao->delete([
+		"id_event" => $data['idEvent']
+	]);
+
+	$this->redirect("/event/");
+}
+
+public function viewEdit ($id) {
+
+	$searchedItem = $this->controllerDao->read([
+		"id_event" => $id
+	]);
+
+	$categoryDao = CategoryDAO::getInstance();
+	$categories = $categoryDao->readAll();
+	$categories = $categoryDao->mapMethodCollection($categories);
+
+	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+
+	$this->render('viewEvent/updateEvent',[
+		'searchedItem' => $searchedItem,
+		'categories' => $categories
+	]);
+}
+
+public function modify($data = [])
 {
-  private $eventDao;
+	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+	if (empty($data)) $this->redirect("/default/");
 
-  public function __construct()
-  {
-    parent::__construct();
-    $this->eventDAO = EventDAO::getInstance();
-  }
+  try
+	{
+		$this->controllerDao->update([
+			"id_category" => $data["idCategory"],
+			"title" => $data["title"]
+		],[
+			"id_event" => $data["idEvent"]
+		]);
+	}
+	catch(\PDOException $e)
+	{
+		echo $e->getMessage();
+	}
+	catch(\Exception $e){
+		echo $e->getMessage();
+	}
 
-  public function index () {
-    $events = $this->eventDAO->readAll();
+	$this->redirect('/event/');
 
-    $this->render("viewEvent/events",[
-      "events" => $events
-    ]);
-  }
-
-  public function save($category, $title)
-  {
-
-    $newEvent = new Event($category, $title);
-
-    try{
-      $this->eventDao->create($newEvent);
-
-    }catch(\PDOException $e){
-      echo $e->getMessage();
-    }catch(\Exception $e){
-      echo $e->getMessage();
-    }
-
-    $this->render("viewEvent/createEvent");
-  }
-
-  public function create()
-  {
-    if( ! $this->isLogged())
-    $this->redirect('/default/login');
-    else
-    $this->render("viewEvent/createEvent");
-  }
-
-  public function list() //listar todo
-  {
-    $listEvents = $this->eventDao->readAll();
-
-    if( ! $this->isLogged())
-    $this->redirect('/default/login');
-    else
-    $this->render("viewEvent/listEvent",array(
-      'listEvent' => $listEvent
-    ));
-
-  }
-
-  public function delete($id)
-  {
-    $searchedEvent = $this->eventDao->delete($id);
-    $this->list(); // reutilizo el list()
-  }
-
-
-  public function update($category,$title)
-  {
-    $event = new Event($category, $title);
-    try
-    {
-      $this->eventDao->update($event);
-    }
-    catch(\PDOException $e)
-    {
-      $mensaje['mensaje'] = "UPS! ERROR PDO: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $mensaje['tipo'] = "danger";
-    }
-    catch(\Exception $e){
-      $mensaje['mensaje'] = "UPS! ERROR EXCEPTION: " . $e->getMessage() . "| CODE: " . $e->getCode();
-      $mensaje['tipo'] = "danger";
-    }
-
-    $searchedEvent = $this->eventDao->read($id_event); // evento buscado
-
-    $this->render("viewEvent/updateEvent")
-
-    require(URL_VIEW . "viewEvent/updateEvent.php");
-  }
+}
 
 }

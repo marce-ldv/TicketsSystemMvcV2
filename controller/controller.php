@@ -29,6 +29,7 @@ class Controller{
     return ($this->getToken() ? true : false);
   }
 
+  //TODO: Modificar redirect, debe redirigir a el metodo de la controladra de la vista, ejemplo Default/Index
   public function redirect($url, $options = []){
     //serialize options
     if (! empty($options)) {
@@ -36,7 +37,8 @@ class Controller{
       $this->session->redirectOptions = $optionsSerialize;
     }
     //redirect
-    header("location: ". VIEW_URL . $url);
+
+    header("location: ". FRONT_VIEW . $url);
   }
 
   public function render($path, $options = []) {

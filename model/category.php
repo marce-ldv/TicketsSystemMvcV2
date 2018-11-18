@@ -6,7 +6,13 @@ class Category
 {
 
   private $idCategory;
-  private $description;
+  private $nameCategory;
+
+  public function __construct($idCategory="",$nameCategory="")
+  {
+    $this->idCategory = $idCategory;
+    $this->nameCategory = $nameCategory;
+  }
 
   //GETTERS
 
@@ -15,22 +21,20 @@ class Category
     return $this->idCategory;
   }
 
-  public function getDescription()
+  public function getNameCategory()
   {
-    return $this->description;
+    return $this->nameCategory;
   }
+
 
   //SETTERS
 
-  public function setIdCategory($value) {
+  public function setIdCategory($value) :void {
     $this->idCategory = $value;
-    return $this;
   }
 
-  public function setDescription($value)
-  {
-    $this->description = $value;
-    return $this;
+  public function setNameCategory($value) :void {
+    $this->nameCategory = $value;
   }
 
 }

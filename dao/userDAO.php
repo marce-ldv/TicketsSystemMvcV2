@@ -1,7 +1,7 @@
 <?php namespace dao;
 
 use dao\Connection as Connection;
-use dao\SingletonDAO as Singleton;
+use dao\Singleton as Singleton;
 use model\User as User;
 use interfaces\ICrud as ICrud;
 
@@ -11,19 +11,13 @@ class UserDAO extends Singleton implements ICrud{
 	private static $instance;
 	private $pdo;
 
+	//object factoryDao
+
 	public function __construct(){
 		$this->pdo = new Connection();
 	}
-	/*
-	public static function getInstance()
-	{
-	if (!self::$instance instanceof self) {
-	self::$instance = new self();
-}
-return self::$instance;
-}
-*/
-public function create(&$user) {
+
+	public function create(&$user) {
 
 	try {
 		$sql = ("INSERT INTO $this->table (username, pass, email,name_user,surname,dni)
@@ -213,23 +207,32 @@ public function readByUser(&$user){
 	}
 }
 
-public function mapMethod($dataSet){
+public function mapMethod($dataSet)
+{
+	if (is_array($dataSet)) {
+		$collection = new Collection();
+		foreach ($dataSet as $p) {
 
-	$dataSet = is_array($dataSet) ? $dataSet : false;
-
-	if($dataSet){
-		$this->listado = array_map(function ($p) {
 			$u = new Usuario(
+				$p['id'],
 				$p['username'],
 				$p['pass'],
-				$p['email']);
-				$u->setId($p['id_usuario']);
-				return $u;
-			}, $dataSet);
-		}
-	}//mapMethod end
+				$p['email']
+			);
 
+			$collection->add($u);
+		}
+			$this->list = $collection;
+	} elseif ($dataSet) {
+		$u = new Usuario(
+			$p['id'],
+			$p['username'],
+			$p['pass'],
+			$p['email']
+		);
+		$this->list = [$u];
+	}
+}
 
 
 }//class end
-?>
