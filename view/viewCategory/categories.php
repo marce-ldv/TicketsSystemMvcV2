@@ -51,7 +51,7 @@
 
                 <form action="<?= FRONT_VIEW ?>/category/remove" method="post">
                   <div class="form-group">
-                    <input type="hidden" value="<?= $item->getIdCategory() ?>" name="artistData[id]">
+                    <input type="hidden" value="<?= $item->getIdCategory() ?>" name="data[id]">
                     <input type="submit" class="btn btn-danger" value="Eliminar"></input>
                   </div>
                 </form>

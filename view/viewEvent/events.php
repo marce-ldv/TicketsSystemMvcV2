@@ -2,84 +2,82 @@
 
 <br>
 
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12 col-12">
+			<div class="row jusify-content-center">
+				<!-- limita la cantidad de columnas de boostrap -->
+				<div class="col-md-6 col-12">
+					<form action = "<?= FRONT_VIEW ?>/event/add" method="post" id="eventos">
+
+            <div class="form-group">
+							<label>Nombre del evento</label>
+							<input type="text" class="form-control" id="" aria-describedby="" placeholder="Ingrese el nombre del evento" name="data[title]">
+						</div>
+
+						<div class="form-group">
+              <label for="">Categoria</label>
+              <select class="form-control" id="" name="data[idCategory]" form="eventos">
+								<?php foreach ($categories as $category) { ?>
+									<option value=" <?= $category->getIdCategory() ?>">
+										<?= $category->getNameCategory() ?>
+									</option>
+							<?php	}?>
+              </select>
+            </div>
+
+						<button type="submit" class="btn btn-success">Agregar</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<br><br>
 
 <div class="container">
-  <div class="row">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID evento</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Categoria</th>
+						<th scope="col">Accion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					if(isset($items)){
+					foreach ($items as $item) {?>
+					<tr>
+						<th scope="row"> <?= $item->getIdEvent() ?> </th>
+						<td><?= $item->getTitleEvent() ?></td>
+						<td scope="row"><?= $item->getCategory()->getNameCategory() ?></td>
+						<td>
 
-    <div class="col-md-12">
-      <h1 style="text-align:center;">Eventos</h1>
+						<a class="btn btn-primary" href="<?= FRONT_VIEW ?>/event/viewEdit/<?= $item->getIdEvent() ?>">Editar</a>
 
-      <br>
-
-      <div id="carouselZ" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselZ" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselZ" data-slide-to="1"></li>
-          <li data-target="#carouselZ" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="<?= URL_IMG ?>eventos.jpg" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h2>asdadasds</h2>
-              <p>asd</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="<?= URL_IMG ?>eventos2.jpg" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h2>asdadasds</h2>
-              <p>asd</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="<?= URL_IMG ?>eventos.jpg" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h2>asdadasds</h2>
-              <p>asd</p>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselZ" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselZ" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-</div> <!-- end container -->
-
-<br>
-
-
-  <br>
-
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Titulo</th>
-              <th scope="col">Categoria</th>
-            </tr>
-          </thead>
-          <!--aqui va el foreach-->
-          <tr>
-            <td>das</td>
-            <td>asd</td>
-          </tr>
-          <!--aqui temrina el foreach-->
-        </tbody>
-      </table>
-    </div>
-  </div>
+						<form action="<?= FRONT_VIEW ?>/event/remove" method="post">
+							<div class="form-group">
+								<input type="hidden" value="<?= $item->getIdEvent() ?>" name="data[idEvent]">
+								<input type="submit" class="btn btn-danger" value="Eliminar"></input>
+							</div>
+						</form>
+						</td>
+					</tr>
+				<?php }
+						}?>
+				</tbody>
+		</table>
+	</div>
+</div>
 </div>
 
 <br><br><br><br>
+
+
+<br><br><br><br><br><br><br><br><br><br>

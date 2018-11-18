@@ -69,7 +69,7 @@ class Singleton{
     try {
 
 			$bindParams = [];
-			$idField = \array_key_first($data);
+			$idField = array_key_first($data);
 			$idValue = $data[$idField];
 
 			// bindParams

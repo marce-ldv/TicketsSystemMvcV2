@@ -4,6 +4,7 @@ namespace controller;
 
 use model\Event as Event;
 use dao\EventDAO as EventDAO;
+use dao\CategoryDAO as CategoryDAO;
 use controller\Controller as Controller;
 use interfaces\IAlmr as IAlmr;
 
@@ -41,11 +42,15 @@ class EventController extends Controller implements IAlmr{
 	else {
 
 		$items = $this->controllerDao->readAll();
-
 		$items = $this->controllerDao->mapMethodCollection($items);
 
+    $categoryDao = CategoryDAO::getInstance();
+    $categories = $categoryDao->readAll();
+    $categories = $categoryDao->mapMethodCollection($categories);
+
 		$this->render("viewEvent/events",[
-			'items' => $items
+			'items' => $items,
+      'categories' => $categories
 		]);
 	}
 	}
