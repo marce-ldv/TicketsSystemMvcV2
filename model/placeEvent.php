@@ -1,4 +1,6 @@
 <?php
+namespace model;
+
 /*id_place_event BIGINT UNSIGNED AUTO_INCREMENT,
 capacity BIGINT NOT NULL,
 description VARCHAR(50),*/

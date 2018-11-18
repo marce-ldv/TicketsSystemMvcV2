@@ -69,9 +69,10 @@
         <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-type-area"
          role="tab" aria-controls="home">Tipo de area</a>
          <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-event" role="tab" aria-controls="messages">Eventos</a>
+         <a class="list-group-item list-group-item-action" id="list-labe-place-event" data-toggle="list" href="#list-place-event" role="tab" aria-controls="profile">Lugar de evento</a>
       <!-- <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Compras</a>
       <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Tipo de area</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Lugar de evento</a>
+
       <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Asientos</a>
       <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="asd">Calendario</a>
       <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="asd">...</a> -->
@@ -89,9 +90,10 @@
           <h2><a href="<?= FRONT_VIEW ?>/typeArea/">Tipo de area(tipo plaza) palco,platea</a></h2>
         </div>
          <div class="tab-pane fade" id="list-event" role="tabpanel" aria-labelledby="list-messages-list"><h2><a href="<?= FRONT_VIEW ?>/event/">Eventos</a></h2></div>
+         <div class="tab-pane fade" id="list-place-event" role="tabpanel" aria-labelledby="list-labe-place-event"><h2><a href="<?= FRONT_VIEW ?>/placeEvent/">Tipo de place event(Lugar de evento) capacidad 95000 personas, Estadio libertadores de america por ejemplo</a></h2></div>
       <!-- <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/purchase/">Compras</a></h2></div>
 
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/default/">Tipo de place event(Lugar de evento) capacidad 95000 personas, Estadio libertadores de america por ejemplo</a></h2></div>
+
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/eventArea/">Tipo de event area(asientos)</a></h2></div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><h2><a href="<?= FRONT_VIEW ?>/calendar/">Calendario</a></h2></div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>-->
