@@ -6,19 +6,23 @@ use model\Ticket as Ticket;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
 use dao\Singleton as Singleton;
+use dao\linePurchaseDAO as LinePurchaseDAO;
 
 class TicketDAO extends Singleton implements ICrud
 {
-	private $table = "tickets";
-	private $list = array();
+	private $list;
 	private static $instance;
+	private $linePurchaseDao;
 	private $pdo;
 
 	public function __construct()
 	{
+		$this->table = "tickets";
 		$this->pdo = new Connection();
+		$this->list = new Collection();
+		$this->linePurchaseDao = LinePurchaseDAO::getInstance();
 	}
-
+/*
   public function create(&$ticket)
   {
   	try
@@ -201,4 +205,42 @@ class TicketDAO extends Singleton implements ICrud
       $this->list = $collection;
     }
   }
+	*/
+////////////////////////////////////////////////////////////////////////////////////////////////
+	public function mapMethodCollection($dataSet)
+	{
+		$collection = new Collection();
+
+		foreach ($dataSet as $p) {
+			$idLinePurchase = $this->linePurchaseDao->read([
+				"id_line_purchase" => $p['id_line_purchase']
+			]);
+
+			$idLinePurchase = $this->linePurchaseDao->mapMethod($idLinePurchase);
+			$u = new Ticket(
+				$p['id_ticket_number'],
+				$idLinePurchase,
+				$p["code_qr"]
+			);
+			$collection->add($u);
+		}
+
+		return $collection;
+	}
+
+	public function mapMethod ($dataSet) {
+		$p = $dataSet;
+
+		$idLinePurchase = $this->linePurchaseDao->read([
+			"id_line_purchase" => $p["id_line_purchase"]
+		]);
+		$idLinePurchase = $this->linePurchaseDao->mapMethod($idLinePurchase);
+
+		$u = new Ticket(
+			$p['id_ticket_number'],
+			$idLinePurchase,
+			$p["code_qr"]
+		);
+		return $u;
+	}
 }
