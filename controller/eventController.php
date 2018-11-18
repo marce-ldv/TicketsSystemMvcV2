@@ -70,10 +70,15 @@ public function viewEdit ($id) {
 		"id_event" => $id
 	]);
 
+	$categoryDao = CategoryDAO::getInstance();
+	$categories = $categoryDao->readAll();
+	$categories = $categoryDao->mapMethodCollection($categories);
+
 	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
 	$this->render('viewEvent/updateEvent',[
-		'searchedItem' => $searchedItem
+		'searchedItem' => $searchedItem,
+		'categories' => $categories
 	]);
 }
 
