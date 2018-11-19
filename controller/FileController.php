@@ -19,7 +19,7 @@ class FileController extends Controller
     $this->uploadFilePath = IMAGE_UPLOADS;
 }
 
-  public function isValid ( $fileToUpload ) {
+  public function upload ( $fileToUpload ) {
     $tmpFile = $_FILES[$fileToUpload];
     $isValid = true;
 
@@ -41,10 +41,19 @@ class FileController extends Controller
       $isValid = false;
     }
 
-    if (move_uploaded_file( $fileToUpload->getTempName(), $uploadImagePath)){
-      return true;
-    }
+    if ( ! move_uploaded_file( $fileToUpload->getTempName(), $uploadImagePath)){
+      $this->errors[] = "No se pudo subir el archivo";
+      $isValid=false
+    } 
 
-    return false;
+    return $isValid;
+  }
+
+  public function getAllowedExtensions(){
+    return $this->allowedExtensions;
+  }
+
+  public function getMaxSize(){
+    return $this->maxSize;
   }
 }

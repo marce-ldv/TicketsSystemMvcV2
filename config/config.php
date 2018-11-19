@@ -15,6 +15,7 @@ define("URL_VIEW",  ROOT . '/View/');
 define("URL_CSS", FRONT_VIEW . '/content/css/');
 define("URL_JS", FRONT_VIEW . '/content/js/');
 define("URL_IMG", FRONT_VIEW . '/content/img/');
+define("IMAGE_UPLOADS", FRONT_VIEW . '/content/uploads/');
 define("URL_VENDOR", FRONT_VIEW . '/content/vendor/');
 define("URL_BOOTSTRAP", FRONT_VIEW . '/content/css/bootstrap.min.css');
 define("NODE_DIR", FRONT_VIEW . "/node_modules/");

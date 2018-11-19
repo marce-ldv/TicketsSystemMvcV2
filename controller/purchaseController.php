@@ -27,16 +27,16 @@ class EventController extends Controller implements IAlmr{
 
 
 	public function add ($data = []) {
-			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-			$this->controllerDao->create([
-				"id_purchase" => $data["idPurchase"],
-				"user" => $data["user"],
-				"date_purchase" => $data["datePurchase"]
-			]);
+		//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
+		$this->controllerDao->create([
+			"id_purchase" => $data["idPurchase"],
+			"user" => $data["user"],
+			"date_purchase" => $data["datePurchase"]
+		]);
 
-			$this->redirect("/purchase/");
+		$this->redirect("/purchase/");
 
-			return;
+		return;
 	}
 
 	public function list () {
@@ -48,18 +48,18 @@ class EventController extends Controller implements IAlmr{
 		$items = $this->controllerDao->readAll();
 		$items = $this->controllerDao->mapMethodCollection($items);
 
-    $categoryDao = CategoryDAO::getInstance();
-    $categories = $categoryDao->readAll();
-    $categories = $categoryDao->mapMethodCollection($categories);
+		$categoryDao = CategoryDAO::getInstance();
+		$categories = $categoryDao->readAll();
+		$categories = $categoryDao->mapMethodCollection($categories);
 
-    $eventDao = EventDAO::getInstance();
-    $events = $eventDao->readAll();
-    $events = $eventDao->mapMethodCollection($events);
+		$eventDao = EventDAO::getInstance();
+		$events = $eventDao->readAll();
+		$events = $eventDao->mapMethodCollection($events);
 
 		$this->render("viewEvent/events",[
 			'items' => $items,
-      'categories' => $categories,
-      'events' => $events
+			'categories' => $categories,
+			'events' => $events
 		]);
 	}
 	}
@@ -71,57 +71,57 @@ class EventController extends Controller implements IAlmr{
 	]);
 
 	$this->redirect("/purchase/");
-}
+	}
 
-public function viewEdit ($id) {
+	public function viewEdit ($id) {
 
-	$searchedItem = $this->controllerDao->read([
-		"id_purchase" => $id
-	]);
+		$searchedItem = $this->controllerDao->read([
+			"id_purchase" => $id
+		]);
 
-	$categoryDao = CategoryDAO::getInstance();
-	$categories = $categoryDao->readAll();
-  $categories = $categoryDao->mapMethodCollection($categories);
-  
-  $eventDao = EventDAO::getInstance();
-  $events = $eventDao->readAll();
-  $events = $eventDao->mapMethodCollection($events);
+		$categoryDao = CategoryDAO::getInstance();
+		$categories = $categoryDao->readAll();
+		$categories = $categoryDao->mapMethodCollection($categories);
+	
+		$eventDao = EventDAO::getInstance();
+		$events = $eventDao->readAll();
+		$events = $eventDao->mapMethodCollection($events);
 
-	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+		$searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
-	$this->render('viewEvent/updateEvent',[
+		$this->render('viewEvent/updateEvent',[
 		'searchedItem' => $searchedItem,
-    'categories' => $categories,
-    'events' => $events
-	]);
-}
-
-public function modify($data = [])
-{
-	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-	if (empty($data)) $this->redirect("/default/");
-
-  try
-	{
-		$this->controllerDao->update([
-			"id_purchase" => $data["idPurchase"],
-      "user" => $data["user"],
-      "date_purchase" => $data["datePurchase"]
-		],[
-      "id_event" => $data["idEvent"],
-      "id_category" => $data["idCategory"]
+		'categories' => $categories,
+		'events' => $events
 		]);
 	}
-	catch(\PDOException $e)
+
+	public function modify($data = [])
 	{
-		echo $e->getMessage();
-	}
-	catch(\Exception $e){
-		echo $e->getMessage();
-	}
+		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+		if (empty($data)) $this->redirect("/default/");
 
-	$this->redirect('/purchase/');
+		try{
+			$this->controllerDao->update(
+			[
+			"id_purchase" => $data["idPurchase"],
+			"user" => $data["user"],
+			"date_purchase" => $data["datePurchase"]
+			],[
+			"id_event" => $data["idEvent"],
+			"id_category" => $data["idCategory"]
+			]);
+			}
+			catch(\PDOException $e)
+			{
+				echo $e->getMessage();
+			}
+			catch(\Exception $e){
+				echo $e->getMessage();
+			}
 
-}
+		$this->redirect('/purchase/');
+
+	}
 
 }

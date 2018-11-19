@@ -2,25 +2,19 @@
 
 use \JsonSerializable as JsonSerializable;
 
-
-/**
- *
- */
-class File implements JsonSerializable
-{
+class File implements JsonSerializable{
      private $id;
      private $name;
      private $value;
      private $temp;
      private $size;
 
-     function __construct($id = '', $key = '', $val = '', $tmp = '', $siz = '')
-     {
+     function __construct($id = '', $key = '', $val = '', $tmp = '', $size = ''){
           $this->id = $id;
           $this->name = $key;
           $this->value = $val;
           $this->temp = $tmp;
-          $this->size = $siz;
+          $this->size = $size;
      }
 
      public function getID() {

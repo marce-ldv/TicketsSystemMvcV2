@@ -365,7 +365,7 @@
 
             <div class="form-group">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="registerData[avatar]">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="registerData[profilePicture]">
                 <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
               </div>
             </div>
