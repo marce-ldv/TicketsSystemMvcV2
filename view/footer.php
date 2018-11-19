@@ -127,6 +127,7 @@
         <!-- JS -->
         <script language="javascript" src="<?= JQUERYJS ?>"></script>
         <script language="javascript" src="<?= BOOTSTRAPJS ?>"></script>
+        <script language="javascript" src="<?= FONTAWESOME_JS ?>"></script>
 
       </body>
 

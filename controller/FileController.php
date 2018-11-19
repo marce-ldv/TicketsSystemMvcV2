@@ -2,17 +2,25 @@
 namespace controller;
 
 use controller\Controller as Controller;
+//use model\File as File;
 
 class FileController extends Controller
 {
-  public $maxSize = 5000000;
-  public $allowedExtensions = ["jpg", "png", "gif"];
-  public $dimensions = ["150", "150"];
-  public $uploadImagePath = IMAGE_UPLOADS;
-  public $errors = [];
+  private $maxSize = 5000000;
+  private $allowedExtensions;
+  private $dimensions = ["150", "150"];
+  private $uploadImagePath;
+  private $errors = [];
   private $fileToUpload;
 
-  public function isValid ( $fileToUpload ) {
+  function __construct() {
+    $this->allowedExtensions = array('png', 'jpg', 'gif');
+    $this->maxSize = 5000000;
+    $this->uploadFilePath = IMAGE_UPLOADS;
+}
+
+  public function upload ( $fileToUpload = []) {
+    //$filePicture = new File();
     $tmpFile = $_FILES[$fileToUpload];
     $isValid = true;
 
@@ -33,5 +41,18 @@ class FileController extends Controller
       $this->errors[] = "Extension no soportada";
       $isValid = false;
     }
+
+    if ( ! move_uploaded_file( $this->fileToUpload, $uploadImagePath.$this->fileToUpload)){
+      $this->errors[] = "No se pudo subir el archivo";
+      $isValid=false;
+    } 
+
+    //Archivo subido con exito
+    return $isValid;
+  }
+
+  public function upload2 ( $profilePicture ) {
+    
+
   }
 }

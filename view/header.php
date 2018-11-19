@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>Tickets System</title>
-
+    
     <link rel="stylesheet" href="<?= BOOTSTRAPCSS ?>" type="text/css">
+    <link rel="stylesheet" href="<?= FONTAWESOME_CSS ?>" type="text/css">
     <link rel="stylesheet" href="<?= URL_CSS . 'styles.css'?>" type="text/css">
     <link rel="stylesheet" href="<?= URL_CSS . 'main.css'?>" type="text/css">
 
