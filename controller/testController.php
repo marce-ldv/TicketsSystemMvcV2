@@ -10,7 +10,11 @@ use dao\DefaultDAO as DefaultDAO;
 class TestController extends Controller{
 
   public function index(){
-    $this->render("viewCalendar/createCalendar");
+    
+  }
+
+  public function uploadFile(){
+    $this->render('test/fileHtml');
   }
 
 

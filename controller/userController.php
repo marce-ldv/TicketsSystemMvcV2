@@ -24,6 +24,8 @@ class UserController extends Controller{
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($registerData)) $this->redirect("/default/");
 
+    //$fileController = new FileController(); 
+
     if ($this->userDAO->readByUsernameOrEmail([
       "user" => $registerData["username"],
       "email" => $registerData["email"]
@@ -31,17 +33,6 @@ class UserController extends Controller{
        $this->redirect("/default/", ["alert" => "El usuario o email ya estan registrados"]);
        return;
      }
-
-    /*$user = new User(
-      '',
-      $registerData["username"],
-      $registerData["pass"],
-      $registerData["email"],
-      $registerData["name_user"],
-      $registerData["surname"],
-      $registerData["dni"]
-      //$registerData["profilePicture"]
-    );*/
 
     if ($registerData["pass"] != $registerData["passAgain"]) {
       $this->redirect("/default/", ["alert" => "Las contraseñas no coinciden"]);
@@ -56,7 +47,9 @@ class UserController extends Controller{
     $data["name_user"] = $registerData["name_user"];
     $data["surname"] = $registerData["surname"];
     $data["dni"] = $registerData["dni"];
-    //$registerData["profilePicture"]
+    //$data["profilePicture"] = $registerData["profilePicture"];
+
+    //  $fileController->upload($registerData["profilePicture"]);
 
     $this->userDAO->create($data);
 

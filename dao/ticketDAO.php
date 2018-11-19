@@ -9,16 +9,16 @@ use dao\Singleton as Singleton;
 
 class TicketDAO extends Singleton implements ICrud
 {
-	private $table = "tickets";
 	private $list = array();
 	private static $instance;
 	private $pdo;
 
 	public function __construct()
 	{
+		$this->table = "tickets";
 		$this->pdo = new Connection();
 	}
-
+/*
   public function create(&$ticket)
   {
   	try
@@ -201,4 +201,29 @@ class TicketDAO extends Singleton implements ICrud
       $this->list = $collection;
     }
   }
+	*/
+////////////////////////////////////////////////////////////////////////////////////////////////
+	public function mapMethodCollection($dataSet)
+	{
+		$collection = new Collection();
+		foreach ($dataSet as $p) {
+			$u = new Ticket(
+				$p['id_ticket_number'],
+				$p["id_line_purchase"],
+				$p["code_qr"]
+			);
+			$collection->add($u);
+		}
+
+		return $collection;
+	}
+
+	public function mapMethod ($dataSet) {
+		$u = new Ticket(
+			$dataSet['id_ticket_number'],
+			$dataSet["id_line_purchase"],
+			$dataSet["code_qr"]
+		);
+		return $u;
+	}
 }

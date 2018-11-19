@@ -2,7 +2,7 @@
 namespace controller;
 
 use controller\Controller as Controller;
-use model\File as File;
+//use model\File as File;
 
 class FileController extends Controller
 {
@@ -19,7 +19,8 @@ class FileController extends Controller
     $this->uploadFilePath = IMAGE_UPLOADS;
 }
 
-  public function upload ( $fileToUpload ) {
+  public function upload ( $fileToUpload = []) {
+    //$filePicture = new File();
     $tmpFile = $_FILES[$fileToUpload];
     $isValid = true;
 
@@ -41,19 +42,17 @@ class FileController extends Controller
       $isValid = false;
     }
 
-    if ( ! move_uploaded_file( $fileToUpload->getTempName(), $uploadImagePath)){
+    if ( ! move_uploaded_file( $this->fileToUpload, $uploadImagePath.$this->fileToUpload)){
       $this->errors[] = "No se pudo subir el archivo";
-      $isValid=false
+      $isValid=false;
     } 
 
+    //Archivo subido con exito
     return $isValid;
   }
 
-  public function getAllowedExtensions(){
-    return $this->allowedExtensions;
-  }
+  public function upload2 ( $profilePicture ) {
+    
 
-  public function getMaxSize(){
-    return $this->maxSize;
   }
 }
