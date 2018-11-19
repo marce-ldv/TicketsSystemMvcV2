@@ -26,7 +26,6 @@
                   <li>CRUD PLACE EVENT para saber cuantos tickets se tienen que vender</li>
                   <li>CRUD type Area, o sea tipo de asiento</li>
                 </ul>
-
               </div>
             </div>
             <!-- check -->
