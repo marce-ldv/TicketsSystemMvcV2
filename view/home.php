@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 d-none d-sm-block">
-            <h1 class="display-4">Sistema de venta de tickets de eventos, Laboratorio IV.</h1>
+            <h1 class="display-4">Sistema de venta de tickets de eventos.</h1>
 
             <!-- check -->
             <div class="d-flex flex-row">
@@ -63,9 +63,9 @@
                 <form action="<?= FRONT_VIEW ?>/user/login/" method="post">
 
                   <div class="form-group">
-                  
+
                     <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
-                    
+
                   </div>
 
                   <div class="form-group">

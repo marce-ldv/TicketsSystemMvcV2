@@ -42,7 +42,7 @@ class ArtistController extends Controller implements IAlmr{
 
 		$items = $this->controllerDao->readAll();
 
-		$items = $this->controllerDao->mapMethodCollection($items);
+		$items = $this->controllerDao->mapMethod($items);
 
 		$this->render("viewArtist/artists",[
 			'items' => $items
