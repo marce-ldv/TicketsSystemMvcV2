@@ -52,7 +52,7 @@ class ArtistDAO extends Singleton implements ICrud
 
 
 	       if(!empty($resultSet))
-	            return $this->mapear($resultSet);
+	            return $this->mapMethod($resultSet);
 	       else
 	            return false;
 	  }
@@ -70,7 +70,7 @@ class ArtistDAO extends Singleton implements ICrud
 	       }
 
 	       if(!empty($resultSet))
-	            return $this->mapear($resultSet);
+	            return $this->mapMethod($resultSet);
 	       else
 	            return false;
 	  }
@@ -115,16 +115,16 @@ class ArtistDAO extends Singleton implements ICrud
 			}
 	  }
 
-	  protected function mapMethod($value) {
+	  public function mapMethod($value) {
 
 		$value = is_array($value) ? $value : [];
 
-
+print_r($value);
 		$resp = array_map(function($p){
 			return new Artist($p['id_artist'], $p['nickname'], $p['name_artist'], $p['surname']);
 		}, $value);
-
-	           return count($resp) > 1 ? $resp : $resp['0'];
+//print_r($resp);
+	           return count($resp) > 1 ? $resp : $resp[0];
 
 		}
 
