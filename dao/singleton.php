@@ -20,7 +20,7 @@ class Singleton{
 
 
 
-	public function create ($data = []) {
+	/*public function create ($data = []) {
 		try
     {
 			$fields = array_keys($data);
@@ -197,7 +197,7 @@ class Singleton{
 			echo $e->getMessage();
 			die();
 		}
-	}
+	}*/
 
 
 }

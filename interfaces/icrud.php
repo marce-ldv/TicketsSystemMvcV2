@@ -6,6 +6,7 @@ interface ICrud {
     function create($data);
     function read($data);
     function readAll();
-    function update($data, $idData);
+    //function update($data, $idData);
+    function update($data);
     function delete($data);
 }

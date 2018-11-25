@@ -82,8 +82,7 @@ public function modify($data = [])
 		$this->controllerDao->update([
 			"nickname" => $data["nickname"],
 			"name_artist" => $data["name"],
-			"surname" => $data["surname"]
-		],[
+			"surname" => $data["surname"],
 			"id_artist" => $data["id"]
 		]);
 	}

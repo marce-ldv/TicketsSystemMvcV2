@@ -75,13 +75,11 @@ class ArtistDAO extends Singleton implements ICrud
 	            return false;
 	  }
 
-	  public function update($value, $idValue)
+	  public function update($value)
 	  {
-	    try
-	    {
 	        $sql = "UPDATE artists SET nickname = :nickname, name_artist = :name_artist, surname = :surname WHERE id_artist = :id ";
 
-	        $parameters['id_artist'] = $idValue;
+	        $parameters['id_artist'] = $value->getIdArtist();
 	        $parameters['nickname'] = $value->getNickname();
 	        $parameters['name_artist'] = $value->getNameArtist();
 	        $parameters['surname'] = $value->getSurname();
@@ -90,12 +88,12 @@ class ArtistDAO extends Singleton implements ICrud
 
 	        $this->connection = Connection::getInstance();
 
-	      return $this->connection->ExecuteNonQuery($sql, $parameters);
+	      return $this->connection->executeNonQuery($sql, $parameters);
 	      } catch(PDOException $ex) {
 	          throw $ex;
 	      }
 
-	    }
+
 	  }
 
 	  public function delete($id)
