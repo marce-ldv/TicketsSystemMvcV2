@@ -18,8 +18,8 @@ class ArtistController extends Controller implements IAlmr{
 	}
 
 	public function index () {
-		echo('asdas');
 		$this->list();
+		//$this->render('viewArtist/artists');
 	}
 
 	public function add ($data = []) {
@@ -39,25 +39,25 @@ class ArtistController extends Controller implements IAlmr{
 	}
 
 	public function list () {
-	if ( ! $this->isLogged()) {
-		//$this->redirect('/default/login');
-	}
-	else {
+		//if ( ! $this->isLogged()) {
+			//$this->redirect('/default/login');
+		//}
+		//else {
 
-		$items = $this->controllerDao->readAll();
+			$items = $this->controllerDao->readAll();
 
-		if ($items) {
-			$items = (! is_array($items)) ? [$items] : $items;
-		}else {
-			$items = [];
-		}
+			if ($items) {
+				$items = (! is_array($items)) ? [$items] : $items;
+			}else {
+				$items = [];
+			}
 
-//		$items = $this->controllerDao->mapMethod($items);
+			//$items = $this->controllerDao->mapMethod($items);
 
-		$this->render("viewArtist/artists",[
-			'items' => $items
-		]);
-	}
+			$this->render("viewArtist/artists",[
+				'items' => $items
+			]);
+		//}
 	}
 
 	public function remove($data = []) {

@@ -4,8 +4,7 @@ namespace model;
 
 class TypeArea
 {
-    private $idTypeArea;
-    private $descriptionTypeArea;
+    private $idTypeArea,$descriptionTypeArea;
 
     function __construct($idTypeArea = "", $descriptionTypeArea = "")
     {

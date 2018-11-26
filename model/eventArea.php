@@ -6,12 +6,7 @@ namespace model;
 
 class EventArea
 {
-  private $idEventArea;
-  private $typeArea;
-  private $calendar;
-  private $quantityAvaliable;
-  private $price;
-  private $remainder;
+  private $idEventArea,$typeArea,$calendar,$quantityAvaliable,$price,$remainder;
 
   public __construct($idEventArea="",$typeArea="",$calendar="",$quantityAvaliabl="",$price="",$remainder=""){
 

@@ -3,11 +3,7 @@
 use \JsonSerializable as JsonSerializable;
 
 class File implements JsonSerializable{
-     private $id;
-     private $name;
-     private $value;
-     private $temp;
-     private $size;
+     private $id,$name,$value,$temp,$size;
 
      function __construct($id = '', $key = '', $val = '', $tmp = '', $size = ''){
           $this->id = $id;

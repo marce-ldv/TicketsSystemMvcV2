@@ -3,10 +3,7 @@ namespace model;
 
 class Artist
 {
-	private $idArtist;
-	private $nameArtist;
-	private $surname;
-	private $nickname;
+	private $idArtist,$nameArtist,$surname,$nickname;
 
 	public function __construct($idArtist = "",$nickname = "",$nameArtist = "", $surname = "")
 	{

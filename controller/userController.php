@@ -17,7 +17,33 @@ class UserController extends Controller{
   public function index(){
     return;
   }
+  /*
+    * Este método verifica si existe un usuario en sesion y en caso
+    * afirmativo lo toma de la base de datos y compara contraseñas.
+    * Esto lo hace con el fin de asegurar que si cambio algun dato
+    * obtiene la información actualizada.
+  */
+  public function checkSession(){
+    if( session_status == PHP_SESSION_NONE ){
+      session_start();
+    }
 
+    if( isset($_SESSION['userLogedIn'])){
+      $userDao = new User();
+
+      $usr = $userDao->read( $_SESSION['userLogedIn']->getUsername() );
+
+      if( $user->getPass() == $_SESSION['userLogedIn']->getPass() ){
+        return $user;
+      }
+    }else{
+      return false;
+    }
+  }
+
+  public function setSession($user) {
+    $_SESSION['userLogedIn'] = $user;
+  }
 
   public function register ($registerData = []) {
 
@@ -69,7 +95,7 @@ class UserController extends Controller{
       ]);
       return;
       }
-$user = $this->userDAO->mapMethod($user);
+    $user = $this->userDAO->mapMethod($user);
     if( ! password_verify($registerData["pass"],$user->getPass()) ){
       $this->redirect('/default/',[
         'alert' => "Password incorrecta"

@@ -4,8 +4,7 @@ namespace model;
 
 class Ticket
 {
-  private $idTicketNumber;
-  private $qr;
+  private $idTicketNumber,$qr;
 
   public function __construct($idTicketNumber="", $qr="")
   {
