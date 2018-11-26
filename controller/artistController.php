@@ -48,7 +48,7 @@ class ArtistController extends Controller implements IAlmr{
 		if ($items) {
 			$items = (! is_array($items)) ? [$items] : $items;
 		}else {
-		$items = [];
+			$items = [];
 		}
 
 //		$items = $this->controllerDao->mapMethod($items);
