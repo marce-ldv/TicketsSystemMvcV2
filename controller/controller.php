@@ -4,18 +4,15 @@ namespace controller;
 use model\User as User;
 use helpers\Session as Session;
 use dao\UserDAO as UserDao;
-use dao\DefaultDAO as DefaultDAO;
 
 class Controller{
 
   protected $session;
-  protected $defaultDAO;
 
   public function __construct(){
-    $this->session = Session::getInstance();
-    $this->defaultDAO = new DefaultDAO();
+    //$this->session = Session::getInstance();
   }
-
+/*
   public function getToken(){
     if( ! isset($this->session->token))
     return false;
@@ -28,7 +25,7 @@ class Controller{
   public function isLogged(){
     return ($this->getToken() ? true : false);
   }
-
+*/
   //TODO: Modificar redirect, debe redirigir a el metodo de la controladra de la vista, ejemplo Default/Index
   public function redirect($url, $options = []){
     //serialize options

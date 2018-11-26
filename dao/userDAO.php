@@ -14,11 +14,7 @@ class UserDAO extends Singleton implements ICrud{
 	//object factoryDao
 
 	public function __construct(){
-		$this->pdo = new Connection();
-	}
-
-	public function create(){
-
+		//$this->pdo = new Connection();
 	}
 
 	public function create($user){
@@ -94,11 +90,11 @@ class UserDAO extends Singleton implements ICrud{
 		}
 	}
 		
-	public function update($data,$idData){}
+	public function update($data){}
 
 	public function delete($v){}
 
--------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 
 
 public function mapMethodCollection($dataSet)

@@ -4,14 +4,16 @@ namespace controller;
 use model\User as User;
 use controller\FileCcontroller as FileController;
 use controller\Controller as Controller;
+use controller\DefaultController as DefaultController;
 use dao\UserDAO as UserDAO;
 
 class UserController extends Controller{
-  private $userDAO;
+  private $userDAO,$defaultController;
 
   public function __construct () {
     parent::__construct();
-    $this->userDAO = new UserDAO();
+    //$this->userDAO = new UserDAO();
+    $this->defaultController = new DefaultController();
   }
 
   public function index(){
@@ -29,9 +31,9 @@ class UserController extends Controller{
     }
 
     if( isset($_SESSION['userLogedIn'])){
-      $userDao = new User();
+      //$userDao = new User();
 
-      $usr = $userDao->read( $_SESSION['userLogedIn']->getUsername() );
+      $usr = $this->userDAO->read( $_SESSION['userLogedIn']->getUsername() );
 
       if( $user->getPass() == $_SESSION['userLogedIn']->getPass() ){
         return $user;
@@ -40,7 +42,7 @@ class UserController extends Controller{
       return false;
     }
   }
-
+  //Setea la session, tambien podria usarse el metodo magico __set del fichero session en la carpeta helpers
   public function setSession($user) {
     $_SESSION['userLogedIn'] = $user;
   }
@@ -86,33 +88,55 @@ class UserController extends Controller{
   //login
 
   public function login($registerData = []){
-    if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-    if (empty($registerData)) $this->redirect("/default/");
+    //if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+    //if (empty($registerData)) $this->redirect("/default/");
 
-    if( ! $user = $this->userDAO->readByUser($registerData["username"]) ) {
+    /*if( ! $user = $this->userDAO->readByUser($registerData["username"]) ) {
         $this->redirect('/default/',[
         'queMierdaPasa' => "PAsa algo en readByUser"
       ]);
       return;
+    }*/
+    $username = $registerData['username'];
+    $pass = $registerData['pass'];
+
+    //$userDao = new User();
+
+    $user =  $this->userDAO->read( $username );
+
+    if( $user ){
+      if( $user->getPass() == $pass ){
+        $this->setSession( $user );
+        return $user;
       }
-    $user = $this->userDAO->mapMethod($user);
-    if( ! password_verify($registerData["pass"],$user->getPass()) ){
+    }
+
+    return false;
+
+    //$user = $this->userDAO->mapMethod($user);
+    /*if( ! password_verify($registerData["pass"],$user->getPass()) ){
       $this->redirect('/default/',[
         'alert' => "Password incorrecta"
       ]);
       return ;
-    }
+    }*/
 
-    $this->session->token = $user->serialize();
+    //$this->session->token = $user->serialize();
 
-    $this->redirect('/default/dashboard/');
+    //$this->redirect('/default/dashboard/');
 
   }
 
   public function logout()
   {
-    $this->session->destroy();
-    $this->redirect('/');
+    //$this->session->destroy();
+    //$this->redirect('/');
+    if (session_status() == PHP_SESSION_NONE)
+        session_start();
+
+    unset($_SESSION['userLogedIn']);
+
+    $this->DefaultController->index();
   }
 
 
