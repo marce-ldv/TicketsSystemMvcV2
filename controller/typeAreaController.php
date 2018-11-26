@@ -1,97 +1,99 @@
 <?php
-
-namespace controller;
-
-use model\TypeArea as TypeArea;
-use dao\TypeAreaDAO as TypeAreaDAO;
-use controller\Controller as Controller;
-use interfaces\IAlmr as IAlmr;
-
-class TypeAreaController extends Controller implements IAlmr
-{
-    private $controllerDao;
-
-    public function __construct () {
-        parent::__construct();
-        $this->controllerDao = TypeAreaDAO::getInstance();
+    
+    namespace controller;
+    
+    use model\TypeArea as TypeArea;
+    use dao\TypeAreaDAO as TypeAreaDAO;
+    use controller\Controller as Controller;
+    use helpers\ToArrayList;
+    use Exception;
+    use PDOException;
+    
+    class TypeAreaController extends Controller
+    {
+        private $controllerDao;
+        
+        /**
+         * TypeAreaController constructor.
+         */
+        public function __construct () {
+            parent::__construct();
+            $this->controllerDao = TypeAreaDAO::getInstance();
+        }
+        
+        /**
+         *
+         */
+        public function index () {
+            $this->list();
+        }
+        
+        /**
+         * @param array $data
+         */
+        public function add ($data = []) {
+            
+            $typeArea = new TypeArea('', $data['description']);
+            $this->controllerDao->create($typeArea);
+            
+            //$this->redirect("/typeArea/");
+            $this->index();
+        }
+        
+        /**
+         *
+         */
+        public function list () {
+            
+            $items = $this->controllerDao->readAll();
+            $items = ToArrayList::convert($items);
+            
+            $this->render("viewTypeArea/typesAreas", [
+                'items' => $items
+            ]);
+            
+        }
+        
+        /**
+         * @param array $data
+         */
+        public function remove ($data = []) {
+            
+            $this->controllerDao->delete($data['id']);
+            
+            $this->redirect("/typeArea/");
+        }
+        
+        /**
+         * @param $id
+         */
+        public function viewEdit ($id) {
+            
+            $searchedItem = $this->controllerDao->read($id);
+            
+            $this->render('viewTypeArea/updateTypeArea', [
+                'searchedItem' => $searchedItem
+            ]);
+        }
+        
+        /**
+         * @param array $data
+         */
+        public function modify ($data = []) {
+            if (!$this->isMethod("POST")) $this->redirect("/default/");
+            if (empty($data)) $this->redirect("/default/");
+            
+            $typeArea = new TypeArea($data['id'], $data['description']);
+            
+            try {
+                $this->controllerDao->update($typeArea);
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+            
+            $this->redirect('/typeArea/');
+            
+        }
     }
-
-    public function index () {
-        $this->list();
-    }
-
-    public function add ($data = []) {
-        //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-        $this->controllerDao->create([
-          "_description" => $data["description"]
-        ]);
-
-        $this->redirect("/typeArea/");
-
-        return;
-    }
-
-    public function list () {
-		if ( ! $this->isLogged()) {
-			$this->redirect('/default/login');
-		}
-		else {
-
-			$items = $this->controllerDao->readAll();
-
-      $items = $this->controllerDao->mapMethodCollection($items);
-
-			$this->render("viewTypeArea/typesAreas",[
-				'items' => $items
-			]);
-		}
-    }
-
-    public function remove($data = []) {
-
-		$this->controllerDao->delete([
-      "id_type_area" => $data['id']
-    ]);
-
-		$this->redirect("/typeArea/");
-	}
-
-	public function viewEdit ($id) {
-
-		$searchedItem = $this->controllerDao->read([
-      "id_type_area" => $id
-    ]);
-
-    $searchedItem = $this->controllerDao->mapMethod($searchedItem);
-
-		$this->render('viewTypeArea/updateTypeArea',[
-			'searchedItem' => $searchedItem
-		]);
-	}
-
-  public function modify($data = [])
-	{
-		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-		if (empty($data)) $this->redirect("/default/");
-
-		try
-		{
-			$this->controllerDao->update([
-        "_description" => $data["description"]
-      ],[
-        "id_type_area" => $data["id"]
-      ]);
-		}
-		catch(\PDOException $e)
-		{
-			echo $e->getMessage();
-		}
-		catch(\Exception $e){
-			echo $e->getMessage();
-		}
-
-		$this->redirect('/typeArea/');
-
-	}
-
-} // <----- end CLASS

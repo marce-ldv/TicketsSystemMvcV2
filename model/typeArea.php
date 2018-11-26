@@ -6,7 +6,12 @@ class TypeArea
 {
     private $idTypeArea;
     private $descriptionTypeArea;
-
+    
+    /**
+     * TypeArea constructor.
+     * @param string $idTypeArea
+     * @param string $descriptionTypeArea
+     */
     function __construct($idTypeArea = "", $descriptionTypeArea = "")
     {
         $this->idTypeArea = $idTypeArea;
