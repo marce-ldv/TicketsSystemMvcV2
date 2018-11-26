@@ -22,13 +22,13 @@ class ArtistDAO extends Singleton implements ICrud
 				$sql = "INSERT INTO artists (nickname, name_artist, surname) VALUES (:nickname, :nameArtist, :surname)";
 
 	      $parameters['nickname'] = $_data->getNickname();
-	      $parameters['name_artist'] = $_data->getNameArtist();
+	      $parameters['nameArtist'] = $_data->getNameArtist();
 	      $parameters['surname'] = $_data->getSurname();
 
 	        // creo la instancia connection
 	   			$this->connection = Connection::getInstance();
 					// Ejecuto la sentencia.
-					return $this->connection->ExecuteNonQuery($sql, $parameters);
+					return $this->connection->executeNonQuery($sql, $parameters);
 				}
 	      catch(PDOException $ex)
 	      {
@@ -42,7 +42,7 @@ class ArtistDAO extends Singleton implements ICrud
 
 	       $sql = "SELECT * FROM artists where id_artist = :id";
 
-	       $parameters['id_artist'] = $id;
+	       $parameters['id'] = $id;
 
 	            $this->connection = Connection::getInstance();
 	            $resultSet = $this->connection->execute($sql, $parameters);
@@ -70,7 +70,7 @@ class ArtistDAO extends Singleton implements ICrud
 	       }
 
 	       if(!empty($resultSet))
-	            return $this->mapMethod($resultSet);
+					 return $this->mapMethod($resultSet);
 	       else
 	            return false;
 	  }
@@ -79,10 +79,10 @@ class ArtistDAO extends Singleton implements ICrud
 	  {
 	        $sql = "UPDATE artists SET nickname = :nickname, name_artist = :name_artist, surname = :surname WHERE id_artist = :id ";
 
-	        $parameters['id_artist'] = $value->getIdArtist();
+	        $parameters['id'] = $value->getIdArtist();
 	        $parameters['nickname'] = $value->getNickname();
-	        $parameters['name_artist'] = $value->getNameArtist();
 	        $parameters['surname'] = $value->getSurname();
+					$parameters['name_artist'] = $value->getNameArtist();
 
 	        try {
 
@@ -117,7 +117,7 @@ class ArtistDAO extends Singleton implements ICrud
 
 	  public function mapMethod($value) {
 
-		$value = is_array($value) ? $value : [];
+		$value = is_array($value) ? $value : [$value];
 
 
 		$resp = array_map(function($p){
