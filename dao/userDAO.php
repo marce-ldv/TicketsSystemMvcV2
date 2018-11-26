@@ -14,88 +14,61 @@ class UserDAO extends Singleton implements ICrud{
 	//object factoryDao
 
 	public function __construct(){
-		//$this->pdo = new Connection();
+		$this->pdo = new Connection();
 	}
 
-	public function create($user){
-		$sql = "INSERT INTO $this->table (
-			id_user,role_user,username,pass,email,name_user,surname,dni,profile_picture
-		) VALUES (
-			:id_user,:role_user,:username,:pass,:email,:name_user,:surname,:dni,:profile_picture
-		)";
 
-		$params['id_user'] = $user->getIdUser();
-		$params['role_user'] = 'user';
-		$params['username'] = $user->getUsername();
-		$params['pass'] = $user->getPass();
-		$params['email'] = $user->getEmail();
-		$params['name_user'] = $user->getNameUser();
-		$params['surname'] = $user->getSurname();
-		$params['dni'] = $user->getDni();
-		$params['profile_picture'] = $user->getProfilePicture();
+public function readByUsernameOrEmail ($userOrEmail) {
+	try{
+		$query = "SELECT * FROM $this->table WHERE username = :user OR email = :email";
 
-		try {
-			$this->connection = Connection::getInstance();
-			return $this->connection->executeNonQuery( $sql , $params );
-		} catch (\PDOException $th) {
-			throw $th;
+		$connection = $this->pdo->connect();
+		$statement = $connection->prepare($query);
+
+		$statement->execute([
+			":user" => $userOrEmail["user"],
+			":email" => $userOrEmail["email"]
+		]);
+
+		if ($statement->rowCount() > 0) {
+			return true;
 		}
 
+		return false;
+
+	}catch(\PDOException $e){
+		echo $e->getMessage();
+		die();
+	}catch(Exception $e){
+		echo $e->getMessage();
+		die();
 	}
+}
 
-	public function read($username){
-		$sql = "SELECT * FROM users WHERE username = :username";
+public function readByUser($data){
+	try{
+		$sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userEmail";
 
-		$params['username'] = $username;
+		$connection = $this->pdo->connect();
+		$statement = $connection->prepare($sql);
 
-		try {
-			$this->connection = Connection::getInstance();
-			$result = $this->connection->execute( $sql, $params);
-		} catch ( Exception $th) {
-			throw $th;
-		}
+		$statement->execute(array(
+			":userParam" => $data,
+			":userEmail" => $data
+		));
 
-		if( ! empty($result))
-			return $this->mapMethod($result);
-		else
+		if ($statement->rowCount() == 0) {
 			return false;
-	}
-
-	public function readAll(){}
-
-	public function readByUsernameOrEmail ($userOrEmail) {
-		try{
-			$query = "SELECT * FROM $this->table WHERE username = :user OR email = :email";
-	
-			$connection = $this->pdo->connect();
-			$statement = $connection->prepare($query);
-	
-			$statement->execute([
-				":user" => $userOrEmail["user"],
-				":email" => $userOrEmail["email"]
-			]);
-	
-			if ($statement->rowCount() > 0) {
-				return true;
-			}
-	
-			return false;
-	
-		}catch(\PDOException $e){
-			echo $e->getMessage();
-			die();
-		}catch(Exception $e){
-			echo $e->getMessage();
-			die();
 		}
+
+		//TODO: Terminar la implementacion
+		$user = $statement->fetch(\PDO::FETCH_ASSOC);
+
+		return $user;
+	}catch(\PDOException $e){
+		echo $e->getMessage();
 	}
-		
-	public function update($data){}
-
-	public function delete($v){}
-
-//-------------------------------------------------------------------------
-
+}
 
 public function mapMethodCollection($dataSet)
 {

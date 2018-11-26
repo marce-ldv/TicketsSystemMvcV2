@@ -5,7 +5,8 @@ namespace model;
 class Category
 {
 
-  private $idCategory,$nameCategory;
+  private $idCategory;
+  private $nameCategory;
 
   public function __construct($idCategory="",$nameCategory="")
   {

@@ -5,7 +5,9 @@ namespace model;
 
 class Event
 {
-  private $idEvent,$category,$title;
+  private $idEvent;
+  private $category;
+  private $title;
 
   public function __construct($idEvent="",$category="", $title="")
   {

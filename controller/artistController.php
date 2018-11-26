@@ -19,23 +19,22 @@ class ArtistController extends Controller implements IAlmr{
 
 	public function index () {
 		$this->list();
-		//$this->render('viewArtist/artists');
 	}
 
 	public function add ($data = []) {
-			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-			$artist = new Artist(
-				'',
-				$data["nickname"],
-				$data["name"],
-				$data["surname"]
-			);
+		//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
+		$artist = new Artist(
+			'',
+			$data["nickname"],
+			$data["name"],
+			$data["surname"]
+		);
 
-			$this->controllerDao->create($artist);
+		$this->controllerDao->create($artist);
 
-			$this->redirect("/artist/");
+		$this->redirect("/artist/");
 
-			return;
+		return;
 	}
 
 	public function list () {
@@ -49,10 +48,10 @@ class ArtistController extends Controller implements IAlmr{
 			if ($items) {
 				$items = (! is_array($items)) ? [$items] : $items;
 			}else {
-				$items = [];
+			$items = [];
 			}
 
-			//$items = $this->controllerDao->mapMethod($items);
+	//		$items = $this->controllerDao->mapMethod($items);
 
 			$this->render("viewArtist/artists",[
 				'items' => $items
@@ -68,45 +67,45 @@ class ArtistController extends Controller implements IAlmr{
 	$this->index();
 }
 
-public function viewEdit ($id) {
+	public function viewEdit ($id) {
 
-	$searchedItem = $this->controllerDao->read($id);
+		$searchedItem = $this->controllerDao->read($id);
 
-//	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+	//	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
-	$this->render('viewArtist/updateArtist',[
-		'searchedItem' => $searchedItem
-	]);
-}
+		$this->render('viewArtist/updateArtist',[
+			'searchedItem' => $searchedItem
+		]);
+	}
 
-public function modify($data = [])
-{
-	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-	if (empty($data)) $this->redirect("/default/");
-
-	$artist = new Artist(
-		$data["id"],
-		$data["nickname"],
-		$data["name"],
-		$data["surname"]
-	);
-
-	try
+	public function modify($data = [])
 	{
-		$this->controllerDao->update($artist);
-	}
-	catch(\PDOException $e)
-	{
-		echo $e->getMessage();
-	}
-	catch(\Exception $e){
-		echo $e->getMessage();
-	}
+		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+		if (empty($data)) $this->redirect("/default/");
 
-	//$this->redirect('/artist/');
+		$artist = new Artist(
+			$data["id"],
+			$data["nickname"],
+			$data["name"],
+			$data["surname"]
+		);
 
-	$this->index();
+		try
+		{
+			$this->controllerDao->update($artist);
+		}
+		catch(\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		catch(\Exception $e){
+			echo $e->getMessage();
+		}
 
-}
+		//$this->redirect('/artist/');
+
+		$this->index();
+
+	}
 
 }

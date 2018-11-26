@@ -4,7 +4,15 @@ namespace model;
 
 class User implements \Serializable
 {
-    private $idUser = 0,$roleUser,$username,$pass,$email,$nameUser,$surname,$dni,$profilePicture;
+    private $idUser = 0;
+    private $roleUser;
+    private $username;
+    private $pass;
+    private $email;
+    private $nameUser;
+    private $surname;
+    private $dni;
+    private $profilePicture;
 
     public function __construct ($idUser = "", $username = "", $pass ="", $email = "", $name = "", $surname = "", $dni = "",$profilePicture = "") {
       $this->idUser = $idUser;

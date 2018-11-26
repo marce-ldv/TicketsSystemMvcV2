@@ -6,7 +6,10 @@ use model\EventAreas;
 
 class LinePurchase
 {
-  private $idLinePurchases,$purchases,$quantity,$price;
+  private $idLinePurchases;
+  private $purchases;
+  private $quantity;
+  private $price;
 
   public __construct($idLinePurchases="",$purchases="",$quantity="",$price=""){
     $this->idLinePurchases = $idLinePurchases;

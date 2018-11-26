@@ -4,7 +4,11 @@ namespace model;
 
 class Calendar
 {
-  private $idCalendar,$event,$placeEvent,$dateStart,$dateEnd;
+  private $idCalendar;
+  private $event;
+  private $placeEvent;
+  private $dateStart;
+  private $dateEnd;
 
   public function __construct($idCalendar="", $event="", $placeEvent="", $dateStart="", $dateEnd=""){
     $this->idCalendar = $idCalendar;

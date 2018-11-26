@@ -6,7 +6,8 @@ use mode\LinePurchase;
 
 class Purchase
 {
-  private $idPurchase,$datePurchase;
+  private $idPurchase;
+  private $datePurchase;
 
   public function __construct ($idPurchase = "", $user = "", $datePurchase = "") {
     $this->idPurchase = $idPurchase;

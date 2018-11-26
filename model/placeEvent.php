@@ -7,7 +7,9 @@ description VARCHAR(50),*/
 
 class PlaceEvent
 {
-  private $idPlaceEvent,$capacity,$description;
+  private $idPlaceEvent;
+  private $capacity;
+  private $description;
 
   function __construct($idPlaceEvent="",$capacity="", $description="")
   {
