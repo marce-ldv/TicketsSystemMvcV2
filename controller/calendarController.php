@@ -64,9 +64,9 @@
          *
          */
         public function list () {
-            if (!$this->isLogged()) {
-                $this->redirect('/default/login');
-            } else {
+            //if (!$this->isLogged()) {
+             //   $this->redirect('/default/login');
+            //} else {
                 
                 $items = $this->controllerDao->readAll();
                 $items = ToArrayList::convert($items);
@@ -82,7 +82,7 @@
                     'events' => $events,
                     'placeEvents' => $placeEvents
                 ]);
-            }
+           // }
         }
     
         /**
