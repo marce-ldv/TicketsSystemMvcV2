@@ -119,11 +119,11 @@ class ArtistDAO extends Singleton implements ICrud
 
 		$value = is_array($value) ? $value : [];
 
-print_r($value);
+
 		$resp = array_map(function($p){
 			return new Artist($p['id_artist'], $p['nickname'], $p['name_artist'], $p['surname']);
 		}, $value);
-//print_r($resp);
+
 	           return count($resp) > 1 ? $resp : $resp[0];
 
 		}
