@@ -18,6 +18,7 @@ class ArtistController extends Controller implements IAlmr{
 	}
 
 	public function index () {
+		echo('asdas');
 		$this->list();
 	}
 
