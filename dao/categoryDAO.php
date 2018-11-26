@@ -5,13 +5,11 @@ namespace dao;
 use model\Category as Category;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
+use dao\Singleton as Singleton;
 
 class CategoryDAO extends Singleton implements ICrud
 {
 	private $connection;
-	/*	private $list = array();
-	private static $instance;
-	private $pdo;*/
 
 	public function __construct()	{}
 

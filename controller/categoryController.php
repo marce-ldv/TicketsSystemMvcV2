@@ -63,15 +63,12 @@ class CategoryController extends Controller implements IAlmr
 
     $this->controllerDao->delete($data['id']);
 
-    //$this->redirect("/category/");
     $this->index();
   }
 
   public function viewEdit ($id) {
 
     $searchedItem = $this->controllerDao->read($id);
-
-    //    $searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
     $this->render('viewCategory/updateCategory',[
       'searchedItem' => $searchedItem
@@ -99,8 +96,6 @@ class CategoryController extends Controller implements IAlmr
     catch(\Exception $e){
       echo $e->getMessage();
     }
-
-    //    $this->redirect('/category/');
 
     $this->index();
 
