@@ -45,7 +45,7 @@
 								</select>
 						</div>
 
-						<input type="hidden" name="data[idCalendar]" value="<?= $searchedItem->getIdCalendar() ?>">
+						<input type="hidden" name="data[id]" value="<?= $searchedItem->getIdCalendar() ?>">
 						<button type="submit" class="btn btn-primary">Modificar</button>
 
 				</form>
