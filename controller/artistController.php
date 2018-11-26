@@ -24,6 +24,7 @@ class ArtistController extends Controller implements IAlmr{
 	public function add ($data = []) {
 			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
 			$artist = new Artist(
+				'',
 				$data["nickname"],
 				$data["name"],
 				$data["surname"]
@@ -44,6 +45,12 @@ class ArtistController extends Controller implements IAlmr{
 
 		$items = $this->controllerDao->readAll();
 
+		if ($items) {
+			$items = (! is_array($items)) ? [$items] : $items;
+		}else {
+		$items = [];
+		}
+
 //		$items = $this->controllerDao->mapMethod($items);
 
 		$this->render("viewArtist/artists",[
@@ -62,9 +69,7 @@ class ArtistController extends Controller implements IAlmr{
 
 public function viewEdit ($id) {
 
-	$searchedItem = $this->controllerDao->read([
-		"id_artist" => $id
-	]);
+	$searchedItem = $this->controllerDao->read($id);
 
 //	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
@@ -79,10 +84,10 @@ public function modify($data = [])
 	if (empty($data)) $this->redirect("/default/");
 
 	$artist = new Artist(
+		$data["id"],
 		$data["nickname"],
 		$data["name"],
-		$data["surname"],
-		$data["id"]
+		$data["surname"]
 	);
 
 	try
