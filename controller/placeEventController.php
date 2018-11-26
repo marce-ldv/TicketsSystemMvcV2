@@ -23,10 +23,14 @@ class PlaceEventController extends Controller implements IAlmr{
 
 	public function add ($data = []) {
 			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-			$this->controllerDao->create([
-				"capacity" => $data["capacity"],
-				"_description" => $data["_description"]
-			]);
+
+			$placeEvent = new PlaceEvent(
+				'',
+				$data["capacity"],
+				$data["_description"]
+			);
+
+			$this->controllerDao->create($placeEvent);
 
 			$this->redirect("/placeEvent/");
 
@@ -34,67 +38,65 @@ class PlaceEventController extends Controller implements IAlmr{
 	}
 
 	public function list () {
-	if ( ! $this->isLogged()) {
-		$this->redirect('/default/login');
-	}
-	else {
+		//if ( ! $this->isLogged()) {
+		//	$this->redirect('/default/login');
+		//}
+		//else {
 
-		$items = $this->controllerDao->readAll();
+			$items = $this->controllerDao->readAll();
 
-		$items = $this->controllerDao->mapMethodCollection($items);
-
-		$this->render("viewPlaceEvent/placeEvent",[
-			'items' => $items
-		]);
-	}
+			if ($items) {
+				$items = (! is_array($items)) ? [$items] : $items;
+			  }else {
+				$items = [];
+			  }
+		
+			$this->render("viewPlaceEvent/placeEvent",[
+				'items' => $items
+			]);
+		//}
 	}
 
 	public function remove($data = []) {
 
-	$this->controllerDao->delete([
-		"id_place_event" => $data['idPlaceEvent']
-	]);
-
-	$this->redirect("/placeEvent/");
-}
+		$this->controllerDao->delete($data['id']);
+		$this->index();
+	}
 
 public function viewEdit ($id) {
 
-	$searchedItem = $this->controllerDao->read([
-		"id_place_event" => $id
-	]);
-
-	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+	$searchedItem = $this->controllerDao->read($id);
 
 	$this->render('viewPlaceEvent/updatePlaceEvent',[
 		'searchedItem' => $searchedItem
 	]);
 }
 
-public function modify($data = [])
-{
-	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-	if (empty($data)) $this->redirect("/default/");
-
-	try
+	public function modify($data = [])
 	{
-		$this->controllerDao->update([
-			"capacity" => $data["capacity"],
-			"_description" => $data["_description"]
-		],[
-			"id_place_event" => $data["idPlaceEvent"]
-		]);
-	}
-	catch(\PDOException $e)
-	{
-		echo $e->getMessage();
-	}
-	catch(\Exception $e){
-		echo $e->getMessage();
-	}
+		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+		if (empty($data)) $this->redirect("/default/");
 
-	$this->redirect('/placeEvent/');
+		$placeEvent = new PlaceEvent(
+			'',
+			$data["capacity"],
+			$data["_description"]
+		);
 
-}
+		try
+		{
+			$this->controllerDao->update($placeEvent);
+		}
+		catch(\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		catch(\Exception $e){
+			echo $e->getMessage();
+		}
+
+		$this->index();
+
+	}
 
 }

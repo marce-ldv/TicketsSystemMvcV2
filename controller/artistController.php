@@ -22,81 +22,90 @@ class ArtistController extends Controller implements IAlmr{
 	}
 
 	public function add ($data = []) {
-			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-			$this->controllerDao->create([
-				"nickname" => $data["nickname"],
-				"name_artist" => $data["name"],
-				"surname" => $data["surname"]
-			]);
+		//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
+		$artist = new Artist(
+			'',
+			$data["nickname"],
+			$data["name"],
+			$data["surname"]
+		);
 
-			$this->redirect("/artist/");
+		$this->controllerDao->create($artist);
 
-			return;
+		$this->redirect("/artist/");
+
+		return;
 	}
 
 	public function list () {
-	if ( ! $this->isLogged()) {
-		$this->redirect('/default/login');
-	}
-	else {
+		//if ( ! $this->isLogged()) {
+			//$this->redirect('/default/login');
+		//}
+		//else {
 
-		$items = $this->controllerDao->readAll();
+			$items = $this->controllerDao->readAll();
 
-		$items = $this->controllerDao->mapMethodCollection($items);
+			if ($items) {
+				$items = (! is_array($items)) ? [$items] : $items;
+			}else {
+			$items = [];
+			}
 
-		$this->render("viewArtist/artists",[
-			'items' => $items
-		]);
-	}
+	//		$items = $this->controllerDao->mapMethod($items);
+
+			$this->render("viewArtist/artists",[
+				'items' => $items
+			]);
+		//}
 	}
 
 	public function remove($data = []) {
 
-	$this->controllerDao->delete([
-		"id_artist" => $data['id']
-	]);
+	$this->controllerDao->delete($data['id']);
 
-	$this->redirect("/artist/");
+	//$this->redirect("/artist/");
+	$this->index();
 }
 
-public function viewEdit ($id) {
+	public function viewEdit ($id) {
 
-	$searchedItem = $this->controllerDao->read([
-		"id_artist" => $id
-	]);
+		$searchedItem = $this->controllerDao->read($id);
 
-	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+	//	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
-	$this->render('viewArtist/updateArtist',[
-		'searchedItem' => $searchedItem
-	]);
-}
-
-public function modify($data = [])
-{
-	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-	if (empty($data)) $this->redirect("/default/");
-
-	try
-	{
-		$this->controllerDao->update([
-			"nickname" => $data["nickname"],
-			"name_artist" => $data["name"],
-			"surname" => $data["surname"]
-		],[
-			"id_artist" => $data["id"]
+		$this->render('viewArtist/updateArtist',[
+			'searchedItem' => $searchedItem
 		]);
 	}
-	catch(\PDOException $e)
+
+	public function modify($data = [])
 	{
-		echo $e->getMessage();
-	}
-	catch(\Exception $e){
-		echo $e->getMessage();
-	}
+		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
+		if (empty($data)) $this->redirect("/default/");
 
-	$this->redirect('/artist/');
+		$artist = new Artist(
+			$data["id"],
+			$data["nickname"],
+			$data["name"],
+			$data["surname"]
+		);
 
-}
+		try
+		{
+			$this->controllerDao->update($artist);
+		}
+		catch(\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		catch(\Exception $e){
+			echo $e->getMessage();
+		}
+
+		//$this->redirect('/artist/');
+
+		$this->index();
+
+	}
 
 }

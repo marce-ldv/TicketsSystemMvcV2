@@ -24,9 +24,13 @@ class CategoryController extends Controller implements IAlmr
 
   public function add ($data = []) {
     //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-    $this->controllerDao->create([
-      "name_category" => $data["name_category"]
-    ]);
+
+    $category = new Category(
+      '',
+      $data["name_category"]
+    );
+
+    $this->controllerDao->create($category);
 
     $this->redirect("/category/");
 
@@ -34,37 +38,37 @@ class CategoryController extends Controller implements IAlmr
   }
 
   public function list () {
-    if ( ! $this->isLogged()) {
-      $this->redirect('/default/login');
-    }
-    else {
+    //if ( ! $this->isLogged()) {
+      //$this->redirect('/default/login');
+    //}
+    //else {
 
       $items = $this->controllerDao->readAll();
 
-      $items = $this->controllerDao->mapMethodCollection($items);
+      if ($items) {
+        $items = (! is_array($items)) ? [$items] : $items;
+      }else {
+        $items = [];
+      }
+
+      //$items = $this->controllerDao->mapMethod($items);
 
       $this->render("viewCategory/categories",[
         'items' => $items
       ]);
-    }
+    //}
   }
 
   public function remove($data = []) {
 
-    $this->controllerDao->delete([
-      "id_category" => $data['id']
-    ]);
+    $this->controllerDao->delete($data['id']);
 
-    $this->redirect("/category/");
+    $this->index();
   }
 
   public function viewEdit ($id) {
 
-    $searchedItem = $this->controllerDao->read([
-      "id_category" => $id
-    ]);
-
-    $searchedItem = $this->controllerDao->mapMethod($searchedItem);
+    $searchedItem = $this->controllerDao->read($id);
 
     $this->render('viewCategory/updateCategory',[
       'searchedItem' => $searchedItem
@@ -76,13 +80,14 @@ class CategoryController extends Controller implements IAlmr
     if ( ! $this->isMethod("POST")) $this->redirect("/default/");
     if (empty($data)) $this->redirect("/default/");
 
+    $category = new Category(
+      $data["id"],
+      $data["name_category"]
+    );
+
     try
     {
-      $this->controllerDao->update([
-        "name_category" => $data["name_category"]
-      ],[
-        "id_category" => $data["id"]
-      ]);
+      $this->controllerDao->update($category);
     }
     catch(\PDOException $e)
     {
@@ -92,7 +97,7 @@ class CategoryController extends Controller implements IAlmr
       echo $e->getMessage();
     }
 
-    $this->redirect('/category/');
+    $this->index();
 
   }
 }
