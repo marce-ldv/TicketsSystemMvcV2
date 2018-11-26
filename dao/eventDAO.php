@@ -8,7 +8,11 @@
     use model\Category as Category;
     use dao\Singleton as Singleton;
     use dao\CategoryDAO as CategoryDAO;
-    
+
+    /**
+     * Class EventDAO
+     * @package dao
+     */
     class EventDAO extends Singleton
     {
         private $connection;

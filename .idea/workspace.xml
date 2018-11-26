@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="150144e4-2f49-499b-b34d-9abfc263f2f0" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/helpers/toArrayConverterList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/eventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/eventController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/ArtistDAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/dao/ArtistDAO.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/eventDAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/dao/eventDAO.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interfaces/icrud.php" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces/icrud.php" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="eventDAO.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dao/eventDAO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="eventController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/eventController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="770">
+              <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+              <folding>
+                <element signature="e#46#75#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArtistDAO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/ArtistDAO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="676">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+              <folding>
+                <element signature="e#39#66#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="toArrayConverterList.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/helpers/toArrayConverterList.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="singleton.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dao/singleton.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-360" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="icrud.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interfaces/icrud.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ignacio" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/dao/connection.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/model/eventArea.php" />
+        <option value="$PROJECT_DIR$/controller/artistController.php" />
+        <option value="$PROJECT_DIR$/dao/eventAreaDAO.php" />
+        <option value="$PROJECT_DIR$/helpers/toArrayConverterList.php" />
+        <option value="$PROJECT_DIR$/controller/eventController.php" />
+        <option value="$PROJECT_DIR$/interfaces/icrud.php" />
+        <option value="$PROJECT_DIR$/dao/ArtistDAO.php" />
+        <option value="$PROJECT_DIR$/dao/eventDAO.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TicketsSystemMvcV2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketsSystemMvcV2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TicketsSystemMvcV2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketsSystemMvcV2" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TicketsSystemMvcV2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketsSystemMvcV2" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="150144e4-2f49-499b-b34d-9abfc263f2f0" name="Default" comment="" />
+      <created>1543184050051</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543184050051</updated>
+      <workItem from="1543184053353" duration="119000" />
+      <workItem from="1543184276224" duration="9579000" />
+      <workItem from="1543263860299" duration="3983000" />
+    </task>
+    <task id="LOCAL-00001" summary="actualizando codigo">
+      <created>1543189865629</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1543189865629</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="13681000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32943678" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32897604" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49673203" visible="true" weight="0.18017058" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3296875" />
+      <window_info id="Structure" order="1" sideWeight="0.503268" side_tool="true" weight="0.18017058" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32943678" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3296875" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32943678" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Messages" order="0" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18020834" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="actualizando codigo" />
+    <option name="LAST_COMMIT_MESSAGE" value="actualizando codigo" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/dao/eventAreaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfaces/icrud.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/eventArea.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/sergio/Downloads/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="61" column="15" lean-forward="true" selection-start-line="61" selection-start-column="15" selection-end-line="64" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2190">
+          <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5bc18862-65b8-4fd1-b68f-644a08e54006/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="uml://PHP/C:/xampp/htdocs/TicketsSystemMvcV2">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>$PROJECT_DIR$</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/config</node>
+            <node x="" y="">$PROJECT_DIR$/content</node>
+            <node x="" y="">$PROJECT_DIR$/sql-queries</node>
+            <node x="" y="">$PROJECT_DIR$/view</node>
+            <node x="" y="">$PROJECT_DIR$/controller</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules</node>
+            <node x="" y="">$PROJECT_DIR$/dao</node>
+            <node x="" y="">$PROJECT_DIR$/vendor</node>
+            <node x="" y="">$PROJECT_DIR$/model</node>
+            <node x="" y="">$PROJECT_DIR$/helpers</node>
+            <node x="" y="">$PROJECT_DIR$/interfaces</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="151.0" y="163.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/C:/xampp/htdocs/TicketsSystemMvcV2/controller">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>$PROJECT_DIR$/controller</OriginalElement>
+          <nodes>
+            <node x="985.0" y="199.0">\controller\TicketController</node>
+            <node x="128.0" y="199.0">\controller\phpmailerController</node>
+            <node x="822.75" y="0.0">\controller\Controller</node>
+            <node x="1122.0" y="199.0">\controller\EventAreaController</node>
+            <node x="832.0" y="199.0">\controller\CategoryController</node>
+            <node x="1575.0" y="199.0">\controller\EventController</node>
+            <node x="287.0" y="199.0">\controller\TestController</node>
+            <node x="0.0" y="199.0">\controller\UserController</node>
+            <node x="1264.625" y="-7.105463786531175">\interfaces\IAlmr</node>
+            <node x="537.0" y="199.0">\controller\DefaultController</node>
+            <node x="1709.0" y="199.0">\controller\TypeAreaController</node>
+            <node x="680.0" y="199.0">\controller\CalendarController</node>
+            <node x="1280.0" y="199.0">\controller\ArtistController</node>
+            <node x="414.0" y="199.0">\controller\FileController</node>
+            <node x="1413.0" y="199.0">\controller\PlaceEventController</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\controller\CategoryController" target="\interfaces\IAlmr">
+              <point x="33.25" y="-14.5" />
+              <point x="931.75" y="159.0" />
+              <point x="1276.0625" y="159.0" />
+              <point x="-19.0625" y="14.5" />
+            </edge>
+            <edge source="\controller\UserController" target="\controller\Controller">
+              <point x="0.0" y="-14.5" />
+              <point x="54.0" y="89.0" />
+              <point x="826.0192307692307" y="89.0" />
+              <point x="-39.23076923076928" y="14.5" />
+            </edge>
+            <edge source="\controller\CalendarController" target="\interfaces\IAlmr">
+              <point x="33.0" y="-14.5" />
+              <point x="779.0" y="149.0" />
+              <point x="1268.4375" y="149.0" />
+              <point x="-26.6875" y="14.5" />
+            </edge>
+            <edge source="\controller\EventAreaController" target="\interfaces\IAlmr">
+              <point x="34.5" y="-14.5" />
+              <point x="1225.5" y="179.0" />
+              <point x="1291.3125" y="179.0" />
+              <point x="-3.8125" y="14.5" />
+            </edge>
+            <edge source="\controller\TypeAreaController" target="\interfaces\IAlmr">
+              <point x="33.75" y="-14.5" />
+              <point x="1810.25" y="49.0" />
+              <point x="1321.8125" y="49.0" />
+              <point x="26.6875" y="14.5" />
+            </edge>
+            <edge source="\controller\phpmailerController" target="\controller\Controller">
+              <point x="0.0" y="-14.5" />
+              <point x="197.5" y="99.0" />
+              <point x="832.5576923076924" y="99.0" />
+              <point x="-32.692307692307736" y="14.5" />
+            </edge>
+            <edge source="\controller\TicketController" target="\interfaces\IAlmr">
+              <point x="29.25" y="-14.5" />
+              <point x="1072.75" y="169.0" />
+              <point x="1283.6875" y="169.0" />
+              <point x="-11.4375" y="14.5" />
+            </edge>
+            <edge source="\controller\ArtistController" target="\controller\Controller">
+              <point x="-28.25" y="-14.5" />
+              <point x="1308.25" y="119.0" />
+              <point x="884.8653846153848" y="119.0" />
+              <point x="19.61538461538464" y="14.5" />
+            </edge>
+            <edge source="\controller\EventController" target="\controller\Controller">
+              <point x="-28.5" y="-14.5" />
+              <point x="1603.5" y="79.0" />
+              <point x="897.9423076923078" y="79.0" />
+              <point x="32.692307692307736" y="14.5" />
+            </edge>
+            <edge source="\controller\PlaceEventController" target="\controller\Controller">
+              <point x="-35.5" y="-14.5" />
+              <point x="1448.5" y="99.0" />
+              <point x="891.4038461538462" y="99.0" />
+              <point x="26.15384615384619" y="14.5" />
+            </edge>
+            <edge source="\controller\TestController" target="\controller\Controller">
+              <point x="0.0" y="-14.5" />
+              <point x="340.5" y="109.0" />
+              <point x="839.0961538461538" y="109.0" />
+              <point x="-26.15384615384619" y="14.5" />
+            </edge>
+            <edge source="\controller\DefaultController" target="\controller\Controller">
+              <point x="0.0" y="-14.5" />
+              <point x="598.5" y="129.0" />
+              <point x="852.1730769230769" y="129.0" />
+              <point x="-13.076923076923094" y="14.5" />
+            </edge>
+            <edge source="\controller\CalendarController" target="\controller\Controller">
+              <point x="-33.0" y="-14.5" />
+              <point x="713.0" y="139.0" />
+              <point x="858.7115384615386" y="139.0" />
+              <point x="-6.538461538461547" y="14.5" />
+            </edge>
+            <edge source="\controller\CategoryController" target="\controller\Controller">
+              <point x="-33.25" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="\controller\TicketController" target="\controller\Controller">
+              <point x="-29.25" y="-14.5" />
+              <point x="1014.25" y="139.0" />
+              <point x="871.7884615384617" y="139.0" />
+              <point x="6.538461538461547" y="14.5" />
+            </edge>
+            <edge source="\controller\FileController" target="\controller\Controller">
+              <point x="0.0" y="-14.5" />
+              <point x="465.5" y="119.0" />
+              <point x="845.6346153846155" y="119.0" />
+              <point x="-19.61538461538464" y="14.5" />
+            </edge>
+            <edge source="\controller\ArtistController" target="\interfaces\IAlmr">
+              <point x="28.25" y="-14.5" />
+              <point x="1364.75" y="109.0" />
+              <point x="1298.9375" y="109.0" />
+              <point x="3.8125" y="14.5" />
+            </edge>
+            <edge source="\controller\EventAreaController" target="\controller\Controller">
+              <point x="-34.5" y="-14.5" />
+              <point x="1156.5" y="129.0" />
+              <point x="878.3269230769231" y="129.0" />
+              <point x="13.076923076923094" y="14.5" />
+            </edge>
+            <edge source="\controller\TypeAreaController" target="\controller\Controller">
+              <point x="-33.75" y="-14.5" />
+              <point x="1742.75" y="59.0" />
+              <point x="904.4807692307693" y="59.0" />
+              <point x="39.23076923076928" y="14.5" />
+            </edge>
+            <edge source="\controller\PlaceEventController" target="\interfaces\IAlmr">
+              <point x="35.5" y="-14.5" />
+              <point x="1519.5" y="89.0" />
+              <point x="1306.5625" y="89.0" />
+              <point x="11.4375" y="14.5" />
+            </edge>
+            <edge source="\controller\EventController" target="\interfaces\IAlmr">
+              <point x="28.5" y="-14.5" />
+              <point x="1660.5" y="69.0" />
+              <point x="1314.1875" y="69.0" />
+              <point x="19.0625" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.8444206008583691" x="922.0" y="114.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\dao\EventAreaDAO">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\dao\EventAreaDAO</OriginalElement>
+          <nodes>
+            <node x="0.0" y="0.0">\interfaces\ICrud</node>
+            <node x="81.0" y="0.0">\dao\Singleton</node>
+            <node x="21.25" y="79.0">\dao\EventAreaDAO</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\dao\EventAreaDAO" target="\dao\Singleton">
+              <point x="27.5" y="-14.5" />
+              <point x="103.75" y="54.0" />
+              <point x="122.0" y="54.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="\dao\EventAreaDAO" target="\interfaces\ICrud">
+              <point x="-27.5" y="-14.5" />
+              <point x="48.75" y="54.0" />
+              <point x="30.5" y="54.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-465.0" y="-150.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/artistController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="893">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/sergio/Downloads/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="64" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/eventArea.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/eventAreaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2850">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/singleton.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interfaces/icrud.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/toArrayConverterList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/eventController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+          <folding>
+            <element signature="e#46#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/ArtistDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+          <folding>
+            <element signature="e#39#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/eventDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

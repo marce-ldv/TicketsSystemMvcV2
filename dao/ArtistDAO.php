@@ -5,7 +5,11 @@
     use model\Artist as Artist;
     use PDOException;
     use Exception;
-    
+
+    /**
+     * Class ArtistDAO
+     * @package dao
+     */
     class ArtistDAO extends Singleton
     {
         private $connection;
