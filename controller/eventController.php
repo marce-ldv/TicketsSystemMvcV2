@@ -9,7 +9,7 @@
     use controller\Controller as Controller;
     use interfaces\IAlmr as IAlmr;
     
-    class EventController extends Controller implements IAlmr
+    class EventController extends Controller
     {
         
         private $controllerDao;
@@ -18,12 +18,17 @@
             parent::__construct();
             $this->controllerDao = EventDAO::getInstance();
         }
-        
+    
+        /**
+         *
+         */
         public function index () {
             $this->list();
         }
-        
-        
+    
+        /**
+         * @param array $data
+         */
         public function add ($data = []) {
             //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
             
@@ -39,7 +44,10 @@
             
             return;
         }
-        
+    
+        /**
+         *
+         */
         public function list () {
             $items = $this->controllerDao->readAll();
             $items = ToArrayList::convert($items);
@@ -54,7 +62,10 @@
             ]);
             //}
         }
-        
+    
+        /**
+         * @param array $data
+         */
         public function remove ($data = []) {
             
             $this->controllerDao->delete($data['idEvent']);
@@ -62,23 +73,27 @@
             //$this->redirect("/event/");
             $this->index();
         }
-        
+    
+        /**
+         * @param $id
+         */
         public function viewEdit ($id) {
             
             $searchedItem = $this->controllerDao->read($id);
-            
-            $categoryDao = CategoryDAO::getInstance();
-            $categories = $categoryDao->readAll();
-            //$categories = $categoryDao->mapMethodCollection($categories);
-            
-            //$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+    
+            $dao = CategoryDAO::getInstance();
+            $categories = $dao->readAll();
+            $categories = ToArrayList::convert($categories);
             
             $this->render('viewEvent/updateEvent', [
                 'searchedItem' => $searchedItem,
                 'categories' => $categories
             ]);
         }
-        
+    
+        /**
+         * @param array $data
+         */
         public function modify ($data = []) {
             if (!$this->isMethod("POST")) $this->redirect("/default/");
             if (empty($data)) $this->redirect("/default/");
