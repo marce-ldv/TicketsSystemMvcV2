@@ -25,10 +25,14 @@ class EventController extends Controller implements IAlmr{
 
 	public function add ($data = []) {
 			//create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-			$this->controllerDao->create([
-				"id_category" => $data["idCategory"],
-				"title" => $data["title"]
-			]);
+
+			$event = new Event(
+				'',
+				$data["idCategory"],
+				$data["title"]
+			);
+
+			$this->controllerDao->create($event);
 
 			$this->redirect("/event/");
 
@@ -36,45 +40,48 @@ class EventController extends Controller implements IAlmr{
 	}
 
 	public function list () {
-	if ( ! $this->isLogged()) {
-		$this->redirect('/default/login');
-	}
-	else {
+	//if ( ! $this->isLogged()) {
+		//$this->redirect('/default/login');
+	//}
+	//else {
 
 		$items = $this->controllerDao->readAll();
-		$items = $this->controllerDao->mapMethodCollection($items);
+//		$items = $this->controllerDao->mapMethodCollection($items);
 
     $categoryDao = CategoryDAO::getInstance();
     $categories = $categoryDao->readAll();
-    $categories = $categoryDao->mapMethodCollection($categories);
+//    $categories = $categoryDao->mapMethodCollection($categories);
+
+		if ($items) {
+			$items = (! is_array($items)) ? [$items] : $items;
+		}else {
+		$items = [];
+		}
 
 		$this->render("viewEvent/events",[
 			'items' => $items,
       'categories' => $categories
 		]);
-	}
+	//}
 	}
 
 	public function remove($data = []) {
 
-	$this->controllerDao->delete([
-		"id_event" => $data['idEvent']
-	]);
+	$this->controllerDao->delete($data['idEvent']);
 
-	$this->redirect("/event/");
+	//$this->redirect("/event/");
+	$this->index();
 }
 
 public function viewEdit ($id) {
 
-	$searchedItem = $this->controllerDao->read([
-		"id_event" => $id
-	]);
+	$searchedItem = $this->controllerDao->read($id);
 
 	$categoryDao = CategoryDAO::getInstance();
 	$categories = $categoryDao->readAll();
-	$categories = $categoryDao->mapMethodCollection($categories);
+	//$categories = $categoryDao->mapMethodCollection($categories);
 
-	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+	//$searchedItem = $this->controllerDao->mapMethod($searchedItem);
 
 	$this->render('viewEvent/updateEvent',[
 		'searchedItem' => $searchedItem,
@@ -87,14 +94,15 @@ public function modify($data = [])
 	if ( ! $this->isMethod("POST")) $this->redirect("/default/");
 	if (empty($data)) $this->redirect("/default/");
 
+	$event = new Event(
+		$data["idEvent"],
+		$data["idCategory"],
+		$data["title"]
+	);
+
   try
 	{
-		$this->controllerDao->update([
-			"id_category" => $data["idCategory"],
-			"title" => $data["title"]
-		],[
-			"id_event" => $data["idEvent"]
-		]);
+		$this->controllerDao->update($event);
 	}
 	catch(\PDOException $e)
 	{
@@ -104,7 +112,9 @@ public function modify($data = [])
 		echo $e->getMessage();
 	}
 
-	$this->redirect('/event/');
+	//$this->redirect('/event/');
+
+	$this->index();
 
 }
 
