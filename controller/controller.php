@@ -14,6 +14,7 @@ class Controller{
   public function __construct(){
     $this->session = Session::getInstance();
     $this->defaultDAO = new DefaultDAO();
+    //print_r($this->session);
   }
 
   public function getToken(){
@@ -42,7 +43,7 @@ class Controller{
   }
 
   public function render($path, $options = []) {
-
+    //print_r($this->session);
     //Revisa la session por options de redirect
     if ( $this->session->redirectOptions ) {
       $optionsUnserialize = unserialize($this->session->redirectOptions);

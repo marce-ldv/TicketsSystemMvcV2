@@ -332,7 +332,7 @@
         <div class="modal-body card-body">
           <h3>Registrate.</h3>
           <p>Ingrese su usuario o email, y la contrasena para ingresar al sistema.</p>
-          <form action="<?= FRONT_VIEW ?>/user/register/" method="post">
+          <form action="<?= FRONT_VIEW ?>/default/addUser/" method="post">
 
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
