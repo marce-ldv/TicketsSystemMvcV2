@@ -9,7 +9,8 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?= $this->getToken()->getUsername(); ?>
-          <i class="fas fa-user-tie"></i>
+          
+            <img src="<?= FRONT_IMAGE_UPLOADS.$this->getToken()->getProfilePicture() ?>" height="50" width="50" alt="" style="border-radius: 50px 50px 50px 50px">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-compass fa-spin""></i> Dashboard</a>

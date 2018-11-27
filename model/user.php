@@ -30,7 +30,8 @@ class User implements \Serializable
         return serialize([
             $this->username,
             $this->email,
-            $this->roleUser
+            $this->roleUser,
+            $this->profilePicture
         ]);
     }
 
@@ -38,7 +39,8 @@ class User implements \Serializable
         list(
             $this->username,
             $this->email,
-            $this->roleUser
+            $this->roleUser,
+            $this->profilePicture
         ) = unserialize($data);
     }
 

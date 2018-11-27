@@ -49,11 +49,11 @@
             <div class="card text-center form-login">
               <div class="card-body">
 
-                <?php if (isset($alert)) {?>
+                <?php if (isset($message)) {?>
                 <div class="done">
                   <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">×</button>
-                    <?php echo $alert ?>
+                    <?php echo $message ?>
                   </div>
                 </div>
                 <?php } ?>
@@ -227,92 +227,6 @@
     width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
 
-<!-- Pongo el footer aca por que si no la ventana modal me lo pisa -->
-<!-- Footer -->
-<footer class="page-footer font-small mdb-color lighten-3 pt-4">
-
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left">
-
-    <!-- Grid row -->
-    <div class="row">
-
-      <!-- Grid column -->
-      <div class="col-md-3">
-
-        <!-- Content -->
-        <h5 class="font-weight-bold text-uppercase mb-4">INFO</h5>
-        <p>Siguenos en nuestras redes sociales.</p>
-        <p>Para contactarte con nosostros, puedes hacerlo haciendo click <a href="#">aqui</a>.</p>
-
-      </div>
-
-
-      <!-- Grid column -->
-      <div class="col-md-3">
-
-        <!-- Contact details -->
-        <h5 class="font-weight-bold text-uppercase mb-4">DIRECCION</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <p>
-              <i class="fa fa-home mr-3"></i> Av. Dorrego ,281, Mar del plata</p>
-            </li>
-            <li>
-              <p>
-                <i class="fa fa-envelope mr-3"></i> info@cosmefulanito.com</p>
-              </li>
-              <li>
-                <p>
-                  <i class="fa fa-phone mr-3"></i> + 54 234 567 88</p>
-                </li>
-                <li>
-                  <p>
-                    <i class="fa fa-print mr-3"></i> + 54 234 567 89</p>
-                  </li>
-                </ul>
-
-              </div>
-              <!-- Grid column -->
-
-              <hr class="clearfix w-100 d-md-none">
-
-              <!-- Grid column -->
-
-              <div class="col-md-6">
-
-                <form action="<?= FRONT_VIEW ?>/phpmailer/send/" method="post">
-
-                  <fieldset class="form-group">
-                    <input type="email" class="form-control" name="formData[emailContact]" placeholder="Ingrese su email.." required>
-                  </fieldset>
-                  <fieldset class="form-group">
-                    <textarea class="form-control" name="formData[msgContact]" placeholder="Escriba aqui su mensaje.." required></textarea>
-                  </fieldset>
-                  <fieldset class="form-group text-right">
-                    <input type="submit" class="btn btn-primary btn-lg" value="Enviar"></input>
-                  </fieldset>
-                </form>
-              </div>
-
-              <!-- Grid column -->
-
-            </div>
-            <!-- Grid row -->
-
-          </div>
-          <!-- Footer Links -->
-
-          <!-- Copyright -->
-          <div class="footer-copyright text-center py-3">© 2018 Copyright:
-            <a href="https://google.com/"> Sistema de venta de tickets</a>
-          </div>
-          <!-- Copyright -->
-
-        </footer>
-        <!-- Footer -->
-
 
 <!-- Modal Register-->
 <div id="form-register-modal" class="modal fade" role="dialog">
@@ -332,7 +246,7 @@
         <div class="modal-body card-body">
           <h3>Registrate.</h3>
           <p>Ingrese su usuario o email, y la contrasena para ingresar al sistema.</p>
-          <form action="<?= FRONT_VIEW ?>/default/addUser/" method="post">
+          <form enctype="multipart/form-data" action="<?= FRONT_VIEW ?>/default/addUser/" method="post">
 
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Username" name="registerData[username]">
@@ -365,7 +279,7 @@
 
             <div class="form-group">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="registerData[profilePicture]">
+                <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="profilePicture">
                 <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
               </div>
             </div>
@@ -379,4 +293,5 @@
 
     </div>
   </div>
+</div>
   <!-- END Modal View -->
