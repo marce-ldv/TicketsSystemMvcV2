@@ -83,7 +83,7 @@ class ArtistDAO extends Singleton implements ICrud
 	        $parameters['nickname'] = $value->getNickname();
 	        $parameters['surname'] = $value->getSurname();
 					$parameters['name_artist'] = $value->getNameArtist();
-					
+
 	        try {
 
 	        $this->connection = Connection::getInstance();
@@ -117,11 +117,7 @@ class ArtistDAO extends Singleton implements ICrud
 
 	  public function mapMethod($value) {
 
-//		print_r($value);
-
 		$value = is_array($value) ? $value : [$value];
-
-
 
 		$resp = array_map(function($p){
 			return new Artist($p['id_artist'], $p['nickname'], $p['name_artist'], $p['surname']);
