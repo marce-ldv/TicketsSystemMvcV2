@@ -8,16 +8,18 @@ class Purchase
 {
   private $idPurchase;
   private $datePurchase;
+  private $user;
 
-  public function __construct ($idPurchase = "", $user = "", $datePurchase = "") {
+  public function __construct ($idPurchase = "", User $user = null, $datePurchase = "") {
     $this->idPurchase = $idPurchase;
     $this->datePurchase = $datePurchase;
+    $this->user = $user;
   }
 
   //GETTERS
 
   public function getIdPurchase() {
-    return $this->$idPurchase;
+    return $this->idPurchase;
   }
 
   public function getDatePurchase() {
@@ -36,5 +38,19 @@ class Purchase
   {
     $this->datePurchase = $value;
   }
+    
+    /**
+     * @return User
+     */
+    public function getUser (): User {
+        return $this->user;
+    }
+    
+    /**
+     * @param User $user
+     */
+    public function setUser (User $user): void {
+        $this->user = $user;
+    }
 
 }

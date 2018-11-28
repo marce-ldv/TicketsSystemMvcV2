@@ -5,6 +5,16 @@ class Collection implements \Iterator, \Countable, \ArrayAccess
 {
   private $position = 0;
   private $array = [];
+  
+  public static function createFromArray (Array $array) {
+      $collection = new Collection();
+      $collection->setArray($array);
+      return $collection;
+  }
+  
+  public function setArray (Array $array) {
+      $this->array = $array;
+  }
 
   public function current () {
     return $this->array[$this->position];

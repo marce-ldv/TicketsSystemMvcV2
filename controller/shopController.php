@@ -8,8 +8,19 @@
     
     namespace controller;
     
+    use dao\CalendarDAO;
+    use helpers\ToArrayList;
+    use controller\Controller;
     
-    class ShopController
+    class ShopController extends Controller
     {
+        public function index () {
         
+            $calendars = CalendarDAO::getInstance()->readAll();
+            $calendars = ToArrayList::convert($calendars);
+        
+            $this->render('shop',[
+                'calendars' => $calendars
+            ]);
+        }
     }

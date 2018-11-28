@@ -78,6 +78,30 @@
             else
                 return false;
         }
+    
+        /**
+         * @param $id
+         * @return array|bool
+         * @throws Exception
+         */
+        public function readByCalendar ($id) {
+            try {
+        
+                $sql = "SELECT * FROM events_area where id_calendar = :id";
+        
+                $parameters['id'] = $id;
+        
+                $this->connection = Connection::getInstance();
+                $resultSet = $this->connection->execute($sql, $parameters);
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            if (!empty($resultSet))
+                return $this->mapMethod($resultSet);
+            else
+                return false;
+        }
         
         /**
          * @return array|bool

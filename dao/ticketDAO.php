@@ -6,224 +6,141 @@ use model\Ticket as Ticket;
 use interfaces\ICrud as ICrud;
 use helpers\Collection as Collection;
 use dao\Singleton as Singleton;
+use PDOException;
+use Exception;
 
 class TicketDAO extends Singleton implements ICrud
 {
-	private $list = array();
-	private static $instance;
-	private $pdo;
-
-	public function __construct()
-	{
-		$this->table = "tickets";
-		$this->pdo = new Connection();
-	}
-/*
-  public function create(&$ticket)
-  {
-  	try
-  	{
-  		$sql = "INSERT INTO $this->table (id_line_purchase, code_qr) VALUES (:linePurchase, :codeQr)";
-
-  		$connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
-
-  		$linePurchase = $ticket->getLinePurchase();
-      $idLinePurchase = $linePurchase->getIdLinePurchase();
-
-      $codeQr = $ticket->getQr();
-
-  		$statement->execute(array(
-  			":linePurchase" => $idLinePurchase,
-        ":codeQr" => $codeQr,
-  		));
-
-  		return $connection->lastInsertId();
-  	}
-  	catch(\PDOException $e)
-  	{
-  		throw $e;
-  	}
-  	catch(Exception $e)
-  	{
-  		throw $e;
-  	}
-  }
-
-  public function read($id)
-  {
-    try
-    {
-      $sql = "SELECT * FROM $this->table WHERE id_ticket_number = $id";
-
-      $connection = Connection::connect();
-      $statement = $connection->prepare($sql);
-
-      $statement->execute();
-
-      $dataSet[] = $statement->fetch(\PDO::FETCH_ASSOC);
-
-  		// como siempre va a traer un solo objeto pongo dataSet[0] ya que estoy parado en el primer lugar
-  		if($dataSet[0])
-  		{
-  			$this->mapMethod($dataSet);
-  		}
-
-  		if(!empty($this->list[0]))
-  		{
-  			return $this->list[0];
-  		}
-
-  		return false;
-  	}
-  	catch (\PDOException $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  	catch (Exception $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-
-  }
-
-  public function readAll()
-  {
-  	try
-  	{
-  		$sql = "SELECT * FROM $this->table";
-
-  		$connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
-
-  		$statement->execute();
-
-  		$dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-  		$this->mapMethod($dataSet);
-
-  		return $this->list;
-  	}
-  	catch(\PDOException $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  	catch(Exception $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  }
-
-  public class update($value)
-  {
-    try
-    {
-      $sql = "UPDATE $this->table SET id_ticket_number = :idTicketNumber AND id_line_purchase = :linePurchase AND code_qr = :codeQr";
-
-      $connection = Connection::connect();
-  		$statement = $connection->prepare($sql);
-
-      $linePurchase = $value->getLinePurchase();
-      $idLinePurchase = $linePurchase->getIdLinePurchase();
-
-      $codeQr = $value->getQr();
-
-  		$statement->execute(array(
-  			":linePurchase" => $idLinePurchase,
-        ":codeQr" => $codeQr,
-  		));
-
+    private $connection;
+    
+    public function __construct () {
     }
-    catch(\PDOException $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-  	catch(Exception $e)
-  	{
-  		echo $e->getMessage();
-  		die();
-  	}
-}
-
-  public function delete($id)
-  {
-    try
-    {
-      $sql = "DELETE FROM $this->table WHERE id_ticket_number = $id "; // si es un string poner \" $id \";
-
-      $connection = Connection::connect();
-      $statement = $connection->prepare($sql);
-
-      $statement->execute(array(
-        ":id" => $id,
-    ));
-
-    }catch(\PDOException $e)
-    {
-      echo $e->getMessage();
-      die();
+    
+    /**
+     * @param Ticket $_data
+     * @return int
+     */
+    public function create (Ticket $_data) {
+        try {
+            
+            $sql = "INSERT INTO tickets (id_line_purchase, code_qr) VALUES (:id_line_purchase, :code_qr)";
+            
+            $parameters['id_line_purchase'] = $_data->getLinePurchase()->getIdLinePurchases();
+            $parameters['code_qr'] = $_data->getQr();
+            
+            // creo la instancia connection
+            $this->connection = Connection::getInstance();
+            // Ejecuto la sentencia.
+            return $this->connection->executeNonQuery($sql, $parameters);
+        } catch (PDOException $ex) {
+            throw $ex;
+        }
     }
-    catch(Exception $e)
-    {
-      echo $e->getMessage();
-      die();
+    
+    /**
+     * @param $id
+     * @return array|bool
+     * @throws Exception
+     */
+    public function read ($id) {
+        try {
+            
+            $sql = "SELECT * FROM tickets where id_ticket_number = :id";
+            
+            $parameters['id'] = $id;
+            
+            $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($sql, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        
+        
+        if (!empty($resultSet))
+            return $this->mapMethod($resultSet);
+        else
+            return false;
     }
-  }
-
-  public function mapMethod($dataSet)
-  {
-    $dataSet = is_array($dataSet) ? $dataSet : false;
-
-    if($dataSet)
-    {
-      $collection = new Collection();
-
-      foreach ($dataSet as $p) {
-        $u = new Ticket();
-
-        $linePurchase = $u->getLinePurchase();
-        $idLinePurchase = $linePurchase->getIdLinePurchase();
-
-        $codeQr = $u->getQr();
-
-        $u->setLinePurchase($idLinePurchase)
-        ->setQr($p["code_qr"])
-        ->setIdTicketNumber($p["id_ticket_number"]));
-
-        $collection->add($u);
-      }
-
-      $this->list = $collection;
+    
+    /**
+     * @return array|bool
+     * @throws Exception
+     */
+    public function readAll () {
+        try {
+            
+            $sql = "SELECT * FROM tickets";
+            
+            $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($sql);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        
+        if (!empty($resultSet))
+            return $this->mapMethod($resultSet);
+        else
+            return false;
     }
-  }
-	*/
-////////////////////////////////////////////////////////////////////////////////////////////////
-	public function mapMethodCollection($dataSet)
-	{
-		$collection = new Collection();
-		foreach ($dataSet as $p) {
-			$u = new Ticket(
-				$p['id_ticket_number'],
-				$p["id_line_purchase"],
-				$p["code_qr"]
-			);
-			$collection->add($u);
-		}
-
-		return $collection;
-	}
-
-	public function mapMethod ($dataSet) {
-		$u = new Ticket(
-			$dataSet['id_ticket_number'],
-			$dataSet["id_line_purchase"],
-			$dataSet["code_qr"]
-		);
-		return $u;
-	}
+    
+    /**
+     * @param Ticket $value
+     * @return int
+     */
+    public function update (Ticket $value) {
+        $sql = "UPDATE tickets SET id_line_purchase = :id_line_purchase, code_qr = :code_qr WHERE id_ticket_number = :id ";
+        
+        $parameters['id'] = $value->getIdTicketNumber();
+        $parameters['id_line_purchase'] = $value->getLinePurchase()->getIdLinePurchases();
+        $parameters['code_qr'] = $value->getQr();
+        
+        try {
+            
+            $this->connection = Connection::getInstance();
+            return $this->connection->executeNonQuery($sql, $parameters);
+        } catch (PDOException $ex) {
+            throw $ex;
+        }
+    }
+    
+    /**
+     * @param $id
+     * @return int
+     * @throws PDOException
+     */
+    public function delete ($id) {
+        
+        try {
+            $sql = "DELETE FROM tickets WHERE id_ticket_number = :id";
+            $parameters['id'] = $id;
+            
+            $this->connection = Connection::getInstance();
+            return $this->connection->ExecuteNonQuery($sql, $parameters);
+        } catch (PDOException $Exception) {
+            
+            throw $Exception;
+            
+        }
+    }
+    
+    /**
+     * @param $value
+     * @return array
+     */
+    public function mapMethod ($value) {
+        
+        $value = is_array($value) ? $value : [$value];
+        
+        $resp = array_map(function ($p) {
+            $linePurchase = LinePurchaseDAO::getInstance()->read($p['id_line_purchase']);
+            return new Ticket(
+                $p['id_ticket_number'],
+                $p['code_qr'],
+                $linePurchase
+                );
+        }, $value);
+        
+        return count($resp) > 1 ? $resp : $resp[0];
+        
+    }
 }

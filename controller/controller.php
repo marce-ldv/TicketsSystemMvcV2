@@ -16,7 +16,10 @@ class Controller{
     $this->defaultDAO = new DefaultDAO();
     //print_r($this->session);
   }
-
+    
+    /**
+     * @return bool|User
+     */
   public function getToken(){
     if( ! isset($this->session->token))
     return false;

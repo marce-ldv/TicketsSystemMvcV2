@@ -1,194 +1,106 @@
 <?php namespace dao;
 
-use dao\Connection as Connection;
-use dao\Singleton as Singleton;
-use dao\UserDAO as UserDAO;
-use model\User as User;
-use model\Purchase as Purchase;
-use interfaces\ICrud as ICrud;
+use dao\{
+    Singleton as Singleton
+};
+use model\Purchase;
+use PDOException;
+use Exception;
 
-class PurchaseDAO extends Singleton implements ICrud{
-  protected $table = "purchases"; /* se agregar para el dia de mañana modificar una vez el nombre de la tabla */
-  private $objInstances = []; //aca van los objetos instanciados desde la base de datos
-  private static $instance;
-  private $pdo;
-
-  public function __construct(){
-    $this->pdo = new Connection();
-  }
-
-public function create(&$purchase) {
-
-  try {
-
-    $sql = ("INSERT INTO $this->table (id_user, date_purchase) VALUES (:id_user, :date_purchase)");
-    $connection = $this->pdo->connect();
-    $statement = $connection->prepare($sql);
-
-    $userId = $purchase->getUser()->getIdUser();
-    $datePurchase = date('Y-m-d');
-
-    $statement->bindParam(":id_user", $userId);
-    $statement->bindParam(":date_purchase", $datePurchase);
-
-    $statement->execute();
-
-    //print_r($statement->errorInfo());
-
-    return $connection->lastInsertId();
-
-  }catch(\PDOException $e){
-    echo $e->getMessage();
-    die();
-  }catch(Exception $e){
-    echo $e->getMessage();
-    die();
-  }
-}
-
-public function read($id) {}
-
-// TODO: Implementar bien este metodo, debe traer un solo usuario
-public function readById(Purchase &$purchase){
-  try{
-    $query = "SELECT * FROM $this->table WHERE id_purchase = :id_purchase";
-
-    $pdo = new Connection();
-    $connection = $pdo->connect();
-    $statement = $connection->prepare($query);
-
-    $statement->execute(array(
-      ":id_purchase" => $entity->getId()
-    ));
-
-    if ($statement->rowCount() == 0) {
-      return false;
+class PurchaseDAO extends Singleton
+{
+    private $connection;
+    
+    public function __construct () {
     }
-
-    $purchaseArray = $statement->fetch(\PDO::FETCH_ASSOC);
-
-    //Buscar user
-    $userDAO = UserDAO::getInstance();
-    $user = new User();
-    $user->setId($purchaseArray["id_user"]);
-    $userDAO->readById($user);
-
-    $pruchase->setId($purchaseArray["id_purchase"]);
-    $purchase->setUser($user);
-
-    return true;
-
-  }catch(\PDOException $e){
-    echo $e->getMessage();
-    die();
-  }catch(Exception $e){
-    echo $e->getMessage();
-    die();
-  }
-}
-
-public function readAll(){
-
-  try{
-    $query = "SELECT * FROM $this->table";
-
-    $pdo = new Connection();
-    $connection = $pdo->connect();
-    $statement = $connection->prepare($query);
-
-    $statement->execute();
-
-    $dataSet = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
-    $this->mapMethod($dataSet);
-
-    if (!empty($this->objInstances)) {
-      return $this->objInstances;
+    
+    /**
+     * @param Purchase $_data
+     * @return int
+     */
+    public function create (Purchase $_data) {
+        try {
+            
+            $sql = "INSERT INTO purchases (id_user, date_purchase) VALUES (:id_user, :date_purchase)";
+            
+            $parameters['id_user'] = $_data->getUser()->getIdUser();
+            $parameters['date_purchase'] = date("Y/m/d");
+            
+            // creo la instancia connection
+            $this->connection = Connection::getInstance();
+            // Ejecuto la sentencia.
+            return $this->connection->executeNonQuery($sql, $parameters);
+        } catch (PDOException $ex) {
+            throw $ex;
+        }
     }
-
-    return null;
-  }catch(\PDOException $e){
-    echo $e->getMessage();
-    die();
-  }catch(Exception $e){
-    echo $e->getMessage();
-    die();
-  }
-}//end fetch method
-
-public function update($value){
-  // code...
-}
-
-public function delete($id){
-  // code...
-}
-/*
-public function readByUser($username){
-try{
-$sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userParam";
-$connection = $this->pdo->connect();
-$statement = $connection->prepare($sql);
-$statement->bindParam(':userParam', $username);
-$statement->execute();
-
-if ($statement->fetch()){
-
-return TRUE;
-}
-return FALSE;
-}catch(\PDOException $e){
-echo $e->getMessage();
-}
-}
-*/
-public function readByUser($username){
-  try{
-    $sql = "SELECT * FROM $this->table WHERE username = :userParam OR email = :userParam";
-    $connection = $this->pdo->connect();
-    $statement = $connection->prepare($sql);
-    $statement->bindParam(':userParam', $username);
-    $statement->execute();
-
-
-    $var = $statement->fetch();
-    print_r($var);
-    if(empty($var)){
-      return false;
+    
+    /**
+     * @param $id
+     * @return array|bool
+     * @throws Exception
+     */
+    public function read ($id) {
+        try {
+            
+            $sql = "SELECT * FROM purchases where id_purchase = :id";
+            
+            $parameters['id'] = $id;
+            
+            $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($sql, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        
+        
+        if (!empty($resultSet))
+            return $this->mapMethod($resultSet);
+        else
+            return false;
     }
-
-    $modelUser = new User(
-      $var['username'],
-      $var['pass'],
-      $var['email'],
-      $var['name_user'],
-      $var['surname'],
-      $var['dni']
-    );
-
-    return $modelUser;
-  }catch(\PDOException $e){
-    echo $e->getMessage();
-  }
-}
-
-public function mapMethod($dataSet){
-
-  $dataSet = is_array($dataSet) ? $dataSet : false;
-
-  if($dataSet){
-    $this->listado = array_map(function ($p) {
-      $u = new Usuario(
-        $p['username'],
-        $p['pass'],
-        $p['email']);
-        $u->setId($p['id_usuario']);
-        return $u;
-      }, $dataSet);
+    
+    /**
+     * @return array|bool
+     * @throws Exception
+     */
+    public function readAll () {
+        try {
+            
+            $sql = "SELECT * FROM purchases";
+            
+            $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($sql);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        
+        if (!empty($resultSet))
+            return $this->mapMethod($resultSet);
+        else
+            return false;
     }
-  }//mapMethod end
-
-
-
+    
+    /**
+     * @param $value
+     * @return array
+     */
+    public function mapMethod ($value) {
+        
+        $value = is_array($value) ? $value : [$value];
+        
+        $resp = array_map(function ($p) {
+            
+            $user = UserDAO::getInstance()->read($p['id_user']);
+            
+            return new Purchase(
+                $p['id_purchase'],
+                $user,
+                $p['date_purchase']
+            );
+        }, $value);
+        
+        return count($resp) > 1 ? $resp : $resp[0];
+        
+    }
 }//class end
-?>
