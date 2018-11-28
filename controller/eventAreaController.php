@@ -2,104 +2,142 @@
 
 namespace controller;
 
-use model\EventArea as EventArea;
-use dao\EventAreaDAO as EventAreaDAO;
+use dao\{
+    EventAreaDAO as EventAreaDAO,
+    CalendarDAO as CalendarDAO,
+    TypeAreaDAO as TypeAreaDAO
+};
 use controller\Controller as Controller;
-use interfaces\IAlmr as IAlmr;
+use model\EventArea;
+use PDOException;
+use Exception;
+use helpers\ToArrayList;
 
-class EventAreaController extends Controller implements IAlmr
+//echo phpInfo();
+class EventAreaController extends Controller
 {
     private $controllerDao;
-
+    
     public function __construct () {
         parent::__construct();
         $this->controllerDao = EventAreaDAO::getInstance();
     }
-
+    
+    /**
+     *
+     */
     public function index () {
         $this->list();
     }
-
+    
+    /**
+     * @param array $data
+     */
     public function add ($data = []) {
-        //create -> La llave es el campo en la base de dato y el valor es el valor a guardar en la base de dato
-        $this->controllerDao->create([
-          "id_type_area" => $data["idTypeArea"],
-          "id_calendar" => $data["idCalendar"],
-          "quantity_avaliable" => $data["quantityAvaliable"],
-          "price" => $data["price"],
-          "remainder" => $data["remainder"]
-        ]);
 
+        $calendarDAO = CalendarDAO::getInstance();
+        $typeAreaDAO = TypeAreaDAO::getInstance();
+        
+        $calendar = $calendarDAO->read($data['idCalendar']);
+        $typeArea = $typeAreaDAO->read($data['idTypeArea']);
+        
+        $eventArea = new EventArea(
+            '',
+            $typeArea,
+            $calendar,
+            $data["quantity"],
+            $data['price'],
+            $data["quantity"]
+        );
+        
+        $this->controllerDao->create($eventArea);
+        
         $this->redirect("/eventArea/");
-
+        
         return;
     }
-
+    
+    /**
+     *
+     */
     public function list () {
-		if ( ! $this->isLogged()) {
-			$this->redirect('/default/login');
-		}
-		else {
+        if ( ! $this->isLogged()) $this->redirect('/default/login');
+        
+        $items = $this->controllerDao->readAll();
+        $calendars = CalendarDAO::getInstance()->readAll();
+        $typeAreas = TypeAreaDAO::getInstance()->readAll();
+        
+        $items = ToArrayList::convert($items);
+        $calendars = ToArrayList::convert($calendars);
+        $typeAreas = ToArrayList::convert($typeAreas);
 
-			$items = $this->controllerDao->readAll();
-
-      $items = $this->controllerDao->mapMethodCollection($items);
-
-			$this->render("viewEventArea/EventsAreas",[
-				'items' => $items
-			]);
-		}
+        $this->render("viewEventArea/eventsAreas", [
+            'items' => $items,
+            'calendars' => $calendars,
+            'typeAreas' => $typeAreas
+        ]);
+        //}
     }
-
-    public function remove($data = []) {
-
-		$this->controllerDao->delete([
-      "id_event_area" => $data['idEventArea']
-    ]);
-
-		$this->redirect("/eventArea/");
-	}
-
-	public function viewEdit ($id) {
-
-		$searchedItem = $this->controllerDao->read([
-      "id_event_area" => $id
-    ]);
-
-    $searchedItem = $this->controllerDao->mapMethod($searchedItem);
-
-		$this->render('viewEventArea/updateEventArea',[
-			'searchedItem' => $searchedItem
-		]);
-	}
-
-  public function modify($data = [])
-	{
-		if ( ! $this->isMethod("POST")) $this->redirect("/default/");
-		if (empty($data)) $this->redirect("/default/");
-
-		try
-		{
-			$this->controllerDao->update([
-        "id_type_area" => $data["idTypeArea"],
-        "id_calendar" => $data["idCalendar"],
-        "quantity_avaliable" => $data["quantityAvaliable"],
-        "price" => $data["price"],
-        "remainder" => $data["remainder"]
-      ],[
-        "id_event_area" => $data["idEventArea"]
-      ]);
-		}
-		catch(\PDOException $e)
-		{
-			echo $e->getMessage();
-		}
-		catch(\Exception $e){
-			echo $e->getMessage();
-		}
-
-		$this->redirect('/eventArea/');
-
-	}
+    
+    /**
+     * @param array $data
+     */
+    public function remove ($data = []) {
+        
+        $this->controllerDao->delete($data['id']);
+        
+        //$this->redirect("/artist/");
+        $this->index();
+    }
+    
+    public function viewEdit ($id) {
+        
+        $searchedItem = $this->controllerDao->read($id);
+        $calendars = CalendarDAO::getInstance()->readAll();
+        $typeAreas = TypeAreaDAO::getInstance()->readAll();
+        $calendars = ToArrayList::convert($calendars);
+        $typeAreas = ToArrayList::convert($typeAreas);
+        
+        //	$searchedItem = $this->controllerDao->mapMethod($searchedItem);
+        
+        $this->render('viewEventArea/updateEventArea', [
+            'searchedItem' => $searchedItem,
+            'calendars' => $calendars,
+            'typeAreas' => $typeAreas
+        ]);
+    }
+    
+    /**
+     * @param array $data
+     */
+    public function modify ($data = []) {
+        if (!$this->isMethod("POST")) $this->redirect("/default/");
+        if (empty($data)) $this->redirect("/default/");
+        
+        $typeArea = TypeAreaDAO::getInstance()->read($data['idTypeArea']);
+        $calendar = CalendarDAO::getInstance()->read($data['idCalendar']);
+        
+        $eventArea = new EventArea(
+            $data['id'],
+            $typeArea,
+            $calendar,
+            $data['quantity'],
+            $data['price'],
+            $data['quantity']
+        );
+        
+        try {
+            $this->controllerDao->update($eventArea);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+        
+        //$this->redirect('/artist/');
+        
+        $this->index();
+        
+    }
 
 } // <----- end CLASS

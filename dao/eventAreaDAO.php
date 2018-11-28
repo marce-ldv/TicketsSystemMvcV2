@@ -2,24 +2,38 @@
     
     namespace dao;
     
-    use model\EventArea as EventArea;
-    use dao\Singleton as Singleton;
-    use dao\Connection as Connection;
-    use dao\TypeAreaDAO as TypeAreaDAO;
-    use dao\CalendarDAO as CalendarDAO;
+    //PHP 7 Group use
+    //https://wiki.php.net/rfc/group_use_declarations
+    use dao\{
+        Connection as Connection,
+        TypeAreaDAO as TypeAreaDAO,
+        CalendarDAO as CalendarDAO,
+        Singleton as Singleton
+    };
+    use model\{
+        EventArea as EventArea
+    };
     use PDOException;
     use Exception;
-    
+
+    /**
+     * Class EventAreaDAO
+     * @package dao
+     */
     class EventAreaDAO extends Singleton
     {
         private $connection;
-        
+    
+        /**
+         * EventAreaDAO constructor.
+         */
         public function __construct () {
         }
         
         /**
          * @param EventArea $_data
          * @return int
+         * @throws
          */
         public function create (EventArea $_data) {
             try {
@@ -43,7 +57,7 @@
         
         /**
          * @param $id
-         * @return array|bool
+         * @return EventArea[]|bool
          * @throws Exception
          */
         public function read ($id) {
@@ -131,23 +145,32 @@
          * @param $value
          * @return array
          */
+        /**
+         * @param $value
+         * @return array
+         */
         public function mapMethod ($value) {
-            
+        
             $value = is_array($value) ? $value : [$value];
-            
+        
             $resp = array_map(function ($p) {
-                $daoTypeArea = TypeAreaDAO::getInstance();
-                $daoCalendar = CalendarDAO::getInstance();
+                $calendarDAO = CalendarDAO::getInstance();
+                $typeAreaDAO = TypeAreaDAO::getInstance();
                 
-                $typeArea = $daoTypeArea->read($p['id_type_area']);
-                $calendar = $daoCalendar->read($p['id_calendar']);
-                return new EventArea($p['id_event_area'], $typeArea, $calendar, $p['quantity_avaliable'], $p['price'], $p['remainder']);
+                $calendar = $calendarDAO->read($p['id_calendar']);
+                $typArea = $typeAreaDAO->read($p['id_type_area']);
+                return new EventArea(
+                    $p['id_event_area'],
+                    $typArea,
+                    $calendar,
+                    $p['quantity_avaliable'],
+                    $p['price'],
+                    $p['remainder']
+                );
             }, $value);
-            
+        
             return count($resp) > 1 ? $resp : $resp[0];
-            
+        
         }
-    }
-    
-    
+        
     }
