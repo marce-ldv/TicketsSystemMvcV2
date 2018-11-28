@@ -14,7 +14,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-compass fa-spin""></i> Dashboard</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/test/uploadFile"><i class="far fa-circle"></i> Subir Imagen</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/test/"><i class="far fa-circle"></i> Shop</a>
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/purchase/"><i class="fas fa-shopping-cart"></i> Carrito</a>
             <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/"><i class="fas fa-sign-out-alt"></i> Salir</a>
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>

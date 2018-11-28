@@ -70,6 +70,7 @@
                     <th scope="col">Disponibilidad</th>
                     <th scope="col">Precio de entrada</th>
                     <th scope="col">Tipo de plaza</th>
+                    <th scope="col">Accion</th>
                 </tr>
                 </thead>
                 <tbody>
