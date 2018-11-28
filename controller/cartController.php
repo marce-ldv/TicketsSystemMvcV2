@@ -25,6 +25,9 @@
             $itemsCart = [];
             $total = 0;
             
+            //parche
+            $this->session->cart = (! is_array($this->session->cart)) ? [] : $this->session->cart;
+            
             foreach ($this->session->cart as $itemCart) {
                 $eventArea = EventAreaDAO::getInstance()->read($itemCart['idEventArea']);
                 $item['tituloEvento'] = $eventArea->getCalendar()->getEvent()->getTitleEvent();
@@ -88,7 +91,12 @@
                     $itemCart['price']
                 );
                 
+                $total = $eventArea->getRemainder();
+                $total = $total - $itemCart['quantity'];
+                $eventArea->setRemainder($total);
+                
                 try {
+                    EventAreaDAO::getInstance()->update($eventArea);
                     LinePurchaseDAO::getInstance()->create($linePurchase);
                     $lastId = Connection::getInstance()->getLastInsertId();
                     $linePurchase->setIdLinePurchases($lastId);
