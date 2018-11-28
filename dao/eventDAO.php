@@ -1,141 +1,152 @@
 <?php
 
-namespace dao;
+    namespace dao;
 
-use model\Event as Event;
-use model\Category as Category;
-use interfaces\ICrud as ICrud;
-use dao\Singleton as Singleton;
-use helpers\Collection as Collection;
-use dao\CategoryDAO as CategoryDAO;
+    use Exception;
+    use PDOException;
+    use model\Event as Event;
+    use model\Category as Category;
+    use dao\Singleton as Singleton;
+    use dao\CategoryDAO as CategoryDAO;
 
-class EventDAO extends Singleton implements ICrud
-{
-	private $connection;
-	/*private $list;
-	private static $instance;
-	private $categoryDao;
-	private $pdo;*/
+    /**
+     * Class EventDAO
+     * @package dao
+     */
+    class EventDAO extends Singleton
+    {
+        private $connection;
 
-	public function __construct()	{}
+        public function __construct () {
+        }
 
-		public function create($_data)
-		{
-			try {
+        /**
+         * @param Event $_data
+         * @return int
+         */
+        public function create (Event $_data) {
+            try {
+                $sql = "INSERT INTO events (id_category, title) VALUES (:idCategory, :title)";
 
-				$sql = "INSERT INTO events (id_category, title) VALUES (:idCategory, :title)";
+                $category = new Category($_data->getCategory());
 
-				$category = new Category($_data->getCategory());
+                $parameters['idCategory'] = $category->getIdCategory();
+                $parameters['title'] = $_data->getTitleEvent();
 
-				//$category = $_data->getCategory();
-				$idCategory = $category->getIdCategory();
+                // creo la instancia connection
+                $this->connection = Connection::getInstance();
+                // Ejecuto la sentencia.
+                return $this->connection->executeNonQuery($sql, $parameters);
+            } catch (PDOException $ex) {
+                throw $ex;
+            }
+        }
 
-				$parameters['idCategory'] = $idCategory;
-				$parameters['title'] = $_data->getTitleEvent();
+        /**
+         * @param $id
+         * @return array|bool
+         * @throws Exception
+         */
+        public function read ($id) {
+            try {
 
-				// creo la instancia connection
-				$this->connection = Connection::getInstance();
-				// Ejecuto la sentencia.
-				return $this->connection->executeNonQuery($sql, $parameters);
-			}
-			catch(PDOException $ex)
-			{
-				throw $ex;
-			}
-		}
+                $sql = "SELECT * FROM events where id_event = :id";
 
-		public function read($id)
-		{
-			try {
+                $parameters['id'] = $id;
 
-				$sql = "SELECT * FROM events where id_event = :id";
+                $this->connection = Connection::getInstance();
+                $resultSet = $this->connection->execute($sql, $parameters);
+            } catch (Exception $ex) {
+                throw $ex;
+            }
 
-				$parameters['id'] = $id;
+            if (!empty($resultSet))
+                return $this->mapMethod($resultSet);
+            else
+                return false;
+        }
 
-				$this->connection = Connection::getInstance();
-				$resultSet = $this->connection->execute($sql, $parameters);
-			} catch(Exception $ex) {
-				throw $ex;
-			}
+        /**
+         * @return array|bool
+         * @throws Exception
+         */
+        public function readAll () {
+            try {
 
-			if(!empty($resultSet))
-			return $this->mapMethod($resultSet);
-			else
-			return false;
-		}
+                $sql = "SELECT * FROM events";
 
-		public function readAll()
-		{
-			try {
+                $this->connection = Connection::getInstance();
+                $resultSet = $this->connection->execute($sql);
+            } catch (Exception $ex) {
+                throw $ex;
+            }
 
-				$sql = "SELECT * FROM events";
+            if (!empty($resultSet))
+                return $this->mapMethod($resultSet);
+            else
+                return false;
+        }
 
-				$this->connection = Connection::getInstance();
-				$resultSet = $this->connection->execute($sql);
-			} catch(Exception $ex) {
-				throw $ex;
-			}
+        /**
+         * @param $value
+         * @return int
+         */
+        public function update (Event $value) {
+            $sql = "UPDATE events SET id_category = :idCategory, title = :title WHERE id_event = :id ";
 
-			if(!empty($resultSet))
-			return $this->mapMethod($resultSet);
-			else
-			return false;
-		}
+            $category = new Category($value->getCategory());
 
-		public function update($value)
-		{
-			$sql = "UPDATE events SET id_category = :idCategory, title = :title WHERE id_event = :id ";
+            $parameters['id'] = $value->getIdEvent();
+            $parameters['idCategory'] = $category->getIdCategory();
+            $parameters['title'] = $value->getTitleEvent();
 
-			$category = new Category($_data->getCategory());
-			//$category = $value->getCategory();
-			$idCategory = $category->getIdCategory();
+            try {
 
-			$parameters['id'] = $value->getIdEvent();
-			$parameters['idCategory'] = $idCategory;
-			$parameters['title'] = $value->getTitleEvent();
+                $this->connection = Connection::getInstance();
 
-			try {
+                return $this->connection->executeNonQuery($sql, $parameters);
+            } catch (PDOException $ex) {
+                throw $ex;
+            }
+        }
 
-				$this->connection = Connection::getInstance();
+        /**
+         * @param $id
+         * @return int
+         * @throws
+         */
+        public function delete ($id) {
 
-				return $this->connection->executeNonQuery($sql, $parameters);
-			} catch(PDOException $ex) {
-				throw $ex;
-			}
-		}
+            try {
+                $sql = "DELETE FROM events WHERE id_event = :id";
+                $parameters['id'] = $id;
 
-		public function delete($id)
-		{
+                $this->connection = Connection::getInstance();
+                return $this->connection->ExecuteNonQuery($sql, $parameters);
+            } catch (PDOException $Exception) {
+                throw $Exception;
+            }
+        }
 
-			try
-			{
-				$sql = "DELETE FROM events WHERE id_event = :id";
-				$parameters['id'] = $id;
+        /**
+         * @param $value
+         * @return array
+         */
+        public function mapMethod ($value) {
 
-				$this->connection = Connection::getInstance();
-				return $this->connection->ExecuteNonQuery($sql, $parameters);
+            $value = is_array($value) ? $value : [$value];
 
+            //$category = new Category($_data->getCategory());
+            //$category = $value->getCategory();
+            //$idCategory = $category->getIdCategory();
 
-			} catch(PDOException $Exception) {
+            $resp = array_map(function ($p) {
+                $dao = CategoryDAO::getInstance();
+                $category = $dao->read($p['id_category']);
+                return new Event($p['id_event'], $category, $p['title']);
+            }, $value);
 
-				throw new MyDatabaseException( $Exception->getMessage(), $Exception->getCode());
+            return count($resp) > 1 ? $resp : $resp[0];
 
-			}
-		}
-
-		public function mapMethod($value) {
-
-			$value = is_array($value) ? $value : [$value];
-
-			$category = new Category($_data->getCategory());
-			//$category = $value->getCategory();
-			$idCategory = $category->getIdCategory();
-
-			$resp = array_map(function($p){
-				return new Event($p['id_event'], $p['id_category'], $p['title']);
-			}, $value);
-
-			return count($resp) > 1 ? $resp : $resp[0];
-
-		}
-	}
+        }
+    }

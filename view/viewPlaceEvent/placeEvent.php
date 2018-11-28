@@ -52,7 +52,7 @@
 
 							<form action="<?= FRONT_VIEW ?>/placeEvent/remove" method="post">
 								<div class="form-group">
-									<input type="hidden" value="<?= $item->getIdPlaceEvent() ?>" name="data[idPlaceEvent]">
+									<input type="hidden" value="<?= $item->getIdPlaceEvent() ?>" name="data[id]">
 									<input type="submit" class="btn btn-danger" value="Eliminar"></input>
 								</div>
 						</form>

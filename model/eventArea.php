@@ -3,7 +3,6 @@ namespace model;
 
 //USES
 
-
 class EventArea
 {
   private $idEventArea;
@@ -13,22 +12,33 @@ class EventArea
   private $price;
   private $remainder;
 
-  public __construct($idEventArea="",$typeArea="",$calendar="",$quantityAvaliabl="",$price="",$remainder=""){
-
+  public function __construct($idEventArea="",TypeArea $typeArea = null,Calendar $calendar = null,$quantityAvaliable="",$price="",$remainder=""){
+  	$this->idEventArea = $idEventArea;
+  	$this->typeArea = $typeArea;
+  	$this->calendar = $calendar;
+  	$this->quantityAvaliable = $quantityAvaliable;
+  	$this->price = $price;
+  	$this->remainder = $remainder;
   }
 
   //GETTER
   public function getIdEventArea()
   {
-    return $this->id_event_area;
+    return $this->idEventArea;
   }
-
-  public function getTypeArea()
+	
+	/**
+	 * @return TypeArea
+	 */
+  public function getTypeArea() : TypeArea
   {
     return $this->typeArea;
   }
-
-  public function getCalendar()
+	
+	/**
+	 * @return Calendar
+	 */
+  public function getCalendar() : Calendar
   {
     return $this->calendar;
   }
@@ -52,7 +62,7 @@ class EventArea
 
   public function setIdEventArea($value) : void
   {
-    $this->id_event_area = $value;
+    $this->idEventArea = $value;
   }
 
   //modificas el id
