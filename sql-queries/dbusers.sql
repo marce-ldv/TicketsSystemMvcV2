@@ -111,6 +111,5 @@ CREATE TABLE tickets(
   id_line_purchase BIGINT UNSIGNED,
   code_qr VARCHAR(50) NOT NULL,
   CONSTRAINT pk_id_ticket_number PRIMARY KEY (id_ticket_number),
-  CONSTRAINT uniq_code_qr UNIQUE (code_qr),
   CONSTRAINT fk_id_line_purchase FOREIGN KEY (id_line_purchase) REFERENCES lines_purchases (id_line_purchase) ON DELETE CASCADE
 );

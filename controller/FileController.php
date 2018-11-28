@@ -18,7 +18,7 @@
         function __construct () {
             parent::__construct();
             $this->allowedExtensions = array('image/png', 'image/jpeg', 'image/gif','image/jpg');
-            $this->maxSize = 5000000;
+            $this->maxSize = 5000000; //5 mega bytes
         }
     
         /**

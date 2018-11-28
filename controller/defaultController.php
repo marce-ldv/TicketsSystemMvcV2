@@ -59,9 +59,9 @@
             
             try {
                 if ($result = $this->userController->add($user)) {
-                    $success = 'success';
+                    $success = 'Usuario creado con exito..';
                 } else {
-                    $alert = 'alert';
+                    $alert = 'Opps al parecer hubo un problema..';
                 }
             } catch (\Exception $e) {
                 throw $e;
