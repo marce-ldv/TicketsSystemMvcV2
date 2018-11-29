@@ -28,6 +28,7 @@ class User implements \Serializable
     //SERIALIZE METHODS
     public function serialize(){
         return serialize([
+            $this->idUser,
             $this->username,
             $this->email,
             $this->roleUser,
@@ -37,6 +38,7 @@ class User implements \Serializable
 
     public function unserialize($data){
         list(
+            $this->idUser,
             $this->username,
             $this->email,
             $this->roleUser,

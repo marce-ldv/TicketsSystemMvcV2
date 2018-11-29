@@ -14,15 +14,13 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/default/dashboard"><i class="far fa-compass fa-spin""></i> Dashboard</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/test/uploadFile"><i class="far fa-circle"></i> Subir Imagen</a>
-          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/"><i class="fas fa-sign-out-alt"></i> Salir</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/shop/"><i class="far fa-circle"></i> Shop</a>
+          <a class="dropdown-item" href="<?= FRONT_VIEW ?>/cart/"><i class="fas fa-shopping-cart"></i> Carrito</a>
+            <a class="dropdown-item" href="<?= FRONT_VIEW ?>/user/logout/"><i class="fas fa-sign-out-alt"></i> Salir</a>
           <?php if ($this->getToken()->getRoleUser() == "admin") { ?>
           <a class="dropdown-item" href="<?= FRONT_VIEW ?>/artist/create">create</a>
         <?php  }?>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_VIEW ?>/purchase/"> <span class="cart-icon icon-shopping-cart">Carrito <i class="fas fa-cart-plus"></i></span> </a>
       </li>
       <?php }else {?>
       <li class="nav-item">

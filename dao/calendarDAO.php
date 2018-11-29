@@ -3,9 +3,12 @@
     namespace dao;
     
     use model\Calendar as Calendar;
-    use dao\Singleton as Singleton;
-    use dao\EventDAO as EventDAO;
-    use dao\PlaceEventDAO as PlaceEventDAO;
+    use dao\{
+        Singleton as Singleton,
+        EventDAO as EventDAO,
+        PlaceEventDAO as PlaceEventDAO
+    };
+    use helpers\Collection as Colecction;
     use PDOException;
     use Exception;
     
@@ -142,6 +145,8 @@
                 $placeEvent = $placeEventDAO->read($p['id_place_event']);
                 
                 return new Calendar($p['id_calendar'], $event, $placeEvent, $p['date_start'], $p['date_end']);
+                
+                
             }, $value);
         
             return count($resp) > 1 ? $resp : $resp[0];

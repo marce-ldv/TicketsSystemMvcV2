@@ -2,6 +2,11 @@
     
     namespace model;
     
+    use dao\EventAreaDAO;
+    use helpers\{
+        Collection as Collection,
+        ToArrayList as ToArrayList
+    };
     
     class Calendar
     {
@@ -10,6 +15,7 @@
         private $placeEvent;
         private $dateStart;
         private $dateEnd;
+        private $eventsAreas;
         
         public function __construct ($idCalendar = "", Event $event = null, PlaceEvent $placeEvent = null, $dateStart = "", $dateEnd = "") {
             $this->idCalendar = $idCalendar;
@@ -17,6 +23,8 @@
             $this->placeEvent = $placeEvent;
             $this->dateEnd = $dateEnd;
             $this->dateStart = $dateStart;
+            
+            $this->eventsAreas = new Collection();
         }
         
         public function getIdCalendar () {
@@ -58,6 +66,21 @@
         
         public function setDateEnd ($dateEnd) {
             $this->dateEnd = $dateEnd;
+        }
+        
+        public function getEventsAreas () {
+            return $this->eventsAreas;
+        }
+        
+        public function addEventArea (EventArea $eventArea) {
+            $this->eventsAreas->add($eventArea);
+        }
+        
+        public function initializeEventAreas () {
+            $events = EventAreaDAO::getInstance()->readByCalendar($this->idCalendar);
+            $events = ToArrayList::convert($events);
+            $events = Collection::createFromArray($events);
+            $this->eventsAreas = $events;
         }
         
     }
